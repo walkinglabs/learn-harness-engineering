@@ -1,0 +1,14 @@
+{
+  "name": "learn-harness-engineering",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Course docs for Learn Harness Engineering powered by VitePress.",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
