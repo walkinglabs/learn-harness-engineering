@@ -1,0 +1,248 @@
+# Learn Harness Engineering
+
+> 这是一门项目制课程：系统学习如何通过环境、状态、验证与控制机制，让 Codex 和 Claude Code 更可靠地工作。
+
+本课程仍在持续建设中，内容后续可能会调整。
+
+## 课程概览
+
+Harness engineering 指的是：围绕模型搭建一整套工作环境，让它干活更靠谱。这不只是写提示词，还包括：
+
+- 代码放哪、怎么组织
+- 什么能干、什么干不了
+- 任务做到哪了、下次怎么接上
+- 做完怎么验证对不对
+- 出了问题怎么排查
+- 哪些规矩必须遵守
+- 怎么保持干净、不留烂摊子
+
+这门课是**强实践导向**的。我们不会只停留在“概念解释”，而是会让 Codex 或 Claude Code 在同一个不断演化的 Electron 应用上反复工作，并比较弱 harness 与强 harness 的差异。
+
+课程真正关心的问题是：
+
+- 哪些 harness 设计会提升任务完成率？
+- 哪些设计会减少返工和错误完成？
+- 哪些机制能让长时任务更稳定地持续推进？
+- 哪些结构能让系统在多轮 agent 运行后仍然可维护？
+
+## 核心观点
+
+以后让模型干活，人只需要定好规则和边界——这就是 harness。
+
+**为什么这个重要：** 模型很强，但不代表它能自动靠谱地完成真实工程任务。它需要一套明确的规则来约束自己的行为范围、需要清晰的交接机制来维持长时任务的连续性、需要验证手段来确认自己做对了。
+
+我们不是在尝试"让模型本身更聪明"，而是研究：怎么给模型搭建一个靠谱的工作环境，让同一个模型做出更可靠的工作。
+
+## 课程大纲
+
+### 讲义
+
+- [Lecture 01. 为什么强模型依然会失败](./lectures/lecture-01-why-capable-agents-still-fail/README.md)
+- [Lecture 02. 什么才算 harness](./lectures/lecture-02-what-a-harness-actually-is/README.md)
+- [Lecture 03. 为什么仓库必须成为 system of record](./lectures/lecture-03-why-the-repository-must-become-the-system-of-record/README.md)
+- [Lecture 04. 为什么一个巨大的 instruction 文件会失败](./lectures/lecture-04-why-one-giant-instruction-file-fails/README.md)
+- [Lecture 05. 为什么长时任务会失去连续性](./lectures/lecture-05-why-long-running-tasks-lose-continuity/README.md)
+- [Lecture 06. 为什么初始化必须是独立阶段](./lectures/lecture-06-why-initialization-needs-its-own-phase/README.md)
+- [Lecture 07. 为什么 scope 必须被显式化](./lectures/lecture-07-why-agents-overreach-and-under-finish/README.md)
+- [Lecture 08. 为什么验证必须外部化](./lectures/lecture-08-why-feature-lists-are-harness-primitives/README.md)
+- [Lecture 09. 为什么 runtime feedback 必须进入 harness](./lectures/lecture-09-why-agents-declare-victory-too-early/README.md)
+- [Lecture 10. 为什么结构和 taste 必须被强制执行](./lectures/lecture-10-why-end-to-end-testing-changes-results/README.md)
+- [Lecture 11. 为什么更强的 harness 会拆分角色](./lectures/lecture-11-why-observability-belongs-inside-the-harness/README.md)
+- [Lecture 12. 为什么 harness 必须被持续度量和维护](./lectures/lecture-12-why-every-session-must-leave-a-clean-state/README.md)
+
+### 项目
+
+- [Project 01. 基线 vs 最小 harness](./projects/project-01-baseline-vs-minimal-harness/README.md)
+- [Project 02. Agent-readable workspace 与 continuity scaffold](./projects/project-02-agent-readable-workspace/README.md)
+- [Project 03. Scope control 与 grounded verification](./projects/project-03-multi-session-continuity/README.md)
+- [Project 04. Runtime feedback 与 structural control](./projects/project-04-incremental-indexing/README.md)
+- [Project 05. Evaluator loop 与三角色升级](./projects/project-05-grounded-qa-verification/README.md)
+- [Project 06. Benchmark、cleanup 与 capstone harness](./projects/project-06-runtime-observability-and-debugging/README.md)
+
+### 资料库
+
+- [Resource Library 总览](./resources/README.md)
+- [中文资料库](./resources/zh/README.md)
+- [English Resource Library](./resources/en/README.md)
+
+## 适合谁
+
+这门课适合：
+
+- 已经在使用 coding agent、希望提升稳定性和质量的工程师
+- 想系统理解 harness 设计的研究者或构建者
+- 需要理解“环境设计如何影响 agent 表现”的技术负责人
+
+这门课不适合：
+
+- 只想要一个零代码 AI 入门的人
+- 只关心 prompt，而不打算做真实实现的人
+- 不准备让 agent 在真实仓库里工作的学习者
+
+## 环境要求
+
+这是一门真正需要动手跑 coding agent 的课程。
+
+你至少需要具备一个这类工具：
+
+- Claude Code
+- Codex
+- 其他支持文件编辑、命令执行、多步任务的 IDE / CLI coding agent
+
+课程默认你可以：
+
+- 打开本地仓库
+- 允许 agent 编辑文件
+- 允许 agent 运行命令
+- 检查输出并重复执行任务
+
+如果你没有这类工具，仍然可以阅读课程内容，但无法按预期完成课程 project。
+
+## 快速开始
+
+OpenAI 和 Anthropic 这两条线，虽然写法不同，但都在探索同一件事：不是只改 prompt，而是给 coding agent 一套可持续工作的环境。核心做法包括把仓库变成 system of record、把任务状态外部化、把验证变成硬门槛、把每次会话的交接做成可复用的标准流程。
+
+如果你想先上手，不必先把所有 lecture 读完。可以先去专门的资料库文件夹，直接参考这些文件，然后按自己的项目改一版。
+
+中文版本：
+
+- 入口：[`resources/zh/README.md`](./resources/zh/README.md)
+- 根指令文件：[`resources/zh/templates/AGENTS.md`](./resources/zh/templates/AGENTS.md) 或 [`resources/zh/templates/CLAUDE.md`](./resources/zh/templates/CLAUDE.md)
+- 功能状态文件：[`resources/zh/templates/feature_list.json`](./resources/zh/templates/feature_list.json)
+- 进度记录文件：[`resources/zh/templates/claude-progress.md`](./resources/zh/templates/claude-progress.md)
+- 会话交接文件：[`resources/zh/templates/session-handoff.md`](./resources/zh/templates/session-handoff.md)
+- 收尾检查清单：[`resources/zh/templates/clean-state-checklist.md`](./resources/zh/templates/clean-state-checklist.md)
+- 评审模板：[`resources/zh/templates/evaluator-rubric.md`](./resources/zh/templates/evaluator-rubric.md)
+- 启动脚本参考：`resources/zh/templates/init.sh`
+
+English version:
+
+- Entry: [`resources/en/README.md`](./resources/en/README.md)
+- Root instructions: [`resources/en/templates/AGENTS.md`](./resources/en/templates/AGENTS.md) or [`resources/en/templates/CLAUDE.md`](./resources/en/templates/CLAUDE.md)
+- Feature state: [`resources/en/templates/feature_list.json`](./resources/en/templates/feature_list.json)
+- Progress log: [`resources/en/templates/claude-progress.md`](./resources/en/templates/claude-progress.md)
+- Session handoff: [`resources/en/templates/session-handoff.md`](./resources/en/templates/session-handoff.md)
+- Clean-exit checklist: [`resources/en/templates/clean-state-checklist.md`](./resources/en/templates/clean-state-checklist.md)
+- Evaluator rubric: [`resources/en/templates/evaluator-rubric.md`](./resources/en/templates/evaluator-rubric.md)
+- Bootstrap script reference: `resources/en/templates/init.sh`
+
+推荐最小起步组合：
+
+- `AGENTS.md` 或 `CLAUDE.md`
+- `feature_list.json`
+- `claude-progress.md`
+- `init.sh`
+
+先把这四样放进你的项目里，再开始让 agent 真正干活，效果会比只写一段大 prompt 稳定得多。
+
+## 本地预览
+
+本仓库使用 VitePress 作为文档查看器。
+
+```sh
+npm install
+npm run docs:dev
+```
+
+然后在浏览器里打开 VitePress 输出的本地地址即可。
+
+## 先修要求
+
+必需：
+
+- 熟悉终端、git 和本地开发环境
+- 至少会读写一种常见应用栈中的代码
+- 有基本的软件调试经验，知道如何看日志、测试和运行行为
+- 能投入足够时间完成偏实现型的课程任务
+
+有帮助但非强制：
+
+- 用过 Electron、桌面应用或本地优先工具
+- 有测试、日志、软件架构方面的经验
+- 已经接触过 Codex、Claude Code 或类似 coding agent
+
+## 核心参考资料
+
+主参考：
+
+- [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
+- [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+- [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+
+辅助参考：
+
+- [LangChain: The Anatomy of an Agent Harness](https://blog.langchain.com/the-anatomy-of-an-agent-harness/)
+- [Thoughtworks: Harness Engineering](https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html)
+- [HumanLayer: Skill Issue: Harness Engineering for Coding Agents](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents)
+
+## 贯穿项目
+
+本课程的大多数 project 都围绕同一个产品展开：
+
+- 一个基于 Electron 的个人知识库桌面应用
+
+核心目标包括：
+
+- 导入本地文档
+- 管理文档库
+- 处理与索引文档
+- 对导入内容发起 AI 问答
+- 返回带引用的 grounded 回答
+
+之所以选择这个项目，是因为它同时具备：
+
+- 很强的实际价值感
+- 足够真实的产品复杂度
+- 很适合观察 harness 优化前后的效果差异
+
+## 课程作业形式
+
+本课程包含两类内容：
+
+- **Lectures**：12 个概念单元，每个单元只回答一个核心问题
+- **Projects**：6 个实践项目，把 lecture 里的方法落实到同一个 Electron 应用上
+
+每个 project 都要求你：
+
+- 让 Codex 或 Claude Code 执行真实任务
+- 比较弱 harness 与强 harness 的差别
+- 观察可靠性、连续性、验证质量、可维护性的变化
+
+最后一个 project 同时也是整个课程的 capstone harness。
+
+## 课程组织方式
+
+- 每个 lecture 聚焦一个问题
+- 整门课配套 6 个 project
+- 每个 project 都要求 agent 真正干活
+- 每个 project 都要做弱 harness / 强 harness 对照
+- 我们关心的是效果变化，而不是“写了多少说明文档”
+
+## 仓库结构
+
+- `lectures/` - 全部讲义
+- `projects/` - 全部实践项目，包括 capstone
+- `resources/` - 中英双语的可复用模板、检查清单和方法参考
+
+每个 lecture 都带一个 `code/` 目录，用来放小型真实示例和 supporting artifacts。
+
+## 建议学习节奏
+
+这门课适合按 6 个单元推进：
+
+- **Unit 1**: Lecture 01-02 + Project 01
+- **Unit 2**: Lecture 03-04 + Project 02
+- **Unit 3**: Lecture 05-06 + Project 03
+- **Unit 4**: Lecture 07-08 + Project 04
+- **Unit 5**: Lecture 09-10 + Project 05
+- **Unit 6**: Lecture 11-12 + Project 06
+
+如果你想慢一点，也可以把每个单元当成一周来学。
+
+## 如何使用这个仓库
+
+1. 先读课程首页，理解整体结构。
+2. 按顺序阅读 12 个 lecture。
+3. 用 6 个 project 作为实践主线。
+4. lecture 里的 `code/` 目录用于查看小型示例和真实 artifact。
+5. 最后把 Project 06 当作整门课的 capstone harness。

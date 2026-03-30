@@ -1,95 +1,186 @@
 # Learn Harness Engineering
 
-> A project-based course on designing the environments, state, verification, and control systems that make Codex and Claude Code reliable.
+> A project-based course on building the environment, state management, verification, and control mechanisms that make Codex and Claude Code work more reliably.
 
-This course is under active construction, and contents are subject to change.
+This course is a work in progress. Content may change as it evolves.
 
-## Course Overview
+[中文版本](./README-CN.md)
 
-Harness engineering is the practice of building the environment around a model
-so that it can do useful, reliable, long-running work. That environment
-includes repository knowledge, tool surfaces, working-state artifacts,
-verification loops, observability, structural constraints, and maintenance
-mechanisms.
+## Overview
 
-This course is implementation-heavy. Instead of studying harnesses only as
-theory, students will repeatedly use Codex or Claude Code on the same evolving
-Electron application and compare weaker harnesses against stronger ones. The
-goal is not to admire agent output in isolation, but to understand which
-harness decisions produce better task completion, better recovery, and better
-long-term maintainability.
+Harness engineering is about building a complete working environment around the model so it produces reliable results. It's not just about writing prompts. It also covers:
 
-## Course Premise
+- Where code lives and how it's organized
+- What the agent is and isn't allowed to do
+- How to track task progress and pick up where you left off
+- How to verify that work was done correctly
+- How to diagnose problems when they arise
+- What rules must always be followed
+- How to leave things clean after each session
 
-This course starts from a simple idea:
+This course is **hands-on**. We won't stop at concepts. You'll have Codex or Claude Code work repeatedly on the same evolving Electron application, comparing weak harnesses against strong ones.
 
-**Strong models still fail when the harness around them is weak.**
+The questions this course actually cares about:
 
-We are not trying to make the model smarter. We are trying to make the same
-model work better by improving what surrounds it.
+- Which harness designs improve task completion rates?
+- Which designs reduce rework and incorrect completions?
+- Which mechanisms keep long-running tasks progressing steadily?
+- Which structures keep the system maintainable after multiple agent runs?
 
-## Who This Course Is For
+## Core Thesis
 
-This course is for:
+When you let models do work, the human's job is to define the rules and boundaries. That's the harness.
 
-- engineers who already use coding agents and want better reliability
-- researchers or builders who want a concrete mental model of harness design
-- technical leads who want to understand how environment design changes agent
-  behavior
+**The key point:** Models are powerful, but that doesn't mean they can reliably complete real engineering tasks on their own. They need explicit rules to constrain their scope, clear handoff mechanisms to maintain continuity across long tasks, and verification methods to confirm they did the work correctly.
 
-This course is not for:
-
-- readers looking for a no-code introduction to AI
-- people who want a prompt-only workflow without hands-on implementation
-- learners who do not plan to run a coding agent against a real repository
-
-## Required Setup
-
-This is a hands-on course for people who can actually run a coding agent against
-real projects.
-
-You should have access to at least one coding tool such as:
-
-- Claude Code
-- Codex
-- Another IDE or CLI coding agent with file editing, shell execution, and
-  multi-step task support
-
-The course assumes you can:
-
-- open a local repository
-- let an agent edit files
-- let an agent run commands
-- inspect outputs and rerun tasks
-
-Without an IDE or CLI coding agent, you can still read the course, but you will
-not be able to complete the practical projects as intended.
+We're not trying to "make the model smarter." We're studying how to build a reliable working environment around the model so the same model produces more reliable output.
 
 ## Quick Start
 
-This repository uses VitePress as its document launcher.
+You don't need to read all 12 lectures before you start getting value from this course. If you're already using a coding agent on a real project, here's how to improve it right now.
+
+The idea is simple: instead of just writing prompts, give your agent a set of structured files that define what to do, what's been done, and how to verify the work. These files live inside your repo, so every session starts from the same state.
+
+**Step 1.** Copy the root instruction file into your project root:
+
+- [`AGENTS.md`](./resources/en/templates/AGENTS.md) for most agents, or [`CLAUDE.md`](./resources/en/templates/CLAUDE.md) if you're using Claude Code
+- Edit the commands, paths, and rules to match your project
+
+**Step 2.** Copy the startup script:
+
+- [`init.sh`](./resources/en/templates/init.sh) — runs dependency install, verification, and startup in one shot
+- Replace the `INSTALL_CMD`, `VERIFY_CMD`, and `START_CMD` with your actual commands
+
+**Step 3.** Copy the progress log:
+
+- [`claude-progress.md`](./resources/en/templates/claude-progress.md) — records what was done each session, what's verified, and what's next
+- The agent reads this at the start of every session to pick up where it left off
+
+**Step 4.** Copy the feature list:
+
+- [`feature_list.json`](./resources/en/templates/feature_list.json) — a machine-readable list of features with status, verification steps, and evidence
+- Replace the example features with your own
+
+That's it for the minimum setup. Four files, and your agent sessions will already be more stable than running on prompts alone.
+
+When your project gets more complex, add these:
+
+- [`session-handoff.md`](./resources/en/templates/session-handoff.md) — compact handoff note between sessions
+- [`clean-state-checklist.md`](./resources/en/templates/clean-state-checklist.md) — checklist to run before ending each session
+- [`evaluator-rubric.md`](./resources/en/templates/evaluator-rubric.md) — scorecard for reviewing agent output quality
+
+Each file has detailed usage instructions in the [English template guide](./resources/en/templates/README.md). Chinese versions are available in [中文模板指南](./resources/zh/templates/README.md).
+
+## Syllabus
+
+### Lectures
+
+- [Lecture 01. Strong models don't mean reliable execution](./lectures/lecture-01-why-capable-agents-still-fail/README.md)
+- [Lecture 02. What harness actually means](./lectures/lecture-02-what-a-harness-actually-is/README.md)
+- [Lecture 03. Make the repository your single source of truth](./lectures/lecture-03-why-the-repository-must-become-the-system-of-record/README.md)
+- [Lecture 04. Split instructions across files, not one giant file](./lectures/lecture-04-why-one-giant-instruction-file-fails/README.md)
+- [Lecture 05. Keep context alive across sessions](./lectures/lecture-05-why-long-running-tasks-lose-continuity/README.md)
+- [Lecture 06. Initialize before every agent session](./lectures/lecture-06-why-initialization-needs-its-own-phase/README.md)
+- [Lecture 07. Draw clear task boundaries for agents](./lectures/lecture-07-why-agents-overreach-and-under-finish/README.md)
+- [Lecture 08. Use feature lists to constrain what the agent does](./lectures/lecture-08-why-feature-lists-are-harness-primitives/README.md)
+- [Lecture 09. Stop agents from declaring victory early](./lectures/lecture-09-why-agents-declare-victory-too-early/README.md)
+- [Lecture 10. Only a full-pipeline run counts as real verification](./lectures/lecture-10-why-end-to-end-testing-changes-results/README.md)
+- [Lecture 11. Make the agent's runtime observable](./lectures/lecture-11-why-observability-belongs-inside-the-harness/README.md)
+- [Lecture 12. Clean handoff at the end of every session](./lectures/lecture-12-why-every-session-must-leave-a-clean-state/README.md)
+
+### Projects
+
+- [Project 01. Prompt-only vs. rules-first: how much difference does it make](./projects/project-01-baseline-vs-minimal-harness/README.md)
+- [Project 02. Make the project readable and pick up where you left off](./projects/project-02-agent-readable-workspace/README.md)
+- [Project 03. Keep the agent working across session restarts](./projects/project-03-multi-session-continuity/README.md)
+- [Project 04. Use runtime feedback to correct agent behavior](./projects/project-04-incremental-indexing/README.md)
+- [Project 05. Make the agent verify its own work](./projects/project-05-grounded-qa-verification/README.md)
+- [Project 06. Build a complete agent harness](./projects/project-06-runtime-observability-and-debugging/README.md)
+
+### Resource Library
+
+- [Resource Library Overview](./resources/README.md)
+- [Chinese Resource Library](./resources/zh/README.md)
+- [English Resource Library](./resources/en/README.md)
+
+## Recommended Learning Path
+
+This course is designed to be done in order. Each phase builds on the last.
+
+**Phase 1 — See the problem.** Read lectures 1 and 2, then do project 1. You'll run the same task twice: once with just a prompt, once with a minimal harness. The difference will be obvious.
+
+**Phase 2 — Make the repo work for the agent.** Lectures 3 and 4, project 2. You'll restructure the repo so the agent can read it, and add files that survive between sessions.
+
+**Phase 3 — Keep sessions connected.** Lectures 5 and 6, project 3. This is where things get interesting — you'll make the agent pick up from where it left off, even after you close the session.
+
+**Phase 4 — Add feedback and scope control.** Lectures 7 and 8, project 4. You'll stop the agent from doing too much or too little, and use runtime feedback to keep it on track.
+
+**Phase 5 — Verification and self-check.** Lectures 9 and 10, project 5. The agent learns to verify its own work instead of just saying "done."
+
+**Phase 6 — Put it all together.** Lectures 11 and 12, project 6. This is the capstone. You'll build a complete harness from scratch, using everything you've learned.
+
+Each phase takes about a week if you're going part-time. If you want to go faster, phases 1-3 can be done in a long weekend.
+
+## Who This Is For
+
+This course is for:
+
+- Engineers already using coding agents who want better stability and quality
+- Researchers or builders who want a systematic understanding of harness design
+- Tech leads who need to understand how environment design affects agent performance
+
+This course is not for:
+
+- People looking for a zero-code AI introduction
+- People who only care about prompts and don't plan to build real implementations
+- Learners not prepared to let agents work inside real repositories
+
+## Requirements
+
+This is a course where you actually run coding agents.
+
+You need at least one of these tools:
+
+- Claude Code
+- Codex
+- Another IDE or CLI coding agent that supports file editing, command execution, and multi-step tasks
+
+The course assumes you can:
+
+- Open a local repository
+- Allow the agent to edit files
+- Allow the agent to run commands
+- Inspect output and re-run tasks
+
+If you don't have such a tool, you can still read the course content, but you won't be able to complete the projects as intended.
+
+## Local Preview
+
+This repository uses VitePress as a documentation viewer.
 
 ```sh
 npm install
 npm run docs:dev
 ```
 
-Then open the local URL printed by VitePress in your browser.
+Then open the local URL that VitePress outputs in your browser.
 
 ## Prerequisites
 
-- Comfort using the terminal, git, and local development environments
-- Ability to read and modify application code in at least one common stack
-- Some experience debugging software using logs, tests, and runtime behavior
-- Enough time for hands-on implementation work
+Required:
 
-Helpful but not strictly required:
+- Familiarity with the terminal, git, and local development environments
+- Ability to read and write code in at least one common application stack
+- Basic software debugging experience (reading logs, tests, and runtime behavior)
+- Enough time to commit to implementation-focused coursework
 
-- Prior experience with Electron, desktop apps, or local-first tools
-- Prior experience with testing, logging, and software architecture
-- Prior use of Codex, Claude Code, or similar coding agents
+Helpful but not required:
 
-## Core Sources
+- Experience with Electron, desktop apps, or local-first tools
+- Background in testing, logging, or software architecture
+- Prior exposure to Codex, Claude Code, or similar coding agents
+
+## Core References
 
 Primary:
 
@@ -97,105 +188,59 @@ Primary:
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
-Supporting:
+Supplementary:
 
 - [LangChain: The Anatomy of an Agent Harness](https://blog.langchain.com/the-anatomy-of-an-agent-harness/)
 - [Thoughtworks: Harness Engineering](https://martinfowler.com/articles/exploring-gen-ai/harness-engineering.html)
 - [HumanLayer: Skill Issue: Harness Engineering for Coding Agents](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents)
 
-## Running Project
+## Capstone Project
 
-Most studios in this course use the same product:
+Most projects in this course revolve around the same product:
 
-- A desktop personal knowledge base built with Electron
+- An Electron-based personal knowledge base desktop app
 
-Core product goals:
+Core goals include:
 
-- Import local documents
-- Manage a document library
-- Process and index documents
-- Ask AI questions about the imported content
-- Return source-grounded citations
+- Importing local documents
+- Managing a document library
+- Processing and indexing documents
+- Running AI-powered Q&A over imported content
+- Returning grounded answers with citations
 
-This project is useful, product-shaped, and complex enough to make harness
-improvements visible.
+This project was chosen because it combines:
 
-## Coursework
+- Strong practical value
+- Enough real-world product complexity
+- A good setting for observing before/after harness improvements
 
-The course has two kinds of work:
+## Course Format
 
-- **Lectures**: 12 short conceptual units, each centered on one question
-- **Projects**: 6 practical projects that apply those ideas to the same
-  evolving Electron knowledge app
+This course has two types of content:
 
-Each project asks students to:
+- **Lectures**: 12 conceptual units, each answering one core question
+- **Projects**: 6 hands-on projects that apply lecture methods to the same Electron app
 
-- run Codex or Claude Code on a real task
-- compare a weaker harness against a stronger harness
-- observe changes in reliability, continuity, verification, and maintainability
+Each project requires you to:
 
-The final project functions as the capstone harness for the course.
+- Have Codex or Claude Code execute real tasks
+- Compare weak vs. strong harnesses
+- Observe changes in reliability, continuity, verification quality, and maintainability
 
-## How the Course Works
+The final project also serves as the course's capstone harness.
 
-- Each lecture focuses on one question.
-- The course is paired with six practical projects.
-- Every project uses Codex or Claude Code to do real work.
-- Every project compares a weaker harness against a stronger harness.
-- The point is to see performance differences, not just to write notes.
+## How the Course Is Organized
 
-## Repository Layout
+- Each lecture focuses on one question
+- The course includes 6 projects
+- Every project requires the agent to do real work
+- Every project compares weak vs. strong harness results
+- What matters is the measured difference, not how many docs were written
 
-- `lectures/` - All lecture notes
-- `projects/` - All practical projects, including the capstone
+## Repository Structure
 
-Each lecture includes a `code/` folder for real examples and small supporting
-artifacts.
+- `lectures/` - All lectures
+- `projects/` - All hands-on projects, including the capstone
+- `resources/` - Bilingual reusable templates, checklists, and method references
 
-## Suggested Schedule
-
-This course works well as a six-unit sequence:
-
-- **Unit 1**: Lectures 01-02 + Project 01
-- **Unit 2**: Lectures 03-04 + Project 02
-- **Unit 3**: Lectures 05-06 + Project 03
-- **Unit 4**: Lectures 07-08 + Project 04
-- **Unit 5**: Lectures 09-10 + Project 05
-- **Unit 6**: Lectures 11-12 + Project 06
-
-You can also study it at a slower pace by treating each unit as one week of
-work.
-
-## Course Map
-
-### Lectures
-
-- [Lecture 01. Why capable agents still fail](./lectures/lecture-01-why-capable-agents-still-fail/README.md)
-- [Lecture 02. What a harness actually is](./lectures/lecture-02-what-a-harness-actually-is/README.md)
-- [Lecture 03. Why the repository must become the system of record](./lectures/lecture-03-why-the-repository-must-become-the-system-of-record/README.md)
-- [Lecture 04. Why one giant instruction file fails](./lectures/lecture-04-why-one-giant-instruction-file-fails/README.md)
-- [Lecture 05. Why long-running tasks lose continuity](./lectures/lecture-05-why-long-running-tasks-lose-continuity/README.md)
-- [Lecture 06. Why initialization needs its own phase](./lectures/lecture-06-why-initialization-needs-its-own-phase/README.md)
-- [Lecture 07. Why scope must be made explicit](./lectures/lecture-07-why-agents-overreach-and-under-finish/README.md)
-- [Lecture 08. Why verification must be externalized](./lectures/lecture-08-why-feature-lists-are-harness-primitives/README.md)
-- [Lecture 09. Why runtime feedback belongs inside the harness](./lectures/lecture-09-why-agents-declare-victory-too-early/README.md)
-- [Lecture 10. Why structure and taste must be enforced](./lectures/lecture-10-why-end-to-end-testing-changes-results/README.md)
-- [Lecture 11. Why advanced harnesses split roles](./lectures/lecture-11-why-observability-belongs-inside-the-harness/README.md)
-- [Lecture 12. Why harnesses must be measured and maintained over time](./lectures/lecture-12-why-every-session-must-leave-a-clean-state/README.md)
-
-### Projects
-
-- [Project 01. Baseline vs minimal harness](./projects/project-01-baseline-vs-minimal-harness/README.md)
-- [Project 02. Agent-readable workspace and continuity scaffold](./projects/project-02-agent-readable-workspace/README.md)
-- [Project 03. Scope control and grounded verification](./projects/project-03-multi-session-continuity/README.md)
-- [Project 04. Runtime feedback and structural control](./projects/project-04-incremental-indexing/README.md)
-- [Project 05. Evaluator loops and three-role upgrades](./projects/project-05-grounded-qa-verification/README.md)
-- [Project 06. Benchmark, cleanup, and capstone harness](./projects/project-06-runtime-observability-and-debugging/README.md)
-
-## How to Use This Repository
-
-1. Read the course README to understand the overall structure.
-2. Work through the lectures in order.
-3. Use the six numbered projects as the practical track.
-4. Keep small examples inside each lecture `code/` folder.
-5. Use the final project as the capstone harness.
+Each lecture includes a `code/` directory for small real-world examples and supporting artifacts.

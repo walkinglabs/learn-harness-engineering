@@ -1,0 +1,64 @@
+{
+  "project": "替换成你的项目名",
+  "last_updated": "YYYY-MM-DD",
+  "rules": {
+    "single_active_feature": true,
+    "passing_requires_evidence": true,
+    "do_not_skip_verification": true
+  },
+  "status_legend": {
+    "not_started": "功能还没开始做。",
+    "in_progress": "这个功能是当前唯一正在进行的任务。",
+    "blocked": "因为已记录的阻塞问题，当前无法继续推进。",
+    "passing": "要求的验证已经通过，并且证据已经记录。"
+  },
+  "features": [
+    {
+      "id": "chat-001",
+      "priority": 1,
+      "area": "chat",
+      "title": "创建新会话",
+      "user_visible_behavior": "用户点击 New Chat 后，可以看到一个新的空白对话。",
+      "status": "not_started",
+      "verification": [
+        "打开应用。",
+        "点击 New Chat。",
+        "确认侧边栏出现一个新会话。",
+        "确认主面板显示空白对话状态。"
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "chat-002",
+      "priority": 2,
+      "area": "chat",
+      "title": "在当前会话里发送消息",
+      "user_visible_behavior": "用户提交一条消息后，可以在当前线程中看到它。",
+      "status": "not_started",
+      "verification": [
+        "打开一个已有会话。",
+        "在输入框中输入消息。",
+        "提交消息。",
+        "确认线程中出现这条新消息。"
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "chat-003",
+      "priority": 3,
+      "area": "chat",
+      "title": "持久化保存会话列表",
+      "user_visible_behavior": "应用重启后，用户仍能看到之前创建的会话。",
+      "status": "not_started",
+      "verification": [
+        "创建两个会话。",
+        "重启应用。",
+        "确认两个会话仍显示在侧边栏中。"
+      ],
+      "evidence": [],
+      "notes": ""
+    }
+  ]
+}

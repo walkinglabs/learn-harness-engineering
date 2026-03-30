@@ -24,6 +24,16 @@ const projectItems = [
   { text: "Project 06", link: "/projects/project-06-runtime-observability-and-debugging/" }
 ];
 
+const resourceItems = [
+  { text: "Overview", link: "/resources/" },
+  { text: "中文总览", link: "/resources/zh/" },
+  { text: "中文模板", link: "/resources/zh/templates/" },
+  { text: "中文参考", link: "/resources/zh/reference/" },
+  { text: "English Overview", link: "/resources/en/" },
+  { text: "English Templates", link: "/resources/en/templates/" },
+  { text: "English Reference", link: "/resources/en/reference/" }
+];
+
 export default defineConfig({
   title: "Learn Harness Engineering",
   description:
@@ -34,7 +44,8 @@ export default defineConfig({
     nav: [
       { text: "Course Home", link: "/" },
       { text: "Lectures", link: lectureItems[0].link },
-      { text: "Projects", link: projectItems[0].link }
+      { text: "Projects", link: projectItems[0].link },
+      { text: "Library", link: resourceItems[0].link }
     ],
     search: {
       provider: "local"
@@ -47,6 +58,10 @@ export default defineConfig({
       {
         text: "Projects",
         items: projectItems
+      },
+      {
+        text: "Resource Library",
+        items: resourceItems
       }
     ],
     outline: {
