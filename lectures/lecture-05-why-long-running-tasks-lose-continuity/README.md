@@ -39,11 +39,32 @@ artifacts that answer:
 2. What is failing or unfinished?
 3. What is the next executable step?
 
-Context summaries can reduce short-term rediscovery, but summaries alone are
-not durable state. Long-running reliability requires artifacts that can be
-versioned, diffed, and validated across sessions. In practice, this means the
-harness must treat handoff quality as a formal requirement, not incidental
-documentation.
+There are two distinct strategies for managing context across sessions:
+
+**Compaction** summarizes the current context window in place. It preserves
+conversational continuity and is cheap to execute, but the summary may lose
+important details. The agent continues in the same window with a compressed
+view of what came before.
+
+**Context reset** clears the window entirely and forces the agent to
+reconstruct state from repository artifacts only. It provides a clean starting
+point with no leftover noise, but it only works if the handoff artifacts are
+complete and well-structured.
+
+These are not interchangeable. Compaction works for short-to-medium sessions
+where the conversation thread is still mostly relevant. Context resets work
+better for long multi-session projects where accumulated context becomes stale
+or contradictory. Anthropic's long-running harness work shows that agents
+sometimes exhibit "context anxiety" — wrapping up prematurely as they approach
+perceived context limits. Full context resets with structured handoff files
+eliminate this problem entirely.
+
+The choice between compaction and reset determines what your handoff artifacts
+need to contain. If you rely on resets, the artifacts must be self-sufficient —
+a new agent session must be able to reconstruct the full project state from
+files alone. This is why feature lists, progress logs, and handoff notes are
+not optional documentation; they are the mechanism that makes context resets
+work.
 
 ## Examples and Artifacts
 

@@ -39,20 +39,33 @@ Run 2 must use the strongest harness assembled in the course:
 - Explicit scope and verification gates.
 - Runtime signals and structural constraints.
 - Evaluator or multi-role review where applicable.
+- Quality document tracking per-domain and per-layer grades.
 
 ## Procedure
 
-1. Define one fixed benchmark task suite and one scoring sheet before running
+1. Create a quality document using the template in
+   `resources/en/templates/quality-document.md` (or `resources/zh/templates/`).
+   Fill in initial grades for all product domains and architectural layers based
+   on the current codebase state.
+2. Define one fixed benchmark task suite and one scoring sheet before running
    any agent session.
-2. Start from one common commit and branch into `p06-baseline` and
+3. Start from one common commit and branch into `p06-baseline` and
    `p06-improved`.
-3. Run baseline and improved sessions with Codex or Claude Code using the same
+4. Run baseline and improved sessions with Codex or Claude Code using the same
    model and comparable budget.
-4. Score both runs immediately after execution.
-5. On the improved branch, perform a cleanup pass targeting entropy, dead code,
+5. Score both runs immediately after execution.
+6. Update the quality document after each run, recording grade changes per
+   domain and layer.
+7. On the improved branch, perform a cleanup pass targeting entropy, dead code,
    unclear docs, and unstable run paths.
-6. Rerun the same benchmark task suite after cleanup and rescore.
-7. Compare baseline vs improved vs improved-after-cleanup.
+8. Rerun the same benchmark task suite after cleanup and rescore.
+9. Update the quality document one final time.
+10. Compare three quality document snapshots (baseline, improved, post-cleanup)
+    alongside benchmark scores.
+11. **Harness simplification pass:** Remove one harness component (for example,
+    the sprint contract, or the explicit scope gate). Rerun the benchmark. If
+    outcomes do not degrade, the component was unnecessary overhead. If they do,
+    restore it. Record the result.
 
 ## What to Measure
 
@@ -61,10 +74,14 @@ Run 2 must use the strongest harness assembled in the course:
 - Defect count before human intervention.
 - Cleanup effort (time and files touched).
 - Post-cleanup legibility and restart success.
+- Quality document grade changes across the three snapshots.
+- Harness simplification result: which components were removable, which were load-bearing.
 
 ## Deliverables
 
+- Quality document with three snapshots (baseline, improved, post-cleanup).
 - Baseline benchmark record with scores and evidence.
 - Improved benchmark record with scores and evidence.
 - Cleanup run record with before/after score delta.
+- Harness simplification log: component removed, benchmark result, decision.
 - Final capstone comparison summary with key lessons learned.

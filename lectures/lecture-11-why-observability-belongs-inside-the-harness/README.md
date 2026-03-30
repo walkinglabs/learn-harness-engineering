@@ -40,6 +40,31 @@ Observability therefore has two layers:
 The two layers should be designed together. Runtime signals explain behavior,
 while process artifacts explain why a change should be accepted or rejected.
 
+### Sprint Contracts
+
+When multiple roles collaborate — planner, generator, evaluator — the point
+where work begins is a common failure surface. If the generator and evaluator
+have different expectations about what "done" looks like, evaluation becomes
+subjective and revision loops become wasteful.
+
+Anthropic's harness practice introduces **sprint contracts** to solve this.
+Before any code is written, the generator and evaluator negotiate a short
+written agreement that specifies:
+
+1. What will be built in this sprint.
+2. How success will be verified (specific tests or checks).
+3. What is explicitly out of scope.
+
+The contract is a file in the repository. Both roles read it before starting.
+If they disagree on the terms, they iterate on the contract first. This
+front-loads alignment and prevents the common pattern where the generator
+builds something the evaluator immediately rejects for predictable reasons.
+
+Sprint contracts are especially valuable when the evaluator is a separate
+agent. Without a contract, the evaluator's review criteria are implicit and
+may shift between runs. With a contract, the evaluator grades against an
+explicit, pre-agreed standard.
+
 ## Examples and Artifacts
 
 - [`code/sprint-contract.md`](./code/sprint-contract.md): explicit goal and

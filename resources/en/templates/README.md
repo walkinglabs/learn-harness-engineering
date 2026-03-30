@@ -174,3 +174,53 @@ A scorecard for reviewing agent output quality. Use this after a session or at p
 - Accept — meets the bar
 - Revise — needs fixes before accepting
 - Block — fundamental issues that need to be resolved first
+
+**Important: the evaluator needs tuning.** Out of the box, agents are poor self-judges — they identify issues then talk themselves into approving. You will need to iterate:
+
+1. Run the evaluator on a completed sprint.
+2. Compare its scores against your own human judgment.
+3. Where they diverge, make the rubric more specific about pass/fail criteria.
+4. Re-run and check alignment.
+5. Repeat until the evaluator consistently matches human review.
+
+Plan for 3-5 tuning rounds. Record each change so you can track what improved alignment.
+
+## quality-document.md
+
+A quality snapshot that grades each product domain and architectural layer in your project. Tracks codebase health over time, not just individual session output.
+
+**How to use it:**
+
+- Copy to your project root
+- Before starting a session: read it to understand where the codebase is weakest
+- After a session: update grades based on what changed
+- Over time: compare snapshots to see which harness changes actually improved codebase health
+
+**What it grades:**
+
+- **Product domains** (e.g., document import, Q&A flow, indexing): each domain gets a grade (A-D) across verification status, agent legibility, test stability, and key gaps
+- **Architectural layers** (e.g., main process, preload, renderer, services): each layer gets a grade for boundary enforcement and agent legibility
+
+**Why it matters:**
+
+The evaluator rubric scores individual agent outputs. The quality document scores the codebase itself. They answer different questions:
+
+- Evaluator rubric: "Did the agent do good work this session?"
+- Quality document: "Is the project getting stronger or weaker over time?"
+
+**When to update:**
+
+- After each significant session
+- Before benchmark comparisons
+- After cleanup or simplification passes
+- When onboarding a new agent or model to the project
+
+**Harness simplification tie-in:**
+
+The quality document also supports harness simplification. Every harness component encodes an assumption about what the model cannot do. As models improve, these assumptions go stale. To check whether a component is still needed:
+
+1. Take a quality document snapshot.
+2. Remove one harness component.
+3. Run the benchmark task suite.
+4. Take another snapshot.
+5. Compare — if grades didn't drop, the component was overhead. If they did, restore it.

@@ -17,6 +17,7 @@ together as a system.
 - Architecture boundaries must be enforced as executable rules.
 - Repeated review comments can be promoted into harness checks.
 - Remediation-oriented failures improve future agent behavior.
+- Linter and test error messages should be written for agents, not just humans.
 
 ## Detailed Explanation
 
@@ -40,6 +41,16 @@ execution:
 
 End-to-end tests surface these interactions and convert architecture intent into
 observable pass/fail criteria.
+
+One particularly effective pattern from OpenAI's harness practice: **write
+linter error messages for the agent, not just for humans.** When a custom
+linter catches an architecture violation, the error message should include a
+short remediation instruction that tells the agent exactly what to do. For
+example, instead of `"Direct filesystem access in renderer"`, the message might
+read `"Direct filesystem access in renderer. All file operations must go through
+the preload bridge. Move this call to preload/file-ops.ts and invoke it via
+window.api."`. This pattern converts structural rules into self-correcting
+feedback loops — the agent sees the error and immediately knows the fix.
 
 ## Examples and Artifacts
 
