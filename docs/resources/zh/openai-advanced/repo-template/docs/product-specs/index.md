@@ -1,8 +1,8 @@
-# Product Specs Index
+# 产品规格索引
 
 这个目录用来放当前仍然有效的用户可见行为规格。
 
-## Active Specs
+## 当前有效规格
 
 - `new-user-onboarding.md`
 

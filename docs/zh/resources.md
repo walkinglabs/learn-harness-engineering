@@ -8,11 +8,11 @@
 - [中文模板](/resources/zh/templates/) — 可直接复制使用的模板文件
 - [中文参考](/resources/zh/reference/) — 方法论和参考文档
 
-## English Resources
+## 英文资料
 
-- [English Resource Library](/resources/en/) — Entry and overview
-- [English Templates](/resources/en/templates/) — Ready-to-use template files
-- [English Reference](/resources/en/reference/) — Methodology and reference docs
+- [英文资料库](/resources/en/) — 英文入口与总览
+- [英文模板](/resources/en/templates/) — 可直接复制使用的模板文件
+- [英文参考](/resources/en/reference/) — 方法论和参考文档
 
 ## 推荐最小起步
 

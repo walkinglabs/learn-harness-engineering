@@ -1,6 +1,6 @@
 # 高级仓库模板
 
-当你希望把仓库升级成更接近 OpenAI 文中那种 agent-first 文档面，而不只是一个最小 harness 时，就复制这套 starter。
+当你希望把仓库升级成更接近 OpenAI 文中那种 agent-first 文档面，而不只是一个最小 harness 时，就复制这套起步模板。
 
 ## 推荐复制顺序
 

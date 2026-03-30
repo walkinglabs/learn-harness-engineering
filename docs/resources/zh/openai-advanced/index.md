@@ -6,16 +6,16 @@ agent-first world》里更完整、更高阶的仓库组织方式整理成可以
 当最小 harness 已经不够用，而你的仓库开始需要下面这些能力时，就该看这一套：
 
 - 一个简短、负责路由的 `AGENTS.md`
-- 放在仓库里的 system-of-record 文档体系
+- 放在仓库里的“唯一事实来源”文档体系
 - 活跃执行计划与已完成计划的分层管理
 - 明确的产品、可靠性、安全、前端治理文件
 - 按产品领域和架构层持续更新的质量评分
-- 面向模型阅读的 reference 材料目录
+- 面向模型阅读的参考材料目录
 - 针对架构、知识沉淀、运行验证的标准 SOP
 
 ## 包含的目录骨架
 
-[`repo-template/`](./repo-template/index.md) 里提供了一套可直接复制的 starter
+[`repo-template/`](./repo-template/index.md) 里提供了一套可直接复制的起步
 结构，核心布局如下：
 
 ```text
@@ -54,7 +54,7 @@ docs/
    [`repo-template/`](./repo-template/index.md) 里的骨架复制到你的仓库。
 3. 保持 `AGENTS.md` 很短，把深层规则拆到 `docs/` 里。
 4. 把质量文档、可靠性文档、执行计划当成日常开发的一部分，而不是事后补写。
-5. 把生成物和外部 reference 明确收进仓库，避免 agent 依赖聊天上下文或人的记忆。
+5. 把生成物和外部参考材料明确收进仓库，避免 agent 依赖聊天上下文或人的记忆。
 
 ## SOP 资料库
 
@@ -62,15 +62,15 @@ docs/
 
 - 分层领域架构搭建 SOP
 - 把不可见知识编码进仓库的 SOP
-- 本地 observability stack 与 feedback loop SOP
+- 本地可观测性栈与反馈回路 SOP
 - 用 Chrome DevTools 做 UI 验证闭环的 SOP
 
 ## 设计原则
 
 - 短入口，深链接
-- 仓库就是 system of record
+- 仓库就是唯一事实来源
 - 机械约束优先于口头约定
 - 计划、质量和技术债都和代码一起版本化
-- cleanup 与 harness 简化是常规工作，不是临时救火
+- 清理与 harness 简化是常规工作，不是临时救火
 
 这套资源包是有倾向性的模板，不是必须逐字照抄。最好的用法是把它当成一套高质量起点，再按你的项目改造。

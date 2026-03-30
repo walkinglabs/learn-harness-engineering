@@ -43,13 +43,13 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 
 - [Lecture 01. 为什么强模型依然会失败](/lectures/lecture-01-why-capable-agents-still-fail/)
 - [Lecture 02. 什么才算 harness](/lectures/lecture-02-what-a-harness-actually-is/)
-- [Lecture 03. 为什么仓库必须成为 system of record](/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/)
+- [Lecture 03. 为什么仓库必须成为唯一事实来源](/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/)
 - [Lecture 04. 为什么一个巨大的 instruction 文件会失败](/lectures/lecture-04-why-one-giant-instruction-file-fails/)
 - [Lecture 05. 为什么长时任务会失去连续性](/lectures/lecture-05-why-long-running-tasks-lose-continuity/)
 - [Lecture 06. 为什么初始化必须是独立阶段](/lectures/lecture-06-why-initialization-needs-its-own-phase/)
-- [Lecture 07. 为什么 scope 必须被显式化](/lectures/lecture-07-why-agents-overreach-and-under-finish/)
+- [Lecture 07. 为什么任务边界必须被显式化](/lectures/lecture-07-why-agents-overreach-and-under-finish/)
 - [Lecture 08. 为什么验证必须外部化](/lectures/lecture-08-why-feature-lists-are-harness-primitives/)
-- [Lecture 09. 为什么 runtime feedback 必须进入 harness](/lectures/lecture-09-why-agents-declare-victory-too-early/)
+- [Lecture 09. 为什么运行时反馈必须进入 harness](/lectures/lecture-09-why-agents-declare-victory-too-early/)
 - [Lecture 10. 为什么完整验证才算真的验证](/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 - [Lecture 11. 为什么可观测性必须进入 harness](/lectures/lecture-11-why-observability-belongs-inside-the-harness/)
 - [Lecture 12. 为什么每次会话都必须干净收尾](/lectures/lecture-12-why-every-session-must-leave-a-clean-state/)
@@ -58,18 +58,18 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 
 > 项目正文目前仍以英文为主，中文先提供导览和学习路径。
 
-- [Project 01. 基线 vs 最小 harness](/projects/project-01-baseline-vs-minimal-harness/)
-- [Project 02. Agent-readable workspace 与 continuity scaffold](/projects/project-02-agent-readable-workspace/)
-- [Project 03. Scope control 与 grounded verification](/projects/project-03-multi-session-continuity/)
-- [Project 04. Runtime feedback 与 structural control](/projects/project-04-incremental-indexing/)
-- [Project 05. Evaluator loop 与三角色升级](/projects/project-05-grounded-qa-verification/)
-- [Project 06. Benchmark、cleanup 与 capstone harness](/projects/project-06-runtime-observability-and-debugging/)
+- [Project 01. 基线提示词 vs 最小 harness](/projects/project-01-baseline-vs-minimal-harness/)
+- [Project 02. 让项目对 agent 可读，并接住上次的工作](/projects/project-02-agent-readable-workspace/)
+- [Project 03. 让 agent 在会话重启后继续推进](/projects/project-03-multi-session-continuity/)
+- [Project 04. 用运行时反馈修正 agent 的行为](/projects/project-04-incremental-indexing/)
+- [Project 05. 让 agent 学会评审并验证自己的工作](/projects/project-05-grounded-qa-verification/)
+- [Project 06. 基准测试、清理与综合 harness](/projects/project-06-runtime-observability-and-debugging/)
 
 ### 资料库
 
 - [资料库总览](/resources/)
 - [中文资料库](/resources/zh/)
-- [English Resource Library](/resources/en/)
+- [英文资料库](/resources/en/)
 
 ## 快速开始
 
@@ -86,16 +86,16 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 - 评审模板：[`evaluator-rubric.md`](/resources/zh/templates/evaluator-rubric.md)
 - 启动脚本参考：`docs/resources/zh/templates/init.sh`
 
-English version:
+英文版本：
 
-- Entry: [English Home](/en/)
-- Library: [English Resource Library](/resources/en/)
-- Root instructions: [`AGENTS.md`](/resources/en/templates/AGENTS.md) or [`CLAUDE.md`](/resources/en/templates/CLAUDE.md)
-- Feature state: [`feature_list.json`](/resources/en/templates/feature_list.json)
-- Progress log: [`claude-progress.md`](/resources/en/templates/claude-progress.md)
-- Session handoff: [`session-handoff.md`](/resources/en/templates/session-handoff.md)
-- Clean-exit checklist: [`clean-state-checklist.md`](/resources/en/templates/clean-state-checklist.md)
-- Evaluator rubric: [`evaluator-rubric.md`](/resources/en/templates/evaluator-rubric.md)
+- 入口：[English Home](/en/)
+- 资料库：[英文资料库](/resources/en/)
+- 根指令文件：[`AGENTS.md`](/resources/en/templates/AGENTS.md) 或 [`CLAUDE.md`](/resources/en/templates/CLAUDE.md)
+- 功能状态文件：[`feature_list.json`](/resources/en/templates/feature_list.json)
+- 进度记录文件：[`claude-progress.md`](/resources/en/templates/claude-progress.md)
+- 会话交接文件：[`session-handoff.md`](/resources/en/templates/session-handoff.md)
+- 收尾检查清单：[`clean-state-checklist.md`](/resources/en/templates/clean-state-checklist.md)
+- 评审模板：[`evaluator-rubric.md`](/resources/en/templates/evaluator-rubric.md)
 
 推荐最小起步组合：
 
@@ -110,12 +110,12 @@ English version:
 
 这门课适合按 6 个单元推进：
 
-- **Unit 1**: Lecture 01-02 + Project 01
-- **Unit 2**: Lecture 03-04 + Project 02
-- **Unit 3**: Lecture 05-06 + Project 03
-- **Unit 4**: Lecture 07-08 + Project 04
-- **Unit 5**: Lecture 09-10 + Project 05
-- **Unit 6**: Lecture 11-12 + Project 06
+- **单元 1**：Lecture 01-02 + Project 01
+- **单元 2**：Lecture 03-04 + Project 02
+- **单元 3**：Lecture 05-06 + Project 03
+- **单元 4**：Lecture 07-08 + Project 04
+- **单元 5**：Lecture 09-10 + Project 05
+- **单元 6**：Lecture 11-12 + Project 06
 
 如果你想慢一点，也可以把每个单元当成一周来学。
 

@@ -2,7 +2,7 @@
 
 > 这是一门项目制课程：系统学习如何通过环境、状态、验证与控制机制，让 Codex 和 Claude Code 更可靠地工作。
 
-[English Version](./README.md)
+[英文版](./README.md)
 
 本课程仍在持续建设中，内容后续可能会调整。
 
@@ -18,7 +18,7 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 - 哪些规矩必须遵守
 - 怎么保持干净、不留烂摊子
 
-这门课是**强实践导向**的。我们不会只停留在"概念解释"，而是会让 Codex 或 Claude Code 在同一个不断演化的 Electron 应用上反复工作，并比较弱 harness 与强 harness 的差异。
+这门课是**强实践导向**的。我们不会只停留在“概念解释”，而是会让 Codex 或 Claude Code 在同一个不断演化的 Electron 应用上反复工作，并比较弱 harness 与强 harness 的差异。
 
 课程真正关心的问题是：
 
@@ -29,11 +29,11 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 
 ## 核心观点
 
-以后让模型干活，人只需要定好规则和边界——这就是 harness。
+以后让模型干活，人只需要定好规则和边界。这就是 harness。
 
 **这事的关键：** 模型很强，但不代表它能自动靠谱地完成真实工程任务。它需要一套明确的规则来约束自己的行为范围、需要清晰的交接机制来维持长时任务的连续性、需要验证手段来确认自己做对了。
 
-我们不是在尝试"让模型本身更聪明"，而是研究：怎么给模型搭建一个靠谱的工作环境，让同一个模型做出更可靠的工作。
+我们不是在尝试“让模型本身更聪明”，而是在研究：怎么给模型搭建一个靠谱的工作环境，让同一个模型做出更可靠的工作。
 
 ## 快速开始
 
@@ -69,7 +69,7 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 - [`clean-state-checklist.md`](./docs/resources/zh/templates/clean-state-checklist.md) —— 每次会话结束前的清理清单
 - [`evaluator-rubric.md`](./docs/resources/zh/templates/evaluator-rubric.md) —— 评审 agent 产出质量的评分表
 
-每个文件的详细用法写在 [中文模板指南](./docs/resources/zh/templates/index.md)。英文版见 [English template guide](./docs/resources/en/templates/index.md)。
+每个文件的详细用法写在 [中文模板指南](./docs/resources/zh/templates/index.md)。英文版见 [英文模板指南](./docs/resources/en/templates/index.md)。
 
 如果你想直接用 OpenAI 那篇 harness engineering 文章里的更完整高级结构，可以继续看
 [`docs/resources/zh/openai-advanced/`](./docs/resources/zh/openai-advanced/index.md)
@@ -103,25 +103,25 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 
 ### 资料库
 
-- [Resource Library 总览](./docs/resources/index.md)
+- [资料库总览](./docs/resources/index.md)
 - [中文资料库](./docs/resources/zh/index.md)
-- [English Resource Library](./docs/resources/en/index.md)
+- [英文资料库](./docs/resources/en/index.md)
 
 ## 学习路径推荐
 
 这门课按顺序来效果最好，每一阶段都建立在前一个的基础上。
 
-**第一阶段 — 先看到问题。** 读 Lecture 01-02，做 Project 01。你会跑两次同样的任务：一次只给提示词，一次加了最基本的规则。差距一目了然。
+**第一阶段 — 先看到问题。** 读讲义 01-02，做项目 01。你会跑两次同样的任务：一次只给提示词，一次加了最基本的规则。差距一目了然。
 
-**第二阶段 — 让项目对 agent 友好。** Lecture 03-04，Project 02。你会重组项目结构，让 agent 能读懂，并且加上跨会话的持久文件。
+**第二阶段 — 让项目对 agent 友好。** 讲义 03-04，项目 02。你会重组项目结构，让 agent 能读懂，并且加上跨会话的持久文件。
 
-**第三阶段 — 让会话接得上。** Lecture 05-06，Project 03。这里开始有意思了——让 agent 在你关掉会话后重新打开，还能从上次停下的地方接着干。
+**第三阶段 — 让会话接得上。** 讲义 05-06，项目 03。这里开始有意思了，让 agent 在你关掉会话后重新打开，还能从上次停下的地方接着干。
 
-**第四阶段 — 加上反馈和范围控制。** Lecture 07-08，Project 04。防止 agent 做多了或做少了，用运行反馈让它保持在正轨上。
+**第四阶段 — 加上反馈和范围控制。** 讲义 07-08，项目 04。防止 agent 做多了或做少了，用运行反馈让它保持在正轨上。
 
-**第五阶段 — 验证和自查。** Lecture 09-10，Project 05。让 agent 学会验证自己的工作，而不是做完就说"好了"。
+**第五阶段 — 验证和自查。** 讲义 09-10，项目 05。让 agent 学会验证自己的工作，而不是做完就说“好了”。
 
-**第六阶段 — 全部串起来。** Lecture 11-12，Project 06。这是 capstone。你将从零开始搭建一套完整的 harness，把前面学的全用上。
+**第六阶段 — 全部串起来。** 讲义 11-12，项目 06。这是综合项目。你将从零开始搭建一套完整的 harness，把前面学的全用上。
 
 每个阶段大约一周（兼职节奏）。想快的话，前三个阶段一个周末就能跑完。
 
@@ -131,7 +131,7 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 
 - 已经在使用 coding agent、希望提升稳定性和质量的工程师
 - 想系统理解 harness 设计的研究者或构建者
-- 需要理解"环境设计如何影响 agent 表现"的技术负责人
+- 需要理解“环境设计如何影响 agent 表现”的技术负责人
 
 这门课不适合：
 
@@ -156,7 +156,7 @@ Harness engineering 指的是：围绕模型搭建一整套工作环境，让它
 - 允许 agent 运行命令
 - 检查输出并重复执行任务
 
-如果你没有这类工具，仍然可以阅读课程内容，但无法按预期完成课程 project。
+如果你没有这类工具，仍然可以阅读课程内容，但无法按预期完成课程项目。
 
 ## 本地预览
 
@@ -200,7 +200,7 @@ npm run docs:dev
 
 ## 贯穿项目
 
-本课程的大多数 project 都围绕同一个产品展开：
+本课程的大多数项目都围绕同一个产品展开：
 
 - 一个基于 Electron 的个人知识库桌面应用
 
@@ -210,7 +210,7 @@ npm run docs:dev
 - 管理文档库
 - 处理与索引文档
 - 对导入内容发起 AI 问答
-- 返回带引用的 grounded 回答
+- 返回带引用且可追溯的回答
 
 之所以选择这个项目，是因为它同时具备：
 
@@ -222,8 +222,8 @@ npm run docs:dev
 
 本课程包含两类内容：
 
-- **Lectures**：12 个概念单元，每个单元只回答一个核心问题
-- **Projects**：6 个实践项目，把 lecture 里的方法落实到同一个 Electron 应用上
+- **讲义**：12 个概念单元，每个单元只回答一个核心问题
+- **项目**：6 个实践项目，把讲义里的方法落实到同一个 Electron 应用上
 
 每个 project 都要求你：
 
@@ -231,20 +231,20 @@ npm run docs:dev
 - 比较弱 harness 与强 harness 的差别
 - 观察可靠性、连续性、验证质量、可维护性的变化
 
-最后一个 project 同时也是整个课程的 capstone harness。
+最后一个项目同时也是整个课程的综合 harness。
 
 ## 课程组织方式
 
-- 每个 lecture 聚焦一个问题
-- 整门课配套 6 个 project
-- 每个 project 都要求 agent 真正干活
-- 每个 project 都要做弱 harness / 强 harness 对照
-- 我们关心的是效果变化，而不是"写了多少说明文档"
+- 每个讲义聚焦一个问题
+- 整门课配套 6 个项目
+- 每个项目都要求 agent 真正干活
+- 每个项目都要做弱 harness / 强 harness 对照
+- 我们关心的是效果变化，而不是“写了多少说明文档”
 
 ## 仓库结构
 
 - `docs/lectures/` - 全部讲义
-- `docs/projects/` - 全部实践项目，包括 capstone
+- `docs/projects/` - 全部实践项目，包括综合项目
 - `docs/resources/` - 中英双语的可复用模板、检查清单和方法参考
 
-每个 lecture 都带一个 `code/` 目录，用来放小型真实示例和 supporting artifacts。
+每个讲义都带一个 `code/` 目录，用来放小型真实示例和配套材料。

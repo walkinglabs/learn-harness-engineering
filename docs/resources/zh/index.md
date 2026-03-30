@@ -37,7 +37,7 @@
 
 - [`templates/`](./templates/index.md)：可以直接复制到真实仓库里的模板
 - [`reference/`](./reference/index.md)：方法说明、启动流程和问题对照表
-- [`openai-advanced/`](./openai-advanced/index.md)：更完整的 OpenAI 风格高级资源包，包括 repo skeleton、质量文档、执行计划和系统级治理文件
+- [`openai-advanced/`](./openai-advanced/index.md)：更完整的 OpenAI 风格高级资源包，包括仓库骨架、质量文档、执行计划和系统级治理文件
 
 ## 推荐最小组合
 
