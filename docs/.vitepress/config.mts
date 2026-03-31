@@ -77,6 +77,19 @@ export default defineConfig({
   srcExclude: ["temp/**"],
   ignoreDeadLinks: true,
   locales: {
+    root: {
+      label: "简体中文",
+      lang: "zh-CN",
+      themeConfig: {
+        nav: [
+          { text: "首页", link: "/" },
+          { text: "中文", link: "/zh/" },
+          { text: "English", link: "/en/" }
+        ],
+        sidebar: [],
+        socialLinks: [{ icon: "github", link: "https://github.com/walkinglabs/learn-harness-engineering" }]
+      }
+    },
     zh: {
       label: "简体中文",
       lang: "zh-CN",
