@@ -1,5 +1,8 @@
 [中文版本 →](/projects/project-06-runtime-observability-and-debugging/)
 
+> Related lectures: [Lecture 11. Make the agent's runtime observable](./../../lectures/lecture-11-why-observability-belongs-inside-the-harness/index.md) · [Lecture 12. Clean handoff at the end of every session](./../../lectures/lecture-12-why-every-session-must-leave-a-clean-state/index.md)
+> Template files: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/)
+
 # Project 06. Build a Complete Agent Harness (Capstone)
 
 ## What You Do

@@ -1,5 +1,8 @@
 [中文版本 →](/projects/project-04-incremental-indexing/)
 
+> Related lectures: [Lecture 07. Draw clear task boundaries for agents](./../../lectures/lecture-07-why-agents-overreach-and-under-finish/index.md) · [Lecture 08. Use feature lists to constrain what the agent does](./../../lectures/lecture-08-why-feature-lists-are-harness-primitives/index.md)
+> Template files: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/)
+
 # Project 04. Use Runtime Feedback to Correct Agent Behavior
 
 ## What You Do

@@ -1,5 +1,8 @@
 [English Version →](/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/)
 
+> 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
+> 实战练习：[Project 06. 搭建一套完整的 agent 工作环境](./../../projects/project-06-runtime-observability-and-debugging/index.md)
+
 # 第十一讲. 让 agent 的运行过程可观测
 
 ## 这节课要解决什么问题

@@ -1,5 +1,8 @@
 [中文版本 →](/projects/project-03-multi-session-continuity/)
 
+> Related lectures: [Lecture 05. Keep context alive across sessions](./../../lectures/lecture-05-why-long-running-tasks-lose-continuity/index.md) · [Lecture 06. Initialize before every agent session](./../../lectures/lecture-06-why-initialization-needs-its-own-phase/index.md)
+> Template files: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/)
+
 # Project 03. Keep the Agent Working Across Session Restarts
 
 ## What You Do

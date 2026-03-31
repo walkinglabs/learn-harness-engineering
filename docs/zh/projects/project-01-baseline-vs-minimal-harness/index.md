@@ -1,5 +1,8 @@
 # Project 01. 只写提示词让 agent 做，和定好规则再让它做，差多少
 
+> 相关讲义：[L01. 模型能力强，不等于执行可靠](./../../lectures/lecture-01-why-capable-agents-still-fail/index.md) · [L02. Harness 到底是什么](./../../lectures/lecture-02-what-a-harness-actually-is/index.md)
+> 本篇模板文件：[templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/)
+
 ## 你要做什么
 
 用 Electron 搭一个最简的知识库应用壳子——能启动窗口、左边显示文档列表、右边显示问答面板、本地有一个数据目录。任务本身不复杂，复杂的是你怎么让 agent 完成它。

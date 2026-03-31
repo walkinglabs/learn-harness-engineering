@@ -1,5 +1,8 @@
 [English Version →](/en/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
+> 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
+> 实战练习：[Project 05. 让 agent 自己检查自己做的对不对](./../../projects/project-05-grounded-qa-verification/index.md)
+
 # 第九讲. 防止 agent 提前宣告完成
 
 ## 这节课要解决什么问题

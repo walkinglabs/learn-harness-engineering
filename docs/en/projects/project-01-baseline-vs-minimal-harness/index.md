@@ -1,5 +1,8 @@
 [中文版本 →](/projects/project-01-baseline-vs-minimal-harness/)
 
+> Related lectures: [Lecture 01. Strong models don't mean reliable execution](./../../lectures/lecture-01-why-capable-agents-still-fail/index.md) · [Lecture 02. What harness actually means](./../../lectures/lecture-02-what-a-harness-actually-is/index.md)
+> Template files: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/)
+
 # Project 01. Prompt-Only vs. Rules-First: How Much Difference Does It Make
 
 ## What You Do

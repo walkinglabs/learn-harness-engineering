@@ -1,5 +1,8 @@
 [中文版本 →](/zh/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 
+> Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-10-why-end-to-end-testing-changes-results/code/)
+> Practice project: [Project 05. Self-verification and role separation](./../../projects/project-05-grounded-qa-verification/index.md)
+
 # Lecture 10. Only a Full-Pipeline Run Counts as Real Verification
 
 ## What Problem Does This Lecture Solve?

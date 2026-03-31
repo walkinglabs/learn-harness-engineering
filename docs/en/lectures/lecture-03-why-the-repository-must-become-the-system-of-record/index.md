@@ -1,5 +1,8 @@
 [中文版本 →](/zh/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/)
 
+> Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/)
+> Practice project: [Project 02. Agent-readable workspace](./../../projects/project-02-agent-readable-workspace/index.md)
+
 # Lecture 03. Make the Repository Your Single Source of Truth
 
 ## What Problem Does This Lecture Solve?

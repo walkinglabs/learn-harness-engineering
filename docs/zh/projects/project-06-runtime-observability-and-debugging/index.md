@@ -1,5 +1,8 @@
 # Project 06. 搭建一套完整的 agent 工作环境
 
+> 相关讲义：[L11. 为什么可观测性属于 harness](./../../lectures/lecture-11-why-observability-belongs-inside-the-harness/index.md) · [L12. 为什么每次会话都要留干净状态](./../../lectures/lecture-12-why-every-session-must-leave-a-clean-state/index.md)
+> 本篇模板文件：[templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/)
+
 ## 你要做什么
 
 这是结业项目。把前五个项目学到的所有东西组装起来，跑一次完整的基准测试，然后做一轮清理，验证质量是可以持续维护的。

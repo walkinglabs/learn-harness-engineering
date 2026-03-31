@@ -1,5 +1,8 @@
 # Project 05. 让 agent 自己检查自己做的对不对
 
+> 相关讲义：[L09. 为什么 agent 会提前宣告完成](./../../lectures/lecture-09-why-agents-declare-victory-too-early/index.md) · [L10. 为什么端到端测试会改变结果](./../../lectures/lecture-10-why-end-to-end-testing-changes-results/index.md)
+> 本篇模板文件：[templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/)
+
 ## 你要做什么
 
 前四个项目里，"检查做得对不对"这件事要么是你手动做的，要么是靠文件规则强制执行的。这个项目要让 agent 自己来检查。

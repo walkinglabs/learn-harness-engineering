@@ -1,5 +1,8 @@
 # Project 02. 让 agent 看懂项目、接住上次的工作
 
+> 相关讲义：[L03. 让代码仓库成为唯一的事实来源](./../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/index.md) · [L04. 为什么一个巨大的指令文件会失败](./../../lectures/lecture-04-why-one-giant-instruction-file-fails/index.md)
+> 本篇模板文件：[templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/)
+
 ## 你要做什么
 
 P01 证明了准备规则有用。但 P01 的任务一次会话就干完了。真实开发不是这样的——你昨天干了一半，今天开新会话，agent 得从仓库状态里搞清楚"做了什么、没做什么、接下来干什么"。

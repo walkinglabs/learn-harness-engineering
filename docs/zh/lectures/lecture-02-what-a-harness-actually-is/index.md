@@ -1,5 +1,8 @@
 [English Version →](/en/lectures/lecture-02-what-a-harness-actually-is/)
 
+> 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-02-what-a-harness-actually-is/code/)
+> 实战练习：[Project 01. 只写提示词让 agent 做，和定好规则再让它做，差多少](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
+
 # 第二讲. Harness 到底是什么
 
 ## 这节课要解决什么问题

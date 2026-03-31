@@ -1,5 +1,8 @@
 # Project 04. 用运行反馈修正 agent 的行为
 
+> 相关讲义：[L07. 为什么 agent 会多做或少做](./../../lectures/lecture-07-why-agents-overreach-and-under-finish/index.md) · [L08. 为什么功能清单是 harness 原语](./../../lectures/lecture-08-why-feature-lists-are-harness-primitives/index.md)
+> 本篇模板文件：[templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/)
+
 ## 你要做什么
 
 前三个项目关注的是"让 agent 把活干完"。这个项目关注的是"出了问题怎么修"——而且不是你修，是让 agent 自己通过运行时信号来修。

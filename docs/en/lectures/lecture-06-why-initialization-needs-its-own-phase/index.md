@@ -1,5 +1,8 @@
 [中文版本 →](/zh/lectures/lecture-06-why-initialization-needs-its-own-phase/)
 
+> Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-06-why-initialization-needs-its-own-phase/code/)
+> Practice project: [Project 03. Multi-session continuity](./../../projects/project-03-multi-session-continuity/index.md)
+
 # Lecture 06. Initialize Before Every Agent Session
 
 ## What Problem Does This Lecture Solve?

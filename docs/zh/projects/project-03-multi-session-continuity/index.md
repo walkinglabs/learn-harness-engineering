@@ -1,5 +1,8 @@
 # Project 03. 让 agent 关掉再打开还能接着干
 
+> 相关讲义：[L05. 为什么长时任务会丢失上下文](./../../lectures/lecture-05-why-long-running-tasks-lose-continuity/index.md) · [L06. 为什么初始化需要单独一个阶段](./../../lectures/lecture-06-why-initialization-needs-its-own-phase/index.md)
+> 本篇模板文件：[templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/)
+
 ## 你要做什么
 
 P02 解决了"接手"的问题，但 agent 接手之后能不能把活干完、干对了，又是另一回事。这个项目要你给 agent 加上范围控制和验证关卡。

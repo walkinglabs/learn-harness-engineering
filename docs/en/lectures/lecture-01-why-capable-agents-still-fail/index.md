@@ -1,5 +1,8 @@
 [中文版本 →](/zh/lectures/lecture-01-why-capable-agents-still-fail/)
 
+> Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-01-why-capable-agents-still-fail/code/)
+> Practice project: [Project 01. Prompt-only vs. rules-first](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
+
 # Lecture 01. Strong Models Don't Mean Reliable Execution
 
 ## What Problem Does This Lecture Solve?

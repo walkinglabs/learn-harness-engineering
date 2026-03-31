@@ -1,5 +1,8 @@
 [中文版本 →](/zh/lectures/lecture-04-why-one-giant-instruction-file-fails/)
 
+> Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-04-why-one-giant-instruction-file-fails/code/)
+> Practice project: [Project 02. Agent-readable workspace](./../../projects/project-02-agent-readable-workspace/index.md)
+
 # Lecture 04. Split Instructions Across Files, Not One Giant File
 
 ## What Problem Does This Lecture Solve?

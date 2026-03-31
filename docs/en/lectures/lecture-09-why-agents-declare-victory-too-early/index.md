@@ -1,5 +1,8 @@
 [中文版本 →](/zh/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
+> Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
+> Practice project: [Project 05. Self-verification and role separation](./../../projects/project-05-grounded-qa-verification/index.md)
+
 # Lecture 09. Stop Agents from Declaring Victory Early
 
 ## What Problem Does This Lecture Solve?
