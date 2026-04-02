@@ -1,4 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
+import './style.css'
 
 function syncRootLocaleLabel(siteData, href = '') {
   const locales = siteData.value?.locales

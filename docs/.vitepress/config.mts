@@ -1,8 +1,10 @@
+/// <reference types="node" />
 import { defineConfig } from "vitepress";
 
 const docsBase = process.env.DOCS_BASE_PATH ?? "/";
 
 const zhLectureItems = [
+  { text: "欢迎", link: "/zh/" },
   { text: "L01. 模型能力强，不等于执行可靠", link: "/zh/lectures/lecture-01-why-capable-agents-still-fail/" },
   { text: "L02. Harness 的定义", link: "/zh/lectures/lecture-02-what-a-harness-actually-is/" },
   { text: "L03. 让代码仓库成为唯一的事实来源", link: "/zh/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
@@ -36,6 +38,7 @@ const zhResourceItems = [
 ];
 
 const enLectureItems = [
+  { text: "Welcome", link: "/en/" },
   { text: "Lecture 01. Why Capable Agents Still Fail", link: "/en/lectures/lecture-01-why-capable-agents-still-fail/" },
   { text: "Lecture 02. What a Harness Actually Is", link: "/en/lectures/lecture-02-what-a-harness-actually-is/" },
   { text: "Lecture 03. Why the Repository Must Become the System of Record", link: "/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
@@ -76,6 +79,19 @@ export default defineConfig({
   cleanUrls: true,
   srcExclude: ["temp/**"],
   ignoreDeadLinks: true,
+  themeConfig: {
+    logo: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23D95C41"><path d="M12 2L13.4 8.6L20 10L13.4 11.4L12 18L10.6 11.4L4 10L10.6 8.6L12 2Z"/></svg>',
+    search: {
+      provider: "local"
+    },
+    socialLinks: [{ icon: "github", link: "https://github.com/walkinglabs/learn-harness-engineering" }]
+  },
+  markdown: {
+    theme: {
+      light: 'github-light',
+      dark: 'github-dark'
+    }
+  },
   locales: {
     root: {
       label: "简体中文",
@@ -96,25 +112,21 @@ export default defineConfig({
       link: "/zh/",
       themeConfig: {
         nav: [
-          { text: "首页", link: "/zh/" },
-          { text: "讲义", link: zhLectureItems[0].link },
-          { text: "项目", link: zhProjectItems[0].link },
-          { text: "资料库", link: "/zh/resources/" }
+          { text: "讲义", link: zhLectureItems[1].link, activeMatch: '^/zh/(lectures/.*)?$' },
+          { text: "项目", link: zhProjectItems[0].link, activeMatch: '^/zh/projects/' },
+          { text: "资料库", link: "/zh/resources/", activeMatch: '^/zh/resources/' }
         ],
-        sidebar: [
-          {
-            text: "讲义",
-            items: zhLectureItems
-          },
-          {
-            text: "项目",
-            items: zhProjectItems
-          },
-          {
-            text: "资料库",
-            items: zhResourceItems
-          }
-        ],
+        sidebar: {
+          '/zh/projects/': [
+            { text: "项目", items: zhProjectItems }
+          ],
+          '/zh/resources/': [
+            { text: "资料库", items: zhResourceItems }
+          ],
+          '/zh/': [
+            { text: "讲义", items: zhLectureItems }
+          ]
+        },
         outline: {
           level: [2, 3]
         },
@@ -139,25 +151,21 @@ export default defineConfig({
       link: "/en/",
       themeConfig: {
         nav: [
-          { text: "Home", link: "/en/" },
-          { text: "Lectures", link: enLectureItems[0].link },
-          { text: "Projects", link: enProjectItems[0].link },
-          { text: "Library", link: "/en/resources/" }
+          { text: "Lectures", link: enLectureItems[1].link, activeMatch: '^/en/(lectures/.*)?$' },
+          { text: "Projects", link: enProjectItems[0].link, activeMatch: '^/en/projects/' },
+          { text: "Library", link: "/en/resources/", activeMatch: '^/en/resources/' }
         ],
-        sidebar: [
-          {
-            text: "Lectures",
-            items: enLectureItems
-          },
-          {
-            text: "Projects",
-            items: enProjectItems
-          },
-          {
-            text: "Resource Library",
-            items: enResourceItems
-          }
-        ],
+        sidebar: {
+          '/en/projects/': [
+            { text: "Projects", items: enProjectItems }
+          ],
+          '/en/resources/': [
+            { text: "Resource Library", items: enResourceItems }
+          ],
+          '/en/': [
+            { text: "Lectures", items: enLectureItems }
+          ]
+        },
         outline: {
           level: [2, 3]
         },
@@ -175,11 +183,5 @@ export default defineConfig({
         darkModeSwitchTitle: "Switch to dark theme"
       }
     }
-  },
-  themeConfig: {
-    search: {
-      provider: "local"
-    },
-    socialLinks: [{ icon: "github", link: "https://github.com/walkinglabs/learn-harness-engineering" }]
   }
 });
