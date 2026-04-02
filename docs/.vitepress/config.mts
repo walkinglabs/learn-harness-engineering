@@ -114,7 +114,8 @@ export default withMermaid(
           nav: [
             { text: "Lectures", link: enLectureItems[1].link, activeMatch: '^/en/(lectures/.*)?$' },
             { text: "Projects", link: enProjectItems[0].link, activeMatch: '^/en/projects/' },
-            { text: "Library", link: "/en/resources/", activeMatch: '^/en/resources/' }
+            { text: "Library", link: "/en/resources/", activeMatch: '^/en/resources/' },
+            { text: "Try Harness ↗", link: "https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/index.md", target: "_blank", rel: "noopener noreferrer" }
           ],
           sidebar: {
             '/en/projects/': [
@@ -132,14 +133,15 @@ export default withMermaid(
       },
       zh: {
         label: "简体中文",
-      lang: "zh-CN",
-      link: "/zh/",
-      themeConfig: {
-        nav: [
-          { text: "讲义", link: zhLectureItems[1].link, activeMatch: '^/zh/(lectures/.*)?$' },
-          { text: "项目", link: zhProjectItems[0].link, activeMatch: '^/zh/projects/' },
-          { text: "资料库", link: "/zh/resources/", activeMatch: '^/zh/resources/' }
-        ],
+        lang: "zh-CN",
+        link: "/zh/",
+        themeConfig: {
+          nav: [
+            { text: "讲义", link: zhLectureItems[1].link, activeMatch: '^/zh/(lectures/.*)?$' },
+            { text: "项目", link: zhProjectItems[0].link, activeMatch: '^/zh/projects/' },
+            { text: "资料库", link: "/zh/resources/", activeMatch: '^/zh/resources/' },
+            { text: "Try Harness ↗", link: "https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/index.md", target: "_blank", rel: "noopener noreferrer" }
+          ],
         sidebar: {
           '/zh/projects/': [
             { text: "项目", items: zhProjectItems }
@@ -170,9 +172,9 @@ export default withMermaid(
       }
     },
     en: {
-        label: "English",
-        lang: "en",
-        link: "/en/"
-      }
+      label: "English",
+      lang: "en",
+      link: "/en/"
     }
-  }));
+  }
+}));

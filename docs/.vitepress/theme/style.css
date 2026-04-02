@@ -291,16 +291,49 @@
   align-items: center;
 }
 
-.VPNavBarMenuLink:hover {
+/* Nav Action Button (Try Harness) */
+.VPNavBarMenuLink[href*="learn-harness-engineering/blob/main/docs/"] {
+  background-color: #1A1A1A !important;
+  color: #FFFFFF !important;
+  border-radius: 20px !important;
+  padding: 0 16px !important;
+  margin: 0 4px 0 12px !important;
+  height: 32px !important;
+  transition: background-color 0.2s ease;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.VPNavBarMenuLink[href*="learn-harness-engineering/blob/main/docs/"]:hover {
+  background-color: #333333 !important;
+  color: #FFFFFF !important;
+}
+
+.dark .VPNavBarMenuLink[href*="learn-harness-engineering/blob/main/docs/"] {
+  background-color: #E5E5E5 !important;
+  color: #1A1A1A !important;
+}
+
+.dark .VPNavBarMenuLink[href*="learn-harness-engineering/blob/main/docs/"]:hover {
+  background-color: #FFFFFF !important;
+  color: #1A1A1A !important;
+}
+
+.VPNavBarMenuLink[href*="learn-harness-engineering/blob/main/docs/"]::after {
+  display: none !important;
+}
+
+.VPNavBarMenuLink:not([href*="learn-harness-engineering/blob/main/docs/"]):hover {
   color: var(--vp-c-text-1) !important;
   background-color: transparent !important;
 }
 
-.VPNavBarMenuLink.active {
+.VPNavBarMenuLink.active:not([href*="learn-harness-engineering/blob/main/docs/"]) {
   color: var(--vp-c-text-1) !important;
 }
 
-.VPNavBarMenuLink.active::after {
+.VPNavBarMenuLink.active:not([href*="learn-harness-engineering/blob/main/docs/"])::after {
   content: '';
   position: absolute;
   bottom: -1px;
@@ -310,7 +343,7 @@
   background-color: var(--vp-c-text-1);
 }
 
-.dark .VPNavBarMenuLink.active {
+.dark .VPNavBarMenuLink.active:not([href*="learn-harness-engineering/blob/main/docs/"]) {
   background-color: transparent !important;
 }
 
