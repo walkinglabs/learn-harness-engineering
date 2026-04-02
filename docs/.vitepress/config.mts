@@ -36,9 +36,7 @@ const zhResourceItems = [
   { text: "资料库总览", link: "/zh/resources/" },
   { text: "中文模板", link: "/zh/resources/templates/" },
   { text: "中文参考", link: "/zh/resources/reference/" },
-  { text: "高级资源包", link: "/zh/resources/openai-advanced/" },
-  { text: "English Templates", link: "/en/resources/templates/" },
-  { text: "English Reference", link: "/en/resources/reference/" }
+  { text: "高级资源包", link: "/zh/resources/openai-advanced/" }
 ];
 
 const enLectureItems = [
@@ -71,9 +69,7 @@ const enResourceItems = [
   { text: "Overview", link: "/en/resources/" },
   { text: "English Templates", link: "/en/resources/templates/" },
   { text: "English Reference", link: "/en/resources/reference/" },
-  { text: "Advanced Pack", link: "/en/resources/openai-advanced/" },
-  { text: "中文模板", link: "/zh/resources/templates/" },
-  { text: "中文参考", link: "/zh/resources/reference/" }
+  { text: "Advanced Pack", link: "/en/resources/openai-advanced/" }
 ];
 
 export default withMermaid(

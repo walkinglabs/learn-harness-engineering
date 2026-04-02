@@ -481,6 +481,13 @@
   background-color: #FFFFFF !important;
 }
 
+@media (min-width: 768px) {
+  .VPNavBarSocialLinks {
+    display: flex !important;
+    align-items: center;
+  }
+}
+
 /* ---------- Tables ---------- */
 .vp-doc table {
   border-collapse: collapse;
