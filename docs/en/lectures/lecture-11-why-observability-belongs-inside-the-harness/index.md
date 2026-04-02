@@ -152,3 +152,4 @@ A harness using a planner-generator-evaluator workflow, executing "add dark mode
 2. **Sprint Contract Practice**: Write a sprint contract for a real task. Have the agent execute according to the contract, and compare efficiency and quality with and without the contract.
 
 3. **Task Trace Construction**: Record every step of an agent's operations during a complete coding task. Annotate with OpenTelemetry semantic conventions. Analyze information bottlenecks in the trace — which steps lack sufficient signal support for decisions.
+ bash -c .textfile /Users/sanbu/Code/github/learn-harness-engineering/docs/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/index.md
