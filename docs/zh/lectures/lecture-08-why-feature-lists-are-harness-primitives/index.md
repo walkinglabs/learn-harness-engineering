@@ -1,4 +1,4 @@
-[English Version →](/en/lectures/lecture-08-why-feature-lists-are-harness-primitives/)
+[English Version →](../../../en/lectures/lecture-08-why-feature-lists-are-harness-primitives/)
 
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-08-why-feature-lists-are-harness-primitives/code/)
 > 实战练习：[Project 04. 用运行反馈修正 agent 的行为](./../../projects/project-04-incremental-indexing/index.md)

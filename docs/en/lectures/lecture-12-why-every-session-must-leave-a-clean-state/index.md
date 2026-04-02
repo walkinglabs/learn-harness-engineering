@@ -1,4 +1,4 @@
-[中文版本 →](/zh/lectures/lecture-12-why-every-session-must-leave-a-clean-state/)
+[中文版本 →](../../../zh/lectures/lecture-12-why-every-session-must-leave-a-clean-state/)
 
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/code/)
 > Practice project: [Project 06. Complete harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)

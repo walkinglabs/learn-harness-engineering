@@ -1,4 +1,4 @@
-[中文版本 →](/zh/lectures/lecture-07-why-agents-overreach-and-under-finish/)
+[中文版本 →](../../../zh/lectures/lecture-07-why-agents-overreach-and-under-finish/)
 
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-07-why-agents-overreach-and-under-finish/code/)
 > Practice project: [Project 04. Runtime feedback and scope control](./../../projects/project-04-incremental-indexing/index.md)

@@ -1,4 +1,4 @@
-[English Version →](/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/)
+[English Version →](../../../en/lectures/lecture-05-why-long-running-tasks-lose-continuity/)
 
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-05-why-long-running-tasks-lose-continuity/code/)
 > 实战练习：[Project 03. 让 agent 关掉再打开还能接着干](./../../projects/project-03-multi-session-continuity/index.md)

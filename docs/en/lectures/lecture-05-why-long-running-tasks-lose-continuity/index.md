@@ -1,4 +1,4 @@
-[中文版本 →](/zh/lectures/lecture-05-why-long-running-tasks-lose-continuity/)
+[中文版本 →](../../../zh/lectures/lecture-05-why-long-running-tasks-lose-continuity/)
 
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/code/)
 > Practice project: [Project 03. Multi-session continuity](./../../projects/project-03-multi-session-continuity/index.md)

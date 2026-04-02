@@ -13,15 +13,15 @@ Through systematic environment design, state management, verification, and contr
 Choose your learning path to get started. The course is divided into theoretical lectures, hands-on projects, and a copy-ready resource library.
 
 <div class="card-grid">
-  <a href="/en/lectures/lecture-01-why-capable-agents-still-fail/" class="card">
+  <a href="./lectures/lecture-01-why-capable-agents-still-fail/" class="card">
     <h3>Lectures</h3>
     <p>Understand why strong models still fail and learn the theory behind effective harnesses.</p>
   </a>
-  <a href="/en/projects/" class="card">
+  <a href="./projects/" class="card">
     <h3>Projects</h3>
     <p>Hands-on practice building a reliable agentic environment from scratch.</p>
   </a>
-  <a href="/en/resources/" class="card">
+  <a href="./resources/" class="card">
     <h3>Resource Library</h3>
     <p>Copy-ready templates (AGENTS.md, feature_list.json) to use in your own repositories.</p>
   </a>
@@ -67,7 +67,7 @@ Here are some of the key concepts you will master:
 Once you understand the core concepts, these guides help you go deeper:
 
 <ul class="index-list">
-  <li><a href="/en/lectures/lecture-01-why-capable-agents-still-fail/">Lecture 01: Why Capable Agents Still Fail</a>: Start with the theory behind harness engineering.</li>
-  <li><a href="/en/projects/project-01-baseline-vs-minimal-harness/">Project 01: Baseline vs Minimal Harness</a>: Walk through your first real task.</li>
-  <li><a href="/en/resources/templates/">Templates</a>: Grab the minimal harness pack (AGENTS.md, feature_list.json, claude-progress.md) for your own projects.</li>
+  <li><a href="./lectures/lecture-01-why-capable-agents-still-fail/">Lecture 01: Why Capable Agents Still Fail</a>: Start with the theory behind harness engineering.</li>
+  <li><a href="./projects/project-01-baseline-vs-minimal-harness/">Project 01: Baseline vs Minimal Harness</a>: Walk through your first real task.</li>
+  <li><a href="./resources/templates/">Templates</a>: Grab the minimal harness pack (AGENTS.md, feature_list.json, claude-progress.md) for your own projects.</li>
 </ul>

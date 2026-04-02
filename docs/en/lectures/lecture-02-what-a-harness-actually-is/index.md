@@ -1,4 +1,4 @@
-[中文版本 →](/zh/lectures/lecture-02-what-a-harness-actually-is/)
+[中文版本 →](../../../zh/lectures/lecture-02-what-a-harness-actually-is/)
 
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-02-what-a-harness-actually-is/code/)
 > Practice project: [Project 01. Prompt-only vs. rules-first](./../../projects/project-01-baseline-vs-minimal-harness/index.md)

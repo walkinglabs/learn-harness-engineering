@@ -1,4 +1,4 @@
-[English Version →](/en/lectures/lecture-04-why-one-giant-instruction-file-fails/)
+[English Version →](../../../en/lectures/lecture-04-why-one-giant-instruction-file-fails/)
 
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-04-why-one-giant-instruction-file-fails/code/)
 > 实战练习：[Project 02. 让 agent 看懂项目、接住上次的工作](./../../projects/project-02-agent-readable-workspace/index.md)

@@ -1,4 +1,4 @@
-[中文版本 →](/zh/lectures/lecture-11-why-observability-belongs-inside-the-harness/)
+[中文版本 →](../../../zh/lectures/lecture-11-why-observability-belongs-inside-the-harness/)
 
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
 > Practice project: [Project 06. Complete harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)

@@ -1,4 +1,4 @@
-[English Version →](/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/)
+[English Version →](../../../en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/)
 
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/)
 > 实战练习：[Project 02. 让 agent 看懂项目、接住上次的工作](./../../projects/project-02-agent-readable-workspace/index.md)

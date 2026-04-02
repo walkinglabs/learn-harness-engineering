@@ -1,4 +1,4 @@
-[中文版本 →](/projects/project-05-grounded-qa-verification/)
+[中文版本 →](../../../zh/projects/project-05-grounded-qa-verification/)
 
 > Related lectures: [Lecture 09. Stop agents from declaring victory early](./../../lectures/lecture-09-why-agents-declare-victory-too-early/index.md) · [Lecture 10. Only a full-pipeline run counts as real verification](./../../lectures/lecture-10-why-end-to-end-testing-changes-results/index.md)
 > Template files: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/)
