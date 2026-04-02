@@ -20,6 +20,31 @@ This isn't because the model isn't smart enough. It's because the working enviro
 - **Diagnostic Loop**: Execute → observe failure → attribute to a specific harness layer → fix that layer → re-execute. This is the core methodology of harness engineering.
 - **Definition of Done**: A set of machine-verifiable conditions — tests pass, lint is clean, type checks pass. Without an explicit definition of done, the agent will invent its own.
 
+## Failure Model Overview
+
+```mermaid
+graph LR
+    subgraph "Five Failure Layers"
+        direction TB
+        L1["① Task Specification"]
+        L2["② Context Provision"]
+        L3["③ Execution Environment"]
+        L4["④ Verification Feedback"]
+        L5["⑤ State Management"]
+    end
+
+    Agent -->|"encounters"| L1
+    L1 --> L2 --> L3 --> L4 --> L5
+    L5 -->|"signals defect"| Fix["Fix layer → Re-run"]
+    Fix -->|"diagnostic loop"| Agent
+```
+
+```mermaid
+graph LR
+    Bare["Bare Run<br/>20 min / $9<br/>Core features broken"] -->|"Add harness"| Full["Full Harness<br/>6 hr / $200<br/>Playable app"]
+    Bare -.->|"Same model"| Full
+```
+
 ## Why This Happens
 
 Let's start with data. As of late 2025, the strongest coding agents on SWE-bench Verified achieve roughly 50-60%. And that's on carefully selected tasks with clear issue descriptions and existing test cases. Move to a real daily development scenario — vague requirements, no existing tests, implicit business rules scattered everywhere — and that number only goes down.

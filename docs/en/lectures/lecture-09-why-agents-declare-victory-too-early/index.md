@@ -20,6 +20,32 @@ This isn't a random event. Guo et al.'s classic 2017 ICML paper proved that **mo
 - **Runtime feedback signals**: Logs, process states, health checks from program execution. These are the harness's objective basis for judging completion quality — not optional debugging tools.
 - **Completion priority constraint**: Verify functional correctness first, then performance, then style. No refactoring allowed until core functionality is verified.
 
+## Three-Layer Termination Check
+
+```mermaid
+graph LR
+    subgraph "Verification Gates"
+        L1["Layer 1<br/>Syntax & Static Analysis<br/><i>lint, type check</i>"]
+        L2["Layer 2<br/>Runtime Behavior<br/><i>unit & integration tests</i>"]
+        L3["Layer 3<br/>System Validation<br/><i>E2E, user scenarios</i>"]
+    end
+
+    L1 -->|"must pass"| L2
+    L2 -->|"must pass"| L3
+    L3 -->|"all pass"| Done["✅ Done"]
+
+    style L1 fill:#F4F3EE
+    style L2 fill:#E8E7E2
+    style L3 fill:#D95C41,color:#fff
+```
+
+```mermaid
+graph LR
+    Agent["Agent: 'I'm done!'"] -->|"confidence"| High["High Confidence"]
+    Reality["Actual Quality"] -->|"measured"| Low["Low Quality"]
+    High -.->|"calibration gap"| Low
+```
+
 ## Why This Happens
 
 ### The Four-Step Slippery Slope of Agent Completion

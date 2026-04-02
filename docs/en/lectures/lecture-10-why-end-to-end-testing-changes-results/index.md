@@ -19,6 +19,31 @@ Google's test pyramid tells us: lots of unit tests form the base, but if you sto
 - **Review feedback promotion**: Transform recurring code review comments into automated tests. Each newly captured defect category adds a permanent defense line — the harness automatically gets stronger over time.
 - **Agent-oriented error messages**: Failure messages don't just say "what went wrong" — they tell the agent exactly how to fix it. This turns test failures into self-correcting feedback loops.
 
+## Test Pyramid & Review Feedback Loop
+
+```mermaid
+graph TB
+    subgraph "Test Adequacy Gradient"
+        E2E["End-to-End Tests<br/><i>catches component boundary defects</i>"]
+        Int["Integration Tests"]
+        Unit["Unit Tests<br/><i>fast but isolated</i>"]
+    end
+
+    Unit --> Int --> E2E
+
+    style Unit fill:#F4F3EE
+    style Int fill:#E0DFD9
+    style E2E fill:#D95C41,color:#fff
+```
+
+```mermaid
+graph LR
+    Review["Code Review<br/>recurring feedback"] --> Pattern["Identify pattern"]
+    Pattern --> Rule["Create executable check<br/>+ agent-oriented error msg"]
+    Rule --> Harness["Add to harness"]
+    Harness -->|"prevents class"| Agent["🤖 Agent"]
+```
+
 ## Why This Happens
 
 ### Unit Tests' Blind Spots

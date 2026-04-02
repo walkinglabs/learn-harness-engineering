@@ -13,6 +13,35 @@ Learn Harness Engineering is a course dedicated to the engineering of AI coding 
 
 ---
 
+## Visual Preview
+
+### English
+
+<p>
+  <img src="./docs/public/screenshots/readme/en-home.png" alt="English homepage preview" width="32%" />
+  <img src="./docs/public/screenshots/readme/en-lecture-01.png" alt="English lecture preview" width="32%" />
+  <img src="./docs/public/screenshots/readme/en-resources.png" alt="English resources preview" width="32%" />
+</p>
+
+### 中文
+
+<p>
+  <img src="./docs/public/screenshots/readme/zh-home.png" alt="中文首页预览" width="32%" />
+  <img src="./docs/public/screenshots/readme/zh-lecture-01.png" alt="中文讲义预览" width="32%" />
+  <img src="./docs/public/screenshots/readme/zh-resources.png" alt="中文资料库预览" width="32%" />
+</p>
+
+## PDF Coursebooks
+
+The repository now includes a PDF build pipeline for the course content.
+
+- Run `npm run pdf:build` to generate English and Chinese PDFs locally.
+- Output files are written to `artifacts/pdfs/`.
+- Run `npm run screenshots:readme` if you want to refresh the README preview images.
+- GitHub Actions workflow [`release-course-pdfs.yml`](./.github/workflows/release-course-pdfs.yml) can build the PDFs and publish them to GitHub Releases.
+
+---
+
 ## The Model Is Smart, The Harness Makes It Reliable
 
 There's a hard truth most people learn the hard way: **the strongest model in the world will still fail on real engineering tasks if you don't build a proper environment around it.**

@@ -20,6 +20,31 @@ This is the "giant instruction file" trap. This lecture explains why "more infor
 - **Progressive Disclosure**: Give overview information first, detailed information when needed. Good harness design is like good UI design — don't dump all options on the user at once.
 - **Priority Ambiguity**: When all instructions appear in the same format and location, the agent can't distinguish non-negotiable hard constraints from suggestive soft guidelines.
 
+## Instruction Architecture
+
+```mermaid
+graph TB
+    subgraph "Three-Layer Structure"
+        L1["<b>Layer 1: Routing File</b><br/>AGENTS.md (50–200 lines)<br/>Overview + hard constraints + links"]
+        L2a["<b>Layer 2a</b><br/>api-patterns.md"]
+        L2b["<b>Layer 2b</b><br/>database-rules.md"]
+        L2c["<b>Layer 2c</b><br/>testing-standards.md"]
+        L3["<b>Layer 3: Inline</b><br/>Type defs, interface comments"]
+    end
+
+    L1 -->|"link"| L2a
+    L1 -->|"link"| L2b
+    L1 -->|"link"| L2c
+    L2a & L2b & L2c -->|"reference"| L3
+
+    style L1 fill:#D95C41,color:#fff
+```
+
+```mermaid
+graph LR
+    Top["Top of file<br/>✅ High recall"] --- Mid["Middle of file<br/>❌ Lost in the middle"] --- Bot["Bottom of file<br/>✅ High recall"]
+```
+
 ## Why This Happens
 
 The most common vicious cycle goes like this: the agent makes a mistake → you say "add a rule to prevent this" → add it to AGENTS.md → it works temporarily → agent makes a different mistake → add another rule → repeat → file bloats out of control.

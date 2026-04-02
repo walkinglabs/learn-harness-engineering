@@ -20,6 +20,26 @@ Anthropic's "Effective harnesses for long-running agents" engineering blog post 
 - **Scope Surface**: A DAG structure where each node is a work unit and edges are dependencies. States are limited to four: not_started, active, blocked, passing.
 - **Completion Pressure**: The constraining force the harness exerts through WIP limits and completion evidence requirements, forcing the agent to finish the current task before starting a new one.
 
+## WIP=1 Workflow
+
+```mermaid
+graph LR
+    subgraph "WIP = 1 (Correct)"
+        Pick1["Pick feature"] --> Do1["Implement"] --> Verify1["Verify E2E"]
+        Verify1 -->|"pass"| Commit1["Commit"]
+        Commit1 --> Next1["Next feature"]
+        Verify1 -->|"fail"| Do1
+    end
+```
+
+```mermaid
+graph LR
+    subgraph "Unconstrained (Wrong)"
+        Pick2["Activate 5 features"] --> Do2["Work on all"]
+        Do2 --> Result2["800 lines, 12 files<br/>20% pass rate ❌"]
+    end
+```
+
 ## Why This Happens
 
 ### Agents Are Born Wanting to "Do a Little Extra"

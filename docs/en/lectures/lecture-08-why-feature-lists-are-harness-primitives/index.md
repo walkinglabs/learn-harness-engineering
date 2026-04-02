@@ -20,6 +20,31 @@ Feature lists are not planning documents for humans to read. They are the core d
 - **Single source of truth**: All information about "what needs to be done" in a project must be derived from one feature list. No contradictions between the feature list and conversation history.
 - **Back-pressure**: The number of features that haven't passed yet is the pressure the harness exerts on the agent. Zero pressure = project complete.
 
+## Feature State Machine
+
+```mermaid
+stateDiagram-v2
+    [*] --> not_started
+    not_started --> active: Agent picks task
+    active --> passing: Verification command passes
+    active --> blocked: External dependency
+    blocked --> active: Dependency resolved
+    passing --> [*]
+
+    note right of passing
+        Irreversible: once passing,
+        cannot go back
+    end note
+```
+
+```mermaid
+graph TB
+    FL["📋 Feature List<br/><i>Single source of truth</i>"] --> Scheduler["Scheduler<br/><i>picks next task</i>"]
+    FL --> Verifier["Verifier<br/><i>runs check commands</i>"]
+    FL --> Handoff["Handoff Reporter<br/><i>generates summaries</i>"]
+    FL --> Progress["Progress Tracker<br/><i>tallies state distribution</i>"]
+```
+
 ## Why This Happens
 
 ### Agents Don't Come with a Built-in "Done" Definition

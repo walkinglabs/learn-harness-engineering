@@ -20,6 +20,39 @@ This lecture explains why you must put everything an agent needs to know into th
 - **Knowledge Decay Rate**: The proportion of knowledge entries that become stale per unit of time. Documentation going out of sync with code is the biggest enemy.
 - **ACID for Agent State**: Applying database transaction principles (Atomicity, Consistency, Isolation, Durability) to agent state management.
 
+## Knowledge Visibility
+
+```mermaid
+graph LR
+    subgraph "Visible to Agent"
+        Repo["Repository Files<br/>AGENTS.md, code, tests"]
+    end
+    subgraph "Invisible to Agent"
+        Slack["Slack History"]
+        Confluence["Confluence Docs"]
+        Heads["Senior Engineers' Heads"]
+        Jira["Jira Tickets"]
+    end
+
+    Repo -->|"accessible"| Agent["🤖 Agent"]
+    Slack -.->|"inaccessible"| Agent
+    Confluence -.->|"inaccessible"| Agent
+    Heads -.->|"inaccessible"| Agent
+    Jira -.->|"inaccessible"| Agent
+```
+
+```mermaid
+graph TB
+    subgraph "Cold-Start Test"
+        Q1["What is this system?"]
+        Q2["How is it organized?"]
+        Q3["How do I run it?"]
+        Q4["How do I verify it?"]
+        Q5["Where are we now?"]
+    end
+    Q1 & Q2 & Q3 & Q4 & Q5 -->|"all must be<br/>answerable from repo"| Pass["✅ Harness Ready"]
+```
+
 ## Why This Happens
 
 Think about what an agent's inputs actually are: system prompts and task descriptions, file contents from the repository, and tool execution output. That's it. Your Slack history, Jira tickets, Confluence pages, and that architecture decision you discussed with a colleague over coffee on Friday afternoon — the agent can't see any of it.

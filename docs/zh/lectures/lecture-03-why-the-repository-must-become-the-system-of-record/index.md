@@ -20,6 +20,39 @@
 - **知识衰减率**：仓库中单位时间内变得过时的知识条目比例。文档和代码脱节是最大的敌人。
 - **ACID 类比**：把数据库的事务管理原则（原子性、一致性、隔离性、持久性）用到 agent 的状态管理上。
 
+## 知识可见性
+
+```mermaid
+graph LR
+    subgraph "Agent 可见的"
+        Repo["仓库文件<br/>AGENTS.md, 代码, 测试"]
+    end
+    subgraph "Agent 看不到的"
+        Slack["Slack 聊天记录"]
+        Confluence["Confluence 文档"]
+        Heads["资深工程师的脑子"]
+        Jira["Jira 工单"]
+    end
+
+    Repo -->|"可访问"| Agent["🤖 Agent"]
+    Slack -.->|"不可访问"| Agent
+    Confluence -.->|"不可访问"| Agent
+    Heads -.->|"不可访问"| Agent
+    Jira -.->|"不可访问"| Agent
+```
+
+```mermaid
+graph TB
+    subgraph "冷启动测试"
+        Q1["这是什么系统？"]
+        Q2["怎么组织的？"]
+        Q3["怎么跑？"]
+        Q4["怎么验证？"]
+        Q5["现在做到哪了？"]
+    end
+    Q1 & Q2 & Q3 & Q4 & Q5 -->|"全部能从仓库回答"| Pass["✅ Harness 就绪"]
+```
+
 ## 为什么会这样
 
 想想 agent 的输入都有什么：系统提示和任务描述、仓库里的文件内容、以及工具执行的输出。就这三样。你的 Slack 历史、Jira 工单、Confluence 页面、和周五下午跟同事在茶水间聊的架构决定——agent 全都看不到。

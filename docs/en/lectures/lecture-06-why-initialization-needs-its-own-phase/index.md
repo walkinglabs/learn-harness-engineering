@@ -20,6 +20,29 @@ The better approach: before letting the agent start working, use a separate phas
 - **Time to First Verification**: The time from project start until the first feature point passes verification. This is the core metric for measuring initialization efficiency.
 - **Downstream Usability**: The best measure of initialization quality — the proportion of subsequent sessions that can successfully execute tasks without relying on implicit knowledge.
 
+## Initialization Lifecycle
+
+```mermaid
+graph LR
+    subgraph "Initialization Phase"
+        I1["Runnable environment<br/><i>deps installed</i>"] --> I2["Test framework<br/><i>example test passes</i>"]
+        I2 --> I3["Bootstrap contract<br/><i>start/test/verify docs</i>"]
+        I3 --> I4["Task breakdown<br/><i>ordered feature list</i>"]
+        I4 --> I5["Git checkpoint<br/><i>clean commit</i>"]
+    end
+    subgraph "Implementation Phase"
+        I5 --> P1["Session 2: Feature 1"]
+        P1 --> P2["Session 3: Feature 2"]
+        P2 --> P3["Session N: Feature N"]
+    end
+
+    style I1 fill:#D95C41,color:#fff
+    style I2 fill:#D95C41,color:#fff
+    style I3 fill:#D95C41,color:#fff
+    style I4 fill:#D95C41,color:#fff
+    style I5 fill:#D95C41,color:#fff
+```
+
 ## Why This Happens
 
 Initialization and implementation have fundamentally different optimization targets. The implementation phase optimizes for: maximizing the quantity and quality of verified features. The initialization phase optimizes for: maximizing the reliability and efficiency of all subsequent implementation.

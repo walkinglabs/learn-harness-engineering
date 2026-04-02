@@ -20,6 +20,30 @@
 - **压缩 vs 重置**：压缩是在同一个会话里把上下文摘要化（保留"是什么"，可能丢了"为什么"）；重置是开新会话从持久化状态重建（干净但依赖工件完备性）。
 - **上下文焦虑**：Anthropic 观察到的一个现象——agent 在接近上下文限制时表现异常，过早结束任务以避免信息丢失。这是一种非理性的资源焦虑。
 
+## 会话连续性流程
+
+```mermaid
+graph LR
+    subgraph "会话 N"
+        Work1["执行任务"] --> Update1["更新 PROGRESS.md<br/>更新 DECISIONS.md"]
+        Update1 --> Commit1["Git 提交检查点"]
+    end
+    subgraph "会话 N+1"
+        Read1["读取 PROGRESS.md<br/>读取 DECISIONS.md"] --> Resume["从下一步继续"]
+        Resume --> Work2["继续工作"]
+    end
+
+    Commit1 -->|"交接"| Read1
+```
+
+```mermaid
+graph TB
+    subgraph "信息损失"
+        Full["完整上下文<br/>是什么 + 为什么 + 怎么做"] -->|"压缩"| Compact["压缩后<br/>是什么 ✓ · 为什么 ✗"]
+        Full -->|"新会话"| Reset["重置<br/>从工件重建"]
+    end
+```
+
 ## 为什么会这样
 
 上下文窗口是有限的。这不是一个可以通过模型升级解决的问题——即使窗口大小增长到 1M tokens，复杂任务依然会用完。因为 agent 不只是在生成代码，它还要理解代码库、跟踪自己的决策历史、处理工具输出、维护对话上下文。这些信息加起来增长得比窗口扩容快得多。

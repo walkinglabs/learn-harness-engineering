@@ -20,6 +20,38 @@ Both OpenAI and Anthropic state clearly: **long-term reliability depends on oper
 - **Harness simplification**: As model capabilities improve, periodically remove harness components that are no longer necessary. A constraint essential today may be unnecessary overhead in three months.
 - **Idempotent cleanup**: Cleanup operations produce the same result regardless of how many times they run. Ensures cleanup remains safe even in failure-retry scenarios.
 
+## Five Dimensions of Clean State
+
+```mermaid
+graph TB
+    subgraph "Session Exit Checklist"
+        B["✅ Build passes"]
+        T["✅ Tests pass"]
+        P["✅ Progress recorded"]
+        A["✅ No stale artifacts"]
+        S["✅ Startup path available"]
+    end
+
+    B & T & P & A & S -->|"all required"| Clean["🧹 Clean State"]
+    Clean -->|"enables"| Next["Next session<br/>immediate productivity"]
+```
+
+```mermaid
+graph LR
+    subgraph "Entropy Over 12 Weeks"
+        W1["Week 1<br/>100% build, 100% tests"] --> W4["Week 4<br/>95% / 92%"]
+        W4 --> W8["Week 8<br/>82% / 78%"]
+        W8 --> W12["Week 12<br/>68% / 61%"]
+    end
+
+    subgraph "With Cleanup Strategy"
+        C1["Week 1<br/>100% / 100%"] --> C12["Week 12<br/>97% / 95%"]
+    end
+
+    style W12 fill:#D95C41,color:#fff
+    style C12 fill:#4CAF50,color:#fff
+```
+
 ## Why This Happens
 
 ### Entropy Growth Is the Default State

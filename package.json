@@ -10,10 +10,15 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "lecture:run": "tsx"
+    "lecture:run": "tsx",
+    "screenshots:readme": "node --import tsx scripts/capture-readme-screenshots.ts",
+    "pdf:export": "node --import tsx scripts/build-course-pdfs.ts",
+    "pdf:build": "npm run docs:build && npm run pdf:export"
   },
   "devDependencies": {
     "mermaid": "^11.14.0",
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.59.1",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0",
     "vitepress": "^1.6.4",

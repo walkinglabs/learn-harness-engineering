@@ -20,6 +20,30 @@ This is one of the most painful problems with AI coding agents: cross-session co
 - **Compaction vs Reset**: Compaction summarizes context within the same session (keeps "what," may lose "why"); reset opens a new session rebuilding from persisted state (clean but depends on artifact completeness).
 - **Context Anxiety**: A phenomenon observed by Anthropic — agents exhibit premature convergence behavior when approaching perceived context limits, ending tasks early to avoid information loss. It's an irrational resource anxiety.
 
+## Session Continuity Flow
+
+```mermaid
+graph LR
+    subgraph "Session N"
+        Work1["Work on task"] --> Update1["Update PROGRESS.md<br/>Update DECISIONS.md"]
+        Update1 --> Commit1["Git commit checkpoint"]
+    end
+    subgraph "Session N+1"
+        Read1["Read PROGRESS.md<br/>Read DECISIONS.md"] --> Resume["Resume from<br/>Next Steps"]
+        Resume --> Work2["Continue work"]
+    end
+
+    Commit1 -->|"handoff"| Read1
+```
+
+```mermaid
+graph TB
+    subgraph "Information Loss"
+        Full["Full Context<br/>What + Why + How"] -->|"compaction"| Compact["Compacted<br/>What ✓ · Why ✗"]
+        Full -->|"new session"| Reset["Reset<br/>Rebuild from artifacts"]
+    end
+```
+
 ## Why This Happens
 
 Context windows are finite. This isn't solvable by model upgrades — even if window sizes grow to 1M tokens, complex tasks will still exhaust them. Because agents aren't just generating code; they're understanding codebases, tracking their own decision history, processing tool output, and maintaining conversation context. All this information grows faster than window expansion.

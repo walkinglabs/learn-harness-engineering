@@ -20,6 +20,30 @@
 - **评估评分标准**：把质量评估从主观判断变成基于证据的结构化评分。使不同评估者对同一输出产生相似结论。
 - **双层可观测性**：系统层和过程层同时设计、相互增强。运行时信号解释行为，过程工件解释意图。
 
+## 双层可观测性
+
+```mermaid
+graph TB
+    subgraph "过程层"
+        SC["冲刺合同<br/><i>范围 + 标准 + 排除项</i>"]
+        ER["评估评分标准<br/><i>结构化评分</i>"]
+    end
+    subgraph "系统层"
+        Logs["运行时日志"]
+        Traces["请求追踪"]
+        Health["健康检查"]
+    end
+
+    SC -->|"指导"| Gen["生成器"]
+    Gen -->|"产出"| Runtime["运行时行为"]
+    Runtime --> Logs & Traces & Health
+    Logs & Traces & Health -->|"证据"| ER
+    ER -->|"反馈"| Gen
+
+    style SC fill:#D95C41,color:#fff
+    style ER fill:#D95C41,color:#fff
+```
+
 ## 为什么会这样
 
 ### 可观测性缺失的真实代价

@@ -1,0 +1,71 @@
+name: Build course PDFs and publish release assets
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to create or update
+        required: true
+        type: string
+      release_name:
+        description: Release title
+        required: true
+        type: string
+      prerelease:
+        description: Mark release as prerelease
+        required: false
+        default: false
+        type: boolean
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Build course PDFs
+        run: npm run pdf:build
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: course-pdfs
+          path: artifacts/pdfs
+
+      - name: Publish PDFs to existing release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: artifacts/pdfs/*.pdf
+
+      - name: Create or update release with PDFs
+        if: github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag }}
+          name: ${{ inputs.release_name }}
+          prerelease: ${{ inputs.prerelease }}
+          generate_release_notes: true
+          files: artifacts/pdfs/*.pdf

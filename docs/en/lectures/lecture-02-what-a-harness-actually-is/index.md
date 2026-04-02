@@ -20,6 +20,21 @@ This lecture gives you a precise, actionable definition. Not an academic abstrac
 - **Feedback Latency**: The time between an agent's action and the feedback it receives. Compilation errors are second-level feedback, test suites are minute-level, "bug in production" is day-level. Faster feedback means faster correction.
 - **Isometric Model Control**: Keep the model fixed, systematically vary harness subsystems, measure each one's marginal contribution. This is the correct way to quantify a harness's value.
 
+## The Five-Tuple Harness Model
+
+```mermaid
+graph TB
+    Agent["AI Agent"] --> I["📋 Instructions<br/><i>AGENTS.md, CLAUDE.md</i>"]
+    Agent --> T["🔧 Tools<br/><i>Shell, file ops, tests</i>"]
+    Agent --> E["🖥️ Environment<br/><i>Dependencies, runtime</i>"]
+    Agent --> S["💾 State<br/><i>Progress files, git</i>"]
+    Agent --> F["✅ Feedback<br/><i>Test results, lint, build</i>"]
+
+    I ~~~ T ~~~ E ~~~ S ~~~ F
+
+    F -->|"highest ROI"| Star["⭐ Start here"]
+```
+
 ## Why This Happens
 
 Here's an analogy. Imagine you're a newly hired engineer dropped into a project with zero documentation. No README, no comments in the code, nobody tells you how to run tests, CI config is buried somewhere. Can you write good code? Maybe, but you'll spend enormous time on "figuring out what this project is about" rather than "solving the problem."

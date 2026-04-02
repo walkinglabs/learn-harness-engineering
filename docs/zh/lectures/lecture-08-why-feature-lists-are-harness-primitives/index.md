@@ -20,6 +20,31 @@
 - **单一权威来源**：项目里关于"该做什么"的所有信息，必须从一个功能清单派生。不能出现功能清单和对话记录矛盾的情况。
 - **反向压力**：还没通过的功能项数量就是 harness 对 agent 施加的压力。压力归零 = 项目完成。
 
+## 功能状态机
+
+```mermaid
+stateDiagram-v2
+    [*] --> not_started
+    not_started --> active: Agent 选取任务
+    active --> passing: 验证命令通过
+    active --> blocked: 外部依赖阻塞
+    blocked --> active: 依赖已解决
+    passing --> [*]
+
+    note right of passing
+        不可逆：一旦 passing，
+        不能回退
+    end note
+```
+
+```mermaid
+graph TB
+    FL["📋 功能清单<br/><i>单一权威来源</i>"] --> Scheduler["调度器<br/><i>选取下一个任务</i>"]
+    FL --> Verifier["验证器<br/><i>执行验证命令</i>"]
+    FL --> Handoff["交接报告器<br/><i>生成摘要</i>"]
+    FL --> Progress["进度追踪器<br/><i>统计状态分布</i>"]
+```
+
 ## 为什么会这样
 
 ### Agent 没有自带"完成定义"

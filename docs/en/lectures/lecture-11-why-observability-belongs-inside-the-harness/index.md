@@ -20,6 +20,30 @@ This isn't about the agent lacking capability. It's about your harness not provi
 - **Evaluator rubric**: Transforms quality evaluation from subjective judgment into evidence-based structured scoring. Makes different evaluators produce similar results for the same output.
 - **Layered observability**: System-layer and process-layer observability designed simultaneously and reinforcing each other. Runtime signals explain behavior; process artifacts explain intent.
 
+## Layered Observability
+
+```mermaid
+graph TB
+    subgraph "Process Layer"
+        SC["Sprint Contract<br/><i>scope + standards + exclusions</i>"]
+        ER["Evaluator Rubric<br/><i>structured scoring</i>"]
+    end
+    subgraph "System Layer"
+        Logs["Runtime Logs"]
+        Traces["Request Traces"]
+        Health["Health Checks"]
+    end
+
+    SC -->|"guides"| Gen["Generator"]
+    Gen -->|"produces"| Runtime["Runtime Behavior"]
+    Runtime --> Logs & Traces & Health
+    Logs & Traces & Health -->|"evidence"| ER
+    ER -->|"feedback"| Gen
+
+    style SC fill:#D95C41,color:#fff
+    style ER fill:#D95C41,color:#fff
+```
+
 ## Why This Happens
 
 ### The Real Cost of Missing Observability
