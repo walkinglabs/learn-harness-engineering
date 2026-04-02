@@ -2,7 +2,7 @@
 import { defineConfig } from "vitepress";
 import { withMermaid } from "vitepress-plugin-mermaid";
 
-const docsBase = process.env.DOCS_BASE_PATH ?? "/";
+const docsBase = "/learn-harness-engineering/";
 
 const zhLectureItems = [
   { text: "欢迎", link: "/zh/" },
@@ -121,9 +121,9 @@ export default withMermaid(
             { text: "Try Harness ↗", link: "https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/index.md", target: "_blank", rel: "noopener noreferrer" }
           ],
           sidebar: {
-            '/en/projects/': { base: '/en/projects/', items: enProjectItems },
-            '/en/resources/': { base: '/en/resources/', items: enResourceItems },
-            '/en/': { base: '/en/', items: enLectureItems }
+            '/en/projects/': [{ text: "Projects", items: enProjectItems }],
+            '/en/resources/': [{ text: "Resource Library", items: enResourceItems }],
+            '/en/': [{ text: "Lectures", items: enLectureItems }]
           },
           socialLinks: [{ icon: "github", link: "https://github.com/walkinglabs/learn-harness-engineering" }]
         }
@@ -140,10 +140,10 @@ export default withMermaid(
             { text: "Try Harness ↗", link: "https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/resources/templates/index.md", target: "_blank", rel: "noopener noreferrer" }
           ],
           sidebar: {
-            '/zh/projects/': { base: '/zh/projects/', items: zhProjectItems },
-            '/zh/resources/': { base: '/zh/resources/', items: zhResourceItems },
-            '/zh/': { base: '/zh/', items: zhLectureItems }
-          },
+          '/zh/projects/': [{ text: "项目", items: zhProjectItems }],
+          '/zh/resources/': [{ text: "资料库", items: zhResourceItems }],
+          '/zh/': [{ text: "讲义", items: zhLectureItems }]
+        },
         outline: {
           level: [2, 3]
         },
