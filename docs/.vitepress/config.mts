@@ -80,6 +80,43 @@ const enSkillItems = [
   { text: "Skills Overview", link: "/en/skills/" }
 ];
 
+const viLectureItems = [
+  { text: "Chào mừng", link: "/vi/" },
+  { text: "Tại sao các Agent mạnh vẫn thất bại", link: "/vi/lectures/lecture-01-why-capable-agents-still-fail/" },
+  { text: "Harness thực sự là gì", link: "/vi/lectures/lecture-02-what-a-harness-actually-is/" },
+  { text: "Tại sao Repository phải trở thành Nguồn sự thật", link: "/vi/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
+  { text: "Tại sao một file hướng dẫn khổng lồ lại thất bại", link: "/vi/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
+  { text: "Tại sao các tác vụ dài hạn lại mất tính liên tục", link: "/vi/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
+  { text: "Tại sao quá trình khởi tạo cần một giai đoạn riêng", link: "/vi/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
+  { text: "Tại sao Agent làm quá giới hạn và chưa hoàn thành", link: "/vi/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
+  { text: "Tại sao Feature List là nguyên lý cốt lõi của Harness", link: "/vi/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
+  { text: "Tại sao Agent tuyên bố thành công quá sớm", link: "/vi/lectures/lecture-09-why-agents-declare-victory-too-early/" },
+  { text: "Tại sao kiểm thử End-to-End thay đổi kết quả", link: "/vi/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
+  { text: "Tại sao tính quan sát thuộc về bên trong Harness", link: "/vi/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
+  { text: "Tại sao mỗi phiên làm việc phải để lại trạng thái sạch", link: "/vi/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" }
+];
+
+const viProjectItems = [
+  { text: "Chào mừng", link: "/vi/projects/" },
+  { text: "Chỉ Prompt vs. Ưu tiên Quy tắc", link: "/vi/projects/project-01-baseline-vs-minimal-harness/" },
+  { text: "Không gian làm việc Agent đọc được", link: "/vi/projects/project-02-agent-readable-workspace/" },
+  { text: "Tính liên tục đa phiên", link: "/vi/projects/project-03-multi-session-continuity/" },
+  { text: "Phản hồi Runtime và Kiểm soát Phạm vi", link: "/vi/projects/project-04-incremental-indexing/" },
+  { text: "Tự xác minh và Phân tách Vai trò", link: "/vi/projects/project-05-grounded-qa-verification/" },
+  { text: "Harness Hoàn chỉnh", link: "/vi/projects/project-06-runtime-observability-and-debugging/" }
+];
+
+const viResourceItems = [
+  { text: "Tổng quan", link: "/vi/resources/" },
+  { text: "Mẫu tiếng Anh", link: "/vi/resources/templates/" },
+  { text: "Tài liệu tham khảo tiếng Anh", link: "/vi/resources/reference/" },
+  { text: "Gói Nâng cao", link: "/vi/resources/openai-advanced/" }
+];
+
+const viSkillItems = [
+  { text: "Tổng quan về Kỹ năng", link: "/vi/skills/" }
+];
+
 export default withMermaid(
   defineConfig({
     base: docsBase,
@@ -181,6 +218,42 @@ export default withMermaid(
           darkModeSwitchLabel: "主题",
           lightModeSwitchTitle: "切换到浅色模式",
           darkModeSwitchTitle: "切换到深色模式",
+          socialLinks: [{ icon: "github", link: githubRepoTreeLink }]
+        }
+      },
+      vi: {
+        label: "Tiếng Việt",
+        lang: "vi-VN",
+        link: "/vi/",
+        themeConfig: {
+          nav: [
+            { text: "Bài giảng", link: viLectureItems[1].link, activeMatch: '^/vi/(lectures/.*)?$' },
+            { text: "Dự án", link: viProjectItems[0].link, activeMatch: '^/vi/projects/' },
+            { text: "Tài nguyên", link: "/vi/resources/", activeMatch: '^/vi/resources/' },
+            { text: "Kỹ năng", link: "/vi/skills/", activeMatch: '^/vi/skills/' },
+            { text: "Try Harness ↗", link: "https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/resources/templates/index.md", target: "_blank", rel: "noopener noreferrer" }
+          ],
+          sidebar: {
+            '/vi/projects/': [{ text: "Dự án", items: viProjectItems }],
+            '/vi/resources/': [{ text: "Thư viện Tài nguyên", items: viResourceItems }],
+            '/vi/skills/': [{ text: "Kỹ năng", items: viSkillItems }],
+            '/vi/': [{ text: "Bài giảng", items: viLectureItems }]
+          },
+          outline: {
+            level: [2, 3]
+          },
+          docFooter: {
+            prev: "Trang trước",
+            next: "Trang sau"
+          },
+          lastUpdated: {
+            text: "Cập nhật lần cuối"
+          },
+          returnToTopLabel: "Trở lên trên cùng",
+          sidebarMenuLabel: "Menu",
+          darkModeSwitchLabel: "Giao diện",
+          lightModeSwitchTitle: "Chuyển sang chế độ sáng",
+          darkModeSwitchTitle: "Chuyển sang chế độ tối",
           socialLinks: [{ icon: "github", link: githubRepoTreeLink }]
         }
       }
