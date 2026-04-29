@@ -2,7 +2,7 @@
 
 이 폴더는 OpenAI의 "Harness engineering: leveraging Codex in an agent-first world" 문서에서 설명하는 보다 견고한 저장소(repository) 구조를 복사해서 바로 사용할 수 있는 스타터 파일로 패키징한 것입니다.
 
-기본적인 해네스(harness)가 더 이상 충분하지 않고 다음과 같은 것들이 필요할 때 이 팩을 사용하십시오.
+기본적인 하네스(harness)가 더 이상 충분하지 않고 다음과 같은 것들이 필요할 때 이 팩을 사용하십시오.
 
 - 라우팅 스타일의 간결한 `AGENTS.md`
 - 저장소 내 지속형 시스템 오브 레코드(system-of-record) 문서

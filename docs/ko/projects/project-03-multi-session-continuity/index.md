@@ -19,6 +19,6 @@
 - Git
 - Node.js + Electron
 
-## 해네스 메커니즘
+## 하네스 메커니즘
 
 진행 로그 + 세션 핸드오프 + 멀티 세션 연속성(multi-session continuity)

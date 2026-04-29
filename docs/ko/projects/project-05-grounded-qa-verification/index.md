@@ -19,6 +19,6 @@
 - Git
 - Node.js + Electron
 
-## 해네스 메커니즘
+## 하네스 메커니즘
 
 자기 검증(self-verification) + 근거 기반 Q&A + 증거 기반 완료(evidence-based completion)

@@ -10,7 +10,7 @@
 
 | 디렉터리 | 의미 |
 |----------|------|
-| `starter/` | **시작점** — P1 풀이(solution) 기반 코드로, 문서 가져오기(import), 상세 보기, 영속성(persistence) 기능이 구현 대기 중입니다. 해네스가 약합니다. AGENTS.md가 단순하고 세션 핸드오프(session-handoff)가 없습니다. |
+| `starter/` | **시작점** — P1 풀이(solution) 기반 코드로, 문서 가져오기(import), 상세 보기, 영속성(persistence) 기능이 구현 대기 중입니다. 하네스가 약합니다. AGENTS.md가 단순하고 세션 핸드오프(session-handoff)가 없습니다. |
 | `solution/` | **참고 구현** — 모든 새 기능이 구현되어 있으며 완전한 워크스페이스 문서(ARCHITECTURE.md, PRODUCT.md, session-handoff.md)를 갖추고 있습니다. |
 
 ## 사용 방법
@@ -24,7 +24,7 @@ npm install
 
 cd ../solution
 npm install
-# 완전한 해네스로 재실행하여 세션 복원 속도를 비교
+# 완전한 하네스로 재실행하여 세션 복원 속도를 비교
 ```
 
 ## 이 프로젝트에서 다루는 기능

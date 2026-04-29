@@ -4,12 +4,12 @@
 
 ## harness-creator
 
-AI 코딩 에이전트를 위한 프로덕션(production) 등급의 해네스 엔지니어링(harness engineering) 스킬입니다. 다섯 가지 핵심 해네스(harness) 서브시스템(subsystem)인 지침(instructions), 상태(state), 검증(verification), 범위(scope), 세션 라이프사이클(session lifecycle)을 생성·평가·개선하도록 돕습니다.
+AI 코딩 에이전트를 위한 프로덕션(production) 등급의 하네스 엔지니어링(harness engineering) 스킬입니다. 다섯 가지 핵심 하네스(harness) 서브시스템(subsystem)인 지침(instructions), 상태(state), 검증(verification), 범위(scope), 세션 라이프사이클(session lifecycle)을 생성·평가·개선하도록 돕습니다.
 
 ### 기능 (What It Does)
 
-- **처음부터 해네스 생성** — AGENTS.md, 기능 목록(feature list), 검증(verification) 워크플로우
-- **기존 해네스 개선** — 다섯 가지 서브시스템 평가와 우선순위화된 개선 사항
+- **처음부터 하네스 생성** — AGENTS.md, 기능 목록(feature list), 검증(verification) 워크플로우
+- **기존 하네스 개선** — 다섯 가지 서브시스템 평가와 우선순위화된 개선 사항
 - **세션 연속성(continuity) 설계** — 메모리(memory) 영속화, 진행 추적, 핸드오프(handoff) 절차
 - **프로덕션 패턴 적용** — 메모리, 컨텍스트 엔지니어링(context engineering), 도구 안전성, 멀티 에이전트(multi-agent) 조율
 

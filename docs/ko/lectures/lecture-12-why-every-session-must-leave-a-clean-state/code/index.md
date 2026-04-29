@@ -5,4 +5,4 @@
 - 벤치마크 슬라이스(benchmark slices)
 - 정리 작업(cleanup tasks)
 - 엔트로피 감소 예제(entropy reduction examples)
-- 반복 가능한 해네스 실행(repeatable harness runs)
+- 반복 가능한 하네스 실행(repeatable harness runs)

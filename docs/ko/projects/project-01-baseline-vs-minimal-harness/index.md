@@ -1,6 +1,6 @@
 [English Version →](../../../en/projects/project-01-baseline-vs-minimal-harness/)
 
-> 관련 강의: [강의 01. 강력한 모델이 곧 신뢰할 수 있는 실행을 의미하지는 않습니다](./../../lectures/lecture-01-why-capable-agents-still-fail/index.md) · [강의 02. 해네스가 실제로 의미하는 것](./../../lectures/lecture-02-what-a-harness-actually-is/index.md)
+> 관련 강의: [강의 01. 강력한 모델이 곧 신뢰할 수 있는 실행을 의미하지는 않습니다](./../../lectures/lecture-01-why-capable-agents-still-fail/index.md) · [강의 02. 하네스가 실제로 의미하는 것](./../../lectures/lecture-02-what-a-harness-actually-is/index.md)
 > 템플릿 파일: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/)
 
 # 프로젝트 01. 프롬프트 단독 vs. 규칙 우선(Rules-First): 차이는 얼마나 클까
@@ -13,7 +13,7 @@
 
 이 프로젝트의 핵심은 코드를 작성하는 것이 아닙니다. "규칙을 먼저 준비하는 데 15분을 쓰는 것"과 "에이전트를 그냥 실행시키는 것" 사이의 격차가 얼마나 큰지 파악하는 것입니다.
 
-에이전트에게 규칙(rule)과 초기화(initialization) 단서를 제공하면 작업 범위를 스스로 파악하고 불필요한 탐색을 줄일 수 있습니다. 이처럼 최소한의 해네스만으로도 에이전트의 출발점과 결과 품질이 크게 달라집니다.
+에이전트에게 규칙(rule)과 초기화(initialization) 단서를 제공하면 작업 범위를 스스로 파악하고 불필요한 탐색을 줄일 수 있습니다. 이처럼 최소한의 하네스만으로도 에이전트의 출발점과 결과 품질이 크게 달라집니다.
 
 ## 도구
 
@@ -22,6 +22,6 @@
 - Node.js + Electron (프로젝트 스택)
 - 타이머 (각 실행의 소요 시간 기록)
 
-## 해네스 메커니즘
+## 하네스 메커니즘
 
-최소 해네스(minimal harness): `AGENTS.md` + `init.sh` + `feature_list.json`
+최소 하네스(minimal harness): `AGENTS.md` + `init.sh` + `feature_list.json`

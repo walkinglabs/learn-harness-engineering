@@ -19,6 +19,6 @@
 - Git
 - Node.js + Electron
 
-## 해네스 메커니즘
+## 하네스 메커니즘
 
 런타임 피드백 + 범위 제어 + 증분 인덱싱(incremental indexing)

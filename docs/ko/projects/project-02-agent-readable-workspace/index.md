@@ -19,6 +19,6 @@
 - Git
 - Node.js + Electron
 
-## 해네스 메커니즘
+## 하네스 메커니즘
 
 에이전트 가독성 있는 작업 공간 + 영속 상태 파일(persistent state files)
