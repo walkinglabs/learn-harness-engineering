@@ -1,0 +1,64 @@
+{
+  "project": "replace-with-project-name",
+  "last_updated": "YYYY-MM-DD",
+  "rules": {
+    "single_active_feature": true,
+    "passing_requires_evidence": true,
+    "do_not_skip_verification": true
+  },
+  "status_legend": {
+    "not_started": "Work has not begun.",
+    "in_progress": "The feature is the current active task.",
+    "blocked": "Work cannot continue until a documented blocker is resolved.",
+    "passing": "Required verification has passed and evidence is recorded."
+  },
+  "features": [
+    {
+      "id": "chat-001",
+      "priority": 1,
+      "area": "chat",
+      "title": "Create a new conversation",
+      "user_visible_behavior": "A user can click New Chat and see a fresh empty conversation.",
+      "status": "not_started",
+      "verification": [
+        "Open the app.",
+        "Click New Chat.",
+        "Verify a new conversation appears in the sidebar.",
+        "Verify the main panel shows an empty conversation state."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "chat-002",
+      "priority": 2,
+      "area": "chat",
+      "title": "Send a message in the current conversation",
+      "user_visible_behavior": "A user can submit a message and see it appear in the active thread.",
+      "status": "not_started",
+      "verification": [
+        "Open an existing conversation.",
+        "Type a message into the input.",
+        "Submit the message.",
+        "Verify the new message appears in the thread."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "chat-003",
+      "priority": 3,
+      "area": "chat",
+      "title": "Persist the active conversation list",
+      "user_visible_behavior": "A user sees previously created conversations after restarting the app.",
+      "status": "not_started",
+      "verification": [
+        "Create two conversations.",
+        "Restart the app.",
+        "Verify both conversations still appear in the sidebar."
+      ],
+      "evidence": [],
+      "notes": ""
+    }
+  ]
+}

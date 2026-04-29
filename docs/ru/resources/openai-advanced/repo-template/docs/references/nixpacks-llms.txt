@@ -1,0 +1,8 @@
+Purpose: store a clean agent-readable extract of the deployment or packaging
+rules your repository depends on.
+
+Suggested contents:
+- build entrypoints
+- runtime assumptions
+- environment variable expectations
+- common failure signatures

@@ -115,6 +115,41 @@ const viResourceItems = [
 
 const viSkillItems = [
   { text: "Tổng quan về Kỹ năng", link: "/vi/skills/" }
+const ruLectureItems = [
+  { text: "Добро пожаловать", link: "/ru/" },
+  { text: "Сильная модель ≠ надёжное исполнение", link: "/ru/lectures/lecture-01-why-capable-agents-still-fail/" },
+  { text: "Что такое harness на самом деле", link: "/ru/lectures/lecture-02-what-a-harness-actually-is/" },
+  { text: "Репозиторий как единый источник правды", link: "/ru/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
+  { text: "Почему один большой файл инструкций не работает", link: "/ru/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
+  { text: "Как сохранять контекст между сессиями", link: "/ru/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
+  { text: "Зачем инициализация — отдельная фаза", link: "/ru/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
+  { text: "Почему агенты делают слишком много или слишком мало", link: "/ru/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
+  { text: "Списки фич как примитивы harness", link: "/ru/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
+  { text: "Почему агенты слишком рано объявляют успех", link: "/ru/lectures/lecture-09-why-agents-declare-victory-too-early/" },
+  { text: "Только сквозной прогон — настоящая проверка", link: "/ru/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
+  { text: "Наблюдаемость — часть harness", link: "/ru/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
+  { text: "Каждая сессия должна оставлять чистое состояние", link: "/ru/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" }
+];
+
+const ruProjectItems = [
+  { text: "Добро пожаловать", link: "/ru/projects/" },
+  { text: "Только промпты vs правила", link: "/ru/projects/project-01-baseline-vs-minimal-harness/" },
+  { text: "Рабочее пространство для агента", link: "/ru/projects/project-02-agent-readable-workspace/" },
+  { text: "Непрерывность между сессиями", link: "/ru/projects/project-03-multi-session-continuity/" },
+  { text: "Обратная связь и контроль скоупа", link: "/ru/projects/project-04-incremental-indexing/" },
+  { text: "Самопроверка и обоснованные ответы", link: "/ru/projects/project-05-grounded-qa-verification/" },
+  { text: "Полный harness (капстоун)", link: "/ru/projects/project-06-runtime-observability-and-debugging/" }
+];
+
+const ruResourceItems = [
+  { text: "Обзор", link: "/ru/resources/" },
+  { text: "Шаблоны", link: "/ru/resources/templates/" },
+  { text: "Справочник", link: "/ru/resources/reference/" },
+  { text: "Расширенный пакет", link: "/ru/resources/openai-advanced/" }
+];
+
+const ruSkillItems = [
+  { text: "Обзор скиллов", link: "/ru/skills/" }
 ];
 
 export default withMermaid(
@@ -254,6 +289,40 @@ export default withMermaid(
           darkModeSwitchLabel: "Giao diện",
           lightModeSwitchTitle: "Chuyển sang chế độ sáng",
           darkModeSwitchTitle: "Chuyển sang chế độ tối",
+      ru: {
+        label: "Русский",
+        lang: "ru",
+        link: "/ru/",
+        themeConfig: {
+          nav: [
+            { text: "Лекции", link: ruLectureItems[1].link, activeMatch: '^/ru/(lectures/.*)?$' },
+            { text: "Проекты", link: ruProjectItems[0].link, activeMatch: '^/ru/projects/' },
+            { text: "Материалы", link: "/ru/resources/", activeMatch: '^/ru/resources/' },
+            { text: "Скиллы", link: "/ru/skills/", activeMatch: '^/ru/skills/' },
+            { text: "Try Harness ↗", link: "https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/ru/resources/templates/index.md", target: "_blank", rel: "noopener noreferrer" }
+          ],
+          sidebar: {
+            '/ru/projects/': [{ text: "Проекты", items: ruProjectItems }],
+            '/ru/resources/': [{ text: "Материалы", items: ruResourceItems }],
+            '/ru/skills/': [{ text: "Скиллы", items: ruSkillItems }],
+            '/ru/': [{ text: "Лекции", items: ruLectureItems }]
+          },
+          outline: {
+            level: [2, 3],
+            label: "На этой странице"
+          },
+          docFooter: {
+            prev: "Предыдущая",
+            next: "Следующая"
+          },
+          lastUpdated: {
+            text: "Последнее обновление"
+          },
+          returnToTopLabel: "Наверх",
+          sidebarMenuLabel: "Меню",
+          darkModeSwitchLabel: "Тема",
+          lightModeSwitchTitle: "Включить светлую тему",
+          darkModeSwitchTitle: "Включить тёмную тему",
           socialLinks: [{ icon: "github", link: githubRepoTreeLink }]
         }
       }
