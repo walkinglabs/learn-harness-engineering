@@ -9,7 +9,9 @@ Learn Harness Engineering is a course dedicated to the engineering of AI coding 
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-[**Website & Docs (English & 中文 & Русский & Tiếng Việt)**](https://walkinglabs.github.io/learn-harness-engineering/) | [**中文 README**](./README-CN.md)
+[**Website & Docs**](https://walkinglabs.github.io/learn-harness-engineering/) | [**中文 README**](./README-CN.md)
+
+Docs available in: [English](https://walkinglabs.github.io/learn-harness-engineering/en/) · [中文](https://walkinglabs.github.io/learn-harness-engineering/zh/) · [Русский](https://walkinglabs.github.io/learn-harness-engineering/ru/) · [Tiếng Việt](https://walkinglabs.github.io/learn-harness-engineering/vi/)
 
 > **Quick start?** The [`skills/harness-creator/`](./skills/) skill can help you scaffold a production-grade harness (AGENTS.md, feature lists, init.sh, verification workflows) for your own project in minutes.
 
