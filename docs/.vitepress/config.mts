@@ -115,6 +115,8 @@ const viResourceItems = [
 
 const viSkillItems = [
   { text: "Tổng quan về Kỹ năng", link: "/vi/skills/" }
+];
+
 const ruLectureItems = [
   { text: "Добро пожаловать", link: "/ru/" },
   { text: "Сильная модель ≠ надёжное исполнение", link: "/ru/lectures/lecture-01-why-capable-agents-still-fail/" },
@@ -289,6 +291,9 @@ export default withMermaid(
           darkModeSwitchLabel: "Giao diện",
           lightModeSwitchTitle: "Chuyển sang chế độ sáng",
           darkModeSwitchTitle: "Chuyển sang chế độ tối",
+          socialLinks: [{ icon: "github", link: githubRepoTreeLink }]
+        }
+      },
       ru: {
         label: "Русский",
         lang: "ru",
