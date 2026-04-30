@@ -1,6 +1,6 @@
 # Skills
 
-[中文版](./README-CN.md)
+[中文版](./README-CN.md) · [한국어](./README-KO.md)
 
 This directory contains reusable AI agent skills for the Learn Harness Engineering project. Each skill is a self-contained prompt template that can be loaded by AI coding agents (Claude Code, Codex, Cursor, Windsurf, etc.) to perform specialized tasks.
 

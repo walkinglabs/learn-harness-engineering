@@ -154,6 +154,43 @@ const ruSkillItems = [
   { text: "Обзор скиллов", link: "/ru/skills/" }
 ];
 
+const koLectureItems = [
+  { text: "환영합니다", link: "/ko/" },
+  { text: "유능한 에이전트가 여전히 실패하는 이유", link: "/ko/lectures/lecture-01-why-capable-agents-still-fail/" },
+  { text: "하네스란 무엇인가", link: "/ko/lectures/lecture-02-what-a-harness-actually-is/" },
+  { text: "저장소가 시스템 오브 레코드(SoR)가 되어야 하는 이유", link: "/ko/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
+  { text: "거대한 단일 지시 파일이 실패하는 이유", link: "/ko/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
+  { text: "장기 작업이 연속성을 잃는 이유", link: "/ko/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
+  { text: "초기화가 별도 단계여야 하는 이유", link: "/ko/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
+  { text: "에이전트가 과도하게 손대고 끝맺지 못하는 이유", link: "/ko/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
+  { text: "기능 목록이 하네스의 기본 단위인 이유", link: "/ko/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
+  { text: "에이전트가 너무 일찍 완료를 선언하는 이유", link: "/ko/lectures/lecture-09-why-agents-declare-victory-too-early/" },
+  { text: "엔드투엔드 테스트가 결과를 바꾸는 이유", link: "/ko/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
+  { text: "관측 가능성이 하네스 안에 있어야 하는 이유", link: "/ko/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
+  { text: "모든 세션이 클린 상태로 끝나야 하는 이유", link: "/ko/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" }
+];
+
+const koProjectItems = [
+  { text: "환영합니다", link: "/ko/projects/" },
+  { text: "프롬프트 단독 vs 규칙 우선", link: "/ko/projects/project-01-baseline-vs-minimal-harness/" },
+  { text: "에이전트가 읽을 수 있는 작업 공간", link: "/ko/projects/project-02-agent-readable-workspace/" },
+  { text: "다중 세션 연속성", link: "/ko/projects/project-03-multi-session-continuity/" },
+  { text: "런타임 피드백과 범위 제어", link: "/ko/projects/project-04-incremental-indexing/" },
+  { text: "자기 검증과 역할 분리", link: "/ko/projects/project-05-grounded-qa-verification/" },
+  { text: "완성형 하네스(캡스톤)", link: "/ko/projects/project-06-runtime-observability-and-debugging/" }
+];
+
+const koResourceItems = [
+  { text: "리소스 모음 개요", link: "/ko/resources/" },
+  { text: "한국어 템플릿", link: "/ko/resources/templates/" },
+  { text: "한국어 레퍼런스", link: "/ko/resources/reference/" },
+  { text: "고급 리소스 팩", link: "/ko/resources/openai-advanced/" }
+];
+
+const koSkillItems = [
+  { text: "스킬 개요", link: "/ko/skills/" }
+];
+
 export default withMermaid(
   defineConfig({
     base: docsBase,
@@ -291,6 +328,43 @@ export default withMermaid(
           darkModeSwitchLabel: "Giao diện",
           lightModeSwitchTitle: "Chuyển sang chế độ sáng",
           darkModeSwitchTitle: "Chuyển sang chế độ tối",
+          socialLinks: [{ icon: "github", link: githubRepoTreeLink }]
+        }
+      },
+      ko: {
+        label: "한국어",
+        lang: "ko",
+        link: "/ko/",
+        themeConfig: {
+          nav: [
+            { text: "강의", link: koLectureItems[1].link, activeMatch: '^/ko/(lectures/.*)?$' },
+            { text: "프로젝트", link: koProjectItems[0].link, activeMatch: '^/ko/projects/' },
+            { text: "리소스 모음", link: "/ko/resources/", activeMatch: '^/ko/resources/' },
+            { text: "스킬", link: "/ko/skills/", activeMatch: '^/ko/skills/' },
+            { text: "Try Harness ↗", link: "https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/ko/resources/templates/index.md", target: "_blank", rel: "noopener noreferrer" }
+          ],
+          sidebar: {
+            '/ko/projects/': [{ text: "프로젝트", items: koProjectItems }],
+            '/ko/resources/': [{ text: "리소스 모음", items: koResourceItems }],
+            '/ko/skills/': [{ text: "스킬", items: koSkillItems }],
+            '/ko/': [{ text: "강의", items: koLectureItems }]
+          },
+          outline: {
+            level: [2, 3],
+            label: "이 페이지에서"
+          },
+          docFooter: {
+            prev: "이전",
+            next: "다음"
+          },
+          lastUpdated: {
+            text: "마지막 업데이트"
+          },
+          returnToTopLabel: "맨 위로",
+          sidebarMenuLabel: "메뉴",
+          darkModeSwitchLabel: "테마",
+          lightModeSwitchTitle: "라이트 모드로 전환",
+          darkModeSwitchTitle: "다크 모드로 전환",
           socialLinks: [{ icon: "github", link: githubRepoTreeLink }]
         }
       },

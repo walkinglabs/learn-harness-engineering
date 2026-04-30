@@ -1,6 +1,6 @@
 # Skills（技能集）
 
-[English](./README.md)
+[English](./README.md) · [한국어](./README-KO.md)
 
 本目录包含 Learn Harness Engineering 项目的可复用 AI agent 技能。每个技能都是一个自包含的提示词模板，可被 AI 编程智能体（Claude Code、Codex、Cursor、Windsurf 等）加载以执行专业任务。
 

@@ -6,7 +6,12 @@ layout: page
 if (typeof window !== 'undefined') {
   const base = import.meta.env.BASE_URL || '/'
   const lang = navigator.language || navigator.languages?.[0] || ''
-  const target = `${base}${lang.startsWith('zh') ? 'zh/' : 'en/'}`
+  let locale = 'en/'
+  if (lang.startsWith('ko')) locale = 'ko/'
+  else if (lang.startsWith('zh')) locale = 'zh/'
+  else if (lang.startsWith('ru')) locale = 'ru/'
+  else if (lang.startsWith('vi')) locale = 'vi/'
+  const target = `${base}${locale}`
   if (!window.location.pathname.replace(/\/$/, '').endsWith(target.replace(/\/$/, ''))) {
     window.location.replace(target)
   }
