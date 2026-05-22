@@ -1,13 +1,17 @@
-# Harness Engineering kursiga xush kelibsiz
+# Learn Interview Harness Engineering kursiga xush kelibsiz
 
-Learn Harness Engineering — sunʼiy intellektga asoslangan kod yozuvchi agentlar muhandisligiga bagʻishlangan kurs. Sanoatdagi eng ilgʻor Harness Engineering nazariyasi va amaliyotini chuqur oʻrganib sintez qildik. Asosiy manbalarimiz:
+Learn Interview Harness Engineering — haqiqiy capstone mahsulot orqali AI coding agentlarni ishonchli qilishni oʻrgatadigan loyiha asosidagi kurs. Mahsulot — **Interview Debrief Coach**, interview audio yoki timestampli transcriptni import qilib, savol zanjirlarini ajratadigan va timestampli dalillar bilan debrief hisobot hamda mashq rejasini yaratadigan local-first Electron desktop ilovasi.
+
+Kurs harness engineering tuzilmasini saqlaydi: 12 maʼruza, 6 amaliy loyiha, starter/solution, resurs andozalari, feature list, progress log, benchmark, cleanup scanner va session handoff. Asosiy manbalarimiz:
 
 - [OpenAI: Harness engineering — agent ustuvor dunyoda Codexdan foydalanish](https://openai.com/index/harness-engineering/)
 - [Anthropic: Uzoq ishlovchi agentlar uchun samarali harnessʼlar](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Uzoq muddatli ilova ishlab chiqish uchun harness dizayni](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-Tizimli muhit dizayni, holat boshqaruvi, tekshiruv va nazorat tizimlari orqali ushbu kurs sizga Codex va Claude Code kabi agentik kod yozish vositalarini haqiqatan ham ishonchli qilishni oʻrgatadi. AI yordamchingizni aniq qoidalar va chegaralar bilan boshqarib, yangi funksiyalar qoʻshish, xatolarni tuzatish va dasturlash vazifalarini avtomatlashtirishga yordam beradi.
+Tizimli muhit dizayni, holat boshqaruvi, tekshiruv va nazorat tizimlari orqali ushbu kurs sizga Codex va Claude Code kabi agentik kod yozish vositalarini haqiqatan ham ishonchli qilishni oʻrgatadi.
+
+Xavfsizlik chegarasi: ilova faqat nomzodning interviewdan keyingi oʻzini tahlil qilishiga yordam beradi. U nomzodlarni reyting qilmaydi, ishga olish/rad etish tavsiyasi bermaydi, himoyalangan belgilarni taxmin qilmaydi, hissiyot, shaxsiyat yoki yolgʻon haqida hukm chiqarmaydi.
 
 ## Boshlash
 
@@ -20,7 +24,7 @@ Oʻqish yoʻlingizni tanlang. Kurs uch qismdan iborat: nazariy maʼruzalar, amal
   </a>
   <a href="./projects/" class="card">
     <h3>Loyihalar</h3>
-    <p>Ishonchli agentik muhitni noldan qurish boʻyicha amaliy mashqlar.</p>
+    <p>Interview Debrief Coach va uning harnessini noldan rivojlantirish boʻyicha amaliy mashqlar.</p>
   </a>
   <a href="./resources/" class="card">
     <h3>Resurslar kutubxonasi</h3>

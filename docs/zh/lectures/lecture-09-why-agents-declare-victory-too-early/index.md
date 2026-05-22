@@ -1,9 +1,9 @@
 [English Version →](../../../en/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
-> 实战练习：[Project 05. 让 agent 自己检查自己做的对不对](./../../projects/project-05-grounded-qa-verification/index.md)
+> 实战练习：[Project 05. 让 agent 自己检查自己做的对不对](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# 第九讲. 防止 agent 提前宣告完成
+# 第九讲. 为什么 agent 会在报告证据不足时宣告完成
 
 你让 agent 实现"密码重置"功能。它改了数据库 schema、写了 API 端点、加了邮件模板，跑了单元测试（全部通过），然后自信地告诉你"做完了"。你实际一跑——密码重置链接发不出去（邮件服务配置缺失）、数据库迁移半途失败（schema 不一致）、端到端流程根本没走过一遍。
 

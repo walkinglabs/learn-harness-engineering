@@ -1,9 +1,9 @@
 [中文版本 →](../../../zh/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
 > 이 강의의 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
-> 실습 프로젝트: [프로젝트 05. 에이전트가 자신의 작업을 스스로 검증하게 하기](./../../projects/project-05-grounded-qa-verification/index.md)
+> 실습 프로젝트: [프로젝트 05. 에이전트가 자신의 작업을 스스로 검증하게 하기](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# 강의 9. 에이전트가 너무 일찍 완료를 선언하지 못하도록 방지하기
+# 강의 09. 보고서가 증거 기반이 되기 전에 에이전트가 승리를 선언하는 이유
 
 에이전트에게 "비밀번호 재설정" 기능을 구현하라고 요청합니다. 에이전트는 데이터베이스 스키마를 수정하고, API 엔드포인트를 작성하고, 이메일 템플릿을 추가하고, 단위 테스트를 실행합니다(모두 통과). 그런 다음 자신 있게 "완료되었습니다"라고 알립니다. 실제로 실행해 보면 — 비밀번호 재설정 링크를 보낼 수 없고(이메일 서비스 설정 누락), 데이터베이스 마이그레이션이 중간에 실패하며(스키마 불일치), 엔드투엔드 흐름은 단 한 번도 실행되지 않았습니다.
 

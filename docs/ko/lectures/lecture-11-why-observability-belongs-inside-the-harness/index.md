@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
 > 실습 프로젝트: [Project 06. 완전한 하네스 (캡스톤)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# 강의 11. 에이전트의 런타임을 관측 가능하게 만들어라
+# 강의 11. Transcript 분석 하네스 안에 관측성이 있어야 하는 이유
 
 ## 이 강의가 해결하는 문제
 

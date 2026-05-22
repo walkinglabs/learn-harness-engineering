@@ -1,6 +1,6 @@
 # Underspecified Task Example
 
-Build a desktop knowledge base app with AI question answering.
+Build a desktop interview debrief coach that analyzes transcript evidence.
 
 Constraints:
 

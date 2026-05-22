@@ -7,7 +7,7 @@
 
 ## Nima qilasiz
 
-Minimal Electron bilimlar bazasi (knowledge-base) ilovasi (app) qobigʻini quring — chap tomonda hujjatlar roʻyxati, oʻng tomonda Q&A (savol-javob) paneli va lokal maʼlumotlar katalogiga ega oyna. Vazifaning oʻzi murakkab emas. Murakkab qismi shundaki — agentga buni qanday qilib bajartirishdir.
+Minimal Electron bilimlar bazasi (interview-debrief) ilovasi (app) qobigʻini quring — chap tomonda interview sessionlar roʻyxati, oʻng tomonda debrief report (savol-javob) paneli va lokal maʼlumotlar katalogiga ega oyna. Vazifaning oʻzi murakkab emas. Murakkab qismi shundaki — agentga buni qanday qilib bajartirishdir.
 
 Buni ikki marta ishga tushirasiz. Birinchi marta: hech qanday tayyorgarliksiz, faqat prompt bilan. Ikkinchi marta: repoda oldindan joylashtirilgan `AGENTS.md`, `init.sh`, `feature_list.json` bilan. Va keyin taqqoslaysiz.
 

@@ -1,7 +1,7 @@
 {
-  "name": "knowledge-base",
-  "version": "0.3.0",
-  "description": "Electron-based personal knowledge base with document import, chunking, indexing, metadata extraction, and grounded Q&A with citations",
+  "name": "interview-debrief-coach",
+  "version": "0.1.0",
+  "description": "Electron-based AI interview debrief coach with transcript import, follow-up analysis, evidence-grounded risk reports, and training plans",
   "main": "dist/main/main.js",
   "scripts": {
     "dev": "node scripts/dev.js",

@@ -1,13 +1,17 @@
-# Learn Harness Engineering에 오신 것을 환영합니다
+# Learn Interview Harness Engineering에 오신 것을 환영합니다
 
-Learn Harness Engineering은 AI 코딩 에이전트(coding agent)의 엔지니어링에 집중하는 강의입니다. 우리는 업계에서 가장 앞선 하네스 엔지니어링(Harness Engineering) 이론과 실천을 깊이 학습하고 정리했습니다. 핵심 참고 자료는 다음과 같습니다.
+Learn Interview Harness Engineering은 실제 캡스톤 제품인 **Interview Debrief Coach**를 만들며 AI 코딩 에이전트를 안정적으로 다루는 프로젝트 기반 강의입니다. 이 제품은 로컬 우선 Electron 데스크탑 앱으로, 면접 녹음이나 타임스탬프가 있는 transcript를 가져와 질문 체인을 나누고 타임스탬프 근거가 있는 회고 리포트와 훈련 과제를 생성합니다.
+
+강의는 12개 강의, 6개 실습 프로젝트, starter/solution, 리소스 템플릿, 기능 목록, 진행 로그, benchmark, cleanup scanner, session handoff라는 하네스 엔지니어링 구조를 유지합니다. 핵심 참고 자료는 다음과 같습니다.
 
 - [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-이 강의는 체계적인 환경 설계, 상태(state) 관리, 검증(verification), 제어(control) 시스템을 통해 Codex와 Claude Code 같은 에이전트형 코딩 도구를 실제로 신뢰할 수 있게 만드는 방법을 가르칩니다. 명시적인 규칙과 경계로 AI 코딩 보조 도구를 제약하여, 기능을 구현하고 버그를 수정하며 개발 작업을 자동화하도록 돕습니다.
+이 강의는 체계적인 환경 설계, 상태(state) 관리, 검증(verification), 제어(control) 시스템을 통해 Codex와 Claude Code 같은 에이전트형 코딩 도구를 실제로 신뢰할 수 있게 만드는 방법을 가르칩니다.
+
+안전 경계: 이 앱은 후보자 본인의 면접 후 회고를 돕는 도구입니다. 후보자 순위화, 채용/불합격 권고, 보호 특성 추론, 감정 인식, 인격 판단, 거짓말 판단을 하지 않습니다.
 
 > 처음 보시는 용어가 많아도 괜찮습니다. 핵심 개념의 한국어·영어 대응표는 [용어집](./resources/reference/glossary.md)에 정리되어 있습니다.
 
@@ -22,7 +26,7 @@ Learn Harness Engineering은 AI 코딩 에이전트(coding agent)의 엔지니�
   </a>
   <a href="./projects/" class="card">
     <h3>프로젝트(Projects)</h3>
-    <p>믿을 수 있는 에이전트 환경을 처음부터 직접 만들어 보는 실습입니다.</p>
+    <p>Interview Debrief Coach 앱과 그 하네스를 처음부터 진화시키는 실습입니다.</p>
   </a>
   <a href="./resources/" class="card">
     <h3>리소스 모음(Resource Library)</h3>

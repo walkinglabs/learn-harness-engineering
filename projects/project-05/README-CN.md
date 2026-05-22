@@ -1,37 +1,19 @@
-# Project 05: Evaluator Loops and Three-Role Upgrades
+# Project 05：Evaluator Loops and Three-role Upgrades for Risk Analysis
 
-测量角色分离（单角色 / 生成+评估 / 计划+生成+评估）如何改变实现质量。
+用同一个 Risk Analyzer 功能对比 single-role、gen-eval、plan-gen-eval 三种 agent 工作模式。
 
 ## 目录说明
 
 | 目录 | 含义 |
 |------|------|
-| `starter/` | **起点**——基于 P4 solution，新增多轮问答历史功能待实现。 |
-| `solution/single-role/` | **变体 A**——一个代理完成所有工作（规划 + 实现 + 自我评审）。基础质量。 |
-| `solution/gen-eval/` | **变体 B**——生成器 + 评估器模式。较高质量，有修订证据。 |
-| `solution/plan-gen-eval/` | **变体 C**——计划器 + 生成器 + 评估器。最高质量，有冲刺合约和评分标准。 |
+| `starter/` | 从 Project 04 衍生的起点，risk analysis 质量仍需提升。 |
+| `solution/single-role/` | 变体 A：一个 agent 完成规划、实现、自评。 |
+| `solution/gen-eval/` | 变体 B：generator 实现，evaluator 评分并要求修订。 |
+| `solution/plan-gen-eval/` | 变体 C：planner 写 sprint contract，generator 实现，evaluator 评分。 |
 
-## 使用方法
+## 覆盖功能
 
-```sh
-# 三个变体各自独立运行
-cd solution/single-role && npm install  # 单角色模式
-cd solution/gen-eval && npm install     # 生成+评估模式
-cd solution/plan-gen-eval && npm install # 完整三角色模式
-
-# 对比三个变体的：
-# - 代码质量（evaluator-rubric.md 评分）
-# - 发现的缺陷数量
-# - 需要返工的程度
-```
-
-## 本项目涉及的功能
-
-- 多轮问答历史（对话式 UI）
-- 冲刺合约（sprint contract）
-- 评估器评分标准（evaluator rubric）调优
-
-## 对应课件
-
-- [Lecture 09: 阻止代理过早宣布胜利](../../docs/lectures/lecture-09-why-agents-declare-victory-too-early/index.md)
-- [Lecture 10: 只有全流程运行才算真正的验证](../../docs/lectures/lecture-10-why-end-to-end-testing-changes-results/index.md)
+- 从 follow-up chains、technical gaps、project evidence gaps、speech issues 生成 RiskItem
+- 每个 risk item 必须有 evidence
+- 禁止招聘决策、测谎、情绪/人格判断、受保护特征推断
+- 每个 risk 关联训练任务

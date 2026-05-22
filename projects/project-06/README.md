@@ -1,41 +1,43 @@
-# Project 06: Runtime Observability and Debugging (Capstone)
+# Project 06: Complete Interview Debrief Harness Capstone
 
-Capstone project: build and benchmark a complete harness, then run cleanup loops to verify quality and maintainability.
+Build the complete Interview Debrief Coach product and the complete harness around it, then benchmark weak and strong harness runs.
 
 ## Directory Guide
 
 | Directory | Meaning |
 |------|------|
-| `starter/` | **Starting point**: complete product code, but the harness is intentionally weakened (only basic AGENTS.md, with no feature_list.json, session handoff, or clean-state checklist). |
-| `solution/` | **Reference implementation**: maximum harness, with all artifact files present, high quality-document scores, benchmark scripts, and cleanup scanners. |
+| `starter/` | Product is mostly usable, but the harness is intentionally weak and missing key restart / benchmark artifacts. |
+| `solution/` | Reference implementation with full product, full harness, benchmark, cleanup scanner, evaluator rubric, and quality document. |
 
 ## How to Use
 
 ```sh
 cd starter
 npm install
-# Run the benchmark suite with the weak harness and record the results
+# Run the weak-harness benchmark and record defects.
 
 cd ../solution
 npm install
-# Run the same benchmark with the complete harness
-# Execute cleanup loops
-# Compare score changes in quality-document.md
-
-# Run benchmark tests
+./init.sh
+npm run check
+npm run test
+npm run build
 ./scripts/benchmark.sh
-
-# Run cleanup scan
 ./scripts/cleanup-scanner.sh
+./scripts/check-architecture.sh
 ```
 
 ## Features Covered
 
-- Import documents
-- Build or refresh the index
-- Answer questions with citations
-- Runtime feedback
-- Readable, restartable repository state
+- Import timestamped transcripts
+- Optional audio-upload entry with mock transcription only
+- Create and manage interview sessions
+- Transcript timeline and speaker correction
+- Follow-up chain analysis
+- Technical depth gaps and project evidence gaps
+- Speech issues, risk report, and training plan
+- Timestamped evidence jumps and feedback
+- Local storage, structured logs, benchmark, cleanup scanner
 
 ## Related Lectures
 

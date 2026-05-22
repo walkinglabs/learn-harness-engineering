@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-02-what-a-harness-actually-is/code/)
 > 실습 프로젝트: [Project 01. Prompt-only vs. rules-first](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# 강의 02. 하네스란 실제로 무엇인가
+# 강의 02. AI 면접 디브리프 시스템에서 하네스란 무엇인가
 
 "하네스(harness)"라는 단어는 AI 코딩 에이전트 분야에서 자주 언급되지만, 솔직히 말하면 대부분의 사람들이 하네스라고 할 때 "프롬프트 파일"을 의미합니다. 그것은 하네스가 아닙니다. 재료만 있고 가스레인지도, 칼도, 레시피도, 플레이팅 워크플로도 없이 레스토랑을 여는 것과 같습니다. 그것은 레스토랑이 아닙니다. 냉장고입니다.
 

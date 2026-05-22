@@ -1,40 +1,18 @@
-[English](./README.md) · **한국어**
+# Project 04: Runtime Feedback and Structural Control for Transcript Analysis
 
-# 프로젝트 04: 런타임 가관측성과 구조적 제어
+로그, fixture checks, architecture boundaries를 추가해 에이전트가 transcript parsing과 segmentation 문제를 추측이 아니라 증거로 진단하게 합니다.
 
-런타임 가관측성(observability)과 구조화된 경계 검사를 도입하면서, 심어진 런타임 결함을 디버깅합니다.
-
-가관측성이란 에이전트가 실행되는 동안 무슨 일이 일어나고 있는지 볼 수 있는 능력입니다. 구조화된 로그와 아키텍처 경계 검사가 없으면, 에이전트가 버그를 발견했을 때 문제를 진단하는 데 훨씬 더 많은 시간이 걸립니다. 이 프로젝트는 그 차이를 측정합니다.
-
-## 디렉터리 설명
+## 디렉터리 안내
 
 | 디렉터리 | 의미 |
-|----------|------|
-| `starter/` | **시작점** — P3 풀이(solution) 기반으로, 로그와 구조화된 경계 기능이 구현 대기 중입니다. `IndexingService`에 숨겨진 버그가 심어져 있습니다. 1000자를 초과하는 파일이 빈 청크(chunk)를 생성합니다. 아키텍처 검사 스크립트가 없습니다. |
-| `solution/` | **참고 구현** — 구조화된 로그 모듈, 아키텍처 경계 검사 스크립트, 심어진 버그가 수정되어 있습니다. |
+|------|------|
+| `starter/` | Project 03에서 파생된 시작점. runtime logging과 structural checks가 아직 부족합니다. |
+| `solution/` | structured logs, fixture-analysis scripts, architecture checks, segmentation verification이 포함된 참조 구현. |
 
-## 사용 방법
+## 포함 기능
 
-```sh
-cd starter
-npm install
-# 1. 에이전트가 로그를 통해 버그를 찾을 수 있는지 관찰
-# 2. 큰 파일을 가져와서 청킹 결과가 비정상적인지 확인
-
-cd ../solution
-npm install
-# 비교: 구조화된 로그가 어떻게 문제 진단을 가속화하는가
-```
-
-## 이 프로젝트에서 다루는 기능
-
-- 시작 로그
-- 가져오기 및 인덱싱 로그
-- UI에서 보이는 문답 실패 경로
-- main / preload / renderer / services 레이어의 명시적 경계
-- 심어진 런타임 결함 디버깅
-
-## 관련 강의
-
-- [강의 07: 에이전트에게 명확한 작업 경계를 설정하는 방법](../../docs/lectures/lecture-07-why-agents-overreach-and-under-finish/index.md)
-- [강의 08: 기능 목록으로 에이전트 행동을 제약하는 방법](../../docs/lectures/lecture-08-why-feature-lists-are-harness-primitives/index.md)
+- import / parse / segment / analyze structured logs
+- architecture boundary check
+- fixture analysis script
+- segmentation verification
+- transcript-analysis defect debugging

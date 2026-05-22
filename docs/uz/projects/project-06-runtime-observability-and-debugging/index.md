@@ -9,7 +9,7 @@
 
 Bu capstone (yakunlovchi) loyihadir. Dastlabki beshta loyihada oʻrganilgan barcha narsalarni bir joyga toʻplang, toʻliq benchmark ishlating, soʻngra sifatni barqaror ushlab turish mumkinligini isbotlash uchun tozalash (cleanup) bosqichini amalga oshiring.
 
-Toʻliq mahsulot boʻlagini (product slice) qamrab oladigan qatʼiy koʻp funksiyali (multi-feature) vazifalar toʻplamidan foydalaning: hujjatni import qilish, indekslash, iqtiboslarga asoslangan Q&A, runtime kuzatuvchanligi va oʻqish mumkin boʻlgan qayta ishga tushiriladigan (restartable) repo holati. Avval kuchsiz asosiy (baseline) harness bilan ishga tushiring, soʻngra oʻzingizning eng kuchli harnessʼingiz bilan, oxirida esa tozalash qilib, qayta ishlating. Va nihoyat, harnessʼda ablasyon (ablation) tajribasini oʻtkazing — har bir komponentni bittadan olib tashlang va haqiqatda qaysi biri muhim ekanligini aniqlang.
+Toʻliq mahsulot boʻlagini (product slice) qamrab oladigan qatʼiy koʻp funksiyali (multi-feature) vazifalar toʻplamidan foydalaning: transcript import, question-chain segmentation, iqtiboslarga asoslangan debrief report, runtime kuzatuvchanligi va oʻqish mumkin boʻlgan qayta ishga tushiriladigan (restartable) repo holati. Avval kuchsiz asosiy (baseline) harness bilan ishga tushiring, soʻngra oʻzingizning eng kuchli harnessʼingiz bilan, oxirida esa tozalash qilib, qayta ishlating. Va nihoyat, harnessʼda ablasyon (ablation) tajribasini oʻtkazing — har bir komponentni bittadan olib tashlang va haqiqatda qaysi biri muhim ekanligini aniqlang.
 
 ## Vositalar
 

@@ -1,27 +1,10 @@
-# claude-progress.md -- Session Log
+# Progress Log -- Project 01
 
-## Project 01: Baseline vs Minimal Harness
+## Verified State
 
-### Session 1 -- 2026-03-30
+- App domain migrated to Interview Debrief Coach.
+- Shared app provides sessions, transcript timeline, debrief report, parser tests, analysis pipeline tests, and safety checks.
 
-**Duration**: ~45 minutes
-**Goal**: Establish baseline Electron app with proper harness
+## Next Step
 
-**What was done**:
-- Verified Electron window launches at 1200x800 with correct webPreferences
-- Confirmed document list panel renders with empty state message
-- Confirmed question panel accepts input and submits via IPC
-- Verified PersistenceService creates data directories under userData
-- Updated feature_list.json with all 4 features at status "pass"
-- Wrote AGENTS.md with startup rules and layer boundaries
-- Wrote docs/ARCHITECTURE.md describing Electron layer structure
-- Wrote docs/PRODUCT.md describing knowledge base requirements
-
-**Decisions**:
-- Used constructor injection for PersistenceService to keep services testable
-- Kept all IPC channel names in a single const object in types.ts
-- Window title set to "Knowledge Base" for consistency
-
-**Issues**: None
-
-**Next session**: Proceed to Project 02 to add import, detail view, and persistence features.
+Use this solution as the rules-first baseline when comparing against the prompt-only starter.

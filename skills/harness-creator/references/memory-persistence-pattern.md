@@ -80,24 +80,24 @@ Organization-wide → User-level → Project-level → Local override
 
 ## Current State (Last Updated: YYYY-MM-DD HH:MM)
 
-**Active Feature:** feat-003 - Q&A with Citations
+**Active Feature:** feat-003 - Evidence-grounded debrief report
 **Status:** In Progress (60% complete)
 
 ### What's Done
-- [x] Document chunking pipeline
-- [x] Index data structure
-- [ ] Q&A handler (in progress)
+- [x] Transcript parsing pipeline
+- [x] Question-chain segmentation
+- [ ] Debrief report generator (in progress)
 
 ### What's In Progress
-- Implementing Q&A IPC handler
+- Implementing debrief report IPC handler
 - Need to decide: streaming vs batch response
 
 ### Blockers
-- Waiting on decision: citation format (footnotes vs inline)
+- Waiting on decision: evidence reference format (turn IDs vs inline excerpts)
 
 ### Next Session Should
-1. Complete Q&A handler
-2. Add citation formatting
+1. Complete debrief report handler
+2. Add transcript evidence formatting
 3. Test end-to-end flow
 ```
 

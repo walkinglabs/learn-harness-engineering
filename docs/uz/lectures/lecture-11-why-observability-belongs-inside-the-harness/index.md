@@ -3,7 +3,7 @@
 > Ushbu maʼruza uchun kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
 > Amaliy loyiha: [Loyiha 06. Toʻliq harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# 11-maʼruza. Agent runtimeʼini kuzatuvchan qiling
+# 11-maʼruza. Observability nega transcript analysis harness ichida boʻlishi kerak
 
 ## Ushbu maʼruza qanday muammoni hal qiladi?
 

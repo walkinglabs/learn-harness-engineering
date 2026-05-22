@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-12-why-every-session-must-leave-a-clean-state/code/)
 > Dự án thực hành: [Dự án 06. Harness Đầy đủ (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# Bài 12. Bàn giao Sạch Sẽ ở Cuối Mỗi Phiên
+# Bài 12. Vì sao mỗi phiên phải để lại clean state và handoff có thể restart
 
 ## Bài giảng này Giải quyết Vấn đề Gì?
 
@@ -126,7 +126,7 @@ Tài liệu chất lượng là một artifact đang hoạt động liên tục 
 - Quy ước mã: Được tuân theo
 
 ## Module Thanh toán (Chất lượng: C)
-- Xác minh vượt qua: Một phần (payment callback chưa được test)
+- Xác minh vượt qua: Một phần (training-plan export chưa được test)
 - Agent có thể hiểu: Khó (logic trải rộng trên 3 tệp)
 - Độ ổn định test: Không ổn định (2 test flaky)
 - Ranh giới kiến trúc: Có vi phạm

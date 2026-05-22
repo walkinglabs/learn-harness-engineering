@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/)
 > 实战练习：[Project 02. 让 agent 看懂项目、接住上次的工作](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# 第三讲. 让代码仓库成为唯一的事实来源
+# 第三讲. 让仓库成为面试分析的唯一事实来源
 
 你团队的架构决策散落在 Confluence、Slack、Jira、和几个资深工程师的脑子里。对人类来说这勉强够用——你可以问同事、搜聊天记录、翻文档。实在不行还能去茶水间堵人。但对 AI agent 来说，不在仓库里的信息等于不存在。
 

@@ -1,10 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import { registerIpcHandlers } from './ipc-handlers';
-import { DocumentService } from '../services/document-service';
-import { QaService } from '../services/qa-service';
-import { IndexingService } from '../services/indexing-service';
-import { PersistenceService } from '../services/persistence-service';
+import { InterviewSessionStore } from '../services/interview-session-store';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -19,7 +16,7 @@ function createWindow() {
       contextIsolation: true,
       nodeIntegration: false,
     },
-    title: 'Knowledge Base',
+    title: 'Interview Debrief Coach',
   });
 
   // In development, load from Vite dev server or built renderer
@@ -36,19 +33,11 @@ function createWindow() {
 }
 
 function initializeServices() {
-  console.log('Initializing services...');
-  const dataDir = path.join(app.getPath('userData'), 'knowledge-base-data');
-  console.log('Data directory:', dataDir);
-  const persistence = new PersistenceService(dataDir);
-  const documentService = new DocumentService(persistence);
-  const indexingService = new IndexingService(persistence);
-  const qaService = new QaService(persistence);
-  console.log('All services initialized');
+  const dataDir = path.join(app.getPath('userData'), 'interview-debrief-coach-data');
+  const interviewStore = new InterviewSessionStore(dataDir);
 
   registerIpcHandlers(ipcMain, {
-    documentService,
-    indexingService,
-    qaService,
+    interviewStore,
   });
 }
 

@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
 > Dự án thực hành: [Dự án 06. Harness Đầy đủ (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# Bài 11. Làm Cho Runtime của Agent Có thể Quan sát Được
+# Bài 11. Vì sao observability thuộc về transcript analysis harness
 
 ## Bài giảng này Giải quyết Vấn đề Gì?
 

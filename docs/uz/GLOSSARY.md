@@ -252,9 +252,9 @@ Quyidagi fayl nomlari **doim saqlanadi** — tarjima qilinmaydi:
 - **UZ:** Oʻz-oʻzini tekshirish
 - **Qoʻllash:** "self-verification" inglizcha qavsda birinchi marta.
 
-### Grounded Q&A
-- **EN:** Grounded Q&A / Grounded answers
-- **UZ:** Asoslangan savol-javob (grounded Q&A)
+### evidence-grounded debrief report
+- **EN:** evidence-grounded debrief report / Evidence-grounded debrief reports
+- **UZ:** Evidence-grounded debrief report
 - **Tafsif:** Javob har bir tasdiq uchun manba (kod yoki hujjatda) bilan asoslangan.
 
 ---

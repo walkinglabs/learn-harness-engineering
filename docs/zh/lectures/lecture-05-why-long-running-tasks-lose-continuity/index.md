@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-05-why-long-running-tasks-lose-continuity/code/)
 > 实战练习：[Project 03. 让 agent 关掉再打开还能接着干](./../../projects/project-03-multi-session-continuity/index.md)
 
-# 第五讲. 让跨会话的任务保持上下文连续
+# 第五讲. 让多会话功能开发保持上下文连续
 
 你让 Claude Code 帮你实现一个完整的功能，它跑了 30 分钟，做了大部分工作，但上下文快满了。你开个新会话继续，然后发现：它不记得上次做了什么决策、为什么选了方案 A 而不是方案 B、哪些文件已经改过、测试跑到什么状态了。它得花 15 分钟重新探索一遍项目，而且可能跟上次的做法不一致。
 

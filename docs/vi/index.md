@@ -1,12 +1,16 @@
-# Chào mừng đến với Learn Harness Engineering
+# Chào mừng đến với Learn Interview Harness Engineering
 
-Learn Harness Engineering là khóa học chuyên về kỹ thuật của các AI coding agent. Chúng tôi đã nghiên cứu sâu sắc và tổng hợp các lý thuyết cũng như thực tiễn về Harness Engineering tiên tiến nhất trong ngành. Các tài liệu tham khảo cốt lõi của chúng tôi bao gồm:
+Learn Interview Harness Engineering là khóa học dự án về cách làm cho AI coding agent đáng tin cậy thông qua một sản phẩm capstone thật: **Interview Debrief Coach**, một ứng dụng Electron local-first để debrief sau phỏng vấn. Người dùng nhập audio phỏng vấn hoặc transcript có timestamp; ứng dụng phân đoạn chuỗi câu hỏi và tạo báo cáo debrief có bằng chứng timestamp cùng kế hoạch luyện tập.
+
+Khóa học giữ cấu trúc harness engineering: 12 bài giảng, 6 dự án thực hành, starter/solution, template tài nguyên, feature list, progress log, benchmark, cleanup scanner và session handoff. Các tài liệu tham khảo cốt lõi của chúng tôi bao gồm:
 - [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-Thông qua thiết kế môi trường có hệ thống, quản lý trạng thái, xác minh và hệ thống kiểm soát, khóa học này dạy bạn cách làm cho các công cụ lập trình agent như Codex và Claude Code thực sự đáng tin cậy. Nó giúp bạn xây dựng tính năng, sửa lỗi và tự động hóa các tác vụ phát triển bằng cách ràng buộc trợ lý AI của bạn bằng các quy tắc và ranh giới rõ ràng.
+Thông qua thiết kế môi trường có hệ thống, quản lý trạng thái, xác minh và hệ thống kiểm soát, khóa học này dạy bạn cách làm cho các công cụ lập trình agent như Codex và Claude Code thực sự đáng tin cậy.
+
+Ranh giới an toàn: ứng dụng chỉ huấn luyện ứng viên sau phỏng vấn. Nó không xếp hạng ứng viên, không khuyến nghị tuyển/loại, không suy luận thuộc tính được bảo vệ, không nhận diện cảm xúc, không đánh giá tính cách và không phán đoán nói dối.
 
 ## Bắt đầu
 
@@ -19,7 +23,7 @@ Chọn lộ trình học của bạn để bắt đầu. Khóa học được ch
   </a>
   <a href="./projects/" class="card">
     <h3>Dự án</h3>
-    <p>Thực hành xây dựng một môi trường agent đáng tin cậy từ đầu.</p>
+    <p>Thực hành phát triển Interview Debrief Coach và harness của nó từ đầu.</p>
   </a>
   <a href="./resources/" class="card">
     <h3>Thư viện Tài nguyên</h3>

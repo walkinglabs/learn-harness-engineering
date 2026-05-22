@@ -14,4 +14,4 @@
 
 - `.txt` import qilish yoʻlini toʻgʻrilash
 - Import jarayonini end-to-end tekshirish
-- Keyin hujjat detali panelini (document detail panel) qoʻshish
+- Keyin hujjat detali panelini (transcript detail panel) qoʻshish

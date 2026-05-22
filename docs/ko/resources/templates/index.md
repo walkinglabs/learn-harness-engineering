@@ -198,7 +198,7 @@ Codex 또는 다른 에이전트에는 `AGENTS.md`를 사용하십시오. Claude
 
 **등급화 항목:**
 
-- **제품 도메인(Product domains)** (예: 문서 가져오기, Q&A 흐름, 색인화): 각 도메인은 검증 상태, 에이전트 가독성(agent legibility), 테스트 안정성, 주요 격차에 대한 등급(A-D)을 받습니다.
+- **제품 도메인(Product domains)** (예: 문서 가져오기, debrief report 흐름, 색인화): 각 도메인은 검증 상태, 에이전트 가독성(agent legibility), 테스트 안정성, 주요 격차에 대한 등급(A-D)을 받습니다.
 - **아키텍처 레이어(Architectural layers)** (예: 메인 프로세스, preload, renderer, services): 각 레이어는 경계 적용(boundary enforcement)과 에이전트 가독성에 대한 등급을 받습니다.
 
 **중요성:**
@@ -224,3 +224,14 @@ Codex 또는 다른 에이전트에는 `AGENTS.md`를 사용하십시오. Claude
 3. 벤치마크 작업 집합을 실행합니다.
 4. 또 다른 스냅샷을 찍습니다.
 5. 비교합니다. 등급이 하락하지 않았다면 해당 구성 요소는 오버헤드(overhead)였습니다. 하락했다면 복원합니다.
+
+## Interview Debrief Coach Templates
+
+- [AGENTS-interview-template.md](./AGENTS-interview-template.md)
+- [feature-list-interview-template.json](./feature-list-interview-template.json)
+- [init-interview-template.sh](./init-interview-template.sh)
+- [session-handoff-interview-template.md](./session-handoff-interview-template.md)
+- [clean-state-checklist-interview-template.md](./clean-state-checklist-interview-template.md)
+- [evaluator-rubric-interview-template.md](./evaluator-rubric-interview-template.md)
+- [safety-boundaries-template.md](./safety-boundaries-template.md)
+- [interview-analysis-model-template.md](./interview-analysis-model-template.md)

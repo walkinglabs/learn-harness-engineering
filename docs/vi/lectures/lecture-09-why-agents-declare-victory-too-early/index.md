@@ -1,9 +1,9 @@
 [English Version →](../../../en/lectures/lecture-09-why-agents-declare-victory-too-early/) | [中文版本 →](../../../zh/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
 > Mã nguồn ví dụ cho bài giảng này: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
-> Thực hành: [Dự án 05. Để agent tự xác minh công việc của mình](./../../projects/project-05-grounded-qa-verification/index.md)
+> Thực hành: [Dự án 05. Để agent tự xác minh công việc của mình](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# Bài 9. Ngăn chặn Agent Tuyên bố Thành công Quá sớm
+# Bài 09. Vì sao agent tuyên bố xong trước khi report có evidence
 
 Bạn yêu cầu một agent thực hiện tính năng "đặt lại mật khẩu". Nó sửa đổi cấu trúc cơ sở dữ liệu, viết API endpoint, thêm mẫu email, chạy unit test (tất cả đều qua), và sau đó tự tin nói với bạn rằng "đã xong." Nhưng khi bạn thực sự thử chạy nó—liên kết đặt lại mật khẩu không thể gửi được (thiếu cấu hình dịch vụ email), quá trình di chuyển cơ sở dữ liệu bị lỗi giữa chừng (không nhất quán cấu trúc), và toàn bộ quy trình chưa được thực thi thực tế dù chỉ một lần.
 

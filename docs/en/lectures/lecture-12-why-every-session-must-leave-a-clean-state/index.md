@@ -3,7 +3,7 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/code/)
 > Practice project: [Project 06. Complete harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# Lecture 12. Clean Handoff at the End of Every Session
+# Lecture 12. Why Every Session Must Leave Clean State and Restartable Handoff
 
 ## What Problem Does This Lecture Solve?
 
@@ -125,8 +125,8 @@ A quality document is an active artifact that continuously scores each module:
 - Architecture boundaries: Compliant
 - Code conventions: Followed
 
-## Payment Module (Quality: C)
-- Verification passing: Partial (payment callback untested)
+## Training Plan Module (Quality: C)
+- Verification passing: Partial (training-plan export untested)
 - Agent understandable: Difficult (logic spread across 3 files)
 - Test stability: Unstable (2 flaky tests)
 - Architecture boundaries: Violations present

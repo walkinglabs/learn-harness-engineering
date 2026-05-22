@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-08-why-feature-lists-are-harness-primitives/code/)
 > Dự án thực hành: [Dự án 04. Phản hồi Runtime và Kiểm soát Phạm vi](./../../projects/project-04-incremental-indexing/index.md)
 
-# Bài 08. Sử dụng Feature List để Ràng buộc những gì Agent Làm
+# Bài 08. Feature list là primitive của harness cho Interview Debrief app
 
 Bạn yêu cầu một agent xây dựng một trang web thương mại điện tử. Sau khi nó hoàn thành, nó nói với bạn "xong." Bạn nhìn vào mã — xác thực người dùng hoạt động, nhưng nút thanh toán trong giỏ hàng không làm gì cả, và luồng thanh toán hoàn toàn không được kết nối. Vấn đề: bạn không bao giờ nói với nó "xong" có nghĩa là gì, vì vậy nó đã sử dụng tiêu chuẩn của riêng mình — "tôi đã viết nhiều mã và nó trông khá đầy đủ."
 
@@ -13,7 +13,7 @@ Cả Anthropic và OpenAI đều nhấn mạnh: **các artifact phải được 
 
 ## Agent Không Biết "Xong" Có nghĩa là Gì
 
-Cả Claude Code lẫn Codex đều không tự động biết ý bạn là gì khi nói "xong." Bạn nói "thêm tính năng giỏ hàng," và sự diễn giải của mô hình có thể là "viết một Cart component và một addToCart method." Nhưng ý bạn là "người dùng có thể duyệt sản phẩm, thêm vào giỏ hàng, và hoàn thành thanh toán end-to-end." Khoảng cách hiểu biết này tồn tại mãi mà không có feature list. Agent sử dụng tiêu chuẩn ẩn của riêng mình — thường là "mã không có lỗi cú pháp rõ ràng." Những gì bạn cần là xác minh hành vi end-to-end. Giống như nhờ bạn mua hoa quả — bạn nói "lấy vài thứ hoa quả" và họ về với chanh. Hoa quả của họ và hoa quả của bạn không phải là cùng loại hoa quả.
+Cả Claude Code lẫn Codex đều không tự động biết ý bạn là gì khi nói "xong." Bạn nói "thêm tính năng giỏ hàng," và sự diễn giải của mô hình có thể là "viết một Report component và một addToReport method." Nhưng ý bạn là "người dùng có thể duyệt sản phẩm, thêm vào giỏ hàng, và hoàn thành thanh toán end-to-end." Khoảng cách hiểu biết này tồn tại mãi mà không có feature list. Agent sử dụng tiêu chuẩn ẩn của riêng mình — thường là "mã không có lỗi cú pháp rõ ràng." Những gì bạn cần là xác minh hành vi end-to-end. Giống như nhờ bạn mua hoa quả — bạn nói "lấy vài thứ hoa quả" và họ về với chanh. Hoa quả của họ và hoa quả của bạn không phải là cùng loại hoa quả.
 
 Nhìn vào ghi chú tiến độ phổ biến này:
 
@@ -28,7 +28,7 @@ Kết quả: phiên mới dành 20 phút để suy ra trạng thái dự án, v�
 
 ```mermaid
 flowchart LR
-    Feature["Một hàng tính năng"] --> Behavior["Hành vi<br/>ví dụ: POST /cart/items trả về 201"]
+    Feature["Một hàng tính năng"] --> Behavior["Hành vi<br/>ví dụ: POST /report/items trả về 201"]
     Feature --> Check["Lệnh xác minh<br/>kiểm tra chính xác để chạy"]
     Feature --> State["Trạng thái<br/>not_started / active / blocked / passing"]
 
@@ -78,8 +78,8 @@ Bạn không cần một hệ thống phức tạp — một tệp Markdown ho�
 ```json
 {
   "id": "F03",
-  "behavior": "POST /cart/items với {product_id, quantity} trả về 201",
-  "verification": "curl -X POST http://localhost:3000/api/cart/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
+  "behavior": "POST /report/items với {product_id, quantity} trả về 201",
+  "verification": "curl -X POST http://localhost:3000/api/report/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
   "state": "passing",
   "evidence": "commit abc123, test output log"
 }
@@ -101,7 +101,7 @@ Agent không thể trực tiếp thay đổi trạng thái của tính năng th�
 
 ### 4. Hiệu chỉnh Độ hạt
 
-Mỗi mục tính năng phải có phạm vi "có thể hoàn thành trong một phiên." Quá rộng thì không xong; quá hẹp thì overhead quản lý tăng lên. "Người dùng có thể thêm mục vào giỏ hàng" là độ hạt tốt. "Triển khai giỏ hàng" là quá rộng. "Tạo trường tên trên Cart model" là quá hẹp. Giống như cắt bít tết — không phải cả miếng, và cũng không phải thịt băm.
+Mỗi mục tính năng phải có phạm vi "có thể hoàn thành trong một phiên." Quá rộng thì không xong; quá hẹp thì overhead quản lý tăng lên. "Người dùng có thể thêm mục vào giỏ hàng" là độ hạt tốt. "Triển khai giỏ hàng" là quá rộng. "Tạo trường tên trên Report model" là quá hẹp. Giống như cắt bít tết — không phải cả miếng, và cũng không phải thịt băm.
 
 ## Trường hợp Thực tế
 

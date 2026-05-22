@@ -7,7 +7,7 @@
 
 ## Bạn Làm Gì
 
-Thêm "khả năng đọc được" vào repo để một agent mới có thể nhanh chóng hiểu cấu trúc dự án, biết tiến độ hiện tại, và tiếp tục công việc. Cụ thể: triển khai import tài liệu, document detail view, và local persistence, hoàn thành qua hai phiên.
+Thêm "khả năng đọc được" vào repo để một agent mới có thể nhanh chóng hiểu cấu trúc dự án, biết tiến độ hiện tại, và tiếp tục công việc. Cụ thể: triển khai import transcript, transcript detail view, và local persistence, hoàn thành qua hai phiên.
 
 Bạn chạy hai lần: lần đầu không có sự trợ giúp nào, lần hai với `ARCHITECTURE.md`, `PRODUCT.md`, và `session-handoff.md` được đặt sẵn trong repo.
 

@@ -3,7 +3,7 @@
 > Примеры кода: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-02-what-a-harness-actually-is/code/)
 > Практический проект: [Project 01. Prompt-only vs. rules-first](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# Лекция 02. Что на самом деле означает harness
+# Лекция 02. Что означает harness для AI Interview Debrief систем
 
 Слово «harness» в кругах AI-кодинг-агентов разбрасывают направо и налево, но честно говоря, большинство людей под ним подразумевает «файл с промптом». Это не harness. Это как открыть ресторан, имея только продукты — без плиты, без ножей, без рецептов, без процесса подачи. Это не ресторан. Это холодильник.
 

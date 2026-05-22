@@ -1,9 +1,9 @@
 [English Version →](../../../en/lectures/lecture-10-why-end-to-end-testing-changes-results/) | [中文版本 →](../../../zh/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 
 > Ví dụ mã nguồn cho bài giảng này: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-10-why-end-to-end-testing-changes-results/code/)
-> Thực hành: [Dự án 05. Để agent xác minh công việc của chính nó](./../../projects/project-05-grounded-qa-verification/index.md)
+> Thực hành: [Dự án 05. Để agent xác minh công việc của chính nó](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# Bài 10. Chỉ Testing End-to-End mới là Xác minh Thực sự
+# Bài 10. Vì sao pipeline fixture end-to-end thay đổi kết quả
 
 Bạn yêu cầu agent thêm tính năng xuất tệp vào ứng dụng Electron. Nó viết component render process, preload script và logic lớp service. Unit test cho từng component vượt qua hoàn hảo. Agent nói, "Xong rồi." Khi bạn thực sự nhấp vào nút xuất — định dạng đường dẫn tệp sai, thanh tiến trình không cập nhật, và xuất tệp lớn gây rò rỉ bộ nhớ. Năm lỗi ranh giới component, và unit test không bắt được một cái nào.
 

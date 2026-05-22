@@ -149,13 +149,13 @@ function run(): void {
     {
       id: “qna-002”,
       category: “import”,
-      description: “User can import a PDF document.”,
-      verification: [“Upload a PDF file”, “Verify it appears in the document list”],
+      description: “User can import a timestamped transcript PDF.”,
+      verification: [“Upload a PDF file”, “Verify it appears in the interview session list”],
       passes: true,
     },
     {
       id: “qna-003”,
-      category: “grounded_qa”,
+      category: “evidence_grounded_debrief”,
       description: “System hallucination rate is below 5%.”,
       verification: [], // Empty -- no evidence
       passes: true, // Marked as pass WITHOUT evidence

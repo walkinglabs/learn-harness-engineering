@@ -3,7 +3,7 @@
 > Kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-04-why-one-giant-instruction-file-fails/code/)
 > Amaliy loyiha: [Loyiha 02. Agent oʻqiy oladigan ish maydoni](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# 4-maʼruza. Yoʻriqnomalarni fayllar boʻylab ajrating
+# 04-maʼruza. Koʻrsatmalarni product, architecture, data va safety docslarga ajrating
 
 Siz harness muhandisligiga jiddiy yondashdingiz — tabriklaymiz. Siz `AGENTS.md` faylini yaratdingiz va oʻzingiz oʻylay olgan barcha qoidalar, cheklovlar va olingan saboqlarni uning ichiga joyladingiz. Bir oydan soʻng fayl 300 qatorga, ikki oydan soʻng 450 qatorga, uch oydan soʻng esa 600 qatorga yetdi. Keyin siz agentʼning samaradorligi aslida yomonlashayotganini seza boshlaysiz — oddiy bugʼni tuzatish uchun agent juda koʻp kontekstni hech qanday aloqasi boʻlmagan deploy yoʻriqnomalarini oʻqishga sarflaydi; 300-qatorda koʻmilgan muhim xavfsizlik cheklovi mutlaqo eʼtiborsiz qoldiriladi; kod yozish uslubi boʻyicha bir-biriga zid uchta qoida mavjudligi sababli, agent har safar oʻzboshimchalik bilan ulardan birini tanlaydi.
 

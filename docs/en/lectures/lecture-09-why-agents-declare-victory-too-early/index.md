@@ -1,9 +1,9 @@
 [中文版本 →](../../../zh/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
 > Code examples for this lecture: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
-> Hands-on practice: [Project 05. Let the agent verify its own work](./../../projects/project-05-grounded-qa-verification/index.md)
+> Hands-on practice: [Project 05. Let the agent verify its own work](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# Lecture 9. Preventing Agents from Declaring Victory Too Early
+# Lecture 09. Why Agents Declare Victory Before Reports Are Evidence-Grounded
 
 You ask an agent to implement a "password reset" feature. It modifies the database schema, writes the API endpoint, adds the email template, runs unit tests (all pass), and then confidently tells you "it's done." When you actually try to run it—the password reset link can't be sent (missing email service config), the database migration fails halfway through (schema inconsistency), and the end-to-end flow hasn't been executed even once.
 

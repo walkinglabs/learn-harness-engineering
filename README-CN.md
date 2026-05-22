@@ -1,10 +1,12 @@
 [English](https://walkinglabs.github.io/learn-harness-engineering/en/) · [中文](https://walkinglabs.github.io/learn-harness-engineering/zh/) · [Русский](https://walkinglabs.github.io/learn-harness-engineering/ru/) · [Tiếng Việt](https://walkinglabs.github.io/learn-harness-engineering/vi/) · [한국어](https://walkinglabs.github.io/learn-harness-engineering/ko/) · [Oʻzbekcha](https://walkinglabs.github.io/learn-harness-engineering/uz/)
 
-# Learn Harness Engineering
+# Learn Interview Harness Engineering
 
-> **这是一门项目制课程：系统学习如何通过环境、状态、验证与控制机制，让 AI 编程智能体（Coding Agents）更可靠地工作。**
+> **这是一门项目制课程：通过构建一个真实的 Electron AI 面试复盘教练应用，学习如何让 AI 编程智能体更可靠地工作。**
 
-Learn Harness Engineering 是一门专注于 AI 编程智能体工程化落地的课程。本课程深度研究并总结了业内最前沿的 Harness Engineering（工具马具/脚手架工程）理论与实践，参考资料包括：
+Learn Interview Harness Engineering 是一门专注于 AI 编程智能体工程化落地的课程。贯穿项目是 **Interview Debrief Coach**：一个本地优先的 Electron 桌面应用，用户导入面试录音或带时间戳 transcript 后，系统会切分问题链，生成带时间戳证据的复盘报告，并给出后续训练建议。
+
+课程保留原有 harness engineering 骨架：12 个 lecture、6 个 project、starter/solution、资源模板、进度日志、功能清单、benchmark、cleanup scanner 和 session handoff。参考资料包括：
 
 - [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
@@ -13,7 +15,7 @@ Learn Harness Engineering 是一门专注于 AI 编程智能体工程化落地�
 
 [**官方网站及文档 (English & 中文)**](https://walkinglabs.github.io/learn-harness-engineering/) | [**English README**](./README.md)
 
-> **快速上手？** [`skills/harness-creator/`](./skills/) 技能可以帮你在几分钟内为自己的项目搭建一套生产级的 harness（AGENTS.md、功能清单、init.sh、验证工作流）。
+> **快速上手？** [`skills/harness-creator/`](./skills/) 技能提供 harness 模板层。本次迁移会把它从知识库应用场景改造成 Interview Debrief Coach 场景。
 
 ---
 
@@ -208,37 +210,32 @@ Harness engineering 是围绕模型搭建一整套工作环境，让它产出可
 
 ---
 
-## 贯穿项目：一个真实的应用
+## 贯穿项目：Interview Debrief Coach
 
-全部 6 个课程项目都围绕同一个产品：**一个基于 Electron 的个人知识库桌面应用**。
+全部 6 个课程项目都围绕同一个产品：**一个基于 Electron 的 AI 面试复盘桌面应用**。
 
 ```text
-    ┌─────────────────────────────────────────────────────┐
-    │                知识库桌面应用                         │
-    │                                                     │
-    │  ┌──────────────┐  ┌──────────────────────────────┐│
-    │  │  文档列表     │  │        问答面板              ││
-    │  │              │  │                              ││
-    │  │ doc-001.md   │  │  问：什么是 harness eng？    ││
-    │  │ doc-002.md   │  │  答：围绕 agent 模型搭建的   ││
-    │  │ doc-003.md   │  │      工作环境...             ││
-    │  │ ...          │  │      [引用：doc-002.md]      ││
-    │  └──────────────┘  └──────────────────────────────┘│
-    │                                                     │
-    │  ┌─────────────────────────────────────────────────┐│
-    │  │ 状态栏：42 篇文档 | 38 篇已索引 | 上次同步 3分钟 ││
-    │  └─────────────────────────────────────────────────┘│
-    └─────────────────────────────────────────────────────┘
+    ┌────────────────────┬──────────────────────────────┬────────────────────────────┐
+    │ Interview Sessions │ Transcript Timeline           │ Debrief Report             │
+    │                    │                              │                            │
+    │ Backend Mock       │ [00:00:02] interviewer: ...  │ Follow-up Logic            │
+    │ System Design      │ [00:00:18] candidate: ...    │ Technical Depth Gaps       │
+    │ Project Deep Dive  │ [00:01:03] interviewer: ...  │ Project Evidence Gaps      │
+    │                    │ [00:01:20] candidate: ...    │ Speech Issues              │
+    │                    │                              │ Risk Items                 │
+    │                    │                              │ Training Plan              │
+    └────────────────────┴──────────────────────────────┴────────────────────────────┘
 
     核心功能：
-    ├── 导入本地文档
-    ├── 管理文档库
-    ├── 处理与索引文档
-    ├── 对导入内容发起 AI 问答
-    └── 返回带引用且可追溯的回答
+    ├── 创建和管理面试会话
+    ├── 导入带时间戳 transcript 或 mock 转写音频
+    ├── 解析 speaker、timestamp、utterance 和追问链
+    ├── 生成带时间戳证据的复盘报告
+    ├── 记录用户对分析条目的准确性反馈
+    └── 本地保存复盘历史和训练计划
 ```
 
-选择这个项目是因为它同时具备：很强的实际价值感、足够真实的产品复杂度、以及很适合观察 harness 优化前后的效果差异。
+选择这个项目是因为它同时具备真实用户价值、本地优先桌面应用复杂度，以及清晰的安全边界：它只服务于候选人的面试后复盘，不做候选人排名、不提供录用/拒绝建议、不推断受保护特征、不做情绪识别，也不判断任何人是否撒谎。
 
 每个课程项目的 starter/solution 是这个 Electron 应用在对应演化阶段的完整副本。P(N+1) 的 starter 从 P(N) 的 solution 衍生而来——应用跟着你的 harness 技能一起进化。
 
@@ -324,8 +321,8 @@ Harness engineering 是围绕模型搭建一整套工作环境，让它产出可
 | [P01](./docs/zh/projects/project-01-baseline-vs-minimal-harness/index.md) | 跑两次同样的任务：只写提示词 vs 定好规则 | 最小 harness：AGENTS.md + init.sh + feature_list.json |
 | [P02](./docs/zh/projects/project-02-agent-readable-workspace/index.md) | 重组项目结构，让 agent 能读懂 | agent 可读的工作空间 + 持久化状态文件 |
 | [P03](./docs/zh/projects/project-03-multi-session-continuity/index.md) | 让 agent 关掉再打开还能接着干 | 进度日志 + 会话交接 + 多会话连续性 |
-| [P04](./docs/zh/projects/project-04-incremental-indexing/index.md) | 防止 agent 做多了或做少了 | 运行反馈 + 范围控制 + 增量索引 |
-| [P05](./docs/zh/projects/project-05-grounded-qa-verification/index.md) | 让 agent 自己验证自己的工作 | 自验证 + 带引用的问答 + 基于证据的完成判定 |
+| [P04](./docs/zh/projects/project-04-incremental-indexing/index.md) | 围绕 transcript 分析行为加入运行反馈 | 运行反馈 + 范围控制 + 结构化分析检查 |
+| [P05](./docs/zh/projects/project-05-evidence-grounded-evaluator-loops/index.md) | 让 agent 自己验证复盘结果 | 自验证 + 时间戳证据 + 角色分离 |
 | [P06](./docs/zh/projects/project-06-runtime-observability-and-debugging/index.md) | 从零搭建一套完整的 harness（综合项目） | 完整 harness：全部机制 + 可观测性 + 消融实验 |
 
 ```text

@@ -1,38 +1,30 @@
 {
   "project": "project-01",
-  "description": "Baseline Electron knowledge base with minimal harness",
+  "description": "Rules-first minimal Interview Debrief Coach",
   "features": [
     {
       "id": "window-launch",
       "name": "Window Launch",
-      "description": "Electron app opens a BrowserWindow with correct dimensions and preload script",
+      "description": "Electron window launches with Interview Debrief Coach title",
       "status": "pass",
-      "evidence": "npm run dev launches window at 1200x800 with contextIsolation=true and nodeIntegration=false",
-      "testedAt": "2026-03-30T10:00:00Z"
+      "evidence": "npm run check / npm run build",
+      "testedAt": null
     },
     {
-      "id": "document-list",
-      "name": "Document List Panel",
-      "description": "Left sidebar shows imported documents with empty state message",
+      "id": "sample-transcript",
+      "name": "Sample Transcript",
+      "description": "Fixture transcript can be imported and displayed in timeline",
       "status": "pass",
-      "evidence": "DocumentList component renders empty state when no documents, shows document cards when data present",
-      "testedAt": "2026-03-30T10:05:00Z"
+      "evidence": "fixtures/interviews/backend-project-depth.transcript",
+      "testedAt": null
     },
     {
-      "id": "question-panel",
-      "name": "Question Panel",
-      "description": "Bottom input bar accepts questions and submits via IPC",
+      "id": "static-debrief",
+      "name": "Debrief Summary",
+      "description": "Right panel shows evidence-grounded debrief sections",
       "status": "pass",
-      "evidence": "QuestionPanel renders text input and Ask button, submits to window.knowledgeBase.qa.ask on Enter or click",
-      "testedAt": "2026-03-30T10:08:00Z"
-    },
-    {
-      "id": "data-directory",
-      "name": "Data Directory",
-      "description": "PersistenceService creates and manages userData/knowledge-base-data directory",
-      "status": "pass",
-      "evidence": "PersistenceService constructor calls ensureDirectories() creating data, documents, and index subdirectories",
-      "testedAt": "2026-03-30T10:10:00Z"
+      "evidence": "src/renderer/components/DebriefReportPanel.tsx",
+      "testedAt": null
     }
   ]
 }

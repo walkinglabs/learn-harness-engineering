@@ -14,6 +14,11 @@ export default defineConfig({
     alias: {
       '@shared': path.resolve(__dirname, 'src/shared'),
       '@services': path.resolve(__dirname, 'src/services'),
+      '@types': path.resolve(__dirname, 'src/types'),
     },
+  },
+  test: {
+    root: '.',
+    include: ['src/**/*.{test,spec}.ts', 'src/**/*.{test,spec}.tsx'],
   },
 });

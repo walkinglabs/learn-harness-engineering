@@ -1,0 +1,58 @@
+{
+  "project": "ai-interview-debrief-coach",
+  "last_updated": "YYYY-MM-DD",
+  "rules": {
+    "single_active_feature": true,
+    "passing_requires_evidence": true,
+    "do_not_skip_fixture_analysis": true,
+    "no_hiring_decisions": true
+  },
+  "features": [
+    {
+      "id": "transcript-001",
+      "priority": 1,
+      "area": "transcript",
+      "title": "Import timestamped transcript",
+      "user_visible_behavior": "A user can load an interview transcript and see turns grouped by speaker and timestamp.",
+      "status": "not_started",
+      "verification": [
+        "Run transcript parser on fixtures/interviews/system-design.md.",
+        "Verify speaker, timestamp, and text fields are present for every turn.",
+        "Verify malformed timestamps produce actionable parser errors."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "analysis-001",
+      "priority": 2,
+      "area": "analysis",
+      "title": "Segment follow-up question chains",
+      "user_visible_behavior": "The report groups interviewer follow-ups and candidate answers into coherent question chains.",
+      "status": "not_started",
+      "verification": [
+        "Run question-chain segmenter on all transcript fixtures.",
+        "Compare chain count and chain labels against fixtures/gold/question-chains.json.",
+        "Verify every chain links back to transcript turn IDs."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "report-001",
+      "priority": 3,
+      "area": "report",
+      "title": "Generate evidence-grounded debrief report",
+      "user_visible_behavior": "The user receives technical gaps, speech issues, project evidence gaps, risk flags, and a training plan backed by transcript references.",
+      "status": "not_started",
+      "verification": [
+        "Run full analysis pipeline on fixtures/interviews/system-design.md.",
+        "Verify each finding includes at least one transcript turn reference.",
+        "Run safety boundary checker and confirm no hiring recommendation is produced."
+      ],
+      "evidence": [],
+      "notes": ""
+    }
+  ]
+}
+

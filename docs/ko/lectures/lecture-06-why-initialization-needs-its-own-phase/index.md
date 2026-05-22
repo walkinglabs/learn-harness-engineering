@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-06-why-initialization-needs-its-own-phase/code/)
 > 실습 프로젝트: [Project 03. 멀티 세션 연속성](./../../projects/project-03-multi-session-continuity/index.md)
 
-# 강의 06. 모든 에이전트 세션 전에 초기화하라
+# 강의 06. Transcript 분석 코드를 만지기 전에 초기화가 필요한 이유
 
 새 에이전트(agent) 세션을 시작하고 "검색 기능을 추가해줘"라고 말합니다. 에이전트가 바로 코딩에 뛰어듭니다. 훌륭한 열정입니다. 20분 후 테스트 프레임워크가 제대로 설정되지 않았다는 것을 발견하고, 그것을 수정하는 데 10분을 더 씁니다. 그러다 데이터베이스 마이그레이션 스크립트 형식이 잘못됐다는 것을 알게 되어 또 수정합니다. 검색 기능은 결국 추가되지만, 전체 세션이 비효율적이었습니다. 대부분의 시간이 검색 기능을 작성하는 것이 아닌 "이 프로젝트가 어떻게 작동하는지 파악하기"에 사용됐습니다.
 

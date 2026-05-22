@@ -1,62 +1,30 @@
 {
   "project": "project-02",
-  "description": "Agent-readable workspace with import, detail view, and persistence",
+  "description": "Agent-readable Interview Debrief Coach workspace",
   "features": [
     {
-      "id": "window-launch",
-      "name": "Window Launch",
-      "description": "Electron app opens a BrowserWindow with correct dimensions and preload script",
+      "id": "workspace-docs",
+      "name": "Agent-readable Docs",
+      "description": "Product, architecture, data model, analysis model, and safety boundaries are documented",
       "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:00:00Z"
+      "evidence": "docs/*.md",
+      "testedAt": null
     },
     {
-      "id": "document-list",
-      "name": "Document List Panel",
-      "description": "Left sidebar shows imported documents with empty state message",
+      "id": "transcript-parser",
+      "name": "Transcript Parser",
+      "description": "Parser supports timestamps, bilingual speaker aliases, and parse errors",
       "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:05:00Z"
+      "evidence": "src/services/transcript-parser.test.ts",
+      "testedAt": null
     },
     {
-      "id": "question-panel",
-      "name": "Question Panel",
-      "description": "Bottom input bar accepts questions and submits via IPC",
+      "id": "session-store",
+      "name": "Session Store",
+      "description": "Sessions, utterances, reports, and feedback persist locally",
       "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:08:00Z"
-    },
-    {
-      "id": "data-directory",
-      "name": "Data Directory",
-      "description": "PersistenceService creates and manages userData/knowledge-base-data directory",
-      "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:10:00Z"
-    },
-    {
-      "id": "document-import",
-      "name": "Document Import",
-      "description": "Users can import .txt and .md files via ImportPanel with file picker, document appears in list",
-      "status": "pass",
-      "evidence": "ImportPanel triggers window.knowledgeBase.documents.import(filePath), App.tsx refreshes document list on success, Import button toggles import view",
-      "testedAt": "2026-03-30T11:00:00Z"
-    },
-    {
-      "id": "document-detail",
-      "name": "Document Detail with Content",
-      "description": "DocumentDetail shows full document content via getContent IPC, metadata, and delete button",
-      "status": "pass",
-      "evidence": "DocumentDetail loads content via window.knowledgeBase.documents.getContent(id), displays in pre-wrap container, includes delete button, IPC_CHANNELS.GET_DOCUMENT_CONTENT registered",
-      "testedAt": "2026-03-30T11:15:00Z"
-    },
-    {
-      "id": "basic-persistence",
-      "name": "Basic Persistence",
-      "description": "Imported documents persist across app restarts via filesystem storage in userData directory",
-      "status": "pass",
-      "evidence": "App.tsx calls refreshDocuments() on mount via useEffect, DocumentService reads documents-meta.json on startup, PersistenceService writes to app.getPath('userData')/knowledge-base-data",
-      "testedAt": "2026-03-30T11:30:00Z"
+      "evidence": "src/services/interview-session-store.ts",
+      "testedAt": null
     }
   ]
 }

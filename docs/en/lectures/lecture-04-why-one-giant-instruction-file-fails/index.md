@@ -3,7 +3,7 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-04-why-one-giant-instruction-file-fails/code/)
 > Practice project: [Project 02. Agent-readable workspace](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# Lecture 04. Split Instructions Across Files
+# Lecture 04. Split Instructions Across Product, Architecture, Data, and Safety Docs
 
 You got serious about harness engineering — good for you. You created an `AGENTS.md` and packed every rule, constraint, and lesson learned you could think of into it. One month later the file bloated to 300 lines, two months 450 lines, three months 600 lines. Then you notice the agent's performance is actually getting worse — on a simple bug fix, the agent burns tons of context processing irrelevant deployment instructions; a critical security constraint buried at line 300 gets ignored outright; three contradictory code style rules mean the agent picks one at random each time.
 
@@ -15,7 +15,7 @@ The most common vicious cycle goes like this: agent makes a mistake, you say "ad
 
 This isn't your fault. It's a very natural reaction — "add a rule" each time something goes wrong feels reasonable, like tossing one more thing into your bag every time you leave the house "just in case." But the cumulative effect is disastrous. Let's look at what goes wrong specifically.
 
-**Context budget gets eaten alive.** The agent's context window is finite. Say your agent has a 200K token window (Claude's standard). A bloated instruction file might eat 10-20K tokens. Seems like there's still plenty of room? But a complex task might need to read dozens of source files, tool execution output also takes context, and conversation history accumulates. By the time the agent needs to understand the code, the budget is already tight — like a suitcase so full of "just in case" items that there's no room for your laptop.
+**Context budget gets eaten alive.** The agent's context window is finite. Say your agent has a 200K token window (Claude's standard). A bloated instruction file might eat 10-20K tokens. Seems like there's still plenty of room? But a complex task might need to read dozens of source files, tool execution output also takes context, and debrief history accumulates. By the time the agent needs to understand the code, the budget is already tight — like a suitcase so full of "just in case" items that there's no room for your laptop.
 
 **Lost in the middle.** The "Lost in the Middle" paper (Liu et al., 2023) clearly demonstrated that LLMs utilize information in the middle of long texts significantly less effectively than at the beginning or end. Your AGENTS.md is 600 lines, and line 300 says "all database queries must use parameterized queries" — that's a security hard constraint. But it's buried in the middle, and the agent will almost certainly ignore it. Like that bottle of sunscreen at the bottom of your overstuffed suitcase — you know it's there, you dig three times, can't find it, end up buying another one.
 

@@ -5,32 +5,33 @@ Run this checklist before committing and at the end of each session.
 ## Build
 
 - [ ] `npm run check` passes with no type errors
+- [ ] `npm run test` passes
 - [ ] `npm run build` completes successfully
 
 ## Architecture
 
-- [ ] `bash scripts/check-architecture.sh` passes with no violations
-- [ ] No `fs` or `path` imports in renderer code
-- [ ] No Electron IPC in service code
-- [ ] No React imports in services or main process
+- [ ] Renderer uses only `window.interviewCoach`
+- [ ] Renderer has no `fs` or `path` imports
+- [ ] Services do not import Electron IPC or React modules
+- [ ] IPC channel names live in `src/shared/types.ts`
 
-## Runtime
+## Product
 
-- [ ] Application starts without errors (`npm run dev`)
-- [ ] Structured log output appears in console at startup
-- [ ] Document import works (check logs for IMPORT_DOCUMENT event)
-- [ ] Indexing works for documents of all sizes
-- [ ] Q&A returns answers with citations (check logs for ASK_QUESTION event)
+- [ ] Transcript import works
+- [ ] Parser reports invalid lines as parse errors
+- [ ] Analysis report has timestamped evidence for every risk item
+- [ ] Training tasks link back to source risk items
+- [ ] Feedback can be saved for report items
 
-## Data Integrity
+## Safety
 
-- [ ] No empty chunks in indexed documents (verify with GET_CHUNKS)
-- [ ] Q&A history persists across restarts
-- [ ] Document metadata is consistent with actual files
+- [ ] No hiring decision language
+- [ ] No lie-detection language
+- [ ] No emotion or personality judgment
+- [ ] No protected-trait inference
 
 ## Repository
 
 - [ ] No unintended files in git status
-- [ ] No sensitive data (.env, credentials) staged
-- [ ] `claude-progress.md` updated with current state
-- [ ] `feature_list.json` reflects actual feature status
+- [ ] No sensitive data staged
+- [ ] Feature state reflects actual verification

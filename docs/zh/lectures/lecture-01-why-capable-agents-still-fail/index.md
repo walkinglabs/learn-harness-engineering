@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-01-why-capable-agents-still-fail/code/)
 > 实战练习：[Project 01. 只写提示词让 agent 做，和定好规则再让它做，差多少](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# 第一讲. 模型能力强，不等于执行可靠
+# 第一讲. 强模型仍会在真实面试分析应用里失败
 
 你说你也算见过世面的人了——Claude Pro 订着，GPT-4o 的 API key 也有，SWE-bench 排行榜上的数字你比谁都清楚。有一天你终于想让 AI agent 帮你改一个真实的项目，信心满满地交代下去。结果呢？加了功能但测试挂了，改了 bug 但引入了新 bug，跑了 20 分钟然后自信满满地说"完成了"——你一看代码，根本不是你要的东西。
 

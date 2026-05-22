@@ -1,40 +1,34 @@
-# Project 01: Baseline vs Minimal Harness
+# Project 01: Prompt-only vs Rules-first for Interview Debrief Apps
 
-Compare how a weak harness (prompt only) and an explicit harness (rule files plus verification mechanisms) affect the completion rate of AI coding-agent tasks.
+Compare what happens when an agent receives only "build an interview debrief app" versus a small harness with rules, verification, and a fixture transcript.
 
 ## Directory Guide
 
 | Directory | Meaning |
 |------|------|
-| `starter/` | **Starting point**: only a vague `task-prompt.md`, with no AGENTS.md and no feature_list.json. This is the "weak harness" version you give to the agent. |
-| `solution/` | **Reference implementation**: the same application code, but with complete harness files (AGENTS.md, feature_list.json, init.sh, claude-progress.md). This is the "explicit harness" version. |
+| `starter/` | Weak harness workspace: a minimal Electron app plus a vague task prompt and sample transcript. |
+| `solution/` | Reference workspace: the same product goal with AGENTS.md, init.sh, feature_list.json, parser tests, static debrief UI, and progress log. |
 
 ## How to Use
 
 ```sh
-# 1. Run the agent task once with starter (weak harness)
 cd starter
 npm install
-# Give the contents of task-prompt.md as the prompt to Claude Code / Codex
-# Ask the agent to complete: window startup, document list, QA panel, data directory
+# Give task-prompt.md to Claude Code / Codex.
+# Ask for: app startup, interview session list, transcript timeline, debrief summary.
 
-# 2. Run the same task with solution (explicit harness)
 cd ../solution
 npm install
-# Ask the agent to read AGENTS.md and follow the rules for the same task
-
-# 3. Compare the two results
-# - Was the task completed?
-# - How many retries were needed?
-# - Did the agent claim "done" too early?
+# Ask the agent to read AGENTS.md and follow the rules for the same product task.
 ```
 
 ## Features Covered
 
 - Electron window starts successfully
-- UI shows the document-list area
-- UI shows the QA panel
-- App creates and uses a local data directory
+- UI shows a fixed interview session
+- UI shows a sample timestamped transcript
+- UI shows a static debrief summary
+- No real LLM and no real audio transcription
 
 ## Related Lectures
 

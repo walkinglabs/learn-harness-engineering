@@ -3,20 +3,14 @@ import * as path from 'path';
 
 export class PersistenceService {
   private dataDir: string;
-  private documentsDir: string;
-  private indexDir: string;
 
   constructor(dataDir: string) {
     this.dataDir = dataDir;
-    this.documentsDir = path.join(dataDir, 'documents');
-    this.indexDir = path.join(dataDir, 'index');
     this.ensureDirectories();
   }
 
   private ensureDirectories() {
     fs.mkdirSync(this.dataDir, { recursive: true });
-    fs.mkdirSync(this.documentsDir, { recursive: true });
-    fs.mkdirSync(this.indexDir, { recursive: true });
   }
 
   /** Read a JSON file, returning null if it doesn't exist. */
@@ -49,22 +43,6 @@ export class PersistenceService {
     fs.writeFileSync(fullPath, content, 'utf-8');
   }
 
-  /** Copy a file into the documents directory. */
-  copyFileToDocuments(sourcePath: string, filename: string): string {
-    const destPath = path.join(this.documentsDir, filename);
-    fs.mkdirSync(this.documentsDir, { recursive: true });
-    fs.copyFileSync(sourcePath, destPath);
-    return destPath;
-  }
-
-  /** Delete a file from the documents directory. */
-  deleteFromDocuments(filename: string): void {
-    const filePath = path.join(this.documentsDir, filename);
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-    }
-  }
-
   /** List all files in a directory. */
   listFiles(relativePath: string): string[] {
     const fullPath = path.join(this.dataDir, relativePath);
@@ -82,13 +60,4 @@ export class PersistenceService {
     return this.dataDir;
   }
 
-  /** Get the documents directory path. */
-  getDocumentsDir(): string {
-    return this.documentsDir;
-  }
-
-  /** Get the index directory path. */
-  getIndexDir(): string {
-    return this.indexDir;
-  }
 }

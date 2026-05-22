@@ -198,7 +198,7 @@ Sizning loyihangizdagi har bir mahsulot domeni va arxitektura qatlamini baholayd
 
 **U nimani baholaydi:**
 
-- **Mahsulot domenlari (Product domains)** (masalan, hujjatni import qilish, Q&A oqimi, indekslash): har bir domen tekshiruv (verification) holati, agent tushuna olishi, test barqarorligi va asosiy boʻshliqlar (gaps) boʻyicha baho (A-D) oladi
+- **Mahsulot domenlari (Product domains)** (masalan, transcript import, question-chain segmentation, evidence-grounded debrief reports): har bir domen tekshiruv (verification) holati, agent tushuna olishi, test barqarorligi va asosiy boʻshliqlar (gaps) boʻyicha baho (A-D) oladi
 - **Arxitektura qatlamlari (Architectural layers)** (masalan, main process, preload, renderer, xizmatlar): har bir qatlam chegara (boundary) qoidalariga rioya etishi va agent tushuna olishi boʻyicha baho oladi
 
 **Nima uchun bu muhim:**
@@ -224,3 +224,14 @@ Sifat hujjati shuningdek harnessni soddalashtirishni qoʻllab-quvvatlaydi. Har b
 3. Benchmark vazifalarini ishlating.
 4. Yana bir snapshot oling.
 5. Taqqoslang — agar baholar tushmagan boʻlsa, u komponent ortiqcha yuk edi. Agar tushib ketsa, uni joyiga qaytaring.
+
+## Interview Debrief Coach Templates
+
+- [AGENTS-interview-template.md](./AGENTS-interview-template.md)
+- [feature-list-interview-template.json](./feature-list-interview-template.json)
+- [init-interview-template.sh](./init-interview-template.sh)
+- [session-handoff-interview-template.md](./session-handoff-interview-template.md)
+- [clean-state-checklist-interview-template.md](./clean-state-checklist-interview-template.md)
+- [evaluator-rubric-interview-template.md](./evaluator-rubric-interview-template.md)
+- [safety-boundaries-template.md](./safety-boundaries-template.md)
+- [interview-analysis-model-template.md](./interview-analysis-model-template.md)

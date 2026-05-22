@@ -8,18 +8,18 @@ const githubRepoTreeLink = "https://github.com/walkinglabs/learn-harness-enginee
 
 const zhLectureItems = [
   { text: "欢迎", link: "/zh/" },
-  { text: "模型能力强，不等于执行可靠", link: "/zh/lectures/lecture-01-why-capable-agents-still-fail/" },
-  { text: "Harness 的定义", link: "/zh/lectures/lecture-02-what-a-harness-actually-is/" },
-  { text: "让代码仓库成为唯一的事实来源", link: "/zh/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
-  { text: "把指令拆分到不同文件里", link: "/zh/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
-  { text: "让跨会话的任务保持上下文连续", link: "/zh/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
-  { text: "让 agent 每次工作前先初始化", link: "/zh/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
-  { text: "给 agent 划清每次任务的边界", link: "/zh/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
-  { text: "用功能清单约束 agent 该做什么", link: "/zh/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
-  { text: "防止 agent 提前宣告完成", link: "/zh/lectures/lecture-09-why-agents-declare-victory-too-early/" },
-  { text: "跑通完整流程才算真正验证", link: "/zh/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
-  { text: "让 agent 的运行过程可观测", link: "/zh/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
-  { text: "每次会话结束前都做好交接", link: "/zh/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" }
+  { text: "强模型在面试分析应用里仍会失败", link: "/zh/lectures/lecture-01-why-capable-agents-still-fail/" },
+  { text: "面试复盘系统里的 Harness", link: "/zh/lectures/lecture-02-what-a-harness-actually-is/" },
+  { text: "仓库作为面试分析事实来源", link: "/zh/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
+  { text: "拆分产品、架构、数据和安全指令", link: "/zh/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
+  { text: "多会话功能开发的上下文连续", link: "/zh/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
+  { text: "动 transcript 分析代码前先初始化", link: "/zh/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
+  { text: "约束音频、LLM、UI 和分析范围", link: "/zh/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
+  { text: "面试复盘应用的功能清单", link: "/zh/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
+  { text: "防止证据不足时宣告完成", link: "/zh/lectures/lecture-09-why-agents-declare-victory-too-early/" },
+  { text: "端到端 fixture 流水线验证", link: "/zh/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
+  { text: "Transcript 分析 Harness 可观测性", link: "/zh/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
+  { text: "干净状态和可重启交接", link: "/zh/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" }
 ];
 
 const zhProjectItems = [
@@ -27,9 +27,9 @@ const zhProjectItems = [
   { text: "提示词驱动 vs 规则驱动", link: "/zh/projects/project-01-baseline-vs-minimal-harness/" },
   { text: "让项目可读并接住上次工作", link: "/zh/projects/project-02-agent-readable-workspace/" },
   { text: "跨会话工作连续性", link: "/zh/projects/project-03-multi-session-continuity/" },
-  { text: "运行反馈与行为修正", link: "/zh/projects/project-04-incremental-indexing/" },
-  { text: "工作评审与自我验证", link: "/zh/projects/project-05-grounded-qa-verification/" },
-  { text: "综合 Agent 工作环境", link: "/zh/projects/project-06-runtime-observability-and-debugging/" }
+  { text: "运行反馈与结构控制", link: "/zh/projects/project-04-incremental-indexing/" },
+  { text: "Evaluator 循环与角色分离", link: "/zh/projects/project-05-evidence-grounded-evaluator-loops/" },
+  { text: "完整面试复盘 Harness", link: "/zh/projects/project-06-runtime-observability-and-debugging/" }
 ];
 
 const zhResourceItems = [
@@ -45,18 +45,18 @@ const zhSkillItems = [
 
 const enLectureItems = [
   { text: "Welcome", link: "/en/" },
-  { text: "Why Capable Agents Still Fail", link: "/en/lectures/lecture-01-why-capable-agents-still-fail/" },
-  { text: "What a Harness Actually Is", link: "/en/lectures/lecture-02-what-a-harness-actually-is/" },
-  { text: "Why the Repository Must Become the System of Record", link: "/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
-  { text: "Why One Giant Instruction File Fails", link: "/en/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
-  { text: "Why Long-Running Tasks Lose Continuity", link: "/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
-  { text: "Why Initialization Needs Its Own Phase", link: "/en/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
-  { text: "Why Agents Overreach and Under-Finish", link: "/en/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
-  { text: "Why Feature Lists Are Harness Primitives", link: "/en/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
-  { text: "Why Agents Declare Victory Too Early", link: "/en/lectures/lecture-09-why-agents-declare-victory-too-early/" },
-  { text: "Why End-to-End Testing Changes Results", link: "/en/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
-  { text: "Why Observability Belongs Inside the Harness", link: "/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
-  { text: "Why Every Session Must Leave a Clean State", link: "/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" }
+  { text: "Strong Models Still Fail on Real Interview-Analysis Apps", link: "/en/lectures/lecture-01-why-capable-agents-still-fail/" },
+  { text: "Harness for AI Interview Debrief Systems", link: "/en/lectures/lecture-02-what-a-harness-actually-is/" },
+  { text: "Repository as Interview Analysis System of Record", link: "/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
+  { text: "Split Product, Architecture, Data, and Safety Docs", link: "/en/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
+  { text: "Context Across Multi-Session Feature Development", link: "/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
+  { text: "Initialize Before Transcript Analysis Code", link: "/en/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
+  { text: "Agents Overreach on Audio, LLM, UI, and Analysis", link: "/en/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
+  { text: "Feature Lists for Interview Debrief Apps", link: "/en/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
+  { text: "Victory Before Evidence-Grounded Reports", link: "/en/lectures/lecture-09-why-agents-declare-victory-too-early/" },
+  { text: "End-to-End Fixture Pipelines Change Results", link: "/en/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
+  { text: "Observability Inside Transcript Analysis Harnesses", link: "/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
+  { text: "Clean State and Restartable Handoff", link: "/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" }
 ];
 
 const enProjectItems = [
@@ -64,9 +64,9 @@ const enProjectItems = [
   { text: "Prompt-Only vs. Rules-First", link: "/en/projects/project-01-baseline-vs-minimal-harness/" },
   { text: "Agent-Readable Workspace", link: "/en/projects/project-02-agent-readable-workspace/" },
   { text: "Multi-Session Continuity", link: "/en/projects/project-03-multi-session-continuity/" },
-  { text: "Runtime Feedback and Scope Control", link: "/en/projects/project-04-incremental-indexing/" },
-  { text: "Self-Verification and Role Separation", link: "/en/projects/project-05-grounded-qa-verification/" },
-  { text: "Complete Harness (Capstone)", link: "/en/projects/project-06-runtime-observability-and-debugging/" }
+  { text: "Runtime Feedback and Structural Control", link: "/en/projects/project-04-incremental-indexing/" },
+  { text: "Evaluator Loops and Role Separation", link: "/en/projects/project-05-evidence-grounded-evaluator-loops/" },
+  { text: "Complete Interview Debrief Harness", link: "/en/projects/project-06-runtime-observability-and-debugging/" }
 ];
 
 const enResourceItems = [
@@ -101,9 +101,9 @@ const viProjectItems = [
   { text: "Chỉ Prompt vs. Ưu tiên Quy tắc", link: "/vi/projects/project-01-baseline-vs-minimal-harness/" },
   { text: "Không gian làm việc Agent đọc được", link: "/vi/projects/project-02-agent-readable-workspace/" },
   { text: "Tính liên tục đa phiên", link: "/vi/projects/project-03-multi-session-continuity/" },
-  { text: "Phản hồi Runtime và Kiểm soát Phạm vi", link: "/vi/projects/project-04-incremental-indexing/" },
-  { text: "Tự xác minh và Phân tách Vai trò", link: "/vi/projects/project-05-grounded-qa-verification/" },
-  { text: "Harness Hoàn chỉnh", link: "/vi/projects/project-06-runtime-observability-and-debugging/" }
+  { text: "Phản hồi Runtime và Kiểm soát Cấu trúc", link: "/vi/projects/project-04-incremental-indexing/" },
+  { text: "Vòng lặp Evaluator và Phân tách Vai trò", link: "/vi/projects/project-05-evidence-grounded-evaluator-loops/" },
+  { text: "Harness Interview Debrief Hoàn chỉnh", link: "/vi/projects/project-06-runtime-observability-and-debugging/" }
 ];
 
 const viResourceItems = [
@@ -138,9 +138,9 @@ const ruProjectItems = [
   { text: "Только промпты vs правила", link: "/ru/projects/project-01-baseline-vs-minimal-harness/" },
   { text: "Рабочее пространство для агента", link: "/ru/projects/project-02-agent-readable-workspace/" },
   { text: "Непрерывность между сессиями", link: "/ru/projects/project-03-multi-session-continuity/" },
-  { text: "Обратная связь и контроль скоупа", link: "/ru/projects/project-04-incremental-indexing/" },
-  { text: "Самопроверка и обоснованные ответы", link: "/ru/projects/project-05-grounded-qa-verification/" },
-  { text: "Полный harness (капстоун)", link: "/ru/projects/project-06-runtime-observability-and-debugging/" }
+  { text: "Runtime feedback и структурный контроль", link: "/ru/projects/project-04-incremental-indexing/" },
+  { text: "Evaluator loops и разделение ролей", link: "/ru/projects/project-05-evidence-grounded-evaluator-loops/" },
+  { text: "Complete Interview Debrief Harness", link: "/ru/projects/project-06-runtime-observability-and-debugging/" }
 ];
 
 const ruResourceItems = [
@@ -175,9 +175,9 @@ const uzProjectItems = [
   { text: "Faqat prompt vs. qoidalar ustuvor", link: "/uz/projects/project-01-baseline-vs-minimal-harness/" },
   { text: "Agent oʻqiy oladigan ish maydoni", link: "/uz/projects/project-02-agent-readable-workspace/" },
   { text: "Koʻp sessiyali davomiylik", link: "/uz/projects/project-03-multi-session-continuity/" },
-  { text: "Runtime fikr-mulohaza va skoup nazorati", link: "/uz/projects/project-04-incremental-indexing/" },
-  { text: "Oʻz-oʻzini tekshirish va rollarni ajratish", link: "/uz/projects/project-05-grounded-qa-verification/" },
-  { text: "Toʻliq harness (yakuniy loyiha)", link: "/uz/projects/project-06-runtime-observability-and-debugging/" }
+  { text: "Runtime fikr-mulohaza va strukturaviy nazorat", link: "/uz/projects/project-04-incremental-indexing/" },
+  { text: "Evaluator loops va rollarni ajratish", link: "/uz/projects/project-05-evidence-grounded-evaluator-loops/" },
+  { text: "Toʻliq Interview Debrief Harness", link: "/uz/projects/project-06-runtime-observability-and-debugging/" }
 ];
 
 const uzResourceItems = [
@@ -212,9 +212,9 @@ const koProjectItems = [
   { text: "프롬프트 단독 vs 규칙 우선", link: "/ko/projects/project-01-baseline-vs-minimal-harness/" },
   { text: "에이전트가 읽을 수 있는 작업 공간", link: "/ko/projects/project-02-agent-readable-workspace/" },
   { text: "다중 세션 연속성", link: "/ko/projects/project-03-multi-session-continuity/" },
-  { text: "런타임 피드백과 범위 제어", link: "/ko/projects/project-04-incremental-indexing/" },
-  { text: "자기 검증과 역할 분리", link: "/ko/projects/project-05-grounded-qa-verification/" },
-  { text: "완성형 하네스(캡스톤)", link: "/ko/projects/project-06-runtime-observability-and-debugging/" }
+  { text: "런타임 피드백과 구조 제어", link: "/ko/projects/project-04-incremental-indexing/" },
+  { text: "Evaluator 루프와 역할 분리", link: "/ko/projects/project-05-evidence-grounded-evaluator-loops/" },
+  { text: "완전한 면접 debrief 하네스", link: "/ko/projects/project-06-runtime-observability-and-debugging/" }
 ];
 
 const koResourceItems = [
@@ -231,9 +231,9 @@ const koSkillItems = [
 export default withMermaid(
   defineConfig({
     base: docsBase,
-    title: "Learn Harness Engineering",
+    title: "Learn Interview Harness Engineering",
     description:
-      "A project-based course on designing the environments, state, verification, and control systems that make Codex and Claude Code reliable.",
+      "A project-based course on harness engineering through an Electron AI Interview Debrief Coach app.",
     cleanUrls: true,
     srcExclude: ["temp/**"],
     ignoreDeadLinks: true,

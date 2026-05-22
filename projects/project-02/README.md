@@ -1,33 +1,34 @@
-# Project 02: Agent-Readable Workspace
+# Project 02: Agent-readable Interview Workspace
 
-Demonstrate how repository readability and explicit continuity artifacts reduce context loss during multi-session development.
+Make the repository readable enough that an agent can discover the product definition, transcript format, data model, analysis model, safety boundaries, and architecture rules instead of guessing.
 
 ## Directory Guide
 
 | Directory | Meaning |
 |------|------|
-| `starter/` | **Starting point**: based on the P1 solution, with document import, detail view, and persistence still to implement. The harness is weak: AGENTS.md is minimal and there is no session handoff. |
-| `solution/` | **Reference implementation**: all new features are implemented, with complete workspace documentation (ARCHITECTURE.md, PRODUCT.md, session-handoff.md). |
+| `starter/` | Starting point derived from Project 01, with transcript import and persistence still to harden. |
+| `solution/` | Reference implementation with product docs, architecture docs, transcript parser, session store, and handoff notes. |
 
 ## How to Use
 
 ```sh
-# Requires at least 2 agent sessions to complete
 cd starter
 npm install
-# Session A: implement document import and the detail view
-# Session B: implement persistence (observe whether the agent quickly regains context)
+# Session A: implement transcript import and parse-error display.
+# Session B: implement session persistence and verify the agent regains context.
 
 cd ../solution
 npm install
-# Rerun with the complete harness and compare session recovery speed
+# Rerun with complete repo-readable docs and compare recovery speed.
 ```
 
 ## Features Covered
 
-- Document import flow (file picker plus IPC transfer)
-- Document detail view (metadata plus content display)
-- Basic persistence (imported documents remain after restart)
+- Import timestamped transcript text
+- Parse timestamp / speaker / utterance
+- Save InterviewSession records locally
+- Preserve sessions across restart
+- Show parse errors instead of failing silently
 
 ## Related Lectures
 

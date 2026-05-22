@@ -224,3 +224,14 @@ Quality document 也可以用来验证 harness 是否可以简化。Harness 里�
 3. 跑基准测试。
 4. 再拍一份快照。
 5. 对比——评级没降，说明那个组件是多余的。降了，就恢复。
+
+## Interview Debrief Coach Templates
+
+- [AGENTS-interview-template.md](./AGENTS-interview-template.md)
+- [feature-list-interview-template.json](./feature-list-interview-template.json)
+- [init-interview-template.sh](./init-interview-template.sh)
+- [session-handoff-interview-template.md](./session-handoff-interview-template.md)
+- [clean-state-checklist-interview-template.md](./clean-state-checklist-interview-template.md)
+- [evaluator-rubric-interview-template.md](./evaluator-rubric-interview-template.md)
+- [safety-boundaries-template.md](./safety-boundaries-template.md)
+- [interview-analysis-model-template.md](./interview-analysis-model-template.md)

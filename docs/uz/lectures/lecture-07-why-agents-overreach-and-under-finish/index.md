@@ -3,7 +3,7 @@
 > Kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-07-why-agents-overreach-and-under-finish/code/)
 > Amaliy loyiha: [Loyiha 04. Runtime qayta aloqa va skoup nazorati](./../../projects/project-04-incremental-indexing/index.md)
 
-# 7-maʼruza. Agentlar uchun aniq vazifa chegaralarini chizing
+# 07-maʼruza. Agentlar audio, LLM, UI va analysis featuresda nega haddan oshadi
 
 Siz Claude Codeʼga “bu loyihaga foydalanuvchi autentifikatsiyasini qoʻsh” deysiz, u esa maʼlumotlar bazasi sxemasini oʻzgartirishdan, marshrutlarni (routes) yozishdan, frontend komponentlarini oʻzgartirishdan boshlaydi va — shu yoʻl-yoʻlakay — xatoliklarni qayta ishlash middlewareʼini (error-handling middleware) refaktoring qilib ketadi. Ikki soatdan keyin tekshirasiz: 12 ta fayl oʻzgartirilgan, 800 qator yangi kod yozilgan, lekin bittayam funksionallik (feature) boshidan oxirigacha (end-to-end) ishlamayapti.
 

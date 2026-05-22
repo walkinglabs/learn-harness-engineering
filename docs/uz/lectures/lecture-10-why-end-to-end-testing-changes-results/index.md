@@ -1,9 +1,9 @@
 [English version →](../../../en/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 
 > Ushbu maʼruza uchun kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-10-why-end-to-end-testing-changes-results/code/)
-> Amaliy loyiha: [Loyiha 05. Agentga oʻz ishini oʻzi tekshirishiga imkon bering](./../../projects/project-05-grounded-qa-verification/index.md)
+> Amaliy loyiha: [Loyiha 05. Agentga oʻz ishini oʻzi tekshirishiga imkon bering](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# 10-maʼruza. Faqatgina End-to-End testlash chinakam tekshiruvdir
+# 10-maʼruza. End-to-end fixture pipelines natijalarni nega oʻzgartiradi
 
 Siz agentdan Electron ilovasiga faylni eksport qilish funksiyasini qoʻshishni soʻraysiz. U render process komponentini, preload skriptini va xizmat qatlami mantigʻini yozadi. Har bir komponent uchun unit testlar ajoyib tarzda oʻtadi. Agent “Tugatildi” deydi. Export tugmasini bosganingizda esa — fayl yoʻli formati notoʻgʻri, progress bar ishlamayapti va katta fayllarni eksport qilish xotira sizib chiqishiga (memory leak) sabab boʻlyapti. Beshta komponent chegarasi muammolari, va unit testlar ularning bittasini ham tutib qola olmagan.
 

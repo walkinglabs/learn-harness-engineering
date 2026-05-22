@@ -4,37 +4,32 @@
 
 | Dimension | Grade | Notes |
 |-----------|-------|-------|
-| Build & Compile | C | Builds but has unused import warnings |
-| Feature Completeness | D | Missing feedback, clean state, benchmarking |
-| ConversationHistory | D | Basic list display, no chat bubbles or interactivity |
-| Structured Logging | C | Logger exists but not used in all services |
-| Q&A with Citations | B | Works for basic queries |
-| Document Import | B | Works via dev console only |
-| Indexing | B | Batch indexing works, no progress reporting |
-| Persistence | B | Data persists across restarts |
-| Test Coverage | F | No tests written |
-| Documentation | D | Minimal AGENTS.md only |
-| Clean State | F | No reset functionality |
-| Benchmarking | F | No benchmark scripts |
+| Build & Compile | B | Shared app checks pass when dependencies are installed |
+| Feature Completeness | C | Core transcript import and analysis exist; full capstone harness still missing |
+| Transcript Timeline | B | Timeline renders imported utterances |
+| Debrief Report | B | Report sections render deterministic analysis |
+| Evidence Grounding | B | Risk items require evidence IDs |
+| Safety Boundary | B | Safety checker exists; cleanup scanner still missing |
+| Persistence | B | Sessions, utterances, reports, and feedback persist locally |
+| Test Coverage | C | Parser, analysis pipeline, and safety tests exist |
+| Documentation | D | Starter keeps intentionally weak harness docs |
+| Benchmarking | F | benchmark.sh still missing in starter |
 
-## Overall Grade: D+
+## Overall Grade: C
 
 ## Critical Gaps
 
-1. No feedback collection on Q&A responses
-2. No clean state reset functionality
-3. No benchmark scripts
-4. ConversationHistory is a flat list without chat styling
-5. Logger is basic -- no structured JSON output
-6. No test coverage at all
-7. Missing all advanced harness files (CLAUDE.md, feature_list.json, etc.)
+1. No benchmark script in starter.
+2. No cleanup scanner in starter.
+3. No complete reliability document in starter.
+4. No full feature_list.json in starter.
+5. No complete session handoff in starter.
 
 ## Action Items
 
-- [ ] Add FeedbackEntry type and feedback service
-- [ ] Implement clean state reset via IPC
-- [ ] Create benchmark.sh script
-- [ ] Enhance ConversationHistory with chat bubbles
-- [ ] Add structured JSON logging to all services
-- [ ] Write tests for all services
-- [ ] Create full harness (CLAUDE.md, feature_list.json, init.sh, etc.)
+- [ ] Add full capstone feature_list.json
+- [ ] Add benchmark.sh
+- [ ] Add cleanup-scanner.sh
+- [ ] Add check-architecture.sh
+- [ ] Add reliability docs
+- [ ] Update quality score after running all verification gates

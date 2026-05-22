@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-07-why-agents-overreach-and-under-finish/code/)
 > 实战练习：[Project 04. 用运行反馈修正 agent 的行为](./../../projects/project-04-incremental-indexing/index.md)
 
-# 第七讲. 给 agent 划清每次任务的边界
+# 第七讲. 为什么 agent 会在音频、LLM、UI 和分析功能上越界
 
 你让 Claude Code "给这个项目加上用户认证功能"，结果它同时开始改数据库 schema、写路由、改前端组件、还顺手重构了错误处理中间件。两个小时后你一看——12 个文件被修改，800 行新代码，但没有一个功能是端到端跑通的。
 

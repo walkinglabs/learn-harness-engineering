@@ -1,34 +1,33 @@
-# Project 04: Runtime Observability and Structural Control
+# Project 04: Runtime Feedback and Structural Control for Transcript Analysis
 
-Introduce runtime observability and structural boundary checks while debugging a seeded runtime defect.
+Add logs, fixture checks, and architecture boundaries so the agent diagnoses transcript parsing and segmentation failures from evidence rather than guessing.
 
 ## Directory Guide
 
 | Directory | Meaning |
 |------|------|
-| `starter/` | **Starting point**: based on the P3 solution, with logging and structural boundary features still to implement. `IndexingService` contains a hidden seeded bug: files longer than 1000 characters produce empty chunks. There is no architecture-check script. |
-| `solution/` | **Reference implementation**: structured logging module, architecture boundary-check script, and the seeded bug fixed. |
+| `starter/` | Starting point derived from Project 03, with runtime logging and structural checks still incomplete. |
+| `solution/` | Reference implementation with structured logs, fixture-analysis scripts, architecture checks, and transcript segmentation verification. |
 
 ## How to Use
 
 ```sh
 cd starter
 npm install
-# 1. Observe whether the agent can locate the bug through logs
-# 2. Import a large file and check whether chunking behaves incorrectly
+# Reproduce a timestamp, speaker-alias, or segmentation failure with a transcript fixture.
 
 cd ../solution
 npm install
-# Compare how structured logs speed up diagnosis
+# Compare how logs and scripts localize parse / segment / analyze failures.
 ```
 
 ## Features Covered
 
-- Startup logs
-- Import and indexing logs
-- Visible QA failure path
-- Explicit boundaries between main, preload, renderer, and services layers
-- Debugging a seeded runtime defect
+- Structured import / parse / segment / analyze logs
+- Architecture boundary check
+- Fixture analysis script
+- Segmentation verification
+- Debugging a seeded transcript-analysis defect
 
 ## Related Lectures
 

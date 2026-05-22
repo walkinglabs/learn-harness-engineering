@@ -1,42 +1,31 @@
-# Project 01: Baseline vs Minimal Harness
+# Project 01：Prompt-only vs Rules-first for Interview Debrief Apps
 
-比较弱 harness（仅靠 prompt）和显式 harness（规则文件 + 验证机制）对 AI 编码代理任务完成率的影响。
+对比两种方式：只给 agent 一句“做个面试复盘 App”，以及给 agent 一个最小 harness（AGENTS.md、init.sh、feature_list.json、fixture transcript）。
 
 ## 目录说明
 
 | 目录 | 含义 |
 |------|------|
-| `starter/` | **起点**——只有一个模糊的 `task-prompt.md`，没有 AGENTS.md、没有 feature_list.json。这是你给代理的"弱 harness"版本。 |
-| `solution/` | **参考实现**——相同的应用代码，但配备了完整的 harness 文件（AGENTS.md、feature_list.json、init.sh、claude-progress.md）。这是"显式 harness"版本。 |
+| `starter/` | 弱 harness 起点：极简 Electron app、模糊任务说明、sample transcript。 |
+| `solution/` | 参考实现：同一产品目标，但补齐 AGENTS.md、init.sh、feature_list.json、parser test、静态 debrief UI 和 progress log。 |
 
-## 使用方法
+## 使用方式
 
 ```sh
-# 1. 用 starter（弱 harness）跑一次代理任务
 cd starter
 npm install
-# 把 task-prompt.md 的内容作为 prompt 给 Claude Code / Codex
-# 让代理尝试完成：窗口启动、文档列表、问答面板、数据目录
+# 把 task-prompt.md 交给 Claude Code / Codex。
+# 让 agent 完成：窗口启动、面试会话列表、transcript timeline、debrief summary。
 
-# 2. 用 solution（显式 harness）跑一次
 cd ../solution
 npm install
-# 让代理读取 AGENTS.md，按规则执行同样的任务
-
-# 3. 对比两次结果
-# - 任务是否完成？
-# - 需要重试几次？
-# - 代理是否提前声称"完成"？
+# 要求 agent 先读 AGENTS.md，再按规则完成同一任务。
 ```
 
-## 本项目涉及的功能
+## 覆盖功能
 
-- Electron 窗口成功启动
-- UI 显示文档列表区域
-- UI 显示问答面板
-- 应用创建并使用本地数据目录
-
-## 对应课件
-
-- [Lecture 01: 为什么强大的模型仍然会失败](../../docs/lectures/lecture-01-why-capable-agents-still-fail/index.md)
-- [Lecture 02: Harness 到底是什么](../../docs/lectures/lecture-02-what-a-harness-actually-is/index.md)
+- Electron 窗口能启动
+- UI 显示固定 interview session
+- UI 显示 sample timestamped transcript
+- UI 显示静态 debrief summary
+- 不接真实 LLM，不接真实音频转写

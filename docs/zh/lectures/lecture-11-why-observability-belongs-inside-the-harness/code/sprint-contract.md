@@ -2,11 +2,11 @@
 
 Sprint goal:
 
-- Add visible citations to grounded Q&A results
+- Add visible evidence references to evidence-grounded debrief reports results
 
 Done means:
 
 - User asks a question
 - App returns an answer
-- At least one citation is shown
-- Clicking a citation opens the source location in the document view
+- At least one evidence reference is shown
+- Clicking an evidence reference opens the source turn in the transcript timeline

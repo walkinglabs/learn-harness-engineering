@@ -1,14 +1,14 @@
 [
   {
-    "id": "qna-001",
-    "category": "grounded_qa",
-    "description": "User can ask a question about an imported document and receive an answer with visible citations.",
+    "id": "debrief-001",
+    "category": "evidence_grounded_debrief",
+    "description": "User can ask a question about an imported transcript and receive an answer with visible evidence references.",
     "verification": [
-      "Import a markdown document",
-      "Open the Q&A panel",
+      "Import a markdown transcript",
+      "Open the debrief report panel",
       "Ask a question about known content",
       "Verify the answer is returned",
-      "Verify one or more citations are displayed"
+      "Verify one or more transcript evidence references are displayed"
     ],
     "passes": false
   }

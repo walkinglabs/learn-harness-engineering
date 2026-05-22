@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/)
 > 실습 프로젝트: [Project 02. Agent-readable workspace](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# 강의 03. 저장소를 단일 진실 원천으로 만들어라
+# 강의 03. 저장소를 면접 분석의 단일 진실 원천으로 만들기
 
 팀의 아키텍처 결정이 Confluence, Slack, Jira, 그리고 몇몇 시니어 엔지니어의 머릿속에 흩어져 있습니다. 사람에게는 이것이 겨우 통합니다 — 동료에게 물어보고, 채팅 기록을 검색하고, 문서를 뒤지면 됩니다. 도저히 안 되면 휴게실에서 누군가를 붙잡을 수도 있습니다. 하지만 AI 에이전트(agent)에게는, 저장소(repository)에 없는 정보는 단순히 존재하지 않습니다.
 

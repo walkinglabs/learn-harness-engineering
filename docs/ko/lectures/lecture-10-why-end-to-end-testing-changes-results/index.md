@@ -1,9 +1,9 @@
 [English Version →](../../../en/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 
 > 이 강의의 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-10-why-end-to-end-testing-changes-results/code/)
-> 실습 프로젝트: [Project 05. 에이전트가 자신의 작업을 스스로 검증하게 하기](./../../projects/project-05-grounded-qa-verification/index.md)
+> 실습 프로젝트: [Project 05. 에이전트가 자신의 작업을 스스로 검증하게 하기](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# 강의 10. 엔드투엔드 테스트(end-to-end testing)만이 진정한 검증이다
+# 강의 10. End-to-end fixture 파이프라인이 결과를 바꾸는 이유
 
 에이전트에게 Electron 앱에 파일 내보내기 기능을 추가해 달라고 합니다. 에이전트는 렌더 프로세스 컴포넌트, 프리로드 스크립트, 서비스 계층 로직을 작성합니다. 각 컴포넌트에 대한 단위 테스트(unit test)는 완벽하게 통과합니다. 에이전트는 "완료됐습니다"라고 말합니다. 실제로 내보내기 버튼을 클릭하면—파일 경로 형식이 잘못되어 있고, 진행 표시줄이 업데이트되지 않으며, 대용량 파일 내보내기 시 메모리 누수가 발생합니다. 다섯 개의 컴포넌트 경계 결함이 있었는데, 단위 테스트는 하나도 잡아내지 못한 것입니다.
 

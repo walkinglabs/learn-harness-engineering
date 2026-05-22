@@ -13,6 +13,18 @@ Copy these four files into your project root first:
 
 Add the remaining files as your project grows.
 
+For the Interview Debrief Coach course project, use the interview-specific
+templates first:
+
+- [`AGENTS-interview-template.md`](./AGENTS-interview-template.md)
+- [`feature-list-interview-template.json`](./feature-list-interview-template.json)
+- [`init-interview-template.sh`](./init-interview-template.sh)
+- [`session-handoff-interview-template.md`](./session-handoff-interview-template.md)
+- [`clean-state-checklist-interview-template.md`](./clean-state-checklist-interview-template.md)
+- [`evaluator-rubric-interview-template.md`](./evaluator-rubric-interview-template.md)
+- [`safety-boundaries-template.md`](./safety-boundaries-template.md)
+- [`interview-analysis-model-template.md`](./interview-analysis-model-template.md)
+
 ---
 
 ## AGENTS.md
@@ -107,7 +119,7 @@ The feature tracker. A machine-readable list of every feature the agent needs to
 
 - `not_started` — hasn't been touched
 - `in_progress` — the one feature currently being worked on (only one at a time)
-- `blocked` — can't proceed due to a documented issue
+- `blocked` — can't proceed due to a recorded blocker
 - `passing` — verification passed and evidence is recorded
 
 The agent should only have one feature in `in_progress` at any time.
@@ -198,7 +210,7 @@ A quality snapshot that grades each product domain and architectural layer in yo
 
 **What it grades:**
 
-- **Product domains** (e.g., document import, Q&A flow, indexing): each domain gets a grade (A-D) across verification status, agent legibility, test stability, and key gaps
+- **Product domains** (e.g., transcript import, question-chain segmentation, evidence-grounded debrief reports): each domain gets a grade (A-D) across verification status, agent legibility, test stability, and key gaps
 - **Architectural layers** (e.g., main process, preload, renderer, services): each layer gets a grade for boundary enforcement and agent legibility
 
 **Why it matters:**

@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-04-why-one-giant-instruction-file-fails/code/)
 > 실습 프로젝트: [Project 02. 에이전트가 읽을 수 있는 작업 공간](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# 강의 04. 명령 파일을 여러 파일로 분산하라
+# 강의 04. 제품, 아키텍처, 데이터, 안전 문서로 지시 나누기
 
 하네스 엔지니어링(harness engineering)에 진지하게 임하기 시작했습니다. `AGENTS.md`를 만들고, 떠오르는 모든 규칙과 제약과 교훈을 그 안에 빼곡히 담았습니다. 한 달이 지나자 파일이 300줄로 불었고, 두 달 뒤엔 450줄, 세 달 뒤엔 600줄이 됐습니다. 그런데 에이전트(agent) 성능이 오히려 나빠지고 있다는 것을 알게 됩니다. 간단한 버그 수정을 할 때도 에이전트가 불필요한 배포 명령을 처리하느라 컨텍스트(context)를 낭비하고, 300번째 줄에 묻혀 있는 중요한 보안 제약은 완전히 무시되며, 서로 모순된 코드 스타일 규칙 세 개를 매번 임의로 골라 따릅니다.
 

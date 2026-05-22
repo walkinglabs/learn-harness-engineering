@@ -7,7 +7,7 @@
 
 ## Nima qilasiz
 
-Agentga skoup nazorati (scope control) va tekshirish eshiklarini (verification gates) qoʻshing. Hujjatlarni qismlarga boʻlish (chunking), metamaʼlumotlarni (metadata) ajratib olish, indekslash jarayonini koʻrsatish va iqtiboslarga asoslangan Q&A (savol-javob) oqimini amalga oshiring. Funksiyalar (features) holatini kuzatish uchun `feature_list.json` dan foydalaning — bir vaqtda bitta funksiya ustida ishlansin, tekshiruv dalilisiz (verification evidence) “pass” (oʻtdi) deb belgilash mumkin emas.
+Agentga skoup nazorati (scope control) va tekshirish eshiklarini (verification gates) qoʻshing. Hujjatlarni qismlarga boʻlish (segmentation), metamaʼlumotlarni (metadata) ajratib olish, question-chain segmentation jarayonini koʻrsatish va iqtiboslarga asoslangan debrief report (savol-javob) oqimini amalga oshiring. Funksiyalar (features) holatini kuzatish uchun `feature_list.json` dan foydalaning — bir vaqtda bitta funksiya ustida ishlansin, tekshiruv dalilisiz (verification evidence) “pass” (oʻtdi) deb belgilash mumkin emas.
 
 Siz buni ikki marta bajarasiz: birinchisida hech qanday cheklovlarsiz, ikkinchisida esa qatʼiy talablar asosida.
 

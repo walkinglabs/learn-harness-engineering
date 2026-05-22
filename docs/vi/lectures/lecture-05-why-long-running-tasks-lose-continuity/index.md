@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-05-why-long-running-tasks-lose-continuity/code/)
 > Dự án thực hành: [Dự án 03. Tính liên tục đa phiên](./../../projects/project-03-multi-session-continuity/index.md)
 
-# Bài 05. Duy trì Ngữ cảnh Qua Các Phiên
+# Bài 05. Giữ ngữ cảnh sống qua phát triển tính năng nhiều phiên
 
 Bạn yêu cầu Claude Code triển khai một tính năng hoàn chỉnh. Nó chạy 30 phút, thực hiện hầu hết công việc, nhưng ngữ cảnh đang cạn kiệt. Bạn bắt đầu một phiên mới để tiếp tục — và khám phá rằng nó không nhớ những quyết định nào đã được đưa ra lần trước, tại sao lại chọn phương án A thay vì phương án B, những tệp nào đã được sửa đổi, hay trạng thái của các bài test là gì. Nó dành 15 phút để khám phá lại dự án, và có thể không nhất quán với cách tiếp cận trước.
 

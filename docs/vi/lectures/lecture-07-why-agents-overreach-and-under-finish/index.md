@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-07-why-agents-overreach-and-under-finish/code/)
 > Dự án thực hành: [Dự án 04. Phản hồi Runtime và Kiểm soát Phạm vi](./../../projects/project-04-incremental-indexing/index.md)
 
-# Bài 07. Vạch Ranh giới Tác vụ Rõ ràng cho Agent
+# Bài 07. Vì sao agent vượt phạm vi ở audio, LLM, UI và analysis features
 
 Bạn nói với Claude Code "thêm xác thực người dùng vào dự án này," và nó bắt đầu sửa đổi database schema, viết route, thay đổi frontend component, và — nhân tiện — tái cấu trúc error-handling middleware. Hai giờ sau bạn kiểm tra: 12 tệp được sửa đổi, 800 dòng mã mới, và không có một tính năng nào hoạt động end-to-end.
 

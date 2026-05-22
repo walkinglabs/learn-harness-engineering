@@ -19,11 +19,11 @@
 
 | 도메인 (Domain) | 등급 (Grade) | 검증 (Verification) | 에이전트 가독성 (Agent Legibility) | 테스트 안정성 (Test Stability) | 주요 격차 (Key Gaps) | 마지막 업데이트 (Last Updated) |
 |--------|-------|-------------|-----------------|---------------|----------|-------------|
-| Document Import | - | - | - | - | - | - |
-| Document Management | - | - | - | - | - | - |
-| Document Indexing | - | - | - | - | - | - |
-| Q&A Flow | - | - | - | - | - | - |
-| Grounded Answers | - | - | - | - | - | - |
+| Transcript Import | - | - | - | - | - | - |
+| Debrief Session Management | - | - | - | - | - | - |
+| Question-Chain Segmentation | - | - | - | - | - | - |
+| Debrief Report Flow | - | - | - | - | - | - |
+| Evidence-Grounded Reports | - | - | - | - | - | - |
 
 ## 아키텍처 레이어 (Architectural Layers)
 

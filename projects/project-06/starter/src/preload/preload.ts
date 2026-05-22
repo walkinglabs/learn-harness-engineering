@@ -1,23 +1,20 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { IPC_CHANNELS } from '../shared/types';
+import {
+  AnalysisFeedbackInput,
+  ImportTranscriptInput,
+  IPC_CHANNELS,
+} from '../shared/types';
 
 const api = {
-  documents: {
-    list: () => ipcRenderer.invoke(IPC_CHANNELS.LIST_DOCUMENTS),
-    import: (filePath: string) => ipcRenderer.invoke(IPC_CHANNELS.IMPORT_DOCUMENT, filePath),
-    get: (id: string) => ipcRenderer.invoke(IPC_CHANNELS.GET_DOCUMENT, id),
-    delete: (id: string) => ipcRenderer.invoke(IPC_CHANNELS.DELETE_DOCUMENT, id),
-  },
-  indexing: {
-    start: (documentId?: string) => ipcRenderer.invoke(IPC_CHANNELS.START_INDEXING, documentId),
-    status: () => ipcRenderer.invoke(IPC_CHANNELS.GET_INDEXING_STATUS),
-    chunks: (documentId: string) => ipcRenderer.invoke(IPC_CHANNELS.GET_CHUNKS, documentId),
-  },
-  qa: {
-    ask: (question: string) => ipcRenderer.invoke(IPC_CHANNELS.ASK_QUESTION, question),
-    history: () => ipcRenderer.invoke(IPC_CHANNELS.GET_HISTORY),
-    clearHistory: () => ipcRenderer.invoke(IPC_CHANNELS.CLEAR_HISTORY),
-  },
+  listSessions: () => ipcRenderer.invoke(IPC_CHANNELS.LIST_SESSIONS),
+  importTranscript: (input: ImportTranscriptInput) =>
+    ipcRenderer.invoke(IPC_CHANNELS.IMPORT_TRANSCRIPT, input),
+  getTranscript: (sessionId: string) => ipcRenderer.invoke(IPC_CHANNELS.GET_TRANSCRIPT, sessionId),
+  analyzeSession: (sessionId: string) => ipcRenderer.invoke(IPC_CHANNELS.ANALYZE_SESSION, sessionId),
+  getReport: (sessionId: string) => ipcRenderer.invoke(IPC_CHANNELS.GET_REPORT, sessionId),
+  saveFeedback: (input: AnalysisFeedbackInput) =>
+    ipcRenderer.invoke(IPC_CHANNELS.SAVE_FEEDBACK, input),
+  getStatus: () => ipcRenderer.invoke(IPC_CHANNELS.GET_STATUS),
 };
 
-contextBridge.exposeInMainWorld('knowledgeBase', api);
+contextBridge.exposeInMainWorld('interviewCoach', api);

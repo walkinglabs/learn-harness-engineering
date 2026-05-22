@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-08-why-feature-lists-are-harness-primitives/code/)
 > 실습 프로젝트: [프로젝트 04. 런타임 피드백과 범위 제어](./../../projects/project-04-incremental-indexing/index.md)
 
-# 강의 08. 기능 목록으로 에이전트의 행동을 제약하십시오
+# 강의 08. 면접 디브리프 앱에서 기능 목록은 하네스 원시 단위다
 
 에이전트에게 전자상거래 사이트를 구축하라고 요청합니다. 완성 후 에이전트는 "완료"라고 말합니다. 코드를 살펴보니 — 사용자 인증은 작동하지만 장바구니의 결제 버튼은 아무것도 하지 않고, 결제 흐름은 전혀 연결되어 있지 않습니다. 문제는: "완료"가 무엇을 의미하는지 전혀 알려주지 않았기 때문에, 에이전트는 자신만의 기준을 사용했습니다 — "코드를 많이 작성했고 꽤 완성된 것처럼 보인다."
 
@@ -13,7 +13,7 @@ Anthropic과 OpenAI 모두 강조합니다: **산출물(artifact)은 외부화�
 
 ## 에이전트는 "완료"의 의미를 모릅니다
 
-Claude Code도 Codex도 "완료"가 무엇을 의미하는지 자동으로 알지 못합니다. "장바구니 기능을 추가해 줘"라고 하면, 모델의 해석은 "Cart 컴포넌트와 addToCart 메서드를 작성하는 것"일 수 있습니다. 하지만 당신이 의미한 것은 "사용자가 상품을 탐색하고, 장바구니에 추가하고, 결제를 완료할 수 있는 엔드투엔드 흐름"이었습니다. 이 이해의 간극은 기능 목록 없이는 지속됩니다. 에이전트는 자신만의 암묵적인 기준을 사용합니다 — 보통 "코드에 명백한 문법 오류가 없다"입니다. 당신이 필요한 것은 엔드투엔드 동작 검증입니다. 친구에게 과일을 사달라고 하면서 "과일 좀 사와"라고만 했는데 레몬을 가져오는 것처럼. 친구의 과일과 당신의 과일은 같은 과일이 아닙니다.
+Claude Code도 Codex도 "완료"가 무엇을 의미하는지 자동으로 알지 못합니다. "장바구니 기능을 추가해 줘"라고 하면, 모델의 해석은 "Report 컴포넌트와 addToReport 메서드를 작성하는 것"일 수 있습니다. 하지만 당신이 의미한 것은 "사용자가 상품을 탐색하고, 장바구니에 추가하고, 결제를 완료할 수 있는 엔드투엔드 흐름"이었습니다. 이 이해의 간극은 기능 목록 없이는 지속됩니다. 에이전트는 자신만의 암묵적인 기준을 사용합니다 — 보통 "코드에 명백한 문법 오류가 없다"입니다. 당신이 필요한 것은 엔드투엔드 동작 검증입니다. 친구에게 과일을 사달라고 하면서 "과일 좀 사와"라고만 했는데 레몬을 가져오는 것처럼. 친구의 과일과 당신의 과일은 같은 과일이 아닙니다.
 
 다음과 같은 일반적인 진행 메모를 살펴보십시오:
 
@@ -28,7 +28,7 @@ Claude Code도 Codex도 "완료"가 무엇을 의미하는지 자동으로 알�
 
 ```mermaid
 flowchart LR
-    Feature["하나의 기능 행"] --> Behavior["동작 설명<br/>예: POST /cart/items가 201 반환"]
+    Feature["하나의 기능 행"] --> Behavior["동작 설명<br/>예: POST /report/items가 201 반환"]
     Feature --> Check["검증 명령<br/>실행할 정확한 확인 방법"]
     Feature --> State["상태<br/>not_started / active / blocked / passing"]
 
@@ -78,8 +78,8 @@ flowchart LR
 ```json
 {
   "id": "F03",
-  "behavior": "POST /cart/items with {product_id, quantity} returns 201",
-  "verification": "curl -X POST http://localhost:3000/api/cart/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
+  "behavior": "POST /report/items with {product_id, quantity} returns 201",
+  "verification": "curl -X POST http://localhost:3000/api/report/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
   "state": "passing",
   "evidence": "commit abc123, test output log"
 }
@@ -101,7 +101,7 @@ flowchart LR
 
 ### 4. 세분화 수준 조정
 
-각 기능 항목은 "하나의 세션 내에서 완료 가능"한 범위여야 합니다. 너무 넓으면 완료되지 않고, 너무 좁으면 관리 오버헤드가 늘어납니다. "사용자가 장바구니에 항목을 추가할 수 있다"는 적절한 세분화입니다. "장바구니 구현"은 너무 넓습니다. "Cart 모델에 name 필드 생성"은 너무 좁습니다. 스테이크 자르는 것처럼 — 통째로도 아니고, 간 고기도 아닌 적절한 한 입 크기.
+각 기능 항목은 "하나의 세션 내에서 완료 가능"한 범위여야 합니다. 너무 넓으면 완료되지 않고, 너무 좁으면 관리 오버헤드가 늘어납니다. "사용자가 장바구니에 항목을 추가할 수 있다"는 적절한 세분화입니다. "장바구니 구현"은 너무 넓습니다. "Report 모델에 name 필드 생성"은 너무 좁습니다. 스테이크 자르는 것처럼 — 통째로도 아니고, 간 고기도 아닌 적절한 한 입 크기.
 
 ## 실제 사례
 

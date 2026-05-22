@@ -1,91 +1,27 @@
 {
   "project": "project-03",
-  "description": "Scope control and grounded verification with indexing, metadata, and grounded QA",
+  "description": "Multi-session continuity for interview analysis",
   "features": [
     {
-      "id": "window-launch",
-      "name": "Window Launch",
-      "description": "Electron app opens a BrowserWindow with correct dimensions and preload script",
+      "id": "session-state-machine",
+      "name": "Interview Session State Machine",
+      "description": "Sessions move through imported, parsed, analyzing, analyzed, and reviewed states",
       "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:00:00Z"
-    },
-    {
-      "id": "document-list",
-      "name": "Document List Panel",
-      "description": "Left sidebar shows imported documents with empty state message",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:05:00Z"
-    },
-    {
-      "id": "question-panel",
-      "name": "Question Panel",
-      "description": "Bottom input bar accepts questions and submits via IPC",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:08:00Z"
-    },
-    {
-      "id": "data-directory",
-      "name": "Data Directory",
-      "description": "PersistenceService creates and manages userData/knowledge-base-data directory",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:10:00Z"
-    },
-    {
-      "id": "document-import",
-      "name": "Document Import",
-      "description": "Users can import .txt and .md files via ImportPanel with file picker",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T11:00:00Z"
-    },
-    {
-      "id": "document-detail",
-      "name": "Document Detail with Content",
-      "description": "DocumentDetail shows full document content, metadata, and delete button",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T11:15:00Z"
-    },
-    {
-      "id": "basic-persistence",
-      "name": "Basic Persistence",
-      "description": "Imported documents persist across app restarts via filesystem storage",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T11:30:00Z"
-    },
-    {
-      "id": "document-chunking",
-      "name": "Document Chunking",
-      "description": "IndexingService splits documents into ~500 char chunks at paragraph boundaries",
-      "status": "not-started",
-      "evidence": null,
+      "evidence": "InterviewSession.status in src/types/interview.ts",
       "testedAt": null
     },
     {
-      "id": "metadata-extraction",
-      "name": "Metadata Extraction",
-      "description": "On import, extract word count, line count, and file type metadata from documents",
-      "status": "not-started",
-      "evidence": null,
+      "id": "analysis-report",
+      "name": "Analysis Report",
+      "description": "analyzeSession generates and persists AnalysisReport with chains, gaps, risks, and training tasks",
+      "status": "in-progress",
+      "evidence": "See src/services/analysis-pipeline.test.ts",
       "testedAt": null
     },
     {
-      "id": "indexing-status-ui",
-      "name": "Indexing Status in StatusBar",
-      "description": "StatusBar shows indexing progress with document counts and status indicator",
-      "status": "not-started",
-      "evidence": null,
-      "testedAt": null
-    },
-    {
-      "id": "grounded-qa",
-      "name": "Grounded Q&A with Citations",
-      "description": "QaService returns answers with document citations and confidence scores",
+      "id": "handoff-artifacts",
+      "name": "Handoff Artifacts",
+      "description": "session-handoff.md, progress log, and clean-state checklist keep work restartable",
       "status": "not-started",
       "evidence": null,
       "testedAt": null

@@ -1,59 +1,35 @@
 {
   "project": "project-02",
-  "description": "Agent-readable workspace with import, detail view, and persistence",
+  "description": "Agent-readable interview workspace with transcript import, parser, session store, and safety docs",
   "features": [
     {
-      "id": "window-launch",
-      "name": "Window Launch",
-      "description": "Electron app opens a BrowserWindow with correct dimensions and preload script",
+      "id": "interview-session-shell",
+      "name": "Interview Session Shell",
+      "description": "Left sidebar lists interview sessions and empty state",
       "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:00:00Z"
-    },
-    {
-      "id": "document-list",
-      "name": "Document List Panel",
-      "description": "Left sidebar shows imported documents with empty state message",
-      "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:05:00Z"
-    },
-    {
-      "id": "question-panel",
-      "name": "Question Panel",
-      "description": "Bottom input bar accepts questions and submits via IPC",
-      "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:08:00Z"
-    },
-    {
-      "id": "data-directory",
-      "name": "Data Directory",
-      "description": "PersistenceService creates and manages userData/knowledge-base-data directory",
-      "status": "pass",
-      "evidence": "Carried over from P1 -- verified working",
-      "testedAt": "2026-03-30T10:10:00Z"
-    },
-    {
-      "id": "document-import",
-      "name": "Document Import",
-      "description": "Users can import .txt and .md files via ImportPanel with file picker",
-      "status": "not-started",
-      "evidence": null,
+      "evidence": "Carried from Project 01 shared app",
       "testedAt": null
     },
     {
-      "id": "document-detail",
-      "name": "Document Detail with Content",
-      "description": "DocumentDetail shows full document content, metadata, and delete button",
-      "status": "not-started",
-      "evidence": null,
+      "id": "transcript-parser",
+      "name": "Transcript Parser",
+      "description": "Parser supports mm:ss, hh:mm:ss, hh:mm:ss.mmm, bilingual speaker aliases, and parse errors",
+      "status": "in-progress",
+      "evidence": "See src/services/transcript-parser.test.ts",
       "testedAt": null
     },
     {
-      "id": "basic-persistence",
-      "name": "Basic Persistence",
-      "description": "Imported documents persist across app restarts via filesystem storage",
+      "id": "session-persistence",
+      "name": "Interview Session Persistence",
+      "description": "Imported sessions, utterances, parse errors, reports, and feedback are stored locally",
+      "status": "in-progress",
+      "evidence": "See src/services/interview-session-store.ts",
+      "testedAt": null
+    },
+    {
+      "id": "repo-readable-docs",
+      "name": "Agent-readable Docs",
+      "description": "PRODUCT, ARCHITECTURE, DATA_MODEL, INTERVIEW_ANALYSIS_MODEL, and SAFETY_BOUNDARIES guide the agent",
       "status": "not-started",
       "evidence": null,
       "testedAt": null

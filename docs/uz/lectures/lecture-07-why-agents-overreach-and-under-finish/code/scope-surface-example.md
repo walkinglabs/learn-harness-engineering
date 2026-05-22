@@ -2,7 +2,7 @@
 
 Vazifa:
 
-- Electron bilimlar ilovasiga (knowledge app) indekslashni qoʻshish
+- Electron bilimlar ilovasiga (interview debrief app) indekslashni qoʻshish
 
 Yomon skoup shakli:
 
@@ -11,7 +11,7 @@ Yomon skoup shakli:
 Yaxshi skoup shakli:
 
 - Import qilingan hujjatlarni tahlil qilish (parse)
-- Hujjatlarni boʻlaklarga (chunks) ajratish
+- Hujjatlarni boʻlaklarga (segments) ajratish
 - Boʻlak metamaʼlumotlarini (metadata) saqlash
 - UIʼda indekslash holatini koʻrsatish
-- Qayta indekslash (reindex) funksiyasini qoʻshish
+- Qayta indekslash (reanalyze) funksiyasini qoʻshish

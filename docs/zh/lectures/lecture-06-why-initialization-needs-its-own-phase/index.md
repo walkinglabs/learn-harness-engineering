@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-06-why-initialization-needs-its-own-phase/code/)
 > 实战练习：[Project 03. 让 agent 关掉再打开还能接着干](./../../projects/project-03-multi-session-continuity/index.md)
 
-# 第六讲. 让 agent 每次工作前先初始化
+# 第六讲. 动 transcript 分析代码前为什么必须初始化
 
 你开了一个新的 agent 会话，让它"帮我加个搜索功能"。它上来就开始改代码——精神可嘉。改了 20 分钟发现测试框架没配好，又花 10 分钟搞测试框架，然后发现数据库迁移脚本格式不对，又折腾了一会儿。最后搜索功能倒是加了，但整个会话的效率很低——大部分时间花在了"搞清楚这个项目怎么运作"上，而不是写搜索功能。
 

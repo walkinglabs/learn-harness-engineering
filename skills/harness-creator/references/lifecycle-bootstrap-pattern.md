@@ -117,7 +117,7 @@ interface HookRegistry {
 interface TaskRegistry {
   // Typed prefixed IDs
   registerWork(
-    type: 'extraction' | 'benchmark' | 'indexing',
+    type: 'transcript-parse' | 'benchmark' | 'debrief-analysis',
     outputType: 'json' | 'text' | 'file'
   ): string; // Returns typed ID: `extraction-001`
   

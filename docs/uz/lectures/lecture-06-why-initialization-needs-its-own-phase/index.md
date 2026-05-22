@@ -3,9 +3,9 @@
 > Kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-06-why-initialization-needs-its-own-phase/code/)
 > Amaliy loyiha: [Loyiha 03. Koʻp sessiyali uzluksizlik](./../../projects/project-03-multi-session-continuity/index.md)
 
-# 6-maʼruza. Har bir agent sessiyasidan oldin inisializatsiya qiling
+# 06-maʼruza. Transcript analysis codega tegishdan oldin initialization nega kerak
 
-Siz yangi agent sessiyasini boshlaysiz va “qidiruv funksiyasini qoʻsh” deysiz. U darhol kod yozishga oʻtadi — tahsinga loyiq ishtiyoq. 20 daqiqadan soʻng, test freymvorki toʻgʻri sozlanmaganini bilib qoladi va uni toʻgʻrilash uchun yana 10 daqiqa sarflaydi. Keyin maʼlumotlar bazasi migratsiya skripti formati notoʻgʻri ekani aniqlanadi, yana ovoragarchilik. Oxir-oqibat qidiruv funksiyasi qoʻshiladi, lekin butun sessiya samarasiz boʻldi — chunki vaqtning katta qismi qidiruv funksiyasini yozishga emas, balki “bu loyiha oʻzi qanday ishlashini tushunish”ga sarflandi.
+Siz yangi agent sessiyasini boshlaysiz va “transcript analysis funksiyasini qoʻsh” deysiz. U darhol kod yozishga oʻtadi — tahsinga loyiq ishtiyoq. 20 daqiqadan soʻng, test freymvorki toʻgʻri sozlanmaganini bilib qoladi va uni toʻgʻrilash uchun yana 10 daqiqa sarflaydi. Keyin maʼlumotlar bazasi migratsiya skripti formati notoʻgʻri ekani aniqlanadi, yana ovoragarchilik. Oxir-oqibat transcript analysis funksiyasi qoʻshiladi, lekin butun sessiya samarasiz boʻldi — chunki vaqtning katta qismi transcript analysis funksiyasini yozishga emas, balki “bu loyiha oʻzi qanday ishlashini tushunish”ga sarflandi.
 
 Yaxshiroq yondashuv: agentni ishlashga qoʻyib berishdan oldin, bazaviy muhitni tayyorlash, tekshiruv buyruqlarini (verification commands) muvaffaqiyatli oʻtkazish va loyiha strukturasini tushunish uchun alohida bosqich ajrating. Bu xuddi uy qurishga oʻxshaydi — siz poydevor quyib, devorlarni bir vaqtning oʻzida qurmaysiz. Agar shunday qilsangiz, devorlar poydevor qotmasidan oldin koʻtariladi va butun binoni buzib, qaytadan boshlashga toʻgʻri keladi. Avval poydevor quying, uning qotishini kuting, soʻngra devorlarni quring — toza va samarali.
 

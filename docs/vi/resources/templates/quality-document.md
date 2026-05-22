@@ -19,8 +19,8 @@ Một snapshot chất lượng cho mỗi domain sản phẩm và lớp kiến tr
 |--------|-------|-------------|-----------------|---------------|----------|-------------|
 | Import Tài liệu | - | - | - | - | - | - |
 | Quản lý Tài liệu | - | - | - | - | - | - |
-| Indexing Tài liệu | - | - | - | - | - | - |
-| Luồng Q&A | - | - | - | - | - | - |
+| Question-Chain Segmentation Tài liệu | - | - | - | - | - | - |
+| Luồng debrief report | - | - | - | - | - | - |
 | Câu trả lời có Grounding | - | - | - | - | - | - |
 
 ## Lớp Kiến trúc

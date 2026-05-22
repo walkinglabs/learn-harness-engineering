@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-01-why-capable-agents-still-fail/code/)
 > Dự án thực hành: [Dự án 01. Chỉ Prompt vs. Ưu tiên Quy tắc](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# Bài 01. Mô hình Mạnh Không có nghĩa là Thực thi Đáng tin cậy
+# Bài 01. Mô hình mạnh vẫn thất bại trong app phân tích phỏng vấn thật
 
 Bạn tự coi mình là người có kinh nghiệm trong thế giới AI — đăng ký Claude Pro, có API key GPT-4o, thuộc lòng các con số trên bảng xếp hạng SWE-bench. Một ngày nào đó bạn cuối cùng giao một dự án thực sự cho một AI agent, đầy tự tin. Kết quả? Nó thêm một tính năng nhưng làm hỏng các bài test, sửa một lỗi nhưng gây ra thêm hai lỗi khác, chạy 20 phút và tự hào tuyên bố "xong" — nhưng khi bạn nhìn vào mã nguồn, nó hoàn toàn không phải là thứ bạn yêu cầu.
 

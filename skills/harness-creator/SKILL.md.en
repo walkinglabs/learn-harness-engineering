@@ -187,16 +187,16 @@ Before ending:
   "features": [
     {
       "id": "feat-001",
-      "name": "Document Import",
-      "description": "Allow users to import PDF and TXT documents",
+      "name": "Transcript Import",
+      "description": "Allow users to import timestamped interview transcripts",
       "dependencies": [],
       "status": "done",
       "evidence": "tests pass, manual verification on 2024-01-15"
     },
     {
       "id": "feat-002",
-      "name": "Document Chunking",
-      "description": "Split documents into ~500 char chunks with metadata",
+      "name": "Question-Chain Segmentation",
+      "description": "Split interviewer follow-ups and candidate answers into evidence-backed chains",
       "dependencies": ["feat-001"],
       "status": "in-progress",
       "evidence": ""

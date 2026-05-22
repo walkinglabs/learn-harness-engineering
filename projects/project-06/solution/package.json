@@ -1,7 +1,7 @@
 {
-  "name": "knowledge-base",
+  "name": "interview-debrief-coach",
   "version": "0.1.0",
-  "description": "Electron-based personal knowledge base with document import, indexing, grounded Q&A, feedback, and observability",
+  "description": "Electron-based AI interview debrief coach with transcript import, follow-up analysis, evidence-grounded risk reports, and training plans",
   "main": "dist/main/main.js",
   "scripts": {
     "dev": "node scripts/dev.js",

@@ -31,7 +31,7 @@ interface StructuredLogEntry {
 
 const CORRELATION_ID = “req-” + Math.random().toString(36).slice(2, 8);
 
-// Simulated stages of a document Q&A pipeline
+// Simulated stages of a interview transcript analysis pipeline
 interface PipelineStage {
   component: string;
   action: string;
@@ -45,46 +45,46 @@ interface PipelineStage {
 function runPipeline(): PipelineStage[] {
   return [
     {
-      component: “DocumentLoader”,
-      action: “parse_upload”,
+      component: “TranscriptLoader”,
+      action: “parse_transcript_upload”,
       durationMs: 45,
       success: true,
       input: { filename: “report.pdf”, size: “2.3MB” },
-      output: { chunks: 47 },
+      output: { segments: 47 },
     },
     {
-      component: “ChunkIndexer”,
+      component: “SegmentStore”,
       action: “embed_and_store”,
       durationMs: 230,
       success: true,
-      input: { chunks: 47 },
-      output: { indexed: 47, embeddingDim: 1536 },
+      input: { segments: 47 },
+      output: { stored: 47, evidenceModel: "turn-level" },
     },
     {
       component: “QueryRouter”,
-      action: “route_query”,
+      action: “route_question_chain”,
       durationMs: 12,
       success: true,
-      input: { query: “What is the revenue target?” },
+      input: { query: “Why did the candidate choose Redis?” },
       output: { routedTo: “RetrievalEngine” },
     },
     {
       // SEEDED FAILURE: Retrieval returns 0 results due to dimension mismatch
       component: “RetrievalEngine”,
-      action: “semantic_search”,
+      action: “select_supporting_turns”,
       durationMs: 180,
       success: false,
-      errorMessage: “Vector dimension mismatch: query embedding dim=768, index embedding dim=1536”,
-      input: { query: “What is the revenue target?”, topK: 5 },
+      errorMessage: “Evidence alignment mismatch: question chain=system design, segment chain=behavioral”,
+      input: { query: “Why did the candidate choose Redis?”, maxTurns: 5 },
       output: { results: 0 },
     },
     {
-      component: “AnswerGenerator”,
-      action: “generate_with_citations”,
+      component: “DebriefGenerator”,
+      action: “generate_debrief_with_evidence”,
       durationMs: 1500,
       success: true, // Doesnʼt crash, but produces a bad answer
-      input: { context: [], query: “What is the revenue target?” },
-      output: { answer: “I could not find relevant information.”, citations: 0 },
+      input: { context: [], query: “Why did the candidate choose Redis?” },
+      output: { answer: “I could not find relevant information.”, evidenceReferences: 0 },
     },
   ];
 }
@@ -94,8 +94,8 @@ function runPipeline(): PipelineStage[] {
 // ---------------------------------------------------------------------------
 
 function printAdHocLog(stages: PipelineStage[]): void {
-  console.log(“Starting document Q&A pipeline...”);
-  console.log(“User uploaded report.pdf”);
+  console.log(“Starting interview transcript analysis pipeline...”);
+  console.log(“User uploaded interview-transcript.md”);
 
   for (const stage of stages) {
     if (stage.success) {
@@ -105,7 +105,7 @@ function printAdHocLog(stages: PipelineStage[]): void {
     }
   }
 
-  console.log(“Pipeline finished. Answer: I could not find relevant information.”);
+  console.log(“Pipeline finished. Debrief: I could not find transcript-backed evidence.”);
 }
 
 // ---------------------------------------------------------------------------
@@ -232,11 +232,11 @@ function run(): void {
 
   // Downstream impact
   console.log(“\n  DOWNSTREAM IMPACT:”);
-  const answerGen = structuredEntries.find((e) => e.component === “AnswerGenerator”);
-  if (answerGen) {
-    const out = answerGen.output as Record<string, unknown>;
-    console.log(`  AnswerGenerator received empty context (${JSON.stringify(answerGen.input)})`);
-    console.log(`  Produced answer: "${out.answer}" with ${out.citations} citations`);
+  const debriefGen = structuredEntries.find((e) => e.component === “DebriefGenerator”);
+  if (debriefGen) {
+    const out = debriefGen.output as Record<string, unknown>;
+    console.log(`  DebriefGenerator received empty context (${JSON.stringify(debriefGen.input)})`);
+    console.log(`  Produced debrief: "${out.answer}" with ${out.evidenceReferences} evidence references`);
   }
 
   // Comparison summary

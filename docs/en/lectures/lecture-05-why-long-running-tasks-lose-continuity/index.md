@@ -3,7 +3,7 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/code/)
 > Practice project: [Project 03. Multi-session continuity](./../../projects/project-03-multi-session-continuity/index.md)
 
-# Lecture 05. Keep Context Alive Across Sessions
+# Lecture 05. Keeping Context Alive Across Multi-Session Feature Development
 
 You ask Claude Code to implement a complete feature. It runs for 30 minutes, does most of the work, but context is running low. You start a new session to continue — and discover it doesn't remember what decisions were made last time, why option A was chosen over option B, which files were already modified, or what state the tests are in. It spends 15 minutes re-exploring the project, and might be inconsistent with the previous approach.
 
@@ -147,7 +147,7 @@ Anthropic's actual data: for Sonnet 4.5, context anxiety is severe enough that c
 
 ## Real-World Example
 
-An agent was tasked with implementing a blog system with user authentication — 12 feature points, estimated 5 sessions needed.
+An agent was tasked with implementing a blog system with transcript uploadentication — 12 feature points, estimated 5 sessions needed.
 
 **Baseline without the journal**: Session 1 implemented the user model and basic routes. Session 2 started without the agent remembering the auth middleware's interface contract, spending ~15 minutes inferring the previous design intent. By session 3, accumulated drift caused the agent to start reimplementing already-completed features. By session 5, the repo contained lots of redundant code but the core auth feature still hadn't passed end-to-end tests. Only 7 of 12 feature points completed, 3 with hidden correctness issues. Like the craftsman who never writes in his journal — by day five, the construction site is chaos, some walls built twice, some that should have been built never started.
 

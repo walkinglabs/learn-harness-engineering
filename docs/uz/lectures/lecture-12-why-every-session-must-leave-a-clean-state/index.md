@@ -3,7 +3,7 @@
 > Ushbu maʼruza uchun kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/code/)
 > Amaliy loyiha: [Loyiha 06. Toʻliq harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# 12-maʼruza. Har bir sessiya oxirida toza holat topshiring
+# 12-maʼruza. Har sessiya clean state va restartable handoff qoldirishi kerak
 
 ## Ushbu maʼruza qanday muammoni hal qiladi?
 

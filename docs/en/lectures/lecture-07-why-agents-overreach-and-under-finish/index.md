@@ -3,11 +3,11 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-07-why-agents-overreach-and-under-finish/code/)
 > Practice project: [Project 04. Runtime feedback and scope control](./../../projects/project-04-incremental-indexing/index.md)
 
-# Lecture 07. Draw Clear Task Boundaries for Agents
+# Lecture 07. Why Agents Overreach on Audio, LLM, UI, and Analysis Features
 
-You tell Claude Code to "add user authentication to this project," and it starts modifying the database schema, writing routes, changing frontend components, and — while it's at it — refactoring the error-handling middleware. Two hours later you check: 12 files modified, 800 lines of new code, and not a single feature works end-to-end.
+You tell Claude Code to "add transcript uploadentication to this project," and it starts modifying the database schema, writing routes, changing frontend components, and — while it's at it — refactoring the error-handling middleware. Two hours later you check: 12 files modified, 800 lines of new code, and not a single feature works end-to-end.
 
-Biting off more than you can chew — this saying applies to AI agents especially well. Agents are born with an impulse to "do a little extra" — they see related things and just handle them along the way, like someone who goes to the supermarket for a bottle of soy sauce and comes out pushing a full cart. The problem is, humans who buy too much just waste money; agents doing too many things simultaneously means none of them get done properly.
+Biting off more than you can chew — this saying applies to AI agents especially well. Agents are born with an impulse to "do a little extra" — they see related things and just handle them along the way, like someone who goes to the supermarket for a bottle of soy sauce and comes out pushing a full report. The problem is, humans who buy too much just waste money; agents doing too many things simultaneously means none of them get done properly.
 
 Anthropic's "Effective harnesses for long-running agents" engineering blog states clearly: when prompts are too broad, agents tend to "start multiple things at once" rather than "finish one thing first." OpenAI's Codex engineering practices found the same — tasks without explicit scope controls see completion rates plummet. This is not a model problem — it's a harness problem. You didn't draw the boundary.
 

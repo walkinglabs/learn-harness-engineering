@@ -16,7 +16,7 @@ At the start of every session:
 6. Check whether the baseline smoke or end-to-end path is already broken.
 
 Then select exactly one unfinished feature and work only on that feature until
-you either verify it or document why it is blocked.
+you either verify it or record why it is blocked.
 
 ## Rules
 

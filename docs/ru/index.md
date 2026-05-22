@@ -1,12 +1,16 @@
-# Добро пожаловать в Learn Harness Engineering
+# Добро пожаловать в Learn Interview Harness Engineering
 
-Learn Harness Engineering — курс, посвящённый инженерии AI-агентов для кодинга. Мы глубоко изучили и обобщили самые передовые теории и практики Harness Engineering в индустрии. Наши основные источники:
+Learn Interview Harness Engineering — проектный курс о том, как делать AI-агентов для кодинга надёжными через реальный capstone-продукт: **Interview Debrief Coach**, local-first Electron-приложение для разбора интервью после встречи. Пользователь импортирует аудио интервью или transcript с таймкодами, а приложение выделяет цепочки вопросов и создаёт отчёт с доказательствами по таймкодам и планом тренировки.
+
+Курс сохраняет структуру harness engineering: 12 лекций, 6 практических проектов, starter/solution, шаблоны, feature list, progress log, benchmark, cleanup scanner и session handoff. Наши основные источники:
 - [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-Через системный дизайн окружения, управление состоянием, верификацию и контроль курс учит, как сделать агентские инструменты вроде Codex и Claude Code по-настоящему надёжными. Он помогает строить фичи, чинить баги и автоматизировать задачи разработки, ограничивая AI-ассистента явными правилами и границами.
+Через системный дизайн окружения, управление состоянием, верификацию и контроль курс учит, как сделать агентские инструменты вроде Codex и Claude Code по-настоящему надёжными.
+
+Граница безопасности: приложение помогает кандидату разобрать интервью после встречи. Оно не ранжирует кандидатов, не рекомендует нанять или отказать, не выводит защищённые признаки, не распознаёт эмоции, не судит личность и не делает выводов о лжи.
 
 ## С чего начать
 
@@ -19,7 +23,7 @@ Learn Harness Engineering — курс, посвящённый инженери�
   </a>
   <a href="./projects/" class="card">
     <h3>Проекты</h3>
-    <p>Практическое построение надёжной агентской среды с нуля.</p>
+    <p>Практическая эволюция Interview Debrief Coach и его harness с нуля.</p>
   </a>
   <a href="./resources/" class="card">
     <h3>Библиотека материалов</h3>

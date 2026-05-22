@@ -1,6 +1,6 @@
 # Yetarlicha Taʼriflanmagan Vazifa Misoli
 
-AI savol-javob imkoniyatiga ega desktop bilimlar bazasi (knowledge base) ilovasini quring.
+AI savol-javob imkoniyatiga ega desktop bilimlar bazasi (Interview Debrief) ilovasini quring.
 
 Cheklovlar:
 

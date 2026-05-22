@@ -1,34 +1,18 @@
-# Project 03: Scope Control and Grounded Verification
+# Project 03：Multi-session Continuity for Interview Analysis
 
-评估显式范围控制和验证门控是否能提高交付准确性。
+训练 agent 通过 progress log、session handoff、feature 状态和 analysis 状态机跨会话继续工作。
 
 ## 目录说明
 
 | 目录 | 含义 |
 |------|------|
-| `starter/` | **起点**——基于 P2 solution，新增文档分块、元数据提取、索引状态、基础问答功能待实现。没有一次一个功能的策略约束。 |
-| `solution/` | **参考实现**——所有功能已实现，AGENTS.md 包含"一次一个功能"策略，feature_list.json 展示 fail→pass 的转换过程和验证证据。 |
+| `starter/` | 从 Project 02 衍生的起点，analysis report 生成仍未完成。 |
+| `solution/` | 参考实现：包含 AnalysisReport、追问链、gap、risk item、training task、progress log 和 session handoff。 |
 
-## 使用方法
+## 覆盖功能
 
-```sh
-cd starter
-npm install
-# 观察 agent 是否会同时实现多个功能（范围漂移）
-
-cd ../solution
-npm install
-# 用 scope control 重跑，对比功能交付准确性
-```
-
-## 本项目涉及的功能
-
-- 文档分块（段落感知，~500 字符）
-- 元数据提取（词数、行数、段落数）
-- 索引状态在 UI 中显示
-- 基础问答流程，带来源引用
-
-## 对应课件
-
-- [Lecture 05: 保持跨会话上下文](../../docs/lectures/lecture-05-why-long-running-tasks-lose-continuity/index.md)
-- [Lecture 06: 每次会话前先初始化](../../docs/lectures/lecture-06-why-initialization-needs-its-own-phase/index.md)
+- Interview session 状态机
+- Analyze session 命令
+- 持久化 AnalysisReport
+- UI 显示 report 状态
+- 从中断状态恢复

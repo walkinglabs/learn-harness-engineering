@@ -1,9 +1,9 @@
 [English Version →](../../../en/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-10-why-end-to-end-testing-changes-results/code/)
-> 实战练习：[Project 05. 让 agent 自己检查自己做的对不对](./../../projects/project-05-grounded-qa-verification/index.md)
+> 实战练习：[Project 05. 让 agent 自己检查自己做的对不对](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# 第十讲. 跑通完整流程才算真正验证
+# 第十讲. 为什么端到端 fixture 流水线会改变结果
 
 你让 agent 给 Electron 应用加一个文件导出功能。它写了渲染进程组件、预加载脚本、服务层逻辑，每个组件的单元测试都通过了。agent 说"做完了"。你实际一点击导出按钮——文件路径格式不对、进度条没反应、大文件导出时内存泄漏。5 个组件边界缺陷，单元测试一个都没发现。
 

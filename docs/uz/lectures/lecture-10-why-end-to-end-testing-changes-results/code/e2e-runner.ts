@@ -2,7 +2,7 @@
  * e2e-runner.ts
  *
  * A minimal E2E test harness. Defines test cases as user action sequences
- * (import doc -> index -> ask question -> verify citation). Simulates
+ * (import transcript -> segment -> analyze answer -> verify evidence reference). Simulates
  * running them and shows the difference between “unit tests pass” and
  * “full pipeline works”.
  *
@@ -42,62 +42,62 @@ interface TestResult {
 
 const testCases: TestCase[] = [
   {
-    name: “Import document and ask question”,
+    name: “Import transcript and analyze answer”,
     steps: [
       {
-        name: “Parse uploaded document”,
+        name: “Parse uploaded transcript”,
         unitTestPasses: true,
         actualBehavior: “works”,
       },
       {
-        name: “Store document chunks”,
+        name: “Store transcript segments”,
         unitTestPasses: true,
         actualBehavior: “works”,
       },
       {
-        name: “Index chunks for retrieval”,
+        name: “Align segments to question chain”,
         unitTestPasses: true,
-        actualBehavior: “partial”, // Indexes but with wrong embedding dimensions
-        failureReason: “Embedding dimension mismatch between indexer and retriever”,
+        actualBehavior: “partial”, // Segments the answer under the wrong question chain
+        failureReason: “Question-chain mismatch between segmenter and evidence selector”,
       },
       {
-        name: “Retrieve relevant chunks”,
+        name: “Select relevant evidence turns”,
         unitTestPasses: true, // Unit test uses mock data with correct dimensions
         actualBehavior: “fails”,
-        failureReason: “Empty results due to dimension mismatch from previous step”,
+        failureReason: “Empty evidence set due to question-chain mismatch from previous step”,
       },
       {
-        name: “Generate answer with citations”,
-        unitTestPasses: true, // Unit test provides pre-retrieved chunks
+        name: “Generate debrief report with evidence references”,
+        unitTestPasses: true, // Unit test provides preselected transcript evidence
         actualBehavior: “fails”,
-        failureReason: “No chunks retrieved, so answer has no citations”,
+        failureReason: “No evidence turns selected, so report has no evidence references”,
       },
     ],
   },
   {
-    name: “Delete document and verify removal”,
+    name: “Delete interview session and verify removal”,
     steps: [
       {
-        name: “Find document by ID”,
+        name: “Find interview session by ID”,
         unitTestPasses: true,
         actualBehavior: “works”,
       },
       {
-        name: “Delete document record”,
+        name: “Delete interview session record”,
         unitTestPasses: true,
         actualBehavior: “works”,
       },
       {
-        name: “Remove indexed chunks”,
+        name: “Remove stored transcript segments”,
         unitTestPasses: true,
-        actualBehavior: “fails”, // Orphaned chunks remain in the index
-        failureReason: “Index cleanup query timed out, chunks remain orphaned”,
+        actualBehavior: “fails”, // Orphaned segments remain in the analysis store
+        failureReason: “Analysis-store cleanup timed out, segments remain orphaned”,
       },
       {
-        name: “Verify document not in search results”,
-        unitTestPasses: true, // Unit test mocks the search
+        name: “Verify session not in debrief results”,
+        unitTestPasses: true, // Unit test mocks the debrief lookup
         actualBehavior: “fails”,
-        failureReason: “Orphaned chunks from previous step still appear in results”,
+        failureReason: “Orphaned segments from previous step still appear in results”,
       },
     ],
   },
@@ -105,26 +105,26 @@ const testCases: TestCase[] = [
     name: “Multi-user concurrent access”,
     steps: [
       {
-        name: “User A imports document”,
+        name: “User A imports transcript”,
         unitTestPasses: true,
         actualBehavior: “works”,
       },
       {
-        name: “User B imports document”,
+        name: “User B imports transcript”,
         unitTestPasses: true,
         actualBehavior: “works”,
       },
       {
-        name: “User A queries their document”,
+        name: “User A analyzes their transcript”,
         unitTestPasses: true,
         actualBehavior: “partial”, // Cross-contamination of results
-        failureReason: “No user-scoping on retrieval, returns chunks from User Bʼs doc”,
+        failureReason: “No user-scoping on retrieval, returns segments from User Bʼs doc”,
       },
       {
         name: “Verify only User Aʼs results returned”,
         unitTestPasses: true,
         actualBehavior: “fails”,
-        failureReason: “Results include documents from other users”,
+        failureReason: “Results include transcript evidence from other users”,
       },
     ],
   },

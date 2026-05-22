@@ -3,7 +3,7 @@
 > Примеры кода: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/code/)
 > Практический проект: [Проект 06. Полноценный harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# Лекция 12. Чистая передача в конце каждой сессии
+# Лекция 12. Почему каждая сессия должна оставлять clean state и restartable handoff
 
 ## Какую проблему решает эта лекция?
 
@@ -125,8 +125,8 @@ flowchart LR
 - Architecture boundaries: Compliant
 - Code conventions: Followed
 
-## Payment Module (Quality: C)
-- Verification passing: Partial (payment callback untested)
+## Training Plan Module (Quality: C)
+- Verification passing: Partial (training-plan export untested)
 - Agent understandable: Difficult (logic spread across 3 files)
 - Test stability: Unstable (2 flaky tests)
 - Architecture boundaries: Violations present

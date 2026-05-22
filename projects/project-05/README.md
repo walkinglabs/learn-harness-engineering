@@ -1,35 +1,32 @@
-# Project 05: Evaluator Loops and Three-Role Upgrades
+# Project 05: Evaluator Loops and Three-role Upgrades for Risk Analysis
 
-Measure how role separation (single role, generator plus evaluator, planner plus generator plus evaluator) changes implementation quality.
+Compare single-role, generator/evaluator, and planner/generator/evaluator workflows while implementing the same Risk Analyzer feature.
 
 ## Directory Guide
 
 | Directory | Meaning |
 |------|------|
-| `starter/` | **Starting point**: based on the P4 solution, with multi-turn QA history still to implement. |
-| `solution/single-role/` | **Variant A**: one agent does all work (planning, implementation, and self-review). Baseline quality. |
-| `solution/gen-eval/` | **Variant B**: generator plus evaluator pattern. Higher quality, with revision evidence. |
-| `solution/plan-gen-eval/` | **Variant C**: planner plus generator plus evaluator. Highest quality, with a sprint contract and scoring criteria. |
+| `starter/` | Starting point derived from Project 04, with risk analysis quality still to improve. |
+| `solution/single-role/` | Variant A: one agent plans, implements, and self-reviews. |
+| `solution/gen-eval/` | Variant B: generator implements, evaluator scores and requests revisions. |
+| `solution/plan-gen-eval/` | Variant C: planner writes a sprint contract, generator implements, evaluator scores. |
 
 ## How to Use
 
 ```sh
-# Run each of the three variants independently
-cd solution/single-role && npm install  # single-role mode
-cd solution/gen-eval && npm install     # generator plus evaluator mode
-cd solution/plan-gen-eval && npm install # full three-role mode
-
-# Compare the three variants:
-# - Code quality (evaluator-rubric.md score)
-# - Number of defects found
-# - Amount of rework required
+cd solution/single-role && npm install
+cd ../gen-eval && npm install
+cd ../plan-gen-eval && npm install
 ```
+
+Compare the three variants on evidence grounding, specificity, non-hallucination, safety boundaries, training usefulness, and UI evidence jumps.
 
 ## Features Covered
 
-- Multi-turn QA history (conversational UI)
-- Sprint contract
-- Evaluator rubric tuning
+- RiskItem generation from follow-up chains, technical gaps, project evidence gaps, and speech issues
+- Evidence required for every risk item
+- No hiring decision, lie detection, emotion/personality judgment, or protected-trait inference
+- Training task linkage for each risk
 
 ## Related Lectures
 

@@ -90,13 +90,13 @@ Long sessions exhaust the window. Reactive compaction:
 ```markdown
 ## Session Summary (Turns 1-15, compacted)
 
-**Goal**: Implement Q&A feature with citations
+**Goal**: Implement evidence-grounded interview debrief report
 **Decisions made**:
 - Use streaming response for UX
-- Citation format: [doc:chunk] inline references
+- Evidence format: transcript turn IDs with short inline references
 **Key files created**:
-- src/services/QaService.ts
-- src/shared/types.ts (extended with QaResult)
+- src/services/debrief-report-service.ts
+- src/shared/types.ts (extended with DebriefReport)
 ```
 
 ### Isolate Pattern

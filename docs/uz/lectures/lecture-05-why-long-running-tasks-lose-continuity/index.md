@@ -3,7 +3,7 @@
 > Kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/code/)
 > Amaliy loyiha: [Loyiha 03. Koʻp sessiyali uzluksizlik](./../../projects/project-03-multi-session-continuity/index.md)
 
-# 5-maʼruza. Sessiyalar oʻrtasida kontekstni saqlab qoling
+# 05-maʼruza. Koʻp sessiyali feature developmentda kontekstni tirik saqlash
 
 Siz Claude Codeʼdan toʻliq bitta funksiyani (feature) yaratishni soʻraysiz. U 30 daqiqa ishlaydi, ishning koʻp qismini bajaradi, lekin kontekst tugab bormoqda. Siz davom ettirish uchun yangi sessiya boshlaysiz — va u oʻtgan safar qanday qarorlar qabul qilinganini, nima uchun B varianti A variantdan afzal koʻrilganini, qaysi fayllar allaqachon oʻzgartirilganini yoki testlar qanday holatda ekanini eslay olmasligini bilib olasiz. U loyihani qayta oʻrganish uchun 15 daqiqa sarflaydi va oldingi yondashuvga zid ishlarni qilishi mumkin.
 

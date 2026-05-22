@@ -1,9 +1,9 @@
 [中文版本 →](../../../zh/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 
 > Примеры кода: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-10-why-end-to-end-testing-changes-results/code/)
-> Практический проект: [Project 05. Let the agent verify its own work](./../../projects/project-05-grounded-qa-verification/index.md)
+> Практический проект: [Project 05. Let the agent verify its own work](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# Лекция 10. Только сквозное тестирование — настоящая верификация
+# Лекция 10. Почему end-to-end fixture pipelines меняют результат
 
 Вы просите агента добавить функцию экспорта файлов в Electron-приложение. Он пишет компонент процесса рендеринга, preload-скрипт и логику сервисного слоя. Юнит-тесты каждого компонента проходят идеально. Агент говорит: «Готово». Когда вы реально нажимаете кнопку экспорта — формат файлового пути неправильный, прогресс-бар не обновляется, а экспорт больших файлов вызывает утечку памяти. Пять дефектов на границах компонентов, и юнит-тесты не поймали ни одного.
 

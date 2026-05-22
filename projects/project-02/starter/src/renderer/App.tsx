@@ -1,201 +1,125 @@
-import React, { useState, useCallback } from 'react';
-import { DocumentList } from './components/DocumentList';
-import { QuestionPanel } from './components/QuestionPanel';
-import { DocumentDetail } from './components/DocumentDetail';
-import { ImportPanel } from './components/ImportPanel';
+import { useCallback, useEffect, useState } from 'react';
+import { AnalysisFeedbackInput, AnalysisReport, AppStatus, InterviewSession, Utterance } from '../types';
+import { DebriefReportPanel } from './components/DebriefReportPanel';
+import { EmptyState } from './components/EmptyState';
+import { InterviewSessionSidebar } from './components/InterviewSessionSidebar';
 import { StatusBar } from './components/StatusBar';
-import { Document, AppStatus, QAResponse } from '../../shared/types';
+import { TranscriptTimeline } from './components/TranscriptTimeline';
 
-declare global {
-  interface Window {
-    knowledgeBase: {
-      documents: {
-        list: () => Promise<Document[]>;
-        import: (filePath: string) => Promise<Document>;
-        get: (id: string) => Promise<Document | null>;
-        delete: (id: string) => Promise<boolean>;
-      };
-      indexing: {
-        start: (documentId?: string) => Promise<{ status: string }>;
-        status: () => Promise<AppStatus>;
-        chunks: (documentId: string) => Promise<Array<{ id: string; content: string; index: number }>>;
-      };
-      qa: {
-        ask: (question: string) => Promise<QAResponse>;
-        history: () => Promise<Array<{ question: string; response: QAResponse }>>;
-      };
-    };
-  }
-}
+const SAMPLE_TRANSCRIPT = `[00:02] interviewer: 介绍一下你最近做的订单系统项目。
+[00:15] candidate: 嗯，这个项目主要是我们做了一个订单服务。
+[00:38] interviewer: 你具体负责哪一块？
+[00:45] candidate: 我参与后端开发，主要写了一些接口。
+[01:05] interviewer: 指标提升是多少，怎么验证的？
+[01:12] candidate: 当时效果还不错，具体指标我记不太清。
+[01:35] interviewer: 如果 Redis 故障，幂等怎么兜底？
+[01:44] candidate: 这个线上应该没问题，我们没有特别展开。`;
 
 export function App() {
-  const [documents, setDocuments] = useState<Document[]>([]);
-  const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
-  const [appStatus, setAppStatus] = useState<AppStatus>({
-    documentsLoaded: 0,
-    indexStatus: 'idle',
+  const [sessions, setSessions] = useState<InterviewSession[]>([]);
+  const [selectedSession, setSelectedSession] = useState<InterviewSession | null>(null);
+  const [utterances, setUtterances] = useState<Utterance[]>([]);
+  const [report, setReport] = useState<AnalysisReport | null>(null);
+  const [highlightedUtteranceId, setHighlightedUtteranceId] = useState<string | null>(null);
+  const [status, setStatus] = useState<AppStatus>({
+    sessionsLoaded: 0,
+    analyzedSessions: 0,
     lastActivity: '',
+    warnings: 0,
   });
-  const [lastResponse, setLastResponse] = useState<QAResponse | null>(null);
-  const [showImport, setShowImport] = useState(false);
 
-  const refreshDocuments = useCallback(async () => {
-    try {
-      const docs = await window.knowledgeBase.documents.list();
-      setDocuments(docs);
-      const status = await window.knowledgeBase.indexing.status();
-      setAppStatus(status);
-    } catch (err) {
-      console.error('Failed to refresh documents:', err);
+  const refresh = useCallback(async () => {
+    const nextSessions = await window.interviewCoach.listSessions();
+    const nextStatus = await window.interviewCoach.getStatus();
+    setSessions(nextSessions);
+    setStatus(nextStatus);
+    if (!selectedSession && nextSessions.length > 0) {
+      setSelectedSession(nextSessions[0]);
     }
-  }, []);
+  }, [selectedSession]);
 
-  const handleImport = useCallback(async (filePath: string) => {
-    try {
-      await window.knowledgeBase.documents.import(filePath);
-      await refreshDocuments();
-      setShowImport(false);
-    } catch (err) {
-      console.error('Import failed:', err);
-    }
-  }, [refreshDocuments]);
+  useEffect(() => {
+    refresh().catch(error => console.error('Failed to refresh sessions:', error));
+  }, [refresh]);
 
-  const handleSelectDocument = useCallback((doc: Document) => {
-    setSelectedDoc(doc);
-  }, []);
+  useEffect(() => {
+    if (!selectedSession) return;
+    Promise.all([
+      window.interviewCoach.getTranscript(selectedSession.id),
+      window.interviewCoach.getReport(selectedSession.id),
+    ])
+      .then(([nextUtterances, nextReport]) => {
+        setUtterances(nextUtterances);
+        setReport(nextReport);
+      })
+      .catch(error => console.error('Failed to load session:', error));
+  }, [selectedSession]);
 
-  const handleAskQuestion = useCallback(async (question: string) => {
-    try {
-      const response = await window.knowledgeBase.qa.ask(question);
-      setLastResponse(response);
-    } catch (err) {
-      console.error('Q&A failed:', err);
-    }
-  }, []);
+  const importSample = useCallback(async () => {
+    const session = await window.interviewCoach.importTranscript({
+      title: `Backend Mock ${sessions.length + 1}`,
+      roleTarget: 'Backend Engineer',
+      interviewType: 'project-deep-dive',
+      transcriptText: SAMPLE_TRANSCRIPT,
+    });
+    setSelectedSession(session);
+    await refresh();
+  }, [refresh, sessions.length]);
 
-  const handleDeleteDocument = useCallback(async (id: string) => {
-    try {
-      await window.knowledgeBase.documents.delete(id);
-      if (selectedDoc?.id === id) {
-        setSelectedDoc(null);
-      }
-      await refreshDocuments();
-    } catch (err) {
-      console.error('Delete failed:', err);
-    }
-  }, [selectedDoc, refreshDocuments]);
+  const analyzeSelected = useCallback(async () => {
+    if (!selectedSession) return;
+    const nextReport = await window.interviewCoach.analyzeSession(selectedSession.id);
+    const nextUtterances = await window.interviewCoach.getTranscript(selectedSession.id);
+    setReport(nextReport);
+    setUtterances(nextUtterances);
+    await refresh();
+  }, [refresh, selectedSession]);
+
+  const saveFeedback = useCallback(
+    async (input: Omit<AnalysisFeedbackInput, 'sessionId' | 'reportId'>) => {
+      if (!selectedSession || !report) return;
+      await window.interviewCoach.saveFeedback({
+        ...input,
+        sessionId: selectedSession.id,
+        reportId: report.id,
+      });
+      await refresh();
+    },
+    [refresh, report, selectedSession]
+  );
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <header style={{
-        padding: '12px 20px',
-        background: '#16213e',
-        borderBottom: '1px solid #0f3460',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
-        <h1 style={{ fontSize: '18px', fontWeight: 600 }}>Knowledge Base</h1>
-        <button
-          onClick={refreshDocuments}
-          style={{
-            padding: '6px 14px',
-            background: '#0f3460',
-            color: '#e0e0e0',
-            border: '1px solid #1a1a4e',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '13px',
-          }}
-        >
-          Refresh
-        </button>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#10151f', color: '#eef2f7' }}>
+      <header style={{ padding: '12px 20px', borderBottom: '1px solid #263244', display: 'flex', justifyContent: 'space-between' }}>
+        <h1 style={{ fontSize: 18, margin: 0 }}>Interview Debrief Coach</h1>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button onClick={importSample}>Import Sample Transcript</button>
+          <button onClick={analyzeSelected} disabled={!selectedSession}>Analyze</button>
+        </div>
       </header>
 
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        {/* Left panel: Document list */}
-        <div style={{
-          width: '280px',
-          borderRight: '1px solid #0f3460',
-          display: 'flex',
-          flexDirection: 'column',
-          background: '#16213e',
-        }}>
-          <div style={{
-            padding: '10px 16px',
-            borderBottom: '1px solid #0f3460',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-            <span style={{ fontSize: '13px', fontWeight: 500, color: '#a0a0c0' }}>
-              Documents ({documents.length})
-            </span>
-            <button
-              onClick={() => setShowImport(!showImport)}
-              style={{
-                padding: '4px 10px',
-                background: '#533483',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '3px',
-                cursor: 'pointer',
-                fontSize: '12px',
-              }}
-            >
-              + Import
-            </button>
-          </div>
-          <DocumentList
-            documents={documents}
-            onSelect={handleSelectDocument}
-            selectedId={selectedDoc?.id ?? null}
+      <main style={{ display: 'grid', gridTemplateColumns: '280px minmax(360px, 1fr) minmax(360px, 420px)', minHeight: 0, flex: 1 }}>
+        <InterviewSessionSidebar
+          sessions={sessions}
+          selectedId={selectedSession?.id ?? null}
+          onSelect={setSelectedSession}
+        />
+        {selectedSession ? (
+          <TranscriptTimeline
+            utterances={utterances}
+            highlightedUtteranceId={highlightedUtteranceId}
           />
-        </div>
+        ) : (
+          <EmptyState title="No interview selected" body="Import a transcript to start a local debrief." />
+        )}
+        <DebriefReportPanel
+          report={report}
+          onEvidenceClick={setHighlightedUtteranceId}
+          onFeedback={saveFeedback}
+        />
+      </main>
 
-        {/* Right panel: Import, Document detail + Q&A */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-          <div style={{ flex: 1, overflow: 'auto', padding: '20px' }}>
-            {showImport ? (
-              <ImportPanel onImport={handleImport} />
-            ) : selectedDoc ? (
-              <DocumentDetail
-                document={selectedDoc}
-                onDelete={handleDeleteDocument}
-              />
-            ) : (
-              <div style={{ color: '#666', textAlign: 'center', paddingTop: '40px' }}>
-                Select a document or ask a question to get started
-              </div>
-            )}
-            {lastResponse && (
-              <div style={{
-                marginTop: '16px',
-                padding: '16px',
-                background: '#1a1a3e',
-                borderRadius: '6px',
-                border: '1px solid #0f3460',
-              }}>
-                <div style={{ fontSize: '14px', lineHeight: 1.6 }}>{lastResponse.answer}</div>
-                {lastResponse.citations.length > 0 && (
-                  <div style={{ marginTop: '10px', fontSize: '12px', color: '#8888bb' }}>
-                    <strong>Citations:</strong>
-                    {lastResponse.citations.map((c, i) => (
-                      <div key={i} style={{ marginTop: '4px', paddingLeft: '8px', borderLeft: '2px solid #533483' }}>
-                        {c.documentTitle} (chunk {c.chunkIndex}): {c.excerpt.substring(0, 100)}...
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <QuestionPanel onAsk={handleAskQuestion} />
-        </div>
-      </div>
-
-      <StatusBar status={appStatus} />
+      <StatusBar status={status} />
     </div>
   );
 }

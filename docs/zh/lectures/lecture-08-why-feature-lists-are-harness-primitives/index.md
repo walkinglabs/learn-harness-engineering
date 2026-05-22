@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-08-why-feature-lists-are-harness-primitives/code/)
 > 实战练习：[Project 04. 用运行反馈修正 agent 的行为](./../../projects/project-04-incremental-indexing/index.md)
 
-# 第八讲. 用功能清单约束 agent 该做什么
+# 第八讲. 功能清单是面试复盘应用的 Harness 原语
 
 你让 agent 做一个电商网站，跑完之后它告诉你"做完了"。你打开代码一看——用户认证有了，但购物车的结算按钮点了没反应，支付流程根本没接上。问题是：你从来没告诉它"做完"的标准是什么，所以它用自己的标准——"代码写了不少，看起来挺完整"。
 
@@ -13,7 +13,7 @@ Anthropic 和 OpenAI 都强调：**工件必须外部化**。功能状态必须�
 
 ## Agent 不知道"做完"是什么意思
 
-Claude Code 和 Codex 都不会自动知道你心目中的"做完"是什么意思。你说"加一个购物车功能"，模型的理解可能是"写一个 Cart 组件和 addToCart 方法"。而你的意思是"用户能从浏览商品到下单支付完整走通"。
+Claude Code 和 Codex 都不会自动知道你心目中的"做完"是什么意思。你说"加一个购物车功能"，模型的理解可能是"写一个 Report 组件和 addToReport 方法"。而你的意思是"用户能从浏览商品到下单支付完整走通"。
 
 这个理解鸿沟在没有功能清单的情况下会持续存在。agent 用自己的隐式标准判断完成——通常是"代码没有明显的语法错误"。而你需要的是端到端的行为验证。就像你让朋友帮你买菜，说"买点水果"，他拎了一袋柠檬回来——他要的水果，你要的水果，不是一个水果。
 
@@ -31,7 +31,7 @@ Claude Code 和 Codex 都不会自动知道你心目中的"做完"是什么意�
 
 ```mermaid
 flowchart LR
-    Feature["一行功能项"] --> Behavior["行为<br/>例如：POST /cart/items 返回 201"]
+    Feature["一行功能项"] --> Behavior["行为<br/>例如：POST /report/items 返回 201"]
     Feature --> Check["验证命令<br/>具体要跑什么检查"]
     Feature --> State["状态<br/>not_started / active / blocked / passing"]
 
@@ -83,8 +83,8 @@ flowchart LR
 ```json
 {
   "id": "F03",
-  "behavior": "POST /cart/items with {product_id, quantity} returns 201",
-  "verification": "curl -X POST http://localhost:3000/api/cart/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
+  "behavior": "POST /report/items with {product_id, quantity} returns 201",
+  "verification": "curl -X POST http://localhost:3000/api/report/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
   "state": "passing",
   "evidence": "commit abc123, test output log"
 }
@@ -106,7 +106,7 @@ agent 不能直接把状态改成 `passing`。它只能提交验证请求，harn
 
 ### 4. 粒度校准
 
-每个功能项应该是"一次会话能完成"的范围。太粗了做不完，太细了管理开销大。"用户可以添加商品到购物车"是一个好粒度，"实现购物车"太粗了，"创建 Cart 模型的 name 字段"太细了。就像切牛排——不能整块啃，也不能切成肉沫。
+每个功能项应该是"一次会话能完成"的范围。太粗了做不完，太细了管理开销大。"用户可以添加商品到购物车"是一个好粒度，"实现购物车"太粗了，"创建 Report 模型的 name 字段"太细了。就像切牛排——不能整块啃，也不能切成肉沫。
 
 ## 实际案例
 

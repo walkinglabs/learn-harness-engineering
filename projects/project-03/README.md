@@ -1,32 +1,33 @@
-# Project 03: Scope Control and Grounded Verification
+# Project 03: Multi-session Continuity for Interview Analysis
 
-Evaluate whether explicit scope control and verification gates improve delivery accuracy.
+Teach the agent to continue interview-analysis work across sessions using progress logs, session handoff, feature state, and an analysis state machine.
 
 ## Directory Guide
 
 | Directory | Meaning |
 |------|------|
-| `starter/` | **Starting point**: based on the P2 solution, with document chunking, metadata extraction, index status, and basic QA still to implement. There is no "one feature at a time" strategy constraint. |
-| `solution/` | **Reference implementation**: all features are implemented. AGENTS.md includes a "one feature at a time" strategy, and feature_list.json shows the fail-to-pass transition and verification evidence. |
+| `starter/` | Starting point derived from Project 02, with analysis report generation still incomplete. |
+| `solution/` | Reference implementation with AnalysisReport, follow-up chains, gaps, risk items, training tasks, progress log, and session handoff. |
 
 ## How to Use
 
 ```sh
 cd starter
 npm install
-# Observe whether the agent implements multiple features at once (scope drift)
+# Observe whether the agent can resume after interruption without losing analysis state.
 
 cd ../solution
 npm install
-# Rerun with scope control and compare feature delivery accuracy
+# Compare how progress logs, handoff, and feature_list.json constrain completion claims.
 ```
 
 ## Features Covered
 
-- Document chunking (paragraph-aware, about 500 characters)
-- Metadata extraction (word count, line count, paragraph count)
-- Index status displayed in the UI
-- Basic QA flow with source citations
+- Interview session state machine
+- Analyze session command
+- Persisted AnalysisReport
+- UI report status
+- Recovery from interrupted work
 
 ## Related Lectures
 

@@ -1,9 +1,9 @@
 [English version →](../../../en/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
 > Ushbu maʼruza uchun kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
-> Amaliy loyiha: [Loyiha 05. Agentga oʻz ishini oʻzi tekshirishiga imkon bering](./../../projects/project-05-grounded-qa-verification/index.md)
+> Amaliy loyiha: [Loyiha 05. Agentga oʻz ishini oʻzi tekshirishiga imkon bering](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# 9-maʼruza. Agentlarni vaqtidan oldin gʻalabani eʼlon qilishdan saqlash
+# 09-maʼruza. Reportlar evidence-grounded boʻlmasdan agentlar nega gʻalaba eʼlon qiladi
 
 Siz agentdan “parolni tiklash” funksiyasini qoʻshishni soʻraysiz. U maʼlumotlar bazasi sxemasini oʻzgartiradi, API endpointʼini yozadi, elektron pochta andozasini (email template) qoʻshadi, unit testlarni ishga tushiradi (hammasi oʻtadi) va soʻngra sizga ishonch bilan “tugatdim” deydi. Haqiqatda ishlatib koʻrsangiz—parolni tiklash havolasi yuborilmaydi (elektron pochta xizmati sozlamalari yoʻq), maʼlumotlar bazasi migratsiyasi yarmida yiqiladi (sxema noaniqligi), va end-to-end oqimi (flow) biror marta ham ishga tushirib koʻrilmagan.
 

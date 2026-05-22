@@ -1,9 +1,9 @@
 [中文版本 →](../../../zh/lectures/lecture-09-why-agents-declare-victory-too-early/)
 
 > Примеры кода: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-09-why-agents-declare-victory-too-early/code/)
-> Практический проект: [Project 05. Let the agent verify its own work](./../../projects/project-05-grounded-qa-verification/index.md)
+> Практический проект: [Project 05. Let the agent verify its own work](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# Лекция 09. Предотвращение преждевременных заявлений о завершении
+# Лекция 09. Почему агенты объявляют победу до evidence-grounded reports
 
 Вы просите агента реализовать функцию «сброс пароля». Он изменяет схему базы данных, пишет API-эндпоинт, добавляет email-шаблон, запускает юнит-тесты (все проходят) и уверенно сообщает: «готово». Когда вы реально пытаетесь это запустить — ссылка сброса пароля не отправляется (отсутствует конфигурация email-сервиса), миграция базы данных падает на середине (несогласованность схемы), а сквозной поток ни разу не выполнялся.
 

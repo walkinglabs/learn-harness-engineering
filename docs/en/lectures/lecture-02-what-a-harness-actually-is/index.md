@@ -3,7 +3,7 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-02-what-a-harness-actually-is/code/)
 > Practice project: [Project 01. Prompt-only vs. rules-first](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# Lecture 02. What Harness Actually Means
+# Lecture 02. What Harness Means for AI Interview Debrief Systems
 
 The word "harness" gets thrown around a lot in AI coding agent circles, but honestly, most people mean "a prompt file" when they say harness. That's not a harness. It's like opening a restaurant with nothing but ingredients — no stove, no knives, no recipes, no plating workflow. That's not a restaurant. That's a refrigerator.
 

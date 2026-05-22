@@ -3,7 +3,7 @@
 > Kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/)
 > Amaliy loyiha: [Loyiha 02. Agent oʻqiy oladigan ish maydoni](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# 3-maʼruza. Repozitoriyni yagona haqiqat manbaiga aylantiring
+# 03-maʼruza. Repozitoriy interview analysis uchun yagona haqiqat manbai
 
 Jamoangizning arxitektura qarorlari Confluence, Slack, Jira va bir nechta tajribali muhandislarning boshida tarqalib ketgan. Odamlar uchun bu amallab ishlaydi — siz hamkasbingizdan soʻrashingiz, chat tarixini qidirishingiz, hujjatlarni titkilab chiqishingiz mumkin. Agar boshqa hech narsa yordam bermasa, tanaffus xonasida kimnidir burchakka taqab soʻrab olasiz. Lekin AI agent uchun repozitoriyda mavjud boʻlmagan maʼlumot shunchaki yoʻq degani.
 

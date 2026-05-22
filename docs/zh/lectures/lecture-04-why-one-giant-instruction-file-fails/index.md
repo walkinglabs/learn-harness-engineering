@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-04-why-one-giant-instruction-file-fails/code/)
 > 实战练习：[Project 02. 让 agent 看懂项目、接住上次的工作](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# 第四讲. 把指令拆分到不同文件里
+# 第四讲. 把指令拆到产品、架构、数据和安全文档里
 
 你开始认真对待 harness 了——好事。你建了个 `AGENTS.md`，把你能想到的所有规则、约束、历史教训都塞了进去。一个月后这个文件膨胀到了 300 行，两个月 450 行，三个月 600 行。然后你发现 agent 的表现反而变差了——改一个小 bug，agent 花大量上下文处理无关的部署指令；关键的安全约束埋在第 300 行，被直接忽略了；文件里有三条互相矛盾的代码风格规则，agent 每次随机选一条。
 

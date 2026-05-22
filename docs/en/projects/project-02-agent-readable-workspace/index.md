@@ -7,7 +7,7 @@
 
 ## What You Do
 
-Add "readability" to the repo so a new agent can quickly understand the project structure, know the current progress, and pick up work. Specifically: implement document import, document detail view, and local persistence, completed across two sessions.
+Add readability to the repo so a new agent can understand the project structure, current progress, and interview analysis state. Specifically: implement transcript import, transcript detail view, and local persistence across two sessions.
 
 You run it twice: first without any help, second with `ARCHITECTURE.md`, `PRODUCT.md`, and `session-handoff.md` pre-placed in the repo.
 

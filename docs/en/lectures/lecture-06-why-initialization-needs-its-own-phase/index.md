@@ -3,7 +3,7 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-06-why-initialization-needs-its-own-phase/code/)
 > Practice project: [Project 03. Multi-session continuity](./../../projects/project-03-multi-session-continuity/index.md)
 
-# Lecture 06. Initialize Before Every Agent Session
+# Lecture 06. Why Initialization Matters Before Touching Transcript Analysis Code
 
 You start a new agent session and say "add a search feature." It jumps straight into coding — admirable enthusiasm. After 20 minutes it discovers the test framework isn't configured properly, spends another 10 fixing that, then the database migration script format is wrong, more fiddling. The search feature eventually gets added, but the whole session was inefficient — most time went to "figuring out how this project works" rather than writing the search feature.
 

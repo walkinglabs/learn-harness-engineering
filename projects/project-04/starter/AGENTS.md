@@ -1,8 +1,8 @@
-# AGENTS.md
+# AGENTS.md -- Project 04: Runtime Feedback and Structural Control
 
 ## Project
 
-Knowledge Base - Electron + TypeScript + React desktop app for document import, indexing, and Q&A.
+Interview Debrief Coach - Electron + TypeScript + React desktop app for transcript import, interview analysis, timestamped evidence, and training plans.
 
 ## Commands
 
@@ -13,4 +13,7 @@ Knowledge Base - Electron + TypeScript + React desktop app for document import, 
 ## Rules
 
 - Work on one feature at a time.
+- Use fixtures to reproduce transcript parser, segmentation, or analysis bugs.
 - Run `npm run check` before committing.
+- Renderer must use `window.interviewCoach`; it must not use Node filesystem APIs.
+- Safety boundary violations are product bugs.

@@ -3,7 +3,7 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/)
 > Practice project: [Project 02. Agent-readable workspace](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# Lecture 03. Make the Repository Your Single Source of Truth
+# Lecture 03. Repository as the Single Source of Truth for Interview Analysis
 
 Your team's architecture decisions are scattered across Confluence, Slack, Jira, and a few senior engineers' heads. For humans this barely works — you can ask a colleague, search chat history, dig through docs. If all else fails, you can corner someone in the break room. But for an AI agent, information that's not in the repository simply does not exist.
 
@@ -100,7 +100,7 @@ This analogy comes from database transaction management — you might think it's
 
 ## A Real Transformation Story
 
-A team maintained an e-commerce platform with ~30 microservices. Architecture decisions (inter-service communication protocols, data consistency strategies, API versioning rules) were scattered across: Confluence (partially outdated), Slack (hard to search), a few senior engineers' heads (not scalable), and sporadic code comments (not systematic).
+A team maintained an interview debrief platform with ~30 microservices. Architecture decisions (inter-service communication protocols, data consistency strategies, API versioning rules) were scattered across: Confluence (partially outdated), Slack (hard to search), a few senior engineers' heads (not scalable), and sporadic code comments (not systematic).
 
 After introducing AI agents, 70% of tasks required human intervention. Nearly every failure involved the agent violating some "everyone knows but nobody wrote down" implicit constraint. It's like a new employee whom nobody told "you need to post your lunch order in the group chat" — they guess wrong, get scolded, but after the scolding still nobody tells them the rule.
 

@@ -1,17 +1,19 @@
 [English](https://walkinglabs.github.io/learn-harness-engineering/en/) · [中文](https://walkinglabs.github.io/learn-harness-engineering/zh/) · [Русский](https://walkinglabs.github.io/learn-harness-engineering/ru/) · [Tiếng Việt](https://walkinglabs.github.io/learn-harness-engineering/vi/) · **한국어** · [Oʻzbekcha](https://walkinglabs.github.io/learn-harness-engineering/uz/)
 
-# Learn Harness Engineering
+# Learn Interview Harness Engineering
 
-> **AI 코딩 에이전트(coding agent)가 안정적으로 동작하도록 환경, 상태 관리, 검증(verification), 제어 메커니즘을 구축하는 프로젝트 기반 강의입니다.**
+> **실제 Electron AI 면접 회고 코치 앱을 만들며 AI 코딩 에이전트를 안정적으로 다루는 방법을 배우는 프로젝트 기반 강의입니다.**
 
-Learn Harness Engineering은 AI 코딩 에이전트 공학에 전념하는 강의입니다. 업계에서 가장 앞선 하네스 엔지니어링(Harness Engineering) 이론과 실천을 깊이 연구하여 종합했습니다. 핵심 참고 자료는 다음과 같습니다.
+Learn Interview Harness Engineering은 AI 코딩 에이전트 공학에 전념하는 강의입니다. 캡스톤 제품은 **Interview Debrief Coach**입니다. 사용자가 면접 녹음이나 타임스탬프가 있는 transcript를 가져오면, 앱은 대화를 질문 체인으로 나누고 타임스탬프 근거가 있는 면접 회고 리포트와 훈련 과제를 생성합니다.
+
+강의는 기존 하네스 엔지니어링 구조를 유지합니다. 12개 강의, 6개 실습 프로젝트, starter/solution, 리소스 템플릿, 진행 로그, 기능 목록, benchmark, cleanup scanner, session handoff를 모두 보존합니다. 핵심 참고 자료는 다음과 같습니다.
 
 - [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-> **빠르게 시작하려면?** [`skills/harness-creator/`](./skills/) 스킬(skill)을 사용하면 몇 분 만에 프로덕션 수준의 하네스(AGENTS.md, 기능 목록, init.sh, 검증 워크플로우)를 직접 프로젝트에 스캐폴딩(scaffold)할 수 있습니다.
+> **빠르게 시작하려면?** [`skills/harness-creator/`](./skills/) 스킬은 하네스 템플릿 계층을 제공합니다. 이번 마이그레이션에서는 지식 베이스 앱 도메인에서 Interview Debrief Coach 도메인으로 전환됩니다.
 
 ---
 
@@ -192,37 +194,32 @@ OpenAI도 Codex로 동일한 사실을 보고했습니다. 잘 갖추어진 저�
 
 ---
 
-## 캡스톤 프로젝트: 실제 앱
+## 캡스톤 프로젝트: Interview Debrief Coach
 
-6개의 강의 프로젝트는 모두 동일한 제품을 중심으로 전개됩니다. **Electron 기반 개인 지식 베이스(knowledge base) 데스크탑 앱**입니다.
+6개의 강의 프로젝트는 모두 동일한 제품을 중심으로 전개됩니다. **Electron 기반 AI 면접 회고 데스크탑 앱**입니다.
 
 ```text
-    ┌─────────────────────────────────────────────────────┐
-    │               Knowledge Base Desktop App            │
-    │                                                     │
-    │  ┌──────────────┐  ┌──────────────────────────────┐│
-    │  │ Document List │  │       Q&A Panel              ││
-    │  │              │  │                              ││
-    │  │ doc-001.md   │  │  Q: What is harness eng?    ││
-    │  │ doc-002.md   │  │  A: The environment built    ││
-    │  │ doc-003.md   │  │     around an agent model... ││
-    │  │ ...          │  │     [citation: doc-002.md]   ││
-    │  └──────────────┘  └──────────────────────────────┘│
-    │                                                     │
-    │  ┌─────────────────────────────────────────────────┐│
-    │  │ Status Bar: 42 docs | 38 indexed | last sync 3m ││
-    │  └─────────────────────────────────────────────────┘│
-    └─────────────────────────────────────────────────────┘
+    ┌────────────────────┬──────────────────────────────┬────────────────────────────┐
+    │ Interview Sessions │ Transcript Timeline           │ Debrief Report             │
+    │                    │                              │                            │
+    │ Backend Mock       │ [00:00:02] interviewer: ...  │ Follow-up Logic            │
+    │ System Design      │ [00:00:18] candidate: ...    │ Technical Depth Gaps       │
+    │ Project Deep Dive  │ [00:01:03] interviewer: ...  │ Project Evidence Gaps      │
+    │                    │ [00:01:20] candidate: ...    │ Speech Issues              │
+    │                    │                              │ Risk Items                 │
+    │                    │                              │ Training Plan              │
+    └────────────────────┴──────────────────────────────┴────────────────────────────┘
 
     Core features:
-    ├── Import local documents
-    ├── Manage a document library
-    ├── Process and index documents
-    ├── Run AI-powered Q&A over imported content
-    └── Return grounded answers with citations
+    ├── Create and manage interview sessions
+    ├── Import timestamped transcripts or mock-transcribed audio
+    ├── Parse speakers, timestamps, utterances, and follow-up chains
+    ├── Generate debrief reports with timestamped evidence
+    ├── Capture accuracy feedback on analysis items
+    └── Save debrief history and training plans locally
 ```
 
-이 프로젝트는 강력한 실용적 가치, 충분한 실제 제품 복잡성, 그리고 하네스 개선 전후를 관찰하기에 적합한 환경을 갖추고 있어 선택되었습니다.
+이 프로젝트는 실제 사용자 가치, 로컬 우선 데스크탑 앱 복잡성, 명확한 안전 경계를 함께 갖추고 있어 선택되었습니다. 이 앱은 면접 후 후보자 자신의 회고를 돕는 도구이며, 후보자 순위화, 채용/불합격 권고, 보호 특성 추론, 감정 인식, 거짓말 판단을 하지 않습니다.
 
 각 강의 프로젝트의 시작점/풀이는 해당 진화 단계의 이 Electron 앱의 완전한 복사본입니다. P(N+1)의 시작점은 P(N)의 풀이에서 파생됩니다 — 앱은 하네스 기술이 성장함에 따라 함께 진화합니다.
 
@@ -308,8 +305,8 @@ OpenAI도 Codex로 동일한 사실을 보고했습니다. 잘 갖추어진 저�
 | [P01](./docs/projects/project-01-baseline-vs-minimal-harness/index.md) | 동일한 작업을 두 번 실행: 프롬프트만 사용 vs. 규칙 우선 | 최소 하네스: AGENTS.md + init.sh + feature_list.json |
 | [P02](./docs/projects/project-02-agent-readable-workspace/index.md) | 에이전트가 읽을 수 있도록 저장소 재구성 | 에이전트 가독형 워크스페이스 + 영속 상태 파일 |
 | [P03](./docs/projects/project-03-multi-session-continuity/index.md) | 에이전트가 중단된 곳에서 이어받도록 만들기 | 진행 로그 + 세션 핸드오프(handoff) + 다중 세션 연속성 |
-| [P04](./docs/projects/project-04-incremental-indexing/index.md) | 에이전트가 너무 많거나 너무 적게 하지 않도록 막기 | 런타임 피드백 + 범위 제어 + 점진적 인덱싱 |
-| [P05](./docs/projects/project-05-grounded-qa-verification/index.md) | 에이전트가 자신의 작업을 검증하도록 만들기 | 자기 검증 + 근거 기반 Q&A + 증거 기반 완료 |
+| [P04](./docs/projects/project-04-incremental-indexing/index.md) | transcript 분석 동작에 런타임 피드백 추가 | 런타임 피드백 + 범위 제어 + 구조화된 분석 검사 |
+| [P05](./docs/projects/project-05-evidence-grounded-evaluator-loops/index.md) | 에이전트가 debrief 결과를 검증하도록 만들기 | 자기 검증 + 타임스탬프 근거 + 역할 분리 |
 | [P06](./docs/projects/project-06-runtime-observability-and-debugging/index.md) | 처음부터 완전한 하네스 구축 (캡스톤 프로젝트) | 완전한 하네스: 모든 메커니즘 + 가관측성 + 절제 연구 |
 
 ```text

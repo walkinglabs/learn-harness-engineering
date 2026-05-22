@@ -7,7 +7,7 @@
 
 ## Bạn Làm Gì
 
-Thêm kiểm soát phạm vi và cổng xác minh vào agent. Triển khai document chunking, metadata extraction, hiển thị tiến độ indexing, và luồng Q&A dựa trên trích dẫn. Sử dụng `feature_list.json` để theo dõi trạng thái tính năng — mỗi lần một tính năng, không đánh dấu là "pass" mà không có bằng chứng xác minh.
+Thêm kiểm soát phạm vi và cổng xác minh vào agent. Triển khai transcript segmentation, metadata extraction, hiển thị tiến độ segmentation, và luồng debrief report dựa trên trích dẫn. Sử dụng `feature_list.json` để theo dõi trạng thái tính năng — mỗi lần một tính năng, không đánh dấu là "pass" mà không có bằng chứng xác minh.
 
 Bạn chạy hai lần: lần đầu không có ràng buộc, lần hai với thực thi nghiêm ngặt.
 

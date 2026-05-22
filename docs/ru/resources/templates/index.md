@@ -198,7 +198,7 @@
 
 **Что он оценивает:**
 
-- **Продуктовые домены** (например, импорт документов, Q&A-флоу, индексация): каждому домену ставится оценка (A–D) по статусу верификации, читаемости для агента, стабильности тестов и ключевым пробелам
+- **Продуктовые домены** (например, импорт документов, debrief report-флоу, индексация): каждому домену ставится оценка (A–D) по статусу верификации, читаемости для агента, стабильности тестов и ключевым пробелам
 - **Архитектурные слои** (например, main process, preload, renderer, services): каждому слою ставится оценка за соблюдение границ и читаемость для агента
 
 **Почему это важно:**
@@ -224,3 +224,14 @@ Quality-документ также поддерживает упрощение 
 3. Прогоните набор бенчмарк-задач.
 4. Сделайте ещё один снимок.
 5. Сравните — если оценки не упали, компонент был излишним. Если упали — верните его обратно.
+
+## Interview Debrief Coach Templates
+
+- [AGENTS-interview-template.md](./AGENTS-interview-template.md)
+- [feature-list-interview-template.json](./feature-list-interview-template.json)
+- [init-interview-template.sh](./init-interview-template.sh)
+- [session-handoff-interview-template.md](./session-handoff-interview-template.md)
+- [clean-state-checklist-interview-template.md](./clean-state-checklist-interview-template.md)
+- [evaluator-rubric-interview-template.md](./evaluator-rubric-interview-template.md)
+- [safety-boundaries-template.md](./safety-boundaries-template.md)
+- [interview-analysis-model-template.md](./interview-analysis-model-template.md)

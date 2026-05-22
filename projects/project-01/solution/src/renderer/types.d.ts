@@ -1,24 +1,25 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 
+import {
+  AnalysisFeedbackInput,
+  AnalysisReport,
+  AppStatus,
+  ImportTranscriptInput,
+  InterviewSession,
+  Utterance,
+} from '../types';
+
 declare global {
   interface Window {
-    knowledgeBase: {
-      documents: {
-        list: () => Promise<import('../shared/types').Document[]>;
-        import: (filePath: string) => Promise<import('../shared/types').Document>;
-        get: (id: string) => Promise<import('../shared/types').Document | null>;
-        delete: (id: string) => Promise<boolean>;
-      };
-      indexing: {
-        start: (documentId?: string) => Promise<import('../shared/types').AppStatus>;
-        status: () => Promise<import('../shared/types').AppStatus>;
-        chunks: (documentId: string) => Promise<import('../shared/types').Chunk[]>;
-      };
-      qa: {
-        ask: (question: string) => Promise<import('../shared/types').QAResponse>;
-        history: () => Promise<import('../shared/types').QAHistory[]>;
-      };
+    interviewCoach: {
+      listSessions(): Promise<InterviewSession[]>;
+      importTranscript(input: ImportTranscriptInput): Promise<InterviewSession>;
+      getTranscript(sessionId: string): Promise<Utterance[]>;
+      analyzeSession(sessionId: string): Promise<AnalysisReport>;
+      getReport(sessionId: string): Promise<AnalysisReport | null>;
+      saveFeedback(input: AnalysisFeedbackInput): Promise<void>;
+      getStatus(): Promise<AppStatus>;
     };
   }
 }

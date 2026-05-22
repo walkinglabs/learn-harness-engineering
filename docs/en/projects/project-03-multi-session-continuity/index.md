@@ -7,7 +7,7 @@
 
 ## What You Do
 
-Add scope control and verification gates to the agent. Implement document chunking, metadata extraction, indexing progress display, and citation-based Q&A flow. Use `feature_list.json` to track feature status — one feature at a time, no marking as "pass" without verification evidence.
+Add scope control and verification gates to the agent. Implement transcript segmentation, metadata extraction, analysis progress display, and evidence-grounded debrief report flow. Use `feature_list.json` to track feature status — one feature at a time, no marking as "pass" without verification evidence.
 
 You run it twice: first without constraints, second with strict enforcement.
 

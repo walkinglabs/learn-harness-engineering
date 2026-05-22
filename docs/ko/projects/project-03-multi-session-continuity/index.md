@@ -7,7 +7,7 @@
 
 ## 해야 할 일
 
-에이전트(agent)에 범위 제어(scope control)와 검증 게이트(verification gates)를 추가합니다. 문서 청킹(chunking), 메타데이터 추출, 인덱싱 진행 상태 표시, 인용 기반 Q&A 흐름을 구현합니다. `feature_list.json`을 사용하여 기능 상태를 추적합니다. 한 번에 하나의 기능만 처리하고, 검증 증거 없이는 "완료(pass)"로 표시할 수 없습니다.
+에이전트(agent)에 범위 제어(scope control)와 검증 게이트(verification gates)를 추가합니다. transcript segmentation, 메타데이터 추출, 분석 진행 상태 표시, evidence-grounded debrief report 흐름을 구현합니다. `feature_list.json`을 사용하여 기능 상태를 추적합니다. 한 번에 하나의 기능만 처리하고, 검증 증거 없이는 "완료(pass)"로 표시할 수 없습니다.
 
 장시간 실행되는 작업은 컨텍스트(context) 초기화나 중단으로 인해 연속성(continuity)을 잃기 쉽습니다. 진행 로그(progress log)와 세션 핸드오프를 결합하면 에이전트가 이전에 완료한 항목을 재확인하지 않고 정확한 다음 단계에서 재개할 수 있습니다.
 

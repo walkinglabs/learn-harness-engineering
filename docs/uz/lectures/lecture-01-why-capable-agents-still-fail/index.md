@@ -3,7 +3,7 @@
 > Kod misollar: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-01-why-capable-agents-still-fail/code/)
 > Amaliy loyiha: [01-loyiha. Faqat prompt vs. qoidalar ustuvor](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# 01-maʼruza. Kuchli model — ishonchli bajarilish degani emas
+# 01-maʼruza. Kuchli modellar real interview-analysis applarda ham yiqiladi
 
 Oʻzingizni AI olamida tajribali deb hisoblaysiz — Claude Pro obunangiz bor, GPT-4o API kalitingiz bor, SWE-bench reytingidagi raqamlarni yoddan bilasiz. Va nihoyat, haqiqiy loyihani ishonch bilan AI agentga topshirasiz. Natija nima? U bitta funksiya qoʻshadi-yu, testlarni buzadi; bitta xatoni tuzatadi-yu, yana ikkita yangisini kiritadi; 20 daqiqa ishlab “tayyor” deb faxr bilan eʼlon qiladi — siz kodga qaraysiz, u umuman soʻraganingiz emas.
 

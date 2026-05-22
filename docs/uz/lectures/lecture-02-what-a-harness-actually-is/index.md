@@ -3,7 +3,7 @@
 > Kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-02-what-a-harness-actually-is/code/)
 > Amaliy loyiha: [Loyiha 01. Prompt-only vs. rules-first](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# 2-maʼruza. Harness aslida nima degani
+# 02-maʼruza. AI interview debrief tizimlarida harness nimani anglatadi
 
 “Harness” soʻzi AI kod yozish agentlari (coding agent) doiralarida koʻp ishlatiladi, lekin ochigʻini aytganda, koʻpchilik odamlar harness deganda “prompt fayli”ni tushunishadi. Bu harness emas. Bu xuddi faqat masalliqlar bilan — plitasiz, pichoqlarsiz, retseptlarsiz, ovqatni taqdim etish (plating) jarayonisiz restoran ochishga oʻxshaydi. Bu restoran emas. Bu muzlatkich.
 

@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-12-why-every-session-must-leave-a-clean-state/code/)
 > 实战练习：[Project 06. 搭建一套完整的 agent 工作环境](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# 第十二讲. 每次会话结束前都做好交接
+# 第十二讲. 为什么每次会话都要留下干净状态和可重启交接
 
 你的 agent 跑了一下午，改了 20 个文件，提交了代码，会话结束。下一个 agent 会话开始，一上来就发现：构建失败了、测试红了、临时调试文件到处都是、功能清单没更新、进度完全不清楚。新会话的前 30 分钟全花在"搞清楚上一个会话到底干了什么"上。
 

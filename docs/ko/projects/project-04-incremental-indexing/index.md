@@ -1,4 +1,4 @@
-[English Version →](../../../en/projects/project-04-incremental-indexing/)
+[English Version →](../../../en/projects/project-04-incremental-segmentation/)
 
 > 관련 강의: [강의 07. 에이전트를 위한 명확한 작업 경계 설정하기](./../../lectures/lecture-07-why-agents-overreach-and-under-finish/index.md) · [강의 08. 기능 목록을 사용하여 에이전트가 하는 일을 제한하기](./../../lectures/lecture-08-why-feature-lists-are-harness-primitives/index.md)
 > 템플릿 파일: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/resources/templates/)
@@ -21,4 +21,4 @@
 
 ## 하네스 메커니즘
 
-런타임 피드백 + 범위 제어 + 증분 인덱싱(incremental indexing)
+런타임 피드백 + 범위 제어 + 증분 인덱싱(incremental segmentation)

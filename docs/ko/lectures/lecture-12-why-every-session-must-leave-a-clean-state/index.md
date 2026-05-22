@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/code/)
 > 실습 프로젝트: [Project 06. 완전한 하네스 (캡스톤)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# 강의 12. 모든 세션은 클린 상태(clean state)로 끝나야 한다
+# 강의 12. 모든 세션은 깨끗한 상태와 재시작 가능한 인계를 남겨야 한다
 
 ## 이 강의가 해결하는 문제
 

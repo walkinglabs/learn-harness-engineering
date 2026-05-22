@@ -1,11 +1,11 @@
 [中文版本 →](../../../zh/lectures/lecture-10-why-end-to-end-testing-changes-results/)
 
 > Code examples for this lecture: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-10-why-end-to-end-testing-changes-results/code/)
-> Hands-on practice: [Project 05. Let the agent verify its own work](./../../projects/project-05-grounded-qa-verification/index.md)
+> Hands-on practice: [Project 05. Let the agent verify its own work](./../../projects/project-05-evidence-grounded-evaluator-loops/index.md)
 
-# Lecture 10. Only End-to-End Testing is True Verification
+# Lecture 10. Why End-to-End Fixture Pipelines Change Results
 
-You ask the agent to add a file export feature to an Electron app. It writes the render process component, the preload script, and the service layer logic. The unit tests for each component pass perfectly. The agent says, "It's done." When you actually click the export button—the file path format is wrong, the progress bar doesn't update, and exporting large files causes a memory leak. Five component boundary defects, and the unit tests didn't catch a single one.
+You ask the agent to add a debrief report export feature to an Electron app. It writes the render process component, the preload script, and the service layer logic. The unit tests for each component pass perfectly. The agent says, "It's done." When you actually click the export button—the file path format is wrong, the progress bar doesn't update, and exporting long debrief reports causes a memory leak. Five component boundary defects, and the unit tests didn't catch a single one.
 
 It's like a choir rehearsal—each voice part sounds perfect when sung individually, but when they sing together, the sopranos are half a beat faster than the basses, and the accompaniment is a semitone off from the main melody. Each part is "correct" on its own, but the whole thing is out of tune.
 
@@ -118,7 +118,7 @@ Every time a new type of agent error is found during code review, turn it into a
 
 ## Real-World Case
 
-**Task**: Implement a file export feature in an Electron app. Involves render process UI, preload script filesystem proxy, and service layer data transformation.
+**Task**: Implement a debrief report export feature in an Electron app. Involves render process UI, preload script filesystem proxy, and service layer data transformation.
 
 **Singing parts individually (Unit tests passed)**: Render component tests (passed, file operations mocked), preload script tests (passed, filesystem mocked), service layer tests (passed, data source mocked). Agent declares completion.
 
@@ -128,7 +128,7 @@ Every time a new type of agent error is found during code review, turn it into a
 |--------|-------------|-----------|-----|
 | Interface Mismatch | Inconsistent file path format | Missed | Caught |
 | State Propagation | Export progress not sent back to UI via IPC | Missed | Caught |
-| Resource Leak | Large file export handles not released | Missed | Caught |
+| Resource Leak | Long debrief export handles not released | Missed | Caught |
 | Permission Issue | Different permissions in packaged environment | Missed | Caught |
 | Error Propagation | Service layer exceptions didn't reach UI layer | Missed | Caught |
 

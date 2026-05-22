@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-04-why-one-giant-instruction-file-fails/code/)
 > Dự án thực hành: [Dự án 02. Không gian làm việc Agent đọc được](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# Bài 04. Chia Hướng dẫn Ra Thành Nhiều Tệp
+# Bài 04. Tách hướng dẫn theo product, architecture, data và safety docs
 
 Bạn đã nghiêm túc với harness engineering — tốt lắm. Bạn đã tạo `AGENTS.md` và nhét mọi quy tắc, ràng buộc và bài học kinh nghiệm mà bạn có thể nghĩ ra vào đó. Một tháng sau, tệp phình lên 300 dòng, hai tháng 450 dòng, ba tháng 600 dòng. Rồi bạn nhận ra hiệu suất của agent thực sự đang kém hơn — trên một sửa lỗi đơn giản, agent đốt cháy rất nhiều ngữ cảnh để xử lý các hướng dẫn triển khai không liên quan; một ràng buộc bảo mật quan trọng bị chôn ở dòng 300 bị bỏ qua hoàn toàn; ba quy tắc phong cách mã mâu thuẫn có nghĩa là agent chọn một cái ngẫu nhiên mỗi lần.
 

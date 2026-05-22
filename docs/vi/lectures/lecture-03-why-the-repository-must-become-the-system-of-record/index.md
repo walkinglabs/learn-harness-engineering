@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/)
 > Dự án thực hành: [Dự án 02. Không gian làm việc Agent đọc được](./../../projects/project-02-agent-readable-workspace/index.md)
 
-# Bài 03. Biến Kho lưu trữ Thành Nguồn Sự thật Duy nhất
+# Bài 03. Repository là nguồn sự thật duy nhất cho phân tích phỏng vấn
 
 Các quyết định kiến trúc của nhóm bạn rải rác khắp Confluence, Slack, Jira, và một vài cái đầu của các kỹ sư cấp cao. Đối với con người, điều này hoạt động gượng gạo — bạn có thể hỏi đồng nghiệp, tìm kiếm lịch sử chat, đào qua tài liệu. Nếu thất bại, bạn có thể chặn ai đó ở căng tin. Nhưng đối với AI agent, thông tin không có trong kho lưu trữ đơn giản là không tồn tại.
 

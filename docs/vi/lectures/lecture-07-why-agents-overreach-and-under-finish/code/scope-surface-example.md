@@ -2,16 +2,16 @@
 
 Tác vụ:
 
-- Thêm indexing vào ứng dụng kiến thức Electron
+- Thêm transcript segmentation vào ứng dụng kiến thức Electron
 
 Hình dạng phạm vi xấu:
 
-- "Triển khai indexing"
+- "Triển khai transcript segmentation"
 
 Hình dạng phạm vi tốt hơn:
 
 - Parse các tài liệu đã import
-- Chia tài liệu thành các chunk
-- Lưu trữ chunk metadata
-- Hiển thị trạng thái indexing trong UI
-- Thêm hành động reindex
+- Chia transcript thành các answer segments
+- Lưu trữ segment metadata
+- Hiển thị trạng thái transcript segmentation trong UI
+- Thêm hành động reanalyze

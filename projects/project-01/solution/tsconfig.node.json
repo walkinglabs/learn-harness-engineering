@@ -15,9 +15,10 @@
     "sourceMap": true,
     "paths": {
       "@shared/*": ["./src/shared/*"],
-      "@services/*": ["./src/services/*"]
+      "@services/*": ["./src/services/*"],
+      "@types/*": ["./src/types/*"]
     },
     "baseUrl": "."
   },
-  "include": ["src/main", "src/preload", "src/shared", "src/services"]
+  "include": ["src/main", "src/preload", "src/shared", "src/services", "src/types"]
 }

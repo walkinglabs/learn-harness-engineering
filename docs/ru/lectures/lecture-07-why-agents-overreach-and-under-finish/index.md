@@ -3,7 +3,7 @@
 > Примеры кода: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-07-why-agents-overreach-and-under-finish/code/)
 > Практический проект: [Project 04. Runtime feedback and scope control](./../../projects/project-04-incremental-indexing/index.md)
 
-# Лекция 07. Очерчивайте чёткие границы задач для агентов
+# Лекция 07. Почему агенты выходят за рамки audio, LLM, UI и analysis features
 
 Вы говорите Claude Code: «добавь в проект аутентификацию пользователей», и он начинает менять схему БД, писать маршруты, переделывать фронтенд-компоненты и заодно — рефакторить middleware обработки ошибок. Через два часа вы проверяете: 12 файлов изменено, 800 строк нового кода, и ни одна фича не работает сквозно.
 

@@ -1,12 +1,16 @@
-# Welcome to Learn Harness Engineering
+# Welcome to Learn Interview Harness Engineering
 
-Learn Harness Engineering is a course dedicated to the engineering of AI coding agents. We have deeply studied and synthesized the most advanced Harness Engineering theories and practices in the industry. Our core references include:
+Learn Interview Harness Engineering is a project-based course on making AI coding agents reliable through a real capstone product: **Interview Debrief Coach**, a local-first Electron desktop app for post-interview debriefing. Users import interview audio or timestamped transcripts, then the app segments question chains and generates a debrief report with timestamped evidence and training recommendations.
+
+The course keeps the harness engineering structure: 12 lectures, 6 hands-on projects, starter/solution workspaces, resource templates, feature lists, progress logs, benchmark scripts, cleanup scanners, and session handoff artifacts. Our core references include:
 - [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-Through systematic environment design, state management, verification, and control systems, this course teaches you how to make agentic coding tools like Codex and Claude Code truly reliable. It helps you build features, fix bugs, and automate development tasks by constraining your AI coding assistant with explicit rules and boundaries.
+Through systematic environment design, state management, verification, and control systems, this course teaches you how to make agentic coding tools like Codex and Claude Code truly reliable while building one coherent desktop application across all projects.
+
+Safety boundary: the app coaches candidates after interviews. It must not rank candidates, recommend hire/reject decisions, infer protected traits, detect emotion, judge personality, or claim someone is lying.
 
 ## Get started
 
@@ -19,7 +23,7 @@ Choose your learning path to get started. The course is divided into theoretical
   </a>
   <a href="./projects/" class="card">
     <h3>Projects</h3>
-    <p>Hands-on practice building a reliable agentic environment from scratch.</p>
+    <p>Hands-on practice evolving the Interview Debrief Coach app and its harness from scratch.</p>
   </a>
   <a href="./resources/" class="card">
     <h3>Resource Library</h3>
@@ -60,6 +64,7 @@ Here are some of the key concepts you will master:
   <li><strong>Stop agents</strong> from declaring victory too early.</li>
   <li><strong>Verify work</strong> using full-pipeline tests and self-reflection.</li>
   <li><strong>Make runtime observable</strong> and debuggable.</li>
+  <li><strong>Build evidence-grounded AI features</strong> where every debrief item links back to timestamped transcript evidence.</li>
 </ul>
 
 ## Next steps

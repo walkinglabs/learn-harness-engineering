@@ -17,11 +17,11 @@ A quality snapshot for each product domain and architectural layer. Both agents 
 
 | Domain | Grade | Verification | Agent Legibility | Test Stability | Key Gaps | Last Updated |
 |--------|-------|-------------|-----------------|---------------|----------|-------------|
-| Document Import | - | - | - | - | - | - |
-| Document Management | - | - | - | - | - | - |
-| Document Indexing | - | - | - | - | - | - |
-| Q&A Flow | - | - | - | - | - | - |
-| Grounded Answers | - | - | - | - | - | - |
+| Transcript Import | - | - | - | - | - | - |
+| Question-Chain Segmentation | - | - | - | - | - | - |
+| Evidence-Grounded Debrief Report | - | - | - | - | - | - |
+| Speech Metrics | - | - | - | - | - | - |
+| Training Plan | - | - | - | - | - | - |
 
 ## Architectural Layers
 
@@ -38,6 +38,6 @@ A quality snapshot for each product domain and architectural layer. Both agents 
 
 - Changes:
 - Domains promoted:
-- Domoted:
+- Demoted:
 - New gaps identified:
 - Gaps closed:

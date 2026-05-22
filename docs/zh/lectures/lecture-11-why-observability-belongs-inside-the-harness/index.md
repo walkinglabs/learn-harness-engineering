@@ -3,7 +3,7 @@
 > 本篇代码示例：[code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
 > 实战练习：[Project 06. 搭建一套完整的 agent 工作环境](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# 第十一讲. 让 agent 的运行过程可观测
+# 第十一讲. 为什么 transcript 分析 Harness 必须可观测
 
 你让 agent 做一个功能，它跑了 20 分钟，改了一堆文件，然后告诉你"做完了但有两个测试失败"。你问它为什么失败，它说"不太确定，可能是时序问题"。你问它改了哪些关键路径，它说"让我看看代码……"。
 

@@ -2,40 +2,40 @@
   "features": [
     {
       "id": "feat-001",
-      "name": "Document Import",
-      "description": "Allow users to import PDF and TXT documents from local filesystem",
+      "name": "Transcript Import",
+      "description": "Allow users to import timestamped interview transcripts from local files",
       "dependencies": [],
       "status": "not-started",
       "evidence": ""
     },
     {
       "id": "feat-002",
-      "name": "Document Chunking",
-      "description": "Split imported documents into ~500 character chunks with metadata (word count, line count, paragraph count)",
+      "name": "Question-Chain Segmentation",
+      "description": "Split interviewer prompts, follow-ups, and candidate answers into transcript-backed question chains",
       "dependencies": ["feat-001"],
       "status": "not-started",
       "evidence": ""
     },
     {
       "id": "feat-003",
-      "name": "Indexing Status UI",
-      "description": "Display indexing progress in status bar: total docs, indexed docs, last sync time",
+      "name": "Analysis Status UI",
+      "description": "Display transcript parsing, segmentation, safety check, and report generation status",
       "dependencies": ["feat-002"],
       "status": "not-started",
       "evidence": ""
     },
     {
       "id": "feat-004",
-      "name": "Grounded Q&A",
-      "description": "Run AI-powered Q&A over indexed content with citations to source documents",
+      "name": "Evidence-Grounded Debrief Report",
+      "description": "Generate technical gaps, speech issues, risk flags, and training plan with transcript turn references",
       "dependencies": ["feat-002"],
       "status": "not-started",
       "evidence": ""
     },
     {
       "id": "feat-005",
-      "name": "Conversation History",
-      "description": "Display Q&A conversation in chat-style interface with copy/export functionality",
+      "name": "Debrief History",
+      "description": "Display prior interview debrief sessions with copy/export functionality",
       "dependencies": ["feat-004"],
       "status": "not-started",
       "evidence": ""

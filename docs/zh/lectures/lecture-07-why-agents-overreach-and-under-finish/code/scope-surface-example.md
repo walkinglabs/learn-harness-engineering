@@ -2,16 +2,16 @@
 
 Task:
 
-- Add indexing to the Electron knowledge app
+- Add transcript segmentation to the Electron interview debrief app
 
 Bad scope shape:
 
-- “Implement indexing”
+- “Implement transcript segmentation”
 
 Better scope shape:
 
-- Parse imported documents
-- Split documents into chunks
-- Persist chunk metadata
-- Expose indexing status in the UI
-- Add a reindex action
+- Parse imported transcripts
+- Split transcripts into answer segments
+- Persist segment metadata
+- Expose analysis status in the UI
+- Add a reanalyze action

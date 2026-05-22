@@ -20,7 +20,7 @@ Har bir mahsulot domeni (product domain) va arxitektura qatlamining sifat koʻri
 | Hujjat Importi | - | - | - | - | - | - |
 | Hujjat Boshqaruvi | - | - | - | - | - | - |
 | Hujjat Indekslash | - | - | - | - | - | - |
-| Q&A Oqimi | - | - | - | - | - | - |
+| Debrief Report Flow | - | - | - | - | - | - |
 | Asoslangan Javoblar | - | - | - | - | - | - |
 
 ## Arxitektura qatlamlari (Architectural Layers)

@@ -7,7 +7,7 @@
 
 ## What You Do
 
-Build a minimal Electron knowledge-base app shell — a window with a document list on the left, a Q&A panel on the right, and a local data directory. The task itself is not complex. What's complex is how you get the agent to complete it.
+Build a minimal Electron interview debrief app shell — a window with interview sessions on the left, a transcript-backed report on the right, and a local data directory. The task itself is not complex. What's complex is how you get the agent to complete it.
 
 You run it twice. First time: just a prompt, no preparation. Second time: `AGENTS.md`, `init.sh`, `feature_list.json` pre-placed in the repo. Then compare.
 

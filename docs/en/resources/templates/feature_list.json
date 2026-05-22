@@ -14,48 +14,47 @@
   },
   "features": [
     {
-      "id": "chat-001",
+      "id": "transcript-001",
       "priority": 1,
-      "area": "chat",
-      "title": "Create a new conversation",
-      "user_visible_behavior": "A user can click New Chat and see a fresh empty conversation.",
+      "area": "transcript",
+      "title": "Import a timestamped interview transcript",
+      "user_visible_behavior": "A user can load a transcript and see turns grouped by speaker and timestamp.",
       "status": "not_started",
       "verification": [
         "Open the app.",
-        "Click New Chat.",
-        "Verify a new conversation appears in the sidebar.",
-        "Verify the main panel shows an empty conversation state."
+        "Import a transcript fixture.",
+        "Verify speaker, timestamp, and text are shown for each turn.",
+        "Verify parser errors are visible for malformed timestamps."
       ],
       "evidence": [],
       "notes": ""
     },
     {
-      "id": "chat-002",
+      "id": "analysis-001",
       "priority": 2,
-      "area": "chat",
-      "title": "Send a message in the current conversation",
-      "user_visible_behavior": "A user can submit a message and see it appear in the active thread.",
+      "area": "analysis",
+      "title": "Generate transcript-backed debrief report",
+      "user_visible_behavior": "A user receives technical gaps, speech issues, risk flags, and a training plan backed by transcript references.",
       "status": "not_started",
       "verification": [
-        "Open an existing conversation.",
-        "Type a message into the input.",
-        "Submit the message.",
-        "Verify the new message appears in the thread."
+        "Run the full pipeline on the system-design transcript fixture.",
+        "Verify every finding includes a transcript turn reference.",
+        "Verify safety checks pass."
       ],
       "evidence": [],
       "notes": ""
     },
     {
-      "id": "chat-003",
+      "id": "history-001",
       "priority": 3,
-      "area": "chat",
-      "title": "Persist the active conversation list",
-      "user_visible_behavior": "A user sees previously created conversations after restarting the app.",
+      "area": "history",
+      "title": "Persist interview debrief history",
+      "user_visible_behavior": "A user sees previously analyzed interview sessions after restarting the app.",
       "status": "not_started",
       "verification": [
-        "Create two conversations.",
+        "Analyze two transcript fixtures.",
         "Restart the app.",
-        "Verify both conversations still appear in the sidebar."
+        "Verify both debrief sessions still appear in the sidebar."
       ],
       "evidence": [],
       "notes": ""

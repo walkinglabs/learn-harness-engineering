@@ -3,7 +3,7 @@
 ## Completed
 
 - Added markdown import support
-- Added a basic document list in the renderer
+- Added a basic interview session list in the renderer
 
 ## Broken or Unverified
 
@@ -14,4 +14,4 @@
 
 - Fix `.txt` import path
 - Verify import end-to-end
-- Then add the document detail panel
+- Then add the transcript detail panel

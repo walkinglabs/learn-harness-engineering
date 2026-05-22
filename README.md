@@ -1,17 +1,19 @@
 [English](https://walkinglabs.github.io/learn-harness-engineering/en/) · [中文](https://walkinglabs.github.io/learn-harness-engineering/zh/) · [Русский](https://walkinglabs.github.io/learn-harness-engineering/ru/) · [Tiếng Việt](https://walkinglabs.github.io/learn-harness-engineering/vi/) · [한국어](https://walkinglabs.github.io/learn-harness-engineering/ko/) · [Oʻzbekcha](https://walkinglabs.github.io/learn-harness-engineering/uz/)
 
-# Learn Harness Engineering
+# Learn Interview Harness Engineering
 
-> **A project-based course on building the environment, state management, verification, and control mechanisms that make AI coding agents work reliably.**
+> **A project-based course on harness engineering through a real Electron AI Interview Debrief Coach app.**
 
-Learn Harness Engineering is a course dedicated to the engineering of AI coding agents. We have deeply studied and synthesized the most advanced Harness Engineering theories and practices in the industry. Our core references include:
+Learn Interview Harness Engineering teaches how to make AI coding agents reliable in real repositories. The capstone product is **Interview Debrief Coach**: a local-first Electron desktop app that imports interview audio or timestamped transcripts, segments the conversation into question chains, and generates an evidence-grounded debrief report with training recommendations.
+
+The course keeps the original harness engineering spine: 12 lectures, 6 hands-on projects, starter/solution workspaces, resource templates, progress logs, feature lists, benchmark scripts, cleanup scanners, and session handoff artifacts. Our core references include:
 
 - [OpenAI: Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 - [Anthropic: Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 - [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering)
 
-> **Quick start?** The [`skills/harness-creator/`](./skills/) skill can help you scaffold a production-grade harness (AGENTS.md, feature lists, init.sh, verification workflows) for your own project in minutes.
+> **Quick start?** The [`skills/harness-creator/`](./skills/) skill provides the harness template layer. During this migration it is being retargeted to the Interview Debrief Coach domain.
 
 ---
 
@@ -205,37 +207,32 @@ Grab the starter templates from the [Resource Library](https://walkinglabs.githu
 
 ---
 
-## Capstone Project: A Real App
+## Capstone Project: Interview Debrief Coach
 
-All six course projects revolve around the same product: **an Electron-based personal knowledge base desktop app**.
+All six course projects revolve around the same product: **an Electron-based AI interview debrief desktop app**.
 
 ```text
-    ┌─────────────────────────────────────────────────────┐
-    │               Knowledge Base Desktop App            │
-    │                                                     │
-    │  ┌──────────────┐  ┌──────────────────────────────┐│
-    │  │ Document List │  │       Q&A Panel              ││
-    │  │              │  │                              ││
-    │  │ doc-001.md   │  │  Q: What is harness eng?    ││
-    │  │ doc-002.md   │  │  A: The environment built    ││
-    │  │ doc-003.md   │  │     around an agent model... ││
-    │  │ ...          │  │     [citation: doc-002.md]   ││
-    │  └──────────────┘  └──────────────────────────────┘│
-    │                                                     │
-    │  ┌─────────────────────────────────────────────────┐│
-    │  │ Status Bar: 42 docs | 38 indexed | last sync 3m ││
-    │  └─────────────────────────────────────────────────┘│
-    └─────────────────────────────────────────────────────┘
+    ┌────────────────────┬──────────────────────────────┬────────────────────────────┐
+    │ Interview Sessions │ Transcript Timeline           │ Debrief Report             │
+    │                    │                              │                            │
+    │ Backend Mock       │ [00:00:02] interviewer: ...  │ Follow-up Logic            │
+    │ System Design      │ [00:00:18] candidate: ...    │ Technical Depth Gaps       │
+    │ Project Deep Dive  │ [00:01:03] interviewer: ...  │ Project Evidence Gaps      │
+    │                    │ [00:01:20] candidate: ...    │ Speech Issues              │
+    │                    │                              │ Risk Items                 │
+    │                    │                              │ Training Plan              │
+    └────────────────────┴──────────────────────────────┴────────────────────────────┘
 
     Core features:
-    ├── Import local documents
-    ├── Manage a document library
-    ├── Process and index documents
-    ├── Run AI-powered Q&A over imported content
-    └── Return grounded answers with citations
+    ├── Create and manage interview sessions
+    ├── Import timestamped transcripts or mock-transcribed audio
+    ├── Parse speakers, timestamps, utterances, and follow-up chains
+    ├── Generate debrief reports with timestamped evidence
+    ├── Capture accuracy feedback on analysis items
+    └── Save debrief history and training plans locally
 ```
 
-This project was chosen because it combines strong practical value, enough real-world product complexity, and a good setting for observing before/after harness improvements.
+This project was chosen because it combines real user value, enough local-first product complexity, and a clear safety boundary: it coaches the candidate after an interview; it does not rank candidates, recommend hiring decisions, infer protected traits, detect emotion, or judge whether someone is lying.
 
 Each course project's starter/solution is a complete copy of this Electron app at that evolutionary stage. P(N+1)'s starter is derived from P(N)'s solution — the app evolves as your harness skills grow.
 
@@ -321,8 +318,8 @@ Each phase takes about a week if you're going part-time. If you want to go faste
 | [P01](./docs/projects/project-01-baseline-vs-minimal-harness/index.md) | Run the same task twice: prompt-only vs. rules-first | Minimal harness: AGENTS.md + init.sh + feature_list.json |
 | [P02](./docs/projects/project-02-agent-readable-workspace/index.md) | Restructure the repo so the agent can read it | Agent-readable workspace + persistent state files |
 | [P03](./docs/projects/project-03-multi-session-continuity/index.md) | Make the agent pick up from where it left off | Progress log + session handoff + multi-session continuity |
-| [P04](./docs/projects/project-04-incremental-indexing/index.md) | Stop the agent from doing too much or too little | Runtime feedback + scope control + incremental indexing |
-| [P05](./docs/projects/project-05-grounded-qa-verification/index.md) | Make the agent verify its own work | Self-verification + grounded Q&A + evidence-based completion |
+| [P04](./docs/projects/project-04-incremental-indexing/index.md) | Add runtime feedback around transcript analysis behavior | Runtime feedback + scope control + structured analysis checks |
+| [P05](./docs/projects/project-05-evidence-grounded-evaluator-loops/index.md) | Make the agent verify its own debrief work | Self-verification + timestamped evidence + role separation |
 | [P06](./docs/projects/project-06-runtime-observability-and-debugging/index.md) | Build a complete harness from scratch (capstone) | Full harness: all mechanisms + observability + ablation study |
 
 ```text
@@ -510,7 +507,7 @@ learn-harness-engineering/
 │       ├── ru/                    # Russian templates, checklists, guides
 │       └── vi/                    # Vietnamese templates, checklists, guides
 ├── projects/
-│   ├── shared/                    # Shared Electron + TypeScript + React foundation
+│   ├── shared/                    # Shared Interview Debrief Coach Electron foundation
 │   └── project-NN/               # Per-project starter/ and solution/ directories
 ├── skills/                        # Reusable AI agent skills
 │   └── harness-creator/           # Harness engineering skill

@@ -1,4 +1,4 @@
-[English Version →](../../../en/projects/project-04-incremental-indexing/) | [中文版本 →](../../../zh/projects/project-04-incremental-indexing/)
+[English Version →](../../../en/projects/project-04-incremental-segmentation/) | [中文版本 →](../../../zh/projects/project-04-incremental-segmentation/)
 
 > Bài giảng liên quan: [Bài 07. Vạch ranh giới tác vụ rõ ràng cho agent](./../../lectures/lecture-07-why-agents-overreach-and-under-finish/index.md) · [Bài 08. Sử dụng feature list để ràng buộc những gì agent làm](./../../lectures/lecture-08-why-feature-lists-are-harness-primitives/index.md)
 > Tệp mẫu: [templates/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/resources/templates/)
@@ -7,7 +7,7 @@
 
 ## Bạn Làm Gì
 
-Thêm observability runtime (log khởi động, log import/indexing, trạng thái lỗi) và các ràng buộc kiến trúc để ngăn chặn vi phạm xuyên lớp. Cài một lỗi runtime để agent sửa.
+Thêm observability runtime (log khởi động, log import/segmentation, trạng thái lỗi) và các ràng buộc kiến trúc để ngăn chặn vi phạm xuyên lớp. Cài một lỗi runtime để agent sửa.
 
 Bạn chạy hai lần: lần đầu không có log hoặc ràng buộc, lần hai với các công cụ và quy tắc phù hợp.
 
@@ -19,4 +19,4 @@ Bạn chạy hai lần: lần đầu không có log hoặc ràng buộc, lần h
 
 ## Cơ chế Harness
 
-Phản hồi runtime + kiểm soát phạm vi + indexing tăng dần
+Phản hồi runtime + kiểm soát phạm vi + segmentation tăng dần

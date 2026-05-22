@@ -3,7 +3,7 @@
 > Примеры кода: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
 > Практический проект: [Проект 06. Полноценный harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# Лекция 11. Сделайте рантайм агента наблюдаемым
+# Лекция 11. Почему observability должна быть внутри transcript analysis harness
 
 ## Какую проблему решает эта лекция?
 

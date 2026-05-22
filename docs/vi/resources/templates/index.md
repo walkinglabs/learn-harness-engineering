@@ -13,3 +13,14 @@ Các mẫu harness sẵn sàng sử dụng cho các dự án agent.
 - [evaluator-rubric.md](./evaluator-rubric.md) — Rubric tính điểm evaluator
 - [quality-document.md](./quality-document.md) — Mẫu tài liệu chất lượng
 - [session-handoff.md](./session-handoff.md) — Mẫu bàn giao phiên ngắn gọn
+
+## Interview Debrief Coach Templates
+
+- [AGENTS-interview-template.md](./AGENTS-interview-template.md)
+- [feature-list-interview-template.json](./feature-list-interview-template.json)
+- [init-interview-template.sh](./init-interview-template.sh)
+- [session-handoff-interview-template.md](./session-handoff-interview-template.md)
+- [clean-state-checklist-interview-template.md](./clean-state-checklist-interview-template.md)
+- [evaluator-rubric-interview-template.md](./evaluator-rubric-interview-template.md)
+- [safety-boundaries-template.md](./safety-boundaries-template.md)
+- [interview-analysis-model-template.md](./interview-analysis-model-template.md)

@@ -3,7 +3,7 @@
 > Ví dụ mã nguồn: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/lectures/lecture-02-what-a-harness-actually-is/code/)
 > Dự án thực hành: [Dự án 01. Chỉ Prompt vs. Ưu tiên Quy tắc](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# Bài 02. Harness Thực sự Có nghĩa là Gì
+# Bài 02. Harness nghĩa là gì trong hệ thống AI Interview Debrief
 
 Từ "harness" được nhắc đến rất nhiều trong giới AI coding agent, nhưng thành thật mà nói, hầu hết mọi người đều có nghĩa là "một tệp prompt" khi họ nói harness. Đó không phải là harness. Giống như mở nhà hàng chỉ với nguyên liệu — không có bếp, không có dao, không có công thức, không có quy trình trình bày món ăn. Đó không phải là nhà hàng. Đó là tủ lạnh.
 

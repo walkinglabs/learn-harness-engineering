@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-01-why-capable-agents-still-fail/code/)
 > 실습 프로젝트: [Project 01. Prompt-only vs. rules-first](./../../projects/project-01-baseline-vs-minimal-harness/index.md)
 
-# 강의 01. 강력한 모델도 실행 신뢰성을 보장하지 않는다
+# 강의 01. 강한 모델도 실제 면접 분석 앱에서는 실패한다
 
 AI 세계에 꽤 익숙하다고 자부합니다 — Claude Pro 구독, GPT-4o API 키, SWE-bench 리더보드 수치까지 외우고 있죠. 그러던 어느 날 드디어 실제 프로젝트를 AI 에이전트(agent)에게 맡겨봤습니다. 결과는? 기능 하나를 추가했더니 테스트가 깨지고, 버그 하나를 고쳤더니 두 개가 더 생기고, 20분 동안 열심히 실행하더니 당당하게 "완료"를 선언했는데 코드를 보면 요청한 것과 전혀 다른 내용입니다.
 

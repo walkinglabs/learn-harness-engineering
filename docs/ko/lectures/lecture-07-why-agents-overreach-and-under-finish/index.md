@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-07-why-agents-overreach-and-under-finish/code/)
 > 실습 프로젝트: [프로젝트 04. 런타임 피드백과 범위(scope) 제어](./../../projects/project-04-incremental-indexing/index.md)
 
-# 강의 07. 에이전트에게 명확한 작업 경계를 그어 주어야 합니다
+# 강의 07. 에이전트가 오디오, LLM, UI, 분석 기능에서 범위를 넘는 이유
 
 Claude Code에게 "이 프로젝트에 사용자 인증을 추가해 줘"라고 지시하면, 에이전트(agent)는 데이터베이스 스키마를 수정하고, 라우트를 작성하고, 프론트엔드 컴포넌트를 변경하고 — 그 김에 오류 처리 미들웨어까지 리팩터링하기 시작합니다. 두 시간 후 확인해 보면: 수정된 파일 12개, 새로운 코드 800줄, 그리고 단 하나의 기능도 엔드투엔드로 동작하지 않습니다.
 

@@ -3,7 +3,7 @@
 > 코드 예제: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-05-why-long-running-tasks-lose-continuity/code/)
 > 실습 프로젝트: [Project 03. 멀티 세션 연속성](./../../projects/project-03-multi-session-continuity/index.md)
 
-# 강의 05. 세션을 넘어 컨텍스트를 살아있게 유지하라
+# 강의 05. 다중 세션 기능 개발에서 컨텍스트 유지하기
 
 Claude Code에게 완전한 기능을 구현하도록 요청합니다. 30분 동안 실행되며 대부분의 작업을 완료하지만 컨텍스트(context)가 거의 소진됩니다. 계속하기 위해 새 세션을 시작하면, 지난번에 어떤 결정이 내려졌는지, 왜 옵션 A가 아닌 옵션 B가 선택됐는지, 어떤 파일이 이미 수정됐는지, 테스트 상태가 어떤지를 기억하지 못한다는 것을 발견합니다. 프로젝트를 재탐색하는 데 15분을 쓰고, 이전 접근법과 일관성이 없을 수도 있습니다.
 

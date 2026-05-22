@@ -1,0 +1,5 @@
+{
+  "minFollowUpChains": 1,
+  "minRiskItems": 1,
+  "requiresTimestampedEvidence": true
+}

@@ -1,94 +1,30 @@
 {
   "project": "project-03",
-  "description": "Scope control and grounded verification with indexing, metadata, and grounded QA",
+  "description": "Multi-session continuity for interview analysis",
   "features": [
     {
-      "id": "window-launch",
-      "name": "Window Launch",
-      "description": "Electron app opens a BrowserWindow with correct dimensions and preload script",
+      "id": "session-state-machine",
+      "name": "Session State Machine",
+      "description": "Session status tracks imported, parsed, analyzing, analyzed, and reviewed",
       "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:00:00Z"
+      "evidence": "src/types/interview.ts",
+      "testedAt": null
     },
     {
-      "id": "document-list",
-      "name": "Document List Panel",
-      "description": "Left sidebar shows imported documents with empty state message",
+      "id": "analysis-report",
+      "name": "Persisted Analysis Report",
+      "description": "analyzeSession generates and stores AnalysisReport",
       "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:05:00Z"
+      "evidence": "src/services/analysis-pipeline.test.ts",
+      "testedAt": null
     },
     {
-      "id": "question-panel",
-      "name": "Question Panel",
-      "description": "Bottom input bar accepts questions and submits via IPC",
+      "id": "handoff",
+      "name": "Session Handoff",
+      "description": "Handoff file explains current verified state and next project focus",
       "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:08:00Z"
-    },
-    {
-      "id": "data-directory",
-      "name": "Data Directory",
-      "description": "PersistenceService creates and manages userData/knowledge-base-data directory",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T10:10:00Z"
-    },
-    {
-      "id": "document-import",
-      "name": "Document Import",
-      "description": "Users can import .txt and .md files via ImportPanel with file picker",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T11:00:00Z"
-    },
-    {
-      "id": "document-detail",
-      "name": "Document Detail with Content",
-      "description": "DocumentDetail shows full document content, metadata, and delete button",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T11:15:00Z"
-    },
-    {
-      "id": "basic-persistence",
-      "name": "Basic Persistence",
-      "description": "Imported documents persist across app restarts via filesystem storage",
-      "status": "pass",
-      "evidence": "Carried over from P2 -- verified working",
-      "testedAt": "2026-03-30T11:30:00Z"
-    },
-    {
-      "id": "document-chunking",
-      "name": "Document Chunking",
-      "description": "IndexingService splits documents into ~500 char chunks at paragraph boundaries with metadata",
-      "status": "pass",
-      "evidence": "IndexingService.chunkDocument() splits on paragraph boundaries, merges paragraphs until ~500 chars, creates Chunk objects with charCount/wordCount metadata. Verified: indexing:start IPC creates chunks/<docId>.json files.",
-      "testedAt": "2026-03-30T12:30:00Z"
-    },
-    {
-      "id": "metadata-extraction",
-      "name": "Metadata Extraction",
-      "description": "On import, extract word count, line count, file type, and paragraph count metadata from documents",
-      "status": "pass",
-      "evidence": "DocumentService.importDocument() calls extractMetadata() to compute wordCount, lineCount, fileType, paragraphCount, charCount. Document metadata field populated on import. DocumentDetail displays metadata section.",
-      "testedAt": "2026-03-30T12:15:00Z"
-    },
-    {
-      "id": "indexing-status-ui",
-      "name": "Indexing Status in StatusBar",
-      "description": "StatusBar shows indexing progress with indexed count, total chunks, and color-coded status indicator",
-      "status": "pass",
-      "evidence": "StatusBar component renders indexedCount/totalChunks, color-coded dot (idle=gray, indexing=yellow, ready=green, error=red). App.tsx polls indexing.status() on refresh. AppStatus type includes indexedCount and totalChunks fields.",
-      "testedAt": "2026-03-30T12:45:00Z"
-    },
-    {
-      "id": "grounded-qa",
-      "name": "Grounded Q&A with Citations",
-      "description": "QaService returns answers with document citations, excerpts, and confidence scores",
-      "status": "pass",
-      "evidence": "QaService.ask() retrieves chunks via IndexingService.getAllChunks(), scores by keyword overlap, returns top 2 as citations with documentId/documentTitle/chunkIndex/excerpt. Mock patterns generate contextual answers. Confidence: 0.85 with citations, 0.30 without.",
-      "testedAt": "2026-03-30T13:00:00Z"
+      "evidence": "session-handoff.md",
+      "testedAt": null
     }
   ]
 }

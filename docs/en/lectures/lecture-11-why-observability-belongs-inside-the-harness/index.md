@@ -3,7 +3,7 @@
 > Code examples: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-11-why-observability-belongs-inside-the-harness/code/)
 > Practice project: [Project 06. Complete harness (Capstone)](./../../projects/project-06-runtime-observability-and-debugging/index.md)
 
-# Lecture 11. Make the Agent's Runtime Observable
+# Lecture 11. Why Observability Belongs Inside Transcript Analysis Harnesses
 
 ## What Problem Does This Lecture Solve?
 
@@ -52,7 +52,7 @@ Imagine a harness using a "planner-generator-evaluator" three-role workflow, exe
 
 **Without observability**: The planner outputs a vague description. The generator implements dark mode based on that vagueness, but it doesn't match the planner's implicit expectations. The evaluator rejects based on their own implicit standards but can't articulate what's specifically wrong. The generator retries blindly based on vague rejection reasons. The cycle repeats 3-4 times, taking about 45 minutes, producing a barely acceptable output.
 
-**With full observability**: The planner outputs a sprint contract — listing which components to modify, verification standards for each, and exclusions (no print styles). The generator implements according to the contract. Runtime observability records each component's style loading and application process. The evaluator uses a scoring rubric to evaluate dimension by dimension, with specific evidence citations. One iteration produces a high-quality result, in about 15 minutes.
+**With full observability**: The planner outputs a sprint contract — listing which components to modify, verification standards for each, and exclusions (no print styles). The generator implements according to the contract. Runtime observability records each component's style loading and application process. The evaluator uses a scoring rubric to evaluate dimension by dimension, with specific evidence evidence references. One iteration produces a high-quality result, in about 15 minutes.
 
 3x efficiency difference. The only change is observability.
 

@@ -3,9 +3,9 @@
 > Kod misollari: [code/](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-08-why-feature-lists-are-harness-primitives/code/)
 > Amaliy loyiha: [Loyiha 04. Runtime qayta aloqa va skoup nazorati](./../../projects/project-04-incremental-indexing/index.md)
 
-# 8-maʼruza. Agent nima qilishini cheklash uchun funksiyalar roʻyxatidan foydalaning
+# 08-maʼruza. Feature list interview debrief app uchun harness primitivi
 
-Siz agentdan e-tijorat saytini qurishni soʻraysiz. Ishini tugatgandan soʻng, u sizga “tugatdim” deydi. Kodni koʻrib chiqasiz — foydalanuvchi autentifikatsiyasi ishlayapti, lekin savatdagi (shopping cart) “sotib olish” (checkout) tugmasi hech narsa qilmaydi va toʻlov jarayoni (payment flow) umuman ulanmagan. Muammo shundaki: siz unga hech qachon “tugatish” (done) nimani anglatishini aytmagansiz, shuning uchun u oʻzining shaxsiy standartini — “Men juda koʻp kod yozdim va u ancha tugallanganga oʻxshaydi” degan standartni ishlatdi.
+Siz agentdan e-tijorat saytini qurishni soʻraysiz. Ishini tugatgandan soʻng, u sizga “tugatdim” deydi. Kodni koʻrib chiqasiz — foydalanuvchi autentifikatsiyasi ishlayapti, lekin savatdagi (interview debrief report) “sotib olish” (training plan) tugmasi hech narsa qilmaydi va toʻlov jarayoni (training plan flow) umuman ulanmagan. Muammo shundaki: siz unga hech qachon “tugatish” (done) nimani anglatishini aytmagansiz, shuning uchun u oʻzining shaxsiy standartini — “Men juda koʻp kod yozdim va u ancha tugallanganga oʻxshaydi” degan standartni ishlatdi.
 
 Koʻpchilikning nazarida funksiyalar roʻyxati (feature lists) shunchaki eslatma (memo) — esdan chiqarmaslik uchun yoziladi, soʻngra bir chetga yigʻishtirib qoʻyiladi. Lekin harness olamida funksiyalar roʻyxati odamlar uchun eslatma emas — u butun harnessʼning umurtqa pogʻonasidir (backbone). Rejalashtiruvchi (scheduler) qaysi vazifani tanlashda unga suyanadi, tekshiruvchi (verifier) yakunlanganligini baholashda unga suyanadi, topshirish hisobotchisi (handoff reporter) xulosalar yaratishda unga suyanadi. Umurtqani sindirsangiz butun tana falaj boʻladi.
 
@@ -13,14 +13,14 @@ Anthropic ham, OpenAI ham alohida taʼkidlaydi: **artefaktlar tashqariga chiqari
 
 ## Agentlar “Tugatildi” nimani anglatishini bilmaydi
 
-Na Claude Code va na Codex sizning “tugatildi” deganda nimani nazarda tutayotganingizni avtomatik ravishda bilmaydi. Siz “savat (shopping cart) funksiyasini qoʻsh” deysiz va modelning talqini “Cart komponentini va addToCart metodini yozish” boʻlishi mumkin. Siz esa “foydalanuvchi mahsulotlarni koʻra oladi, savatga qoʻsha oladi va toʻlov jarayonini (checkout) boshidan oxirigacha (end-to-end) tugata oladi” deb nazarda tutgansiz. Funksiyalar roʻyxati boʻlmasa, bu tushunmovchilik saqlanib qolaveradi. Agent oʻzining yashirin (implicit) standartidan foydalanadi — odatda “kodda aniq sintaksis xatolari yoʻq” degan maʼnoda. Sizga kerak boʻlgan narsa bu end-to-end xatti-harakat tekshiruvidir (behavioral verification). Xuddi doʻstingizdan meva sotib olishni soʻraganingiz kabi — “ozgina meva olib kel” deysiz va u limon koʻtarib keladi. Uning mevasi bilan sizning mevangiz bir xil meva emas.
+Na Claude Code va na Codex sizning “tugatildi” deganda nimani nazarda tutayotganingizni avtomatik ravishda bilmaydi. Siz “savat (interview debrief report) funksiyasini qoʻsh” deysiz va modelning talqini “Report komponentini va addToReport metodini yozish” boʻlishi mumkin. Siz esa “foydalanuvchi mahsulotlarni koʻra oladi, savatga qoʻsha oladi va toʻlov jarayonini (training plan) boshidan oxirigacha (end-to-end) tugata oladi” deb nazarda tutgansiz. Funksiyalar roʻyxati boʻlmasa, bu tushunmovchilik saqlanib qolaveradi. Agent oʻzining yashirin (implicit) standartidan foydalanadi — odatda “kodda aniq sintaksis xatolari yoʻq” degan maʼnoda. Sizga kerak boʻlgan narsa bu end-to-end xatti-harakat tekshiruvidir (behavioral verification). Xuddi doʻstingizdan meva sotib olishni soʻraganingiz kabi — “ozgina meva olib kel” deysiz va u limon koʻtarib keladi. Uning mevasi bilan sizning mevangiz bir xil meva emas.
 
 Ushbu keng tarqalgan jarayon eslatmasini (progress note) koʻrib chiqing:
 
 ```
-User auth qilindi, savat asosan tugatildi, toʻlov qismi (payments) hali kerak
+User auth qilindi, savat asosan tugatildi, toʻlov qismi (training plans) hali kerak
 ```
-Yangi agent sessiyasi ushbu eslatmadan quyidagi savollarga javob bera oladimi? “Asosan tugatildi” deganda nima nazarda tutilgan? Savat qaysi testlardan oʻtdi? Toʻlovlar (payments) qilinishiga nima toʻsqinlik qilyapti (blocking)? Bularning barchasiga javob — “hech kim bilmaydi”. Xuddi shifokorga “oshqozonim ogʻriyapti, lekin oxirgi paytda yaxshi edim” deyishga oʻxshaydi — u sizga qanday dori yozib bera oladi?
+Yangi agent sessiyasi ushbu eslatmadan quyidagi savollarga javob bera oladimi? “Asosan tugatildi” deganda nima nazarda tutilgan? Savat qaysi testlardan oʻtdi? Toʻlovlar (training plans) qilinishiga nima toʻsqinlik qilyapti (blocking)? Bularning barchasiga javob — “hech kim bilmaydi”. Xuddi shifokorga “oshqozonim ogʻriyapti, lekin oxirgi paytda yaxshi edim” deyishga oʻxshaydi — u sizga qanday dori yozib bera oladi?
 
 Natija: yangi sessiya loyiha holatini (project state) tushunish uchun 20 daqiqa sarflaydi va allaqachon bajarilgan funksiyalarni qaytadan yozib chiqishi mumkin. Anthropicʼning muhandislik maʼlumotlari shuni koʻrsatadiki, jarayon boʻyicha yaxshi qaydlar sessiyani ishga tushishdan keyingi tashxis vaqtini 60-80% ga qisqartiradi.
 
@@ -28,7 +28,7 @@ Natija: yangi sessiya loyiha holatini (project state) tushunish uchun 20 daqiqa 
 
 ```mermaid
 flowchart LR
-    Feature["Bitta funksiya (feature) qatori"] --> Behavior["Xatti-harakat<br/>masalan: POST /cart/items 201 qaytarishi"]
+    Feature["Bitta funksiya (feature) qatori"] --> Behavior["Xatti-harakat<br/>masalan: POST /report/items 201 qaytarishi"]
     Feature --> Check["Tekshiruv buyrugʻi<br/>aynan qanday tekshiruv ishga tushishi"]
     Feature --> State["Holat<br/>not_started / active / blocked / passing"]
 
@@ -78,8 +78,8 @@ Sizga murakkab tizim kerak emas — strukturalangan Markdown yoki JSON fayli kif
 ```json
 {
   "id": "F03",
-  "behavior": "POST /cart/items ni {product_id, quantity} bilan joʻnatganda 201 qaytaradi",
-  "verification": "curl -X POST http://localhost:3000/api/cart/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
+  "behavior": "POST /report/items ni {product_id, quantity} bilan joʻnatganda 201 qaytaradi",
+  "verification": "curl -X POST http://localhost:3000/api/report/items -H 'Content-Type: application/json' -d '{\"product_id\":1,\"quantity\":2}' | jq .status == 201",
   "state": "passing",
   "evidence": "commit abc123, test output logi"
 }
@@ -101,13 +101,13 @@ Agent bitta funksiya holatini toʻgʻridan-toʻgʻri `passing` ga oʻzgartira ol
 
 ### 4. Darajalashni (Granularity) toʻgʻrilash
 
-Har bir funksiya (feature) bandi “bitta sessiyada tugatilishi mumkin” boʻlgan darajada belgilanishi kerak. Juda keng boʻlsa — tugamaydi; juda kichik boʻlsa — boshqarish qiyinlashadi. “Foydalanuvchi savatga mahsulot qoʻshishi mumkin” — bu toʻgʻri darajalash (granularity). “Savat (shopping cart)ni amalga oshirish (implement qilish)” — juda keng. “Cart modelida name maydonini (field) yaratish” — juda tor. Xuddi goʻshtni kesishga oʻxshaydi — butun boʻlak ham emas, qiyma ham emas.
+Har bir funksiya (feature) bandi “bitta sessiyada tugatilishi mumkin” boʻlgan darajada belgilanishi kerak. Juda keng boʻlsa — tugamaydi; juda kichik boʻlsa — boshqarish qiyinlashadi. “Foydalanuvchi savatga mahsulot qoʻshishi mumkin” — bu toʻgʻri darajalash (granularity). “Savat (interview debrief report)ni amalga oshirish (implement qilish)” — juda keng. “Report modelida name maydonini (field) yaratish” — juda tor. Xuddi goʻshtni kesishga oʻxshaydi — butun boʻlak ham emas, qiyma ham emas.
 
 ## Hayotiy misol
 
-10 ta funksiyaga ega boʻlgan e-tijorat (e-commerce) platformasi. Taqqoslangan ikkita kuzatish (tracking) yondashuvi:
+10 ta funksiyaga ega boʻlgan interview debrief coach. Taqqoslangan ikkita kuzatish (tracking) yondashuvi:
 
-**Eslatma rejimi (Memo mode)**: Agent hech qanday strukturaga ega boʻlmagan eslatmalardan (unstructured notes) foydalanadi. 3 sessiyadan keyin eslatmalar quyidagi koʻrinishga keladi: “foydalanuvchi auth va mahsulotlar roʻyxati bajarildi, savat asosan tugatildi lekin bugʼlari bor, toʻlovlar (payments) boshlanmadi”. Yangi sessiya holatni tushunib olishi uchun 20 daqiqa kerak boʻladi va oxir-oqibat allaqachon yakunlangan funksiyalarni qaytadan yozib chiqadi. Bu xuddi bozordagi xaridingiz roʻyxatida “sut, non va anavi narsa” deb yozilganiga oʻxshaydi — doʻkonga borgach, baribir nimani olishingiz kerakligini bilmaysiz.
+**Eslatma rejimi (Memo mode)**: Agent hech qanday strukturaga ega boʻlmagan eslatmalardan (unstructured notes) foydalanadi. 3 sessiyadan keyin eslatmalar quyidagi koʻrinishga keladi: “foydalanuvchi auth va mahsulotlar roʻyxati bajarildi, savat asosan tugatildi lekin bugʼlari bor, toʻlovlar (training plans) boshlanmadi”. Yangi sessiya holatni tushunib olishi uchun 20 daqiqa kerak boʻladi va oxir-oqibat allaqachon yakunlangan funksiyalarni qaytadan yozib chiqadi. Bu xuddi bozordagi xaridingiz roʻyxatida “sut, non va anavi narsa” deb yozilganiga oʻxshaydi — doʻkonga borgach, baribir nimani olishingiz kerakligini bilmaysiz.
 
 **Umurtqa pogʻona rejimi (Backbone mode)**: Har bir funksiyaning (feature) aniq holati va tekshiruv buyrugʻi (verification command) bor. Yangi sessiya funksiyalar roʻyxatini oʻqiydi va 3 daqiqa ichida hamma narsani tushunib oladi: F01-F05 — `passing`, F06 — `active`, F07-F10 — `not_started`. Ishni toʻgʻridan-toʻgʻri F06 dan boshlaydi, hech qanday ishni boshidan qilmaydi (zero rework).
 

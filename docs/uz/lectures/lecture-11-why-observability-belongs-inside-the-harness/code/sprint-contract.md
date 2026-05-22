@@ -2,11 +2,11 @@
 
 Sprint maqsadi:
 
-- Asoslangan (grounded) Q&A natijalariga koʻrinadigan iqtiboslarni (citations) qoʻshish
+- Asoslangan (grounded) debrief analysis natijalariga koʻrinadigan iqtiboslarni (evidence references) qoʻshish
 
 Tugatildi degani quyidagini anglatadi:
 
 - Foydalanuvchi savol soʻraydi
 - Ilova javob qaytaradi
-- Kamida bitta iqtibos (citation) koʻrinib turadi
-- Iqtibosni bosish manba manzilini hujjat koʻrinishida (document view) ochadi
+- Kamida bitta iqtibos (evidence reference) koʻrinib turadi
+- Iqtibosni bosish manba manzilini hujjat koʻrinishida (transcript timeline) ochadi

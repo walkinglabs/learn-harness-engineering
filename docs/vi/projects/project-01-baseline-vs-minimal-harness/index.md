@@ -7,7 +7,7 @@
 
 ## Bạn Làm Gì
 
-Xây dựng một ứng dụng Electron knowledge-base shell tối giản — một cửa sổ với danh sách tài liệu bên trái, panel Q&A bên phải, và thư mục dữ liệu cục bộ. Bản thân tác vụ không phức tạp. Điều phức tạp là cách bạn để agent hoàn thành nó.
+Xây dựng một ứng dụng Electron interview-debrief shell tối giản — một cửa sổ với danh sách interview sessions bên trái, panel debrief report bên phải, và thư mục dữ liệu cục bộ. Bản thân tác vụ không phức tạp. Điều phức tạp là cách bạn để agent hoàn thành nó.
 
 Bạn chạy hai lần. Lần đầu: chỉ một prompt, không chuẩn bị gì. Lần hai: `AGENTS.md`, `init.sh`, `feature_list.json` được đặt sẵn trong repo. Sau đó so sánh.
 
