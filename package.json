@@ -8,12 +8,14 @@
     "build": "vitepress build docs",
     "preview": "vitepress preview docs",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "docs:build": "npm run llms:build && vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "lecture:run": "tsx",
     "screenshots:readme": "node --import tsx scripts/capture-readme-screenshots.ts",
     "pdf:export": "node --import tsx scripts/build-course-pdfs.ts",
-    "pdf:build": "npm run docs:build && npm run pdf:export"
+    "pdf:build": "npm run docs:build && npm run pdf:export",
+    "llms:build": "node scripts/build-llms-txt.mjs",
+    "llms:check": "node scripts/build-llms-txt.mjs --check"
   },
   "devDependencies": {
     "mermaid": "^11.14.0",

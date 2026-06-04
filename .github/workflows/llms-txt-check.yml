@@ -1,0 +1,24 @@
+name: llms.txt sync check
+
+on:
+  pull_request:
+    paths:
+      - 'llms.txt'
+      - 'llms-full.txt'
+      - 'docs/public/llms.txt'
+      - 'docs/public/llms-full.txt'
+      - 'scripts/build-llms-txt.mjs'
+      - '.github/workflows/llms-txt-check.yml'
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify /llms.txt and docs/public/llms.txt are in sync
+        run: node scripts/build-llms-txt.mjs --check
