@@ -27,6 +27,20 @@
   <a href="https://discord.gg/XU7DQmpqk"><img src="https://img.shields.io/badge/Discord-Join_Community-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Join the Discord community"></a>
 </p>
 
+<p align="center">
+  <a href="https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=learn-harness-engineering">
+    <img src="./assets/atlas-cloud-logo.png" alt="Atlas Cloud logo" width="220">
+  </a>
+</p>
+
+<p align="center"><strong>Run the harness ideas in this course against real models through one OpenAI-compatible API, then compare long-running agent behavior without rebuilding every integration.</strong></p>
+
+<p align="center">
+  <a href="https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=learn-harness-engineering">Atlas Cloud</a>
+  ·
+  <a href="https://www.atlascloud.ai/console/coding-plan?utm_source=github&utm_medium=link&utm_campaign=learn-harness-engineering">Coding Plan</a>
+</p>
+
 > 🌍 This course is available in **14 languages**: English, 简体中文, 繁體中文, 日本語, 한국어, Español, Français, Русский, Deutsch, العربية, Tiếng Việt, Oʻzbekcha, Türkçe, Portuguese (BR). Choose your language from the badges above.
 
 Learn Harness Engineering is a course dedicated to the engineering of AI coding agents. We have deeply studied and synthesized the most advanced Harness Engineering theories and practices in the industry. Our core references include:
@@ -48,6 +62,7 @@ Learn Harness Engineering is a course dedicated to the engineering of AI coding 
 - [Capstone Project: A Real App](#capstone-project-a-real-app)
 - [Learning Path](#learning-path)
 - [Syllabus](#syllabus)
+- [Atlas Cloud](#atlas-cloud)
 - [Skills](#skills)
 - [Other Courses](#other-courses)
 
@@ -78,6 +93,18 @@ The repository now includes a PDF build pipeline for the course content.
 - Output files are written to `artifacts/pdfs/`.
 - Run `npm run screenshots:readme` if you want to refresh the README preview images.
 - GitHub Actions workflow [`release-course-pdfs.yml`](./.github/workflows/release-course-pdfs.yml) can build the PDFs and publish them to GitHub Releases.
+
+---
+
+## Atlas Cloud
+
+Atlas Cloud fits this course well if you want to put harness ideas into practice with real coding-agent runs:
+
+- compare multiple model families behind one OpenAI-compatible endpoint
+- prototype evaluator loops, task runners, and verification steps without rewriting provider integrations
+- test harness behavior with models such as DeepSeek, Qwen, GLM, Kimi, and MiniMax while keeping the rest of the environment stable
+
+If you want a budget-friendly path for coding-agent experimentation, try the [Atlas Cloud coding plan](https://www.atlascloud.ai/console/coding-plan?utm_source=github&utm_medium=link&utm_campaign=learn-harness-engineering).
 
 ---
 
