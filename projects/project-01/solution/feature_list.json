@@ -7,32 +7,32 @@
       "name": "Window Launch",
       "description": "Electron app opens a BrowserWindow with correct dimensions and preload script",
       "status": "pass",
-      "evidence": "npm run dev launches window at 1200x800 with contextIsolation=true and nodeIntegration=false",
-      "testedAt": "2026-03-30T10:00:00Z"
+      "evidence": "Electron runtime launched successfully from the production build; BrowserWindow is 1200x800 with contextIsolation=true and nodeIntegration=false",
+      "testedAt": "2026-08-12T15:41:00Z"
     },
     {
       "id": "document-list",
       "name": "Document List Panel",
       "description": "Left sidebar shows imported documents with empty state message",
       "status": "pass",
-      "evidence": "DocumentList component renders empty state when no documents, shows document cards when data present",
-      "testedAt": "2026-03-30T10:05:00Z"
+      "evidence": "DocumentList renders a left library sidebar, empty state, document metadata, selection, and deletion; App loads persisted documents on mount",
+      "testedAt": "2026-08-12T15:41:00Z"
     },
     {
       "id": "question-panel",
       "name": "Question Panel",
       "description": "Bottom input bar accepts questions and submits via IPC",
       "status": "pass",
-      "evidence": "QuestionPanel renders text input and Ask button, submits to window.knowledgeBase.qa.ask on Enter or click",
-      "testedAt": "2026-03-30T10:08:00Z"
+      "evidence": "Right-side Q&A workspace submits through the typed preload bridge, restores persisted history, and renders citations and confidence",
+      "testedAt": "2026-08-12T15:41:00Z"
     },
     {
       "id": "data-directory",
       "name": "Data Directory",
       "description": "PersistenceService creates and manages userData/knowledge-base-data directory",
       "status": "pass",
-      "evidence": "PersistenceService constructor calls ensureDirectories() creating data, documents, and index subdirectories",
-      "testedAt": "2026-03-30T10:10:00Z"
+      "evidence": "Runtime created C:/Users/12402/AppData/Roaming/knowledge-base/knowledge-base-data; PersistenceService atomically manages metadata, content, documents, chunks, index, and Q&A history",
+      "testedAt": "2026-08-12T15:41:00Z"
     }
   ]
 }

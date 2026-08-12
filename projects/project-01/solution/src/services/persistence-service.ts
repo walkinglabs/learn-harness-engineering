@@ -31,7 +31,9 @@ export class PersistenceService {
     const fullPath = path.join(this.dataDir, relativePath);
     const dir = path.dirname(fullPath);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(fullPath, JSON.stringify(data, null, 2), 'utf-8');
+    const tempPath = `${fullPath}.tmp`;
+    fs.writeFileSync(tempPath, JSON.stringify(data, null, 2), 'utf-8');
+    fs.renameSync(tempPath, fullPath);
   }
 
   /** Read a text file. */
@@ -62,6 +64,14 @@ export class PersistenceService {
     const filePath = path.join(this.documentsDir, filename);
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
+    }
+  }
+
+  /** Delete a data file if it exists. */
+  delete(relativePath: string): void {
+    const fullPath = path.join(this.dataDir, relativePath);
+    if (fs.existsSync(fullPath)) {
+      fs.unlinkSync(fullPath);
     }
   }
 

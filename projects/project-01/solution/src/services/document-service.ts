@@ -5,6 +5,8 @@ import { Document } from '../shared/types';
 import { PersistenceService } from './persistence-service';
 
 const DOCUMENTS_META = 'documents-meta.json';
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const SUPPORTED_EXTENSIONS = new Set(['.txt', '.md']);
 
 export class DocumentService {
   private persistence: PersistenceService;
@@ -25,9 +27,17 @@ export class DocumentService {
       throw new Error(`File not found: ${filePath}`);
     }
 
+    const extension = path.extname(filePath).toLowerCase();
+    if (!SUPPORTED_EXTENSIONS.has(extension)) {
+      throw new Error('Only .txt and .md files are supported.');
+    }
+
     const filename = path.basename(filePath);
-    const content = fs.readFileSync(filePath, 'utf-8');
     const stats = fs.statSync(filePath);
+    if (stats.size > MAX_FILE_SIZE) {
+      throw new Error('The selected file is larger than 10 MB.');
+    }
+    const content = fs.readFileSync(filePath, 'utf-8');
 
     const doc: Document = {
       id: uuidv4(),
@@ -81,6 +91,12 @@ export class DocumentService {
     if (!doc) return false;
 
     this.persistence.deleteFromDocuments(doc.filename);
+    this.persistence.delete(`content/${id}.txt`);
+    this.persistence.delete(`chunks/${id}.json`);
+
+    const indexMeta = this.persistence.readJson<Record<string, string[]>>('index-meta.json') ?? {};
+    delete indexMeta[id];
+    this.persistence.writeJson('index-meta.json', indexMeta);
 
     const updated = docs.filter(d => d.id !== id);
     this.persistence.writeJson(DOCUMENTS_META, updated);

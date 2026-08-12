@@ -1,4 +1,4 @@
-import { IpcMain } from 'electron';
+import { BrowserWindow, dialog, IpcMain, OpenDialogOptions } from 'electron';
 import { DocumentService } from '../services/document-service';
 import { IndexingService } from '../services/indexing-service';
 import { QaService } from '../services/qa-service';
@@ -20,6 +20,20 @@ export function registerIpcHandlers(ipcMain: IpcMain, services: Services) {
 
   ipcMain.handle(IPC_CHANNELS.IMPORT_DOCUMENT, async (_event, filePath: string) => {
     return documentService.importDocument(filePath);
+  });
+
+  ipcMain.handle(IPC_CHANNELS.PICK_DOCUMENTS, async event => {
+    const owner = BrowserWindow.fromWebContents(event.sender);
+    const options: OpenDialogOptions = {
+      title: 'Import documents',
+      properties: ['openFile', 'multiSelections'],
+      filters: [{ name: 'Text documents', extensions: ['txt', 'md'] }],
+    };
+    const result = owner
+      ? await dialog.showOpenDialog(owner, options)
+      : await dialog.showOpenDialog(options);
+    if (result.canceled) return [];
+    return result.filePaths.map(filePath => documentService.importDocument(filePath));
   });
 
   ipcMain.handle(IPC_CHANNELS.GET_DOCUMENT, async (_event, id: string) => {

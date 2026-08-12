@@ -2,42 +2,17 @@ import { AppStatus } from '../../shared/types';
 
 interface Props {
   status: AppStatus;
+  dataLocal: boolean;
 }
 
-export function StatusBar({ status }: Props) {
-  const statusColor = {
-    idle: '#888',
-    indexing: '#f0ad4e',
-    ready: '#5cb85c',
-    error: '#d9534f',
-  }[status.indexStatus] ?? '#888';
-
+export function StatusBar({ status, dataLocal }: Props) {
   return (
-    <div style={{
-      padding: '4px 20px',
-      background: '#0f1729',
-      borderTop: '1px solid #0f3460',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '16px',
-      fontSize: '11px',
-      color: '#888',
-    }}>
-      <span>
-        <span style={{
-          display: 'inline-block',
-          width: '8px',
-          height: '8px',
-          borderRadius: '50%',
-          background: statusColor,
-          marginRight: '6px',
-        }} />
-        Index: {status.indexStatus}
-      </span>
-      <span>Documents: {status.documentsLoaded}</span>
-      {status.lastActivity && (
-        <span>Last activity: {new Date(status.lastActivity).toLocaleTimeString()}</span>
-      )}
-    </div>
+    <footer className="status-bar">
+      <span className={`status-dot ${status.indexStatus}`} />
+      <span>{status.indexStatus === 'ready' ? 'Library ready' : status.indexStatus === 'indexing' ? 'Indexing library' : 'Waiting for documents'}</span>
+      <span className="status-separator">·</span>
+      <span>{status.documentsLoaded} document{status.documentsLoaded === 1 ? '' : 's'}</span>
+      {dataLocal && <span className="local-pill">⌂ Stored locally</span>}
+    </footer>
   );
 }

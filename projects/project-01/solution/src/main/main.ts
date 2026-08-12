@@ -40,7 +40,7 @@ function initializeServices() {
   const persistence = new PersistenceService(dataDir);
   const documentService = new DocumentService(persistence);
   const indexingService = new IndexingService(persistence);
-  const qaService = new QaService(persistence);
+  const qaService = new QaService(persistence, indexingService);
 
   registerIpcHandlers(ipcMain, {
     documentService,

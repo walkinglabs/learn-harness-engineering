@@ -1,4 +1,4 @@
-import { QAResponse, QAHistory, Citation, Chunk } from '../shared/types';
+import { QAResponse, QAHistory, Citation } from '../shared/types';
 import { PersistenceService } from './persistence-service';
 import { IndexingService } from './indexing-service';
 

@@ -1,178 +1,158 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { AppStatus, Document, QAHistory } from '../shared/types';
 import { DocumentList } from './components/DocumentList';
 import { QuestionPanel } from './components/QuestionPanel';
-import { DocumentDetail } from './components/DocumentDetail';
 import { StatusBar } from './components/StatusBar';
-import { Document, AppStatus, QAResponse } from '../shared/types';
 
-declare global {
-  interface Window {
-    knowledgeBase: {
-      documents: {
-        list: () => Promise<Document[]>;
-        import: (filePath: string) => Promise<Document>;
-        get: (id: string) => Promise<Document | null>;
-        delete: (id: string) => Promise<boolean>;
-      };
-      indexing: {
-        start: (documentId?: string) => Promise<{ status: string }>;
-        status: () => Promise<AppStatus>;
-        chunks: (documentId: string) => Promise<Array<{ id: string; content: string; index: number }>>;
-      };
-      qa: {
-        ask: (question: string) => Promise<QAResponse>;
-        history: () => Promise<Array<{ question: string; response: QAResponse }>>;
-      };
-    };
-  }
-}
+const EMPTY_STATUS: AppStatus = {
+  documentsLoaded: 0,
+  indexStatus: 'idle',
+  lastActivity: '',
+};
 
 export function App() {
   const [documents, setDocuments] = useState<Document[]>([]);
-  const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
-  const [appStatus, setAppStatus] = useState<AppStatus>({
-    documentsLoaded: 0,
-    indexStatus: 'idle',
-    lastActivity: '',
-  });
-  const [lastResponse, setLastResponse] = useState<QAResponse | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [history, setHistory] = useState<QAHistory[]>([]);
+  const [status, setStatus] = useState<AppStatus>(EMPTY_STATUS);
+  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
 
-  const refreshDocuments = useCallback(async () => {
-    try {
-      const docs = await window.knowledgeBase.documents.list();
-      setDocuments(docs);
-      const status = await window.knowledgeBase.indexing.status();
-      setAppStatus(status);
-    } catch (err) {
-      console.error('Failed to refresh documents:', err);
-    }
+  const refresh = useCallback(async () => {
+    const [nextDocuments, nextStatus, nextHistory] = await Promise.all([
+      window.knowledgeBase.documents.list(),
+      window.knowledgeBase.indexing.status(),
+      window.knowledgeBase.qa.history(),
+    ]);
+    setDocuments(nextDocuments);
+    setStatus(nextStatus);
+    setHistory(nextHistory);
+    setSelectedId(current => current && nextDocuments.some(doc => doc.id === current) ? current : nextDocuments[0]?.id ?? null);
   }, []);
+
+  useEffect(() => {
+    refresh().catch(error => setNotice(error instanceof Error ? error.message : 'Unable to load the knowledge base.'));
+  }, [refresh]);
 
   const handleImport = useCallback(async () => {
-    // In a real app this would open a file dialog.
-    // For the course, we'll trigger import via the dev console or init script.
-    console.log('Import triggered - use window.knowledgeBase.documents.import(filePath)');
-  }, []);
+    setNotice(null);
+    try {
+      const imported = await window.knowledgeBase.documents.pick();
+      if (imported.length === 0) return;
+      setBusy(true);
+      await window.knowledgeBase.indexing.start();
+      await refresh();
+      setSelectedId(imported[0].id);
+      setNotice(`${imported.length} document${imported.length === 1 ? '' : 's'} added and indexed.`);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'Import failed.');
+    } finally {
+      setBusy(false);
+    }
+  }, [refresh]);
 
-  const handleSelectDocument = useCallback((doc: Document) => {
-    setSelectedDoc(doc);
-  }, []);
+  const handleDelete = useCallback(async (id: string) => {
+    try {
+      await window.knowledgeBase.documents.delete(id);
+      await refresh();
+      setNotice('Document removed from this knowledge base.');
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'Unable to remove the document.');
+    }
+  }, [refresh]);
 
-  const handleAskQuestion = useCallback(async (question: string) => {
+  const handleAsk = useCallback(async (question: string) => {
+    setBusy(true);
+    setNotice(null);
     try {
       const response = await window.knowledgeBase.qa.ask(question);
-      setLastResponse(response);
-    } catch (err) {
-      console.error('Q&A failed:', err);
+      setHistory(current => [...current, { question, response }]);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'Unable to answer that question.');
+    } finally {
+      setBusy(false);
     }
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <header style={{
-        padding: '12px 20px',
-        background: '#16213e',
-        borderBottom: '1px solid #0f3460',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
-        <h1 style={{ fontSize: '18px', fontWeight: 600 }}>Knowledge Base</h1>
-        <button
-          onClick={refreshDocuments}
-          style={{
-            padding: '6px 14px',
-            background: '#0f3460',
-            color: '#e0e0e0',
-            border: '1px solid #1a1a4e',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '13px',
-          }}
-        >
-          Refresh
-        </button>
-      </header>
-
-      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-        {/* Left panel: Document list */}
-        <div style={{
-          width: '280px',
-          borderRight: '1px solid #0f3460',
-          display: 'flex',
-          flexDirection: 'column',
-          background: '#16213e',
-        }}>
-          <div style={{
-            padding: '10px 16px',
-            borderBottom: '1px solid #0f3460',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-            <span style={{ fontSize: '13px', fontWeight: 500, color: '#a0a0c0' }}>
-              Documents ({documents.length})
-            </span>
-            <button
-              onClick={handleImport}
-              style={{
-                padding: '4px 10px',
-                background: '#533483',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '3px',
-                cursor: 'pointer',
-                fontSize: '12px',
-              }}
-            >
-              + Import
-            </button>
+    <main className="app-shell">
+      <aside className="sidebar">
+        <div className="brand">
+          <div className="brand-mark" aria-hidden="true">K</div>
+          <div>
+            <strong>Keystone</strong>
+            <span>Local knowledge base</span>
           </div>
-          <DocumentList
-            documents={documents}
-            onSelect={handleSelectDocument}
-            selectedId={selectedDoc?.id ?? null}
-          />
         </div>
 
-        {/* Right panel: Document detail + Q&A */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-          <div style={{ flex: 1, overflow: 'auto', padding: '20px' }}>
-            {selectedDoc ? (
-              <DocumentDetail document={selectedDoc} />
-            ) : (
-              <div style={{ color: '#666', textAlign: 'center', paddingTop: '40px' }}>
-                Select a document or ask a question to get started
+        <div className="library-heading">
+          <span>LIBRARY</span>
+          <span className="count-badge">{documents.length}</span>
+        </div>
+        <DocumentList
+          documents={documents}
+          selectedId={selectedId}
+          onSelect={doc => setSelectedId(doc.id)}
+          onDelete={handleDelete}
+        />
+        <div className="sidebar-footer">
+          <button className="import-button" type="button" onClick={handleImport} disabled={busy}>
+            <span aria-hidden="true">＋</span> Add documents
+          </button>
+          <p>TXT or Markdown · up to 10 MB</p>
+        </div>
+      </aside>
+
+      <section className="workspace">
+        <header className="workspace-header">
+          <div>
+            <span className="eyebrow">ASK YOUR LIBRARY</span>
+            <h1>What would you like to know?</h1>
+          </div>
+          <button className="icon-button" type="button" onClick={() => refresh()} aria-label="Refresh library" title="Refresh">↻</button>
+        </header>
+
+        <section className="conversation" aria-live="polite">
+          {notice && <div className="notice">{notice}</div>}
+          {history.length === 0 ? (
+            <div className="welcome-card">
+              <div className="spark" aria-hidden="true">✦</div>
+              <h2>Your documents, ready to talk</h2>
+              <p>Add text or Markdown files, then ask a question. Answers stay grounded in your local documents and include source references.</p>
+              <div className="suggestions">
+                <button type="button" onClick={() => handleAsk('Summarize the key ideas in my documents.')}>Summarize the key ideas</button>
+                <button type="button" onClick={() => handleAsk('What decisions are mentioned?')}>Find mentioned decisions</button>
               </div>
-            )}
-            {lastResponse && (
-              <div style={{
-                marginTop: '16px',
-                padding: '16px',
-                background: '#1a1a3e',
-                borderRadius: '6px',
-                border: '1px solid #0f3460',
-              }}>
-                <div style={{ fontSize: '14px', lineHeight: 1.6 }}>{lastResponse.answer}</div>
-                {lastResponse.citations.length > 0 && (
-                  <div style={{ marginTop: '10px', fontSize: '12px', color: '#8888bb' }}>
-                    <strong>Citations:</strong>
-                    {lastResponse.citations.map((c, i) => (
-                      <div key={i} style={{ marginTop: '4px', paddingLeft: '8px', borderLeft: '2px solid #533483' }}>
-                        {c.documentTitle} (chunk {c.chunkIndex}): {c.excerpt.substring(0, 100)}...
+            </div>
+          ) : (
+            <div className="messages">
+              {history.map((item, index) => (
+                <article className="message-group" key={`${item.response.timestamp}-${index}`}>
+                  <div className="question-bubble">{item.question}</div>
+                  <div className="answer-card">
+                    <div className="answer-label"><span>✦</span> Answer</div>
+                    <p>{item.response.answer}</p>
+                    {item.response.citations.length > 0 && (
+                      <div className="citations">
+                        <span>Sources</span>
+                        {item.response.citations.map((citation, citationIndex) => (
+                          <button key={`${citation.documentId}-${citation.chunkIndex}-${citationIndex}`} type="button" onClick={() => setSelectedId(citation.documentId)}>
+                            {citation.documentTitle} · section {citation.chunkIndex + 1}
+                          </button>
+                        ))}
                       </div>
-                    ))}
+                    )}
+                    <div className="confidence">Confidence {Math.round(item.response.confidence * 100)}%</div>
                   </div>
-                )}
-              </div>
-            )}
-          </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
 
-          <QuestionPanel onAsk={handleAskQuestion} />
-        </div>
-      </div>
-
-      <StatusBar status={appStatus} />
-    </div>
+        <QuestionPanel onAsk={handleAsk} disabled={busy} />
+        <StatusBar status={status} dataLocal />
+      </section>
+    </main>
   );
 }
