@@ -617,6 +617,12 @@ learn-harness-engineering/
 
 ---
 
+## Star 歷史
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=walkinglabs/learn-harness-engineering&type=date&legend=top-left)](https://star-history.dera.page/#walkinglabs/learn-harness-engineering&type=date&legend=top-left)
+
+---
+
 ## 致謝
 
 本課程的靈感來源和部分理念取自 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) —— 一份從零建構代理的漸進式指南，從單一迴圈到隔離的自主執行。

@@ -640,6 +640,12 @@ learn-harness-engineering/
 
 ---
 
+## Історія зірок
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=walkinglabs/learn-harness-engineering&type=date&legend=top-left)](https://star-history.dera.page/#walkinglabs/learn-harness-engineering&type=date&legend=top-left)
+
+---
+
 ## Подяки
 
 Цей курс натхненний та черпає ідеї з [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) — покрокового посібника з побудови агента з нуля, від простого циклу до ізольованого автономного виконання.

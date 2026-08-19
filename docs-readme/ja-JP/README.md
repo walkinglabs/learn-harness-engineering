@@ -629,6 +629,12 @@ learn-harness-engineering/
 
 ---
 
+## スター履歴
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=walkinglabs/learn-harness-engineering&type=date&legend=top-left)](https://star-history.dera.page/#walkinglabs/learn-harness-engineering&type=date&legend=top-left)
+
+---
+
 ## 謝辞
 
 このコースは [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) にインスピレーションを受け、アイデアを得ています — 単一のループから独立した自律実行まで、ゼロからエージェントを構築する段階的ガイド。

@@ -627,6 +627,12 @@ learn-harness-engineering/
 
 ---
 
+## 스타 히스토리
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=walkinglabs/learn-harness-engineering&type=date&legend=top-left)](https://star-history.dera.page/#walkinglabs/learn-harness-engineering&type=date&legend=top-left)
+
+---
+
 ## 감사의 글
 
 이 강좌는 [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code)에서 영감을 받고 아이디어를 얻었습니다 — 단일 루프에서 격리된 자율 실행까지, 에이전트를 처음부터 구축하는 점진적 가이드입니다.
