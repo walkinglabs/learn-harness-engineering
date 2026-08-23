@@ -1501,4 +1501,3 @@ export default withMermaid(
     },
   }),
 );
-
