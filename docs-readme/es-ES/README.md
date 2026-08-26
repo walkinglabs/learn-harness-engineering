@@ -636,6 +636,12 @@ Nuestro equipo también ha creado otros cursos! Échales un vistazo:
 
 ---
 
+## Historial de Estrellas
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=walkinglabs/learn-harness-engineering&type=date&legend=top-left)](https://star-history.dera.page/#walkinglabs/learn-harness-engineering&type=date&legend=top-left)
+
+---
+
 ## Agradecimientos
 
 Este curso fue inspirado por y toma ideas de [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) — una guía progresiva para construir un agente desde cero, desde un simple bucle hasta la ejecución autónoma aislada.

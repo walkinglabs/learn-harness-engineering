@@ -629,6 +629,12 @@ Ekibimiz başka kurslar da hazırladı! Göz atın:
 
 ---
 
+## Yıldız Geçmişi
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=walkinglabs/learn-harness-engineering&type=date&legend=top-left)](https://star-history.dera.page/#walkinglabs/learn-harness-engineering&type=date&legend=top-left)
+
+---
+
 ## Teşekkürler
 
 Bu kurs, [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code)'dan ilham aldı ve fikirler ödünç aldı — tek bir döngüden izole özerk yürütmeye, bir ajanı sıfırdan inşa etmeye yönelik aşamalı bir rehber.

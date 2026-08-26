@@ -635,6 +635,12 @@ Kho lưu trữ này cũng bao gồm các skill agent AI có thể tái sử dụ
 
 ---
 
+## Lịch sử Star
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=walkinglabs/learn-harness-engineering&type=date&legend=top-left)](https://star-history.dera.page/#walkinglabs/learn-harness-engineering&type=date&legend=top-left)
+
+---
+
 ## Lời cảm ơn
 
 Khóa học này được truyền cảm hứng và rút ra ý tưởng từ [learn-claude-code](https://github.com/shareAI-lab/learn-claude-code) — một hướng dẫn tiệm tiến về việc xây dựng một agent từ đầu, từ một vòng lặp đơn giản đến thực thi tự chủ cô lập.
