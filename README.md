@@ -670,6 +670,26 @@ bash tools/audit-harness.sh /path/to/your/repo
 
 ---
 
+## For AI assistants (`llms.txt`)
+
+This repository ships an [`llms.txt`](./llms.txt) at its root, following the
+[llmstxt.org](https://llmstxt.org) specification, plus an expanded
+[`llms-full.txt`](./llms-full.txt) bundle. Both files are also published at the
+site root of the documentation site:
+
+- https://walkinglabs.github.io/learn-harness-engineering/llms.txt
+- https://walkinglabs.github.io/learn-harness-engineering/llms-full.txt
+
+Point an LLM-aware tool at either URL to give it a curated index (or full
+context bundle) of the course without having to crawl the whole site.
+
+The site copies are kept in sync with the repo-root files by
+`npm run llms:build`, which runs automatically as part of `npm run docs:build`.
+CI (`.github/workflows/llms-txt-check.yml`) enforces that the two copies stay
+identical.
+
+---
+
 ## Other Courses
 
 Our team has also created other courses! Check them out:
