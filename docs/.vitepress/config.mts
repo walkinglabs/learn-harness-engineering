@@ -5,8 +5,7 @@ import { withMermaid } from "vitepress-plugin-mermaid";
 const docsBase = "/learn-harness-engineering/";
 const brandLogo = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23D95C41" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12.1" y1="11.9" x2="18.9" y2="8.2" /><line x1="12.1" y1="12.1" x2="20.3" y2="12.9" /><line x1="12.2" y1="12.4" x2="16.6" y2="19.1" /><line x1="11.8" y1="12.4" x2="7.3" y2="19.2" /><line x1="11.9" y1="12.1" x2="3.7" y2="13.3" /><line x1="11.8" y1="11.7" x2="7.8" y2="4.4" /></svg>';
 const githubRepoTreeLink = "https://github.com/walkinglabs/learn-harness-engineering/tree/main";
-// Discord 邀请链接会过期，社区入口默认指向组织主页
-const communityLink = "https://github.com/walkinglabs";
+const communityLink = "https://discord.gg/ETWczxp62";
 const socialLinks: Array<{ icon: "github" | "discord"; link: string }> = [
   { icon: "github", link: githubRepoTreeLink },
   { icon: "discord", link: communityLink }
