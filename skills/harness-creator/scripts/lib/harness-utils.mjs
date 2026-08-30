@@ -1,11 +1,13 @@
 import { existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { access, chmod, copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { auditProjectContract } from '../runtime/project-contract.mjs';
 
 export const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const TEMPLATE_DIR = path.join(SKILL_ROOT, 'templates');
-export const SUBSYSTEMS = ['instructions', 'state', 'verification', 'scope', 'lifecycle'];
+export const SUBSYSTEMS = ['projectModel', 'instructions', 'state', 'verification', 'scope', 'lifecycle', 'traceability'];
 
 export function parseArgs(argv) {
   const args = { _: [] };
@@ -111,8 +113,99 @@ export async function detectProject(root) {
   };
 }
 
+export function draftProjectModel(project) {
+  const likelySource = (file) => /(^|\/)(readme|prd|requirements?|product|spec|brief|architecture|design|adr|context)(\.|\/|$)/i.test(file);
+  const candidates = project.files.filter(likelySource).slice(0, 30);
+  const sources = (candidates.length ? candidates : ['README.md']).map((file, index) => ({
+    id: `src-${String(index + 1).padStart(3, '0')}`,
+    path: file,
+    kind: sourceKind(file),
+    authority: 'context',
+    revision: 'unreviewed',
+    notes: 'Read and classify this source before marking the model reviewed.'
+  }));
+  return {
+    $schema: './project-model.schema.json',
+    modelVersion: 1,
+    reviewStatus: 'draft',
+    purpose: 'Replace with the outcome this project must produce and for whom.',
+    sources,
+    vocabulary: [],
+    capabilities: [],
+    requirements: [],
+    verificationPlan: [],
+    unknowns: [{
+      id: 'unk-001',
+      question: 'Which sources, requirements, capabilities, and acceptance criteria are authoritative?',
+      impact: 'An implementation harness derived before this is answered would encode guesses as instructions.',
+      status: 'open',
+      blocks: []
+    }],
+    decisions: []
+  };
+}
+
+export function deriveFeatureList(model) {
+  const capabilityToFeature = new Map(model.capabilities.map((capability, index) => [
+    capability.id,
+    `feat-${String(index + 1).padStart(3, '0')}`
+  ]));
+  const requirements = Array.isArray(model.requirements) ? model.requirements : [];
+  const verifications = Array.isArray(model.verificationPlan) ? model.verificationPlan : [];
+  const unknowns = Array.isArray(model.unknowns) ? model.unknowns : [];
+
+  const features = model.capabilities.map((capability) => {
+    const linkedRequirements = requirements.filter((requirement) =>
+      Array.isArray(requirement.capabilityRefs) && requirement.capabilityRefs.includes(capability.id)
+    );
+    const acceptanceCriteriaRefs = linkedRequirements.flatMap((requirement) =>
+      (Array.isArray(requirement.acceptanceCriteria) ? requirement.acceptanceCriteria : []).map((criterion) => criterion.id)
+    );
+    const verificationRefs = verifications
+      .filter((verification) => (verification.acceptanceCriteriaRefs || []).some((ref) => acceptanceCriteriaRefs.includes(ref)))
+      .map((verification) => verification.id);
+    const blockers = unknowns
+      .filter((unknown) => unknown.status === 'open' && (unknown.blocks || []).some((ref) =>
+        ref === capability.id || linkedRequirements.some((requirement) => requirement.id === ref)
+      ))
+      .map((unknown) => unknown.id);
+    const unresolvedRequirement = linkedRequirements.some((requirement) => ['unknown', 'needs-decision'].includes(requirement.state));
+
+    return {
+      id: capabilityToFeature.get(capability.id),
+      name: capability.name,
+      description: capability.description,
+      capabilityRefs: [capability.id],
+      requirementRefs: linkedRequirements.map((requirement) => requirement.id),
+      acceptanceCriteriaRefs,
+      verificationRefs,
+      inputs: capability.inputs || [],
+      outputs: capability.outputs || [],
+      boundaries: capability.boundaries || [],
+      dependencies: (capability.dependencies || []).map((ref) => capabilityToFeature.get(ref)).filter(Boolean),
+      status: blockers.length || unresolvedRequirement ? 'blocked' : 'not-started',
+      blockers,
+      evidence: []
+    };
+  });
+
+  return {
+    $schema: './feature-list.schema.json',
+    derivedFrom: 'project-model.json',
+    activeFeature: null,
+    features
+  };
+}
+
+function sourceKind(file) {
+  if (/prd|requirements?|spec/i.test(file)) return 'requirements';
+  if (/architecture|design|adr/i.test(file)) return 'design';
+  if (/readme/i.test(file)) return 'readme';
+  return 'project-document';
+}
+
 export async function listFiles(root, { maxFiles = 1000 } = {}) {
-  const ignored = new Set(['.git', 'node_modules', 'dist', 'build', '.next', '.venv', 'venv', '__pycache__']);
+  const ignored = new Set(['.git', '.agents', '.claude', '.codex', 'worktrees', 'node_modules', 'dist', 'build', '.next', '.venv', 'venv', '__pycache__', '.mypy_cache', '.pytest_cache', '.ruff_cache', '.rescue-main-local-edits']);
   const results = [];
 
   async function walk(current, relative) {
@@ -193,9 +286,12 @@ export function verificationCommands(project, explicitPackageManager) {
 export function initScriptFromCommands(commands) {
   const body = commands.map((command) => `echo "=== ${escapeForEcho(command)} ==="\n${command}`).join('\n\n');
   return `#!/bin/bash
-set -e
+set -euo pipefail
 
 echo "=== Harness Initialization ==="
+
+echo "=== Project Contract ==="
+node scripts/harness/validate-project-contract.mjs
 
 ${body}
 
@@ -221,18 +317,31 @@ export function scoreHarness(files) {
   const byPath = new Map(files.map((file) => [file.path, file.content]));
   const allText = files.map((file) => `${file.path}\n${file.content}`).join('\n\n');
   const agents = byPath.get('AGENTS.md') || byPath.get('CLAUDE.md') || '';
+  const projectModelText = byPath.get('project-model.json') || '';
   const featureList = byPath.get('feature_list.json') || byPath.get('feature-list.json') || '';
   const progress = byPath.get('progress.md') || '';
   const init = byPath.get('init.sh') || '';
   const handoff = byPath.get('session-handoff.md') || '';
+  const projectModel = parseJson(projectModelText);
+  const parsedFeatures = parseJson(featureList);
+  const contract = auditProjectContract(projectModel, parsedFeatures);
+  const sourceIntegrity = parseJson(byPath.get('__source-integrity.json') || '');
 
   const checks = {
+    projectModel: [
+      hasFile(byPath, ['project-model.json'], 'Project model exists'),
+      boolCheck(projectModel?.reviewStatus === 'reviewed', 'Project model was reviewed before derivation'),
+      boolCheck(Array.isArray(projectModel?.sources) && projectModel.sources.length > 0, 'Requirement and design sources are classified'),
+      boolCheck(Array.isArray(projectModel?.requirements) && projectModel.requirements.length > 0 && Array.isArray(projectModel?.capabilities) && projectModel.capabilities.length > 0, 'Requirements and capabilities are modelled'),
+      boolCheck(contract.byArea.projectModel.length === 0, 'Project model represents uncertainty without malformed or missing fields'),
+      boolCheck(Boolean(sourceIntegrity) && sourceIntegrity.failures.length === 0, 'Fingerprint-backed project sources are current')
+    ],
     instructions: [
       hasFile(byPath, ['AGENTS.md', 'CLAUDE.md'], 'Agent instruction file exists'),
       structuredHas(agents, ['Startup Workflow', 'Before writing code'], 'Startup workflow documented'),
       structuredHas(agents, ['Definition of Done', 'done only when'], 'Definition of done documented'),
       structuredHas(agents, ['Verification Commands', './init.sh', 'test', 'verify'], 'Verification commands discoverable'),
-      structuredHas(agents, ['feature_list.json', 'progress.md'], 'State artifacts routed from instructions')
+      structuredHas(agents, ['project-model.json', 'feature_list.json', 'progress.md'], 'Project contract and state artifacts routed from instructions')
     ],
     state: [
       hasFile(byPath, ['feature_list.json', 'feature-list.json'], 'Feature tracker exists'),
@@ -244,9 +353,9 @@ export function scoreHarness(files) {
     verification: [
       hasFile(byPath, ['init.sh'], 'Verification entrypoint exists'),
       textHas(init, ['set -e'], 'Verification fails fast'),
+      textHas(init, ['validate-project-contract'], 'Project-contract validation runs before engineering checks'),
       textHas(init + agents, ['test', 'pytest', 'vitest', 'cargo test', 'go test', 'dotnet test'], 'Test command documented'),
-      textHas(init + agents, ['build', 'type', 'lint', 'compile'], 'Static/build check documented'),
-      textHas(allText, ['Evidence', 'Verification Evidence', 'command and output'], 'Verification evidence is recorded')
+      textHas(allText, ['Evidence', 'Verification Evidence', 'evidencePath', 'evidence artifact'], 'Observed verification evidence has a durable location')
     ],
     scope: [
       structuredHas(agents, ['One feature at a time', 'one-feature-at-a-time'], 'One-feature-at-a-time rule exists'),
@@ -261,6 +370,13 @@ export function scoreHarness(files) {
       hasFile(byPath, ['session-handoff.md'], 'Session handoff template exists'),
       structuredHas(progress + '\n' + handoff, ['Last Updated', 'Current Objective', 'Recommended Next Step'], 'Session restart markers exist'),
       textHas(agents + init, ['restartable', 'clean', 'Next steps'], 'Clean restart path documented')
+    ],
+    traceability: [
+      boolCheck(parsedFeatures?.derivedFrom === 'project-model.json', 'Feature state declares its project-model source'),
+      boolCheck(Array.isArray(parsedFeatures?.features) && parsedFeatures.features.every((feature) => Array.isArray(feature.capabilityRefs) && Array.isArray(feature.requirementRefs)), 'Features reference capabilities and requirements'),
+      boolCheck(Boolean(projectModel) && contract.byArea.traceability.length === 0, 'Requirement, capability, acceptance, feature, and verification references are complete'),
+      boolCheck(Array.isArray(projectModel?.verificationPlan) && projectModel.verificationPlan.length > 0, 'Acceptance criteria have planned verification procedures and expected observations'),
+      boolCheck(Boolean(projectModel) && contract.byArea.evidence.length === 0, 'Done features carry observed evidence for every linked verification')
     ]
   };
 
@@ -281,7 +397,26 @@ export function scoreHarness(files) {
   // A bottleneck only means something when a subsystem is weaker than the rest.
   // When every subsystem already maxes out, reporting one is misleading.
   const bottleneck = ranked[0][1].score === 5 ? null : ranked[0][0];
-  return { overall, bottleneck, subsystems };
+  return {
+    overall,
+    bottleneck,
+    subsystems,
+    contract,
+    sourceIntegrity,
+    limitation: 'Structural traceability checks cannot prove that the project model or its expected outcomes are semantically correct; domain review and representative task runs remain required.'
+  };
+}
+
+function boolCheck(pass, message) {
+  return { pass: Boolean(pass), message };
+}
+
+function parseJson(text) {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
 }
 
 function hasFile(byPath, names, message) {
@@ -337,6 +472,7 @@ export async function loadHarnessFiles(root) {
   const candidates = [
     'AGENTS.md',
     'CLAUDE.md',
+    'project-model.json',
     'feature_list.json',
     'feature-list.json',
     'progress.md',
@@ -350,7 +486,36 @@ export async function loadHarnessFiles(root) {
       files.push({ path: candidate, content: await readText(fullPath) });
     }
   }
+  const modelFile = files.find((file) => file.path === 'project-model.json');
+  if (modelFile) {
+    const model = parseJson(modelFile.content);
+    if (model) files.push({ path: '__source-integrity.json', content: JSON.stringify(await sourceIntegrity(root, model)) });
+  }
   return files;
+}
+
+async function sourceIntegrity(root, model) {
+  const report = { checked: 0, uncheckable: 0, failures: [] };
+  for (const source of Array.isArray(model.sources) ? model.sources : []) {
+    if (typeof source?.revision !== 'string' || !source.revision.startsWith('sha256:')) {
+      report.uncheckable += 1;
+      continue;
+    }
+    const resolved = path.resolve(root, source.path || '');
+    if (resolved !== root && !resolved.startsWith(`${root}${path.sep}`)) {
+      report.failures.push(`${source.id}: source path escapes the target repository`);
+      continue;
+    }
+    try {
+      const body = await readFile(resolved);
+      const observed = createHash('sha256').update(body).digest('hex');
+      report.checked += 1;
+      if (source.revision !== `sha256:${observed}`) report.failures.push(`${source.id}: source fingerprint is stale`);
+    } catch (error) {
+      report.failures.push(`${source.id}: source could not be read (${error.message})`);
+    }
+  }
+  return report;
 }
 
 export function formatScoreReport(result, root = '.') {
@@ -368,6 +533,10 @@ export function formatScoreReport(result, root = '.') {
     }
     lines.push('');
   }
+  if (result.sourceIntegrity) {
+    lines.push(`Project sources: ${result.sourceIntegrity.checked} fingerprint(s) checked, ${result.sourceIntegrity.uncheckable} revision(s) recorded but not checkable offline, ${result.sourceIntegrity.failures.length} failure(s)`);
+  }
+  lines.push(`Limitation: ${result.limitation}`);
   return lines.join('\n');
 }
 
@@ -408,13 +577,15 @@ export function htmlReport(result, title = 'Harness Assessment') {
   <main>
     <header>
       <h1>${escapeHtml(title)}</h1>
-      <p>Five-subsystem harness validation report.</p>
+      <p>Project-contract foundation plus five harness subsystems and end-to-end traceability.</p>
       <div class="summary">
         <div class="metric">Overall<strong>${result.overall}/100</strong></div>
         <div class="metric">Bottleneck<strong>${escapeHtml(result.bottleneck ?? 'none')}</strong></div>
       </div>
     </header>
     ${rows}
+    ${result.sourceIntegrity ? `<section><h2>Project source freshness</h2><p>${result.sourceIntegrity.checked} fingerprint(s) checked; ${result.sourceIntegrity.uncheckable} revision(s) recorded but not checkable offline; ${result.sourceIntegrity.failures.length} failure(s).</p></section>` : ''}
+    <section><h2>Interpretation</h2><p>${escapeHtml(result.limitation)}</p></section>
   </main>
 </body>
 </html>

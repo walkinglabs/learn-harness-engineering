@@ -1,7 +1,7 @@
 {
   "name": "harness-creator",
-  "version": "1.0.0",
-  "description": "Harness engineering for AI coding agents — five subsystems, memory persistence, session continuity, verification workflows, scope control, lifecycle management.",
+  "version": "2.0.0",
+  "description": "Requirement-linked harness engineering for AI coding agents — project models, capability-derived features, traceability, evidence gates, and reliable execution across sessions.",
   "license": "MIT",
   "author": "Learn Harness Engineering",
   "repository": "https://github.com/walkinglabs/learn-harness-engineering",
@@ -18,6 +18,7 @@
   },
   "entryPoint": "SKILL.md",
   "references": [
+    "references/project-model-pattern.md",
     "references/memory-persistence-pattern.md",
     "references/context-engineering-pattern.md",
     "references/skill-runtime-pattern.md",
@@ -32,6 +33,9 @@
     "session continuity",
     "memory persistence",
     "verification workflow",
+    "project model",
+    "requirements traceability",
+    "acceptance criteria",
     "scope control",
     "lifecycle management",
     "AGENTS.md",
@@ -46,15 +50,18 @@
   "bundled": {
     "scripts": [
       "scripts/create-harness.mjs",
+      "scripts/discover-project.mjs",
       "scripts/validate-harness.mjs",
       "scripts/render-assessment-html.mjs",
       "scripts/run-benchmark.mjs",
-      "scripts/lib/harness-utils.mjs"
+      "scripts/lib/harness-utils.mjs",
+      "scripts/runtime/project-contract.mjs",
+      "scripts/runtime/validate-project-contract.mjs"
     ],
     "assets": [],
     "templates": [
       "templates/agents.md",
-      "templates/feature-list.json",
+      "templates/project-model.schema.json",
       "templates/feature-list.schema.json",
       "templates/init.sh",
       "templates/progress.md",

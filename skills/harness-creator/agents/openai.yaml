@@ -1,7 +1,7 @@
 interface:
   display_name: "Harness Creator"
-  short_description: "Scaffold and audit coding-agent harnesses"
-  default_prompt: "Use $harness-creator to create, validate, and benchmark a production-ready coding-agent harness for this repository."
+  short_description: "Build requirement-linked agent harnesses"
+  default_prompt: "Use $harness-creator to discover this repository's project contract, derive a requirement-linked coding-agent harness, and validate its traceability."
 
 policy:
   allow_implicit_invocation: true

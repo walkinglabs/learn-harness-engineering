@@ -13,7 +13,7 @@ const args = parseArgs(process.argv.slice(2));
 if (args.help) {
   console.log(`Usage: node scripts/render-assessment-html.mjs [--target DIR] [--output FILE]
 
-Renders the five-subsystem harness assessment as a standalone HTML file.`);
+Renders the project-contract, five-subsystem, and traceability assessment as standalone HTML.`);
   process.exit(0);
 }
 

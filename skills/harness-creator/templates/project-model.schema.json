@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Model",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "modelVersion": { "type": "integer", "minimum": 1 },
+    "reviewStatus": { "enum": ["draft", "reviewed"] },
+    "purpose": { "type": "string", "minLength": 1 },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^src-[a-zA-Z0-9._-]+$" },
+          "path": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "minLength": 1 },
+          "authority": { "enum": ["contract", "authoritative", "context", "superseded"] },
+          "revision": { "type": "string", "minLength": 1 },
+          "notes": { "type": "string" }
+        },
+        "required": ["id", "path", "kind", "authority", "revision"]
+      }
+    },
+    "vocabulary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "term": { "type": "string", "minLength": 1 },
+          "meaning": { "type": "string", "minLength": 1 },
+          "sourceRefs": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["term", "meaning", "sourceRefs"]
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^cap-[a-zA-Z0-9._-]+$" },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "inputs": { "type": "array", "items": { "type": "string" } },
+          "outputs": { "type": "array", "items": { "type": "string" } },
+          "dependencies": { "type": "array", "items": { "type": "string" } },
+          "boundaries": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["id", "name", "description", "inputs", "outputs", "dependencies", "boundaries"]
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^req-[a-zA-Z0-9._-]+$" },
+          "statement": { "type": "string", "minLength": 1 },
+          "state": { "enum": ["confirmed", "inferred", "unknown", "needs-decision"] },
+          "sourceRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "capabilityRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "pattern": "^ac-[a-zA-Z0-9._-]+$" },
+                "statement": { "type": "string", "minLength": 1 }
+              },
+              "required": ["id", "statement"]
+            }
+          }
+        },
+        "required": ["id", "statement", "state", "sourceRefs", "capabilityRefs", "acceptanceCriteria"]
+      }
+    },
+    "verificationPlan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^ver-[a-zA-Z0-9._-]+$" },
+          "acceptanceCriteriaRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "kind": { "type": "string", "minLength": 1 },
+          "procedure": { "type": "string", "minLength": 1 },
+          "expected": { "type": "string", "minLength": 1 },
+          "evidencePath": { "type": "string", "minLength": 1 }
+        },
+        "required": ["id", "acceptanceCriteriaRefs", "kind", "procedure", "expected", "evidencePath"]
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^unk-[a-zA-Z0-9._-]+$" },
+          "question": { "type": "string", "minLength": 1 },
+          "impact": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["open", "resolved"] },
+          "blocks": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["id", "question", "impact", "status", "blocks"]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "statement": { "type": "string", "minLength": 1 },
+          "sourceRefs": { "type": "array", "items": { "type": "string" } },
+          "resolves": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["id", "statement", "sourceRefs", "resolves"]
+      }
+    }
+  },
+  "required": ["modelVersion", "reviewStatus", "purpose", "sources", "vocabulary", "capabilities", "requirements", "verificationPlan", "unknowns", "decisions"]
+}

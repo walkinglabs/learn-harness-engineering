@@ -3,6 +3,7 @@
 ## Current Objective
 
 - Goal:
+- Capability / requirement refs:
 - Current status:
 - Branch / commit:
 
@@ -12,7 +13,7 @@
 
 ## Verification Evidence
 
-| Check | Command | Result | Notes |
+| Verification ref | Procedure | Observed result | Evidence artifact |
 |---|---|---|---|
 |  |  |  |  |
 

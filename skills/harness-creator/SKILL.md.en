@@ -1,111 +1,115 @@
 ---
 name: harness-creator
 description: >-
-  Build, audit, and improve harnesses that make AI coding agents reliable: AGENTS.md/CLAUDE.md
-  instruction files, feature/state tracking, verification gates, scope boundaries, session
-  handoff, memory persistence, context budgets, tool-permission safety, and multi-agent
-  coordination. Use this whenever a coding agent is unreliable across sessions — forgets context,
-  drifts out of scope, claims "done" before tests pass, or starts each session inconsistently —
-  or when creating or assessing AGENTS.md, CLAUDE.md, feature_list.json, init.sh, progress.md, or
-  session-handoff files. Reach for it even if the user never says the word "harness."
+  Build, audit, or improve requirement-linked coding-agent harnesses. Use for AGENTS.md or
+  CLAUDE.md, project models, feature/state tracking, verification and evidence gates, scope,
+  session continuity, tool safety, context budgets, and multi-agent coordination—especially
+  when agents drift, forget context, claim done too early, or implement the wrong requirement.
 license: MIT
 ---
 
 # Harness Creator
 
-Use this skill to make a repository easier for coding agents to start, stay in scope, verify work, and resume across sessions. Keep the harness small enough that agents actually follow it.
+Make a repository easier for coding agents to understand, implement, verify, and resume. A
+reliable harness begins with the project contract; technology-stack detection only selects
+engineering commands.
 
-Not for model selection, prompt tuning in isolation, chat UI design, or general app architecture.
+## Architecture
 
-## Core Model
-
-Every useful coding-agent harness has five subsystems:
+The foundation is `project-model.json`: sourced requirements, capabilities, acceptance
+criteria, verification plans, decisions, and unknowns. The familiar five subsystems derive
+from it:
 
 | Subsystem | Minimal artifact | Purpose |
 |---|---|---|
-| Instructions | `AGENTS.md` or `CLAUDE.md` | Startup path, working rules, definition of done |
-| State | `feature_list.json`, `progress.md` | Current feature, status, evidence, next step |
-| Verification | `init.sh` or documented commands | Tests/checks the agent must run before claiming done |
-| Scope | Feature dependencies and done criteria | Prevents overreach and half-finished work |
-| Lifecycle | `session-handoff.md`, end-of-session routine | Makes the next session restartable |
+| Instructions | `AGENTS.md` or `CLAUDE.md` | Route startup, authority, working rules, done |
+| State | `feature_list.json`, `progress.md` | Capability-derived work and observed evidence |
+| Verification | `init.sh`, verification plan | Engineering health plus requirement outcomes |
+| Scope | Requirement/capability boundaries | Keep implementation inside the project contract |
+| Lifecycle | `session-handoff.md` | Restart with decisions, blockers, and next action |
 
-## First Move
+Traceability must remain continuous:
 
-1. Inspect what already exists: instruction files, feature/state files, verification commands, docs, package manifests.
-2. Ask only for missing context that cannot be inferred safely: target agent, desired file name, tolerance for structure, and whether overwriting is allowed.
-3. Prefer a minimal harness first. Add memory, tool safety, multi-agent, or benchmark details only when the user's problem calls for them.
+`source → requirement → capability → feature → acceptance criterion → verification → observed evidence`
 
-## Common Tasks
+## Create or Retrofit
 
-### Create a harness
+Complete these phases in order. The completion criterion for each phase is the input to the
+next one.
 
-Use the bundled script when working on a local repository:
+1. **Discover.** Inventory likely requirement sources, architecture, tests, configuration,
+   entrypoints, and integrations. Read the authoritative candidates and identify conflicts or
+   superseded material. Completion: every project fact used later has a source or is labelled
+   inferred/unknown.
+2. **Model.** Author `project-model.json` using stable IDs. Capabilities describe observable
+   project behavior with inputs, outputs, dependencies, and boundaries. Completion: every
+   requirement has source and capability refs; every confirmed/inferred requirement has
+   acceptance criteria and planned verification.
+3. **Review.** Resolve material conflicts with the user or domain owner. Keep `unknown` and
+   `needs-decision` items explicit and scoped to what they block. Set `reviewStatus` to
+   `reviewed` only when the model honestly represents both knowns and unknowns.
+4. **Derive.** Generate instructions, capability-sized features, local traceability validation,
+   verification entrypoint, progress, and handoff artifacts from the reviewed model.
+5. **Verify.** Run structural validation, linked requirement checks, and representative agent
+   tasks. Report semantic review separately from structural scores.
 
-```bash
-node skills/harness-creator/scripts/create-harness.mjs --target /path/to/project
-```
+For the detailed model fields, source authority rules, uncertainty states, and retrofit
+procedure, read [Project Model & Traceability](references/project-model-pattern.md).
 
-Options:
-
-- `--agent-file CLAUDE.md` for Claude-oriented projects.
-- `--package-manager npm|pnpm|yarn|bun` when detection is wrong.
-- `--commands "cmd one,cmd two"` for custom verification.
-- `--force` only after confirming overwrites are acceptable.
-
-Then explain what was created and how the user should replace placeholder feature entries.
-
-### Audit an existing harness
-
-Run:
-
-```bash
-node skills/harness-creator/scripts/validate-harness.mjs --target /path/to/project
-```
-
-Report the five subsystem scores, the lowest-scoring area, and the first 2-3 changes that would improve reliability. Treat the lowest score as a candidate bottleneck; confirm with failures, logs, or task outcomes before claiming causality.
-
-### Produce a report
-
-Use when the user wants a shareable assessment:
+### Commands
 
 ```bash
-node skills/harness-creator/scripts/render-assessment-html.mjs --target /path/to/project
-node skills/harness-creator/scripts/run-benchmark.mjs --target /path/to/project --html /path/to/report.html
+node scripts/discover-project.mjs --target /path/to/project
+node scripts/create-harness.mjs --target /path/to/project --scaffold-only
+node scripts/create-harness.mjs --target /path/to/project
 ```
 
-Be clear that this is a structural benchmark. The benchmark first runs a self-check — it scaffolds a throwaway harness and validates it, proving the bundled scripts work end-to-end — then scores the target and eval coverage. Real effectiveness still needs before/after agent sessions on representative tasks.
+Use `--agent-file CLAUDE.md`, `--package-manager`, or `--commands` when needed. Use `--force`
+only after confirming overwrites are acceptable. Preserve existing feature state and evidence
+during a retrofit; migrate it rather than replacing it with freshly derived empty state.
 
-## When to Read References
+## Audit
 
-Load only the reference needed for the user's problem:
+```bash
+node scripts/validate-harness.mjs --target /path/to/project
+node scripts/run-benchmark.mjs --target /path/to/project --html /path/to/report.html
+```
 
-- Memory across sessions: [Memory Persistence](references/memory-persistence-pattern.md)
-- Reusable workflows as skills: [Skill Runtime](references/skill-runtime-pattern.md)
-- Permissions, tools, concurrency: [Tool Registry & Safety](references/tool-registry-pattern.md)
-- Context budget and progressive disclosure: [Context Engineering](references/context-engineering-pattern.md)
-- Delegation and parallel agents: [Multi-Agent Coordination](references/multi-agent-pattern.md)
-- Hooks, startup, long-running work: [Lifecycle & Bootstrap](references/lifecycle-bootstrap-pattern.md)
-- Non-obvious failure modes: [Gotchas](references/gotchas.md)
+Report the project-model foundation, five subsystems, traceability, unresolved questions, and
+the first reliability bottleneck. A score measures artifact and reference integrity. It cannot
+prove that the sources were interpreted correctly, that expected outcomes are the right ones,
+or that a representative end-to-end run succeeded.
 
 ## Design Rules
 
-- Keep the root instruction file short: routing and invariants, not a full manual.
-- Put project facts in project docs, not in the skill.
-- Make verification commands explicit and runnable.
-- Require evidence before marking a feature done.
-- Use one active feature unless the harness has explicit multi-agent ownership boundaries.
-- Prefer append/update state files over relying on chat history.
-- Never hide destructive behavior in scripts; overwrites require explicit user approval.
+- Keep the root instruction file as routing and invariants; keep project facts in the model and
+  its cited sources.
+- Derive features from capabilities, not from generic project phases such as setup, docs, or
+  cleanup.
+- Treat `confirmed`, `inferred`, `unknown`, and `needs-decision` as different states. Block only
+  the affected capability.
+- Write expected observations independently of test exit status. A green command is evidence
+  only for the acceptance criteria it can distinguish.
+- Record observed evidence separately from the planned verification procedure.
+- Validate referential integrity and evidence bindings generically; semantic truth remains a
+  domain-review responsibility.
+- Keep one active feature unless explicit ownership boundaries support parallel work.
+- Never hide destructive behavior in scripts; overwrites require explicit approval.
 
-## Deliverable Checklist
+## Conditional References
 
-For a usable minimal harness, leave the target project with:
+- Memory across sessions: [Memory Persistence](references/memory-persistence-pattern.md)
+- Reusable workflows as skills: [Skill Runtime](references/skill-runtime-pattern.md)
+- Permissions and tools: [Tool Registry & Safety](references/tool-registry-pattern.md)
+- Context budgets: [Context Engineering](references/context-engineering-pattern.md)
+- Delegation: [Multi-Agent Coordination](references/multi-agent-pattern.md)
+- Hooks and startup: [Lifecycle & Bootstrap](references/lifecycle-bootstrap-pattern.md)
+- Failure modes: [Gotchas](references/gotchas.md)
 
-- [ ] `AGENTS.md` or `CLAUDE.md`
-- [ ] `feature_list.json`
-- [ ] `progress.md`
-- [ ] `init.sh`
-- [ ] Optional `session-handoff.md` for multi-session work
-- [ ] Documented verification evidence or next action
+## Completion
 
-If you cannot create files, provide exact file contents and commands instead.
+A created or retrofitted harness is ready when the reviewed model is present, every referenced
+ID resolves, unresolved decisions block the correct features, every confirmed/inferred
+acceptance criterion has a verification plan, and the local validator runs before engineering
+checks. Real effectiveness still requires domain review and representative before/after agent
+sessions.

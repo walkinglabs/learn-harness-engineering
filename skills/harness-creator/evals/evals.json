@@ -4,15 +4,15 @@
     {
       "id": 1,
       "name": "Minimal Harness Creation",
-      "prompt": "I have a new TypeScript + React project with no agent setup. Create a minimal harness that makes my agent reliable for single-feature development.",
-      "expected_output": "AGENTS.md (~50-100 lines), feature_list.json with 3-5 placeholder features, init.sh with verification commands",
-      "files": [],
+      "prompt": "I have a new TypeScript + React project, a reviewed product brief, and no agent setup. Create a minimal requirement-linked harness for single-feature development.",
+      "expected_output": "Reviewed project-model.json, concise AGENTS.md, capability-derived feature_list.json, project-contract validator, and init.sh",
+      "files": ["docs/product-brief.md"],
       "expectations": [
-        "AGENTS.md includes startup workflow (read files, run init, check feature list)",
+        "AGENTS.md reads the project model before feature state",
         "AGENTS.md includes one-feature-at-a-time policy",
-        "feature_list.json has valid JSON with id, name, description, status fields",
+        "feature_list.json maps capabilities, requirements, acceptance criteria, and verification references",
         "init.sh runs install, type/static check, test, and build commands when available",
-        "All files are in project root directory"
+        "Project-contract validation runs before generic engineering checks"
       ]
     },
     {
@@ -127,9 +127,87 @@
       "files": [],
       "expectations": [
         "Uses create-harness.mjs with a target directory",
-        "Uses validate-harness.mjs and explains five-subsystem score output",
+        "Uses validate-harness.mjs and explains the project-model, five-subsystem, and traceability score output",
         "Uses render-assessment-html.mjs or run-benchmark.mjs with --html",
         "Explains that structural benchmark complements but does not replace real before/after agent sessions"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Discovery Before Harness Generation",
+      "prompt": "This repository has a README, a PRD, architecture notes, tests, and integration docs. Build its harness without turning guesses into instructions.",
+      "expected_output": "A read-only discovery inventory followed by a sourced, reviewed project model before any authoritative harness files are generated",
+      "files": ["README.md", "docs/PRD.md", "docs/architecture.md"],
+      "expectations": [
+        "Inventories likely requirements, architecture, tests, configuration, entrypoints, and integrations",
+        "Reads authoritative sources before deriving features",
+        "Creates no authoritative feature list while the project model remains draft",
+        "Separates project semantics from detected implementation stack"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "PRD to Reviewed Project Model",
+      "prompt": "Turn this PRD and repository evidence into the contract that a harness should derive from.",
+      "expected_output": "project-model.json with sourced requirements, capabilities, boundaries, acceptance criteria, verification plan, vocabulary, decisions, and unknowns",
+      "files": ["docs/PRD.md", "README.md"],
+      "expectations": [
+        "Every requirement has stable source and capability references",
+        "Capabilities describe observable project behavior with inputs and outputs",
+        "Acceptance criteria state observable outcomes",
+        "The model remains draft until reviewed"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Uncertainty and Decision Handling",
+      "prompt": "Several mandatory fields and the production schedule are undecided, while one dedupe rule is inferred from tests. Represent that honestly in the harness.",
+      "expected_output": "Confirmed, inferred, unknown, and needs-decision states with open questions that block only affected capabilities",
+      "files": [],
+      "expectations": [
+        "Does not promote inferred or unknown behavior to confirmed",
+        "Records each open question with impact and blocked references",
+        "Affected features are blocked while unrelated capabilities remain available",
+        "Resolution is recorded as a decision rather than silently editing history"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Requirement Traceability Audit",
+      "prompt": "Audit whether every confirmed requirement reaches a feature, acceptance criterion, verification procedure, and evidence artifact.",
+      "expected_output": "Referential traceability findings plus an explicit statement that structural coverage cannot prove semantic truth",
+      "files": ["project-model.json", "feature_list.json"],
+      "expectations": [
+        "Reports unmapped requirements and capabilities",
+        "Reports acceptance criteria with no verification plan",
+        "Reports done features missing observed evidence",
+        "Does not claim the business interpretation is correct"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Requirement-Linked Verification Design",
+      "prompt": "Design verification for a deduplication requirement where generic tests can pass even if the business rule is wrong.",
+      "expected_output": "A verification plan tied to an acceptance criterion, with procedure, expected observation, and durable evidence location",
+      "files": [],
+      "expectations": [
+        "Names the acceptance criterion the verification covers",
+        "Uses a requirement-representative fixture, invariant, contract, or end-to-end observation",
+        "States the expected outcome independently of a green exit code",
+        "Separates observed evidence from the planned check"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Premature Generation Refusal",
+      "prompt": "Run harness creation in a repository with no project model and only a package manifest.",
+      "expected_output": "A refusal that directs discovery and project modelling, with no generated authoritative instructions or feature state",
+      "files": ["package.json"],
+      "expectations": [
+        "Does not infer project purpose from the technology stack",
+        "Does not emit generic business feature placeholders",
+        "Explains how to create a draft project model explicitly",
+        "Leaves existing repository files untouched"
       ]
     }
   ]

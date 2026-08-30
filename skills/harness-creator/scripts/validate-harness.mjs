@@ -14,15 +14,17 @@ const args = parseArgs(process.argv.slice(2));
 if (args.help) {
   console.log(`Usage: node scripts/validate-harness.mjs [--target DIR] [--json] [--html FILE]
 
-Scores a project harness across five subsystems:
-  instructions, state, verification, scope, lifecycle
+Scores the project-contract foundation, five harness subsystems, and traceability:
+  projectModel, instructions, state, verification, scope, lifecycle, traceability
 
-Exit code is 0 when the harness scores at least --min-score (default 70).`);
+Exit code is 0 when the overall score reaches --min-score (default 70) and both
+projectModel and traceability reach --min-contract-score (default 5/5).`);
   process.exit(0);
 }
 
 const target = path.resolve(args.target || args._[0] || process.cwd());
 const minScore = Number(args.minScore || 70);
+const minContractScore = Number(args.minContractScore || 5);
 const files = await loadHarnessFiles(target);
 const result = scoreHarness(files);
 
@@ -38,6 +40,10 @@ if (args.json) {
   console.log(formatScoreReport(result, target));
 }
 
-if (result.overall < minScore) {
+if (
+  result.overall < minScore
+  || result.subsystems.projectModel.score < minContractScore
+  || result.subsystems.traceability.score < minContractScore
+) {
   process.exitCode = 1;
 }

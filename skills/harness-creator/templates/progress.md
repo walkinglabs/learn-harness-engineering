@@ -5,6 +5,7 @@
 **Last Updated:** YYYY-MM-DD HH:MM
 **Session ID:** [optional]
 **Active Feature:** [feat-XXX - Feature Name]
+**Capability / Requirements:** [cap-XXX / req-XXX]
 
 ## Status
 
@@ -42,9 +43,10 @@
 
 ## Evidence of Completion
 
-- [ ] Tests pass: `[command and output]`
-- [ ] Type check clean: `[command and output]`
-- [ ] Manual verification: `[what was tested]`
+- [ ] `[ver-XXX]` procedure: `[what ran]`
+- [ ] Expected observation: `[what the project contract predicts]`
+- [ ] Evidence artifact: `[path or durable reference]`
+- [ ] Generic engineering gate: `[command and output]`
 
 ## Notes for Next Session
 

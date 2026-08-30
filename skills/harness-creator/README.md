@@ -1,8 +1,8 @@
 # harness-creator
 
-A compact skill for building and auditing harnesses around AI coding agents.
+A compact skill for building and auditing requirement-linked harnesses around AI coding agents.
 
-It helps a repository provide five things agents need: instructions, state, verification, scope boundaries, and lifecycle handoff.
+It adds a sourced project-model foundation before the five execution subsystems: instructions, state, verification, scope boundaries, and lifecycle handoff.
 
 ## Install
 
@@ -15,34 +15,40 @@ Or copy `skills/harness-creator/` into your skill path.
 ## Use
 
 ```bash
+node skills/harness-creator/scripts/discover-project.mjs --target /path/to/project
+node skills/harness-creator/scripts/create-harness.mjs --target /path/to/project --scaffold-only
 node skills/harness-creator/scripts/create-harness.mjs --target /path/to/project
 node skills/harness-creator/scripts/validate-harness.mjs --target /path/to/project
 node skills/harness-creator/scripts/run-benchmark.mjs --target /path/to/project --html /path/to/report.html
 ```
 
-The scripts use only Node.js built-in modules. They can be run after copying the skill directory into another repository.
+The scripts use only Node.js built-in modules. Creation refuses to emit an authoritative harness until `project-model.json` is reviewed.
 
 ## What It Creates
 
+- `project-model.json` and schema
 - `AGENTS.md` or `CLAUDE.md`
-- `feature_list.json`
+- capability-derived `feature_list.json` and schema
 - `progress.md`
 - `init.sh`
 - `session-handoff.md`
+- a repository-local project-contract validator
 
 `create-harness.mjs` detects common project types and package managers. It supports Node/npm/pnpm/yarn/bun, Python, Go, Rust, Maven, Gradle, and .NET at a basic verification-command level.
 
 ## What It Checks
 
-`validate-harness.mjs` scores the five harness subsystems:
+`validate-harness.mjs` scores the project model, five harness subsystems, and traceability:
 
-1. Instructions
-2. State
-3. Verification
-4. Scope
-5. Lifecycle
+1. Project model
+2. Instructions
+3. State
+4. Verification
+5. Scope
+6. Lifecycle
+7. Traceability
 
-The score is structural. It tells you whether the harness is present and coherent; it does not replace real before/after agent-session testing.
+The score checks structural and referential integrity. It cannot establish semantic truth and does not replace domain review or real before/after agent-session testing.
 
 ## Status
 
@@ -50,8 +56,12 @@ The score is structural. It tells you whether the harness is present and coheren
 - [x] Five-subsystem validation
 - [x] HTML assessment report
 - [x] Structural benchmark report
-- [x] 10 eval cases
+- [x] 16 eval cases
 - [x] Generic verification detection for common stacks
+- [x] Discovery-before-generation workflow
+- [x] Sourced project model and uncertainty states
+- [x] Requirement-to-evidence traceability validation
+- [x] Capability-derived feature state
 - [ ] Optional real before/after agent-session replay
 
 ## Files
@@ -59,17 +69,20 @@ The score is structural. It tells you whether the harness is present and coheren
 ```text
 harness-creator/
 ├── SKILL.md
-├── metadata.json
 ├── agents/openai.yaml
 ├── scripts/
 │   ├── create-harness.mjs
+│   ├── discover-project.mjs
 │   ├── validate-harness.mjs
 │   ├── render-assessment-html.mjs
 │   ├── run-benchmark.mjs
-│   └── lib/harness-utils.mjs
+│   ├── lib/harness-utils.mjs
+│   └── runtime/
+│       ├── project-contract.mjs
+│       └── validate-project-contract.mjs
 ├── templates/
 │   ├── agents.md
-│   ├── feature-list.json
+│   ├── project-model.schema.json
 │   ├── feature-list.schema.json
 │   ├── init.sh
 │   ├── progress.md

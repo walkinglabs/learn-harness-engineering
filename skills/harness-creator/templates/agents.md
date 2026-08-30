@@ -2,67 +2,55 @@
 
 {{PROJECT_PURPOSE}}
 
+## Authority
+
+`project-model.json` is the project contract. `feature_list.json` is derived execution state.
+When prose, feature state, and the project contract disagree, stop the affected feature and
+record the conflict as an unknown; do not silently choose one.
+
 ## Startup Workflow
 
 Before writing code:
 
-1. **Confirm working directory** with `pwd`
-2. **Read this file** completely
-3. **Read project docs if present** (`docs/ARCHITECTURE.md`, `docs/PRODUCT.md`, README, or equivalent)
-4. **Run `./init.sh`** to verify environment is healthy
-5. **Read `feature_list.json`** to see current feature state
-6. **Review recent commits** with `git log --oneline -5`
-
-If baseline verification is failing, repair that first before adding new scope.
+1. Confirm the working directory with `pwd`.
+2. Read this file and `project-model.json`.
+3. Read only the sources referenced by the active requirement and capability.
+4. Read `feature_list.json`, `progress.md`, and `session-handoff.md`.
+5. Run `./init.sh`; a failing project-contract check blocks implementation.
 
 ## Working Rules
 
-- **One feature at a time**: Pick exactly one unfinished feature from `feature_list.json`
-- **Verification required**: Don't claim done without running verification commands
-- **Update artifacts**: Before ending session, update `progress.md` and `feature_list.json`
-- **Stay in scope**: Don't modify files unrelated to the current feature
-- **Leave clean state**: Next session must be able to run `./init.sh` immediately
-
-## Required Artifacts
-
-- `feature_list.json` — Feature state tracker (source of truth)
-- `progress.md` — Session continuity log
-- `init.sh` — Standard startup and verification path
-- `session-handoff.md` — Optional, for larger sessions
+- **One feature at a time:** work one feature and its declared boundaries.
+- **Requirement linked:** every behavior change names its requirement and acceptance criterion.
+- **Uncertainty explicit:** `unknown` and `needs-decision` remain blocked until resolved; an inference stays labelled `inferred`.
+- **Verification observed:** execute the linked verification procedure and record its artifact before claiming done.
+- **Stay in scope:** discoveries outside the active capability become model or feature updates, not extra implementation.
 
 ## Definition of Done
 
-A feature is done only when ALL of the following are true:
+A feature is done only when:
 
-- [ ] Target behavior is implemented
-- [ ] Required verification actually ran (tests / lint / type-check)
-- [ ] Evidence recorded in `feature_list.json` or `progress.md`
-- [ ] Repository remains restartable from standard startup path
+- every linked requirement is `confirmed` or explicitly accepted as `inferred`;
+- every linked acceptance criterion has a verification entry;
+- every linked verification has observed evidence for this tree or artifact;
+- dependencies are done and blockers are empty;
+- `./init.sh` exits zero.
+
+Passing generic tests is engineering evidence, not proof that the project contract is correct.
+Semantic truth still requires review by someone who understands the domain and source material.
 
 ## End of Session
 
-Before ending a session:
-
-1. Update `progress.md` with current state
-2. Update `feature_list.json` with new feature status
-3. Record any unresolved risks or blockers
-4. Commit with descriptive message once work is in safe state
-5. Leave repo clean enough for next session to run `./init.sh` immediately
+1. Update feature status and attach observed evidence by `verificationRef`.
+2. Record new unknowns, decisions, changed sources, and traceability gaps.
+3. Update `progress.md` and `session-handoff.md` with the exact next action.
+4. Leave the repository restartable through `./init.sh`.
 
 ## Verification Commands
 
 ```bash
-# Full verification (recommended)
 {{PRIMARY_VERIFICATION_COMMAND}}
 ```
 
-Required checks:
+Required engineering checks:
 {{VERIFICATION_COMMANDS}}
-
-## Escalation
-
-If you encounter:
-- **Architecture decisions**: Consult project architecture docs if present, otherwise ask user
-- **Unclear requirements**: Check product/requirements docs if present, otherwise ask user
-- **Repeated test failures**: Update progress, flag for human review
-- **Scope ambiguity**: Re-read `feature_list.json` for definition of done

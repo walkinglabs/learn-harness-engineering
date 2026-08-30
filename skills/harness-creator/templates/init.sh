@@ -1,7 +1,10 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 echo "=== Harness Initialization ==="
+
+echo "=== Project Contract ==="
+node scripts/harness/validate-project-contract.mjs
 
 if [ -f package.json ]; then
   if [ -f pnpm-lock.yaml ]; then

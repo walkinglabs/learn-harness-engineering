@@ -1,107 +1,64 @@
 ---
 name: harness-creator
 description: >-
-  Побудова, аудит і вдосконалення легковагих harness для агентів AI-кодування: AGENTS.md/CLAUDE.md,
-  стан фіч, робочі процеси верифікації, межі обсягу, передача життєвого циклу,
-  персистентність пам'яті, керування контекстом, безпека інструментів і координація мультиагентів.
+  Створення, аудит і вдосконалення harness для coding agents, пов'язаних із вимогами:
+  project model, AGENTS.md/CLAUDE.md, feature state, verification/evidence gates, scope,
+  session continuity, tool safety, context budgets і multi-agent coordination.
 license: MIT
 ---
 
 # Harness Creator
 
-Використовуйте цей скіл, щоб зробити репозиторій зручнішим для агентів кодування: для старту роботи, утримання в межах обсягу, верифікації результатів і відновлення роботи між сесіями. Зберігайте harness достатньо малим, щоб агенти справді його дотримувались.
+Надійний harness починається з контракту проєкту. Визначення технологічного стеку обирає
+лише інженерні команди й не визначає сенс проєкту.
 
-Не призначений для вибору моделей, налаштування промптів окремо, проєктування chat UI або загальної архітектури застосунку.
+## Архітектура
 
-## Базова модель
+`project-model.json` містить джерела, вимоги, capabilities, acceptance criteria, verification
+plans, рішення та невідомі питання. З нього походять п'ять підсистем: instructions, state,
+verification, scope і lifecycle.
 
-Кожен корисний harness агента кодування має п'ять підсистем:
+Безперервний ланцюг:
 
-| Підсистема | Мінімальний артефакт | Призначення |
-|---|---|---|
-| Інструкції | `AGENTS.md` або `CLAUDE.md` | Шлях запуску, робочі правила, визначення завершеності |
-| Стан | `feature_list.json`, `progress.md` | Поточна фіча, статус, докази, наступний крок |
-| Верифікація | `init.sh` або задокументовані команди | Тести/перевірки, які агент має виконати перед тим, як оголосити завдання виконаним |
-| Обсяг | Залежності фіч і критерії завершеності | Запобігає виходу за межі та незавершеній роботі |
-| Життєвий цикл | `session-handoff.md`, процедура завершення сесії | Забезпечує можливість відновлення наступної сесії |
+`source → requirement → capability → feature → acceptance criterion → verification → observed evidence`
 
-## Перший крок
+## Створення або retrofit
 
-1. Огляньте наявне: файли інструкцій, файли фіч/стану, команди верифікації, документацію, маніфести пакетів.
-2. Запитуйте лише про відсутній контекст, який неможливо безпечно вивести: цільовий агент, бажана назва файлу, допустима структура та чи дозволено перезаписування.
-3. Спочатку надавайте перевагу мінімальному harness. Додавайте пам'ять, безпеку інструментів, мультиагентність або деталі benchmark лише тоді, коли цього вимагає завдання користувача.
+1. **Discover.** Інвентаризуйте requirements, architecture, tests, configuration, entrypoints та
+   integrations. Прочитайте авторитетні джерела й позначте конфлікти та застарілі матеріали.
+2. **Model.** Створіть `project-model.json` зі стабільними ID. Кожна вимога має джерело,
+   capability, acceptance criteria та verification plan або чесний стан невизначеності.
+3. **Review.** Зберігайте різницю між `confirmed`, `inferred`, `unknown` і `needs-decision`.
+   Позначайте `reviewStatus: reviewed` лише після перевірки моделі.
+4. **Derive.** Генеруйте instructions, capability-sized features, local contract validator,
+   init, progress і handoff лише з reviewed model.
+5. **Verify.** Окремо звітуйте structural traceability, domain review і representative runs.
 
-## Типові завдання
-
-### Створення harness
-
-Використовуйте вбудований скрипт при роботі з локальним репозиторієм:
-
-```bash
-node skills/harness-creator/scripts/create-harness.mjs --target /path/to/project
-```
-
-Параметри:
-
-- `--agent-file CLAUDE.md` для проєктів, орієнтованих на Claude.
-- `--package-manager npm|pnpm|yarn|bun` якщо автовизначення невірне.
-- `--commands "cmd one,cmd two"` для власних команд верифікації.
-- `--force` лише після підтвердження, що перезаписування є прийнятним.
-
-Після цього поясніть, що було створено, і як користувач має замінити placeholder-записи фіч.
-
-### Аудит наявного harness
-
-Запустіть:
+Детальна схема та retrofit procedure:
+[Project Model & Traceability](references/project-model-pattern.md).
 
 ```bash
-node skills/harness-creator/scripts/validate-harness.mjs --target /path/to/project
+node scripts/discover-project.mjs --target /path/to/project
+node scripts/create-harness.mjs --target /path/to/project --scaffold-only
+node scripts/create-harness.mjs --target /path/to/project
+node scripts/validate-harness.mjs --target /path/to/project
 ```
 
-Надайте звіт з оцінками п'яти підсистем, найнижчою оцінкою та першими 2-3 змінами, які підвищать надійність. Розглядайте найнижчу оцінку як потенційне вузьке місце; підтверджуйте це через збої, логи або результати завдань, перш ніж стверджувати про причинно-наслідковий зв'язок.
+Default creation відмовляється працювати без reviewed project model. `--scaffold-only` створює
+лише draft model, а не авторитетні feature/instruction files. `--force` використовуйте тільки
+після підтвердження перезапису; під час retrofit зберігайте наявні IDs, status та evidence.
 
-### Формування звіту
+## Правила
 
-Використовуйте, коли користувач хоче отримати звіт для поширення:
+- Features походять від project capabilities, а не від generic phases на кшталт setup/docs.
+- Expected observation походить від requirement, а не від зеленого exit code.
+- Planned verification і observed evidence є різними записами.
+- Generic validator перевіряє references, blocking та evidence binding; semantic truth потребує
+  domain-capable review.
+- Open unknowns блокують лише явно названі requirements/capabilities.
+- Root instructions залишаються routing/invariants; project facts живуть у model і джерелах.
 
-```bash
-node skills/harness-creator/scripts/render-assessment-html.mjs --target /path/to/project
-node skills/harness-creator/scripts/run-benchmark.mjs --target /path/to/project --html /path/to/report.html
-```
-
-Чітко зазначайте, що це структурний benchmark. Реальна ефективність потребує сесій агента до і після на репрезентативних завданнях.
-
-## Коли читати довідники
-
-Завантажуйте лише той довідник, який потрібний для вирішення завдання користувача:
-
-- Пам'ять між сесіями: [Memory Persistence](references/memory-persistence-pattern.md)
-- Повторно використовувані робочі процеси як скіли: [Skill Runtime](references/skill-runtime-pattern.md)
-- Дозволи, інструменти, конкурентність: [Tool Registry & Safety](references/tool-registry-pattern.md)
-- Бюджет контексту та поступове розкриття: [Context Engineering](references/context-engineering-pattern.md)
-- Делегування та паралельні агенти: [Multi-Agent Coordination](references/multi-agent-pattern.md)
-- Хуки, запуск, тривала робота: [Lifecycle & Bootstrap](references/lifecycle-bootstrap-pattern.md)
-- Неочевидні режими збоїв: [Gotchas](references/gotchas.md)
-
-## Правила проєктування
-
-- Зберігайте кореневий файл інструкцій коротким: маршрутизація та інваріанти, а не повний посібник.
-- Розміщуйте факти проєкту в документації проєкту, а не в скілі.
-- Робіть команди верифікації явними і придатними до виконання.
-- Вимагайте доказів перед тим, як позначати фічу виконаною.
-- Використовуйте одну активну фічу, якщо harness не має явних меж власності для мультиагентів.
-- Надавайте перевагу додаванню/оновленню файлів стану над покладанням на історію чату.
-- Ніколи не приховуйте деструктивну поведінку в скриптах; перезаписування потребує явного схвалення користувача.
-
-## Контрольний список результатів
-
-Для придатного до використання мінімального harness залиште в цільовому проєкті:
-
-- [ ] `AGENTS.md` або `CLAUDE.md`
-- [ ] `feature_list.json`
-- [ ] `progress.md`
-- [ ] `init.sh`
-- [ ] Опціональний `session-handoff.md` для багатосесійної роботи
-- [ ] Задокументовані докази верифікації або наступна дія
-
-Якщо ви не можете створити файли — надайте точний вміст файлів і команди замість цього.
+Готовність означає: reviewed model, усі references resolve, open decisions блокують правильні
+features, кожен confirmed/inferred acceptance criterion має verification plan, а local contract
+validator запускається перед engineering checks. Реальна ефективність додатково потребує
+representative before/after agent sessions.

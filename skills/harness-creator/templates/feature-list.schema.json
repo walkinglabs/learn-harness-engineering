@@ -1,47 +1,49 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Feature List",
-  "description": "Track feature implementation state for agent-driven development",
+  "title": "Requirement-linked Feature List",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
+    "$schema": { "type": "string" },
+    "derivedFrom": { "const": "project-model.json" },
+    "activeFeature": { "type": ["string", "null"] },
     "features": {
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique feature identifier (e.g., feat-001)",
-            "pattern": "^feat-\\d+$"
-          },
-          "name": {
-            "type": "string",
-            "description": "Short feature name"
-          },
-          "description": {
-            "type": "string",
-            "description": "What this feature does"
-          },
-          "dependencies": {
+          "id": { "type": "string", "pattern": "^feat-[0-9]+$" },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "capabilityRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "requirementRefs": { "type": "array", "items": { "type": "string" } },
+          "acceptanceCriteriaRefs": { "type": "array", "items": { "type": "string" } },
+          "verificationRefs": { "type": "array", "items": { "type": "string" } },
+          "inputs": { "type": "array", "items": { "type": "string" } },
+          "outputs": { "type": "array", "items": { "type": "string" } },
+          "boundaries": { "type": "array", "items": { "type": "string" } },
+          "dependencies": { "type": "array", "items": { "type": "string" } },
+          "status": { "enum": ["not-started", "in-progress", "blocked", "done"] },
+          "blockers": { "type": "array", "items": { "type": "string" } },
+          "evidence": {
             "type": "array",
             "items": {
-              "type": "string"
-            },
-            "description": "Feature IDs that must be done before this one"
-          },
-          "status": {
-            "type": "string",
-            "enum": ["not-started", "in-progress", "blocked", "done"],
-            "description": "Current implementation state"
-          },
-          "evidence": {
-            "type": "string",
-            "description": "Verification evidence when status is 'done'"
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "verificationRef": { "type": "string" },
+                "observedAt": { "type": "string", "format": "date-time" },
+                "result": { "type": "string", "minLength": 1 },
+                "artifact": { "type": "string", "minLength": 1 }
+              },
+              "required": ["verificationRef", "observedAt", "result", "artifact"]
+            }
           }
         },
-        "required": ["id", "name", "description", "status"]
+        "required": ["id", "name", "description", "capabilityRefs", "requirementRefs", "acceptanceCriteriaRefs", "verificationRefs", "inputs", "outputs", "boundaries", "dependencies", "status", "blockers", "evidence"]
       }
     }
   },
-  "required": ["features"]
+  "required": ["derivedFrom", "activeFeature", "features"]
 }
