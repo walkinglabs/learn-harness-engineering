@@ -66,7 +66,8 @@ const enHarnessDesignItems = [
   { text: "Breaking Down Pi's Harness Design", link: "/en/harness-designs/pi/" },
   { text: "Breaking Down Claude Code's Harness Design", link: "/en/harness-designs/claude-code/" },
   { text: "Breaking Down Codex's Harness Design", link: "/en/harness-designs/codex/" },
-  { text: "Breaking Down DeepSeek Harness's Design", link: "/en/harness-designs/deepseek/" }
+  { text: "Breaking Down DeepSeek Harness's Design", link: "/en/harness-designs/deepseek/" },
+  { text: "Breaking Down the PerryLink DSH Plugin Family's Design", link: "/en/harness-designs/perrylink-plugins/" }
 ];
 
 const enLectureItems = [

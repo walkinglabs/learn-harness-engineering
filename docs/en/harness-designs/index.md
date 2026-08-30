@@ -21,6 +21,7 @@ Each product represents an independent set of design decisions. Comparing them s
 - [Breaking Down Claude Code's Harness Design](./claude-code/): Layered memory, five-layer compaction, permissions, and hooks—a complete agent runtime environment.
 - [Breaking Down Codex's Harness Design](./codex/): The repository as the system of record, AGENTS.md as a directory page, environment isolation, and feedback loops.
 - [Breaking Down DeepSeek Harness's Design](./deepseek/): Everything is a Plugin, including the agent loop itself.
+- [Breaking Down the PerryLink DSH Plugin Family's Design](./perrylink-plugins/): 33 third-party plugins as a live case study — the install contract, seam discipline, session-event version gates, and verification as a product surface.
 
 ## How to Read This Section
 
