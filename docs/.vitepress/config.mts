@@ -1,5 +1,6 @@
 /// <reference types="node" />
 import { defineConfig } from "vitepress";
+import llmstxt from "vitepress-plugin-llms";
 import { withMermaid } from "vitepress-plugin-mermaid";
 
 const docsBase = "/learn-harness-engineering/";
@@ -892,6 +893,13 @@ export default withMermaid(
     srcExclude: ["temp/**"],
     ignoreDeadLinks: true,
     head: [['link', { rel: 'icon', type: 'image/svg+xml', href: brandLogo }]],
+    vite: {
+      plugins: [
+        llmstxt({
+          workDir: 'en',
+        }),
+      ],
+    },
     themeConfig: {
       logo: brandLogo,
       search: {

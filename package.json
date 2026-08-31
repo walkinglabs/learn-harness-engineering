@@ -23,6 +23,7 @@
     "tsx": "^4.19.0",
     "typescript": "^5.7.0",
     "vitepress": "^1.6.4",
+    "vitepress-plugin-llms": "^1.13.1",
     "vitepress-plugin-mermaid": "^2.0.17"
   },
   "dependencies": {
