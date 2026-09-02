@@ -12,6 +12,8 @@
   <a href="README-TR.md"><img alt="Türkçe" src="https://img.shields.io/badge/Türkçe-d9d9d9"></a>
   <a href="README-PT-BR.md"><img alt="Português (Brasil)" src="https://img.shields.io/badge/Português (Brasil)-d9d9d9"></a>
   <a href="README-UK.md"><img alt="Українська" src="https://img.shields.io/badge/Українська-d9d9d9"></a>
+  <a href="README-HI.md"><img alt="हिन्दी" src="https://img.shields.io/badge/Hindi-d9d9d9"></a>
+  <a href="README-UR.md"><img alt="اردو" src="https://img.shields.io/badge/اردو-d9d9d9"></a>
 </p>
 
 # Skills
@@ -54,6 +56,7 @@ skills/
 ├── README-TR.md                 # Turkish version
 ├── README-PT-BR.md              # Portuguese (Brazil) version
 ├── README-UK.md                 # Ukrainian version
+├── README-HI.md                 # Hindi version
 └── harness-creator/             # Harness engineering skill
     ├── SKILL.md                 # Main skill definition
     ├── SKILL.md.en              # English-only version
