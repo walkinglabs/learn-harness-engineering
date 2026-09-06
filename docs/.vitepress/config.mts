@@ -1061,6 +1061,7 @@ export default withMermaid(
           resources: "Biblioteca",
           skills: "Skills",
           resourceLibrary: "Biblioteca de recursos",
+          harnessDesign: "Análisis de los harness más avanzados",
           tryHarness: "Try Harness ↗",
           outline: "En esta página",
           prev: "Anterior",
