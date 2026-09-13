@@ -98,7 +98,9 @@ This analogy comes from database transaction management. You might feel like thi
 - **Isolation**: When multiple agents work concurrently, design state files to avoid race conditions. Simple approach: each agent uses its own progress file, or use git branches for isolation. Concurrent writes to the same file are a common source of trouble.
 - **Durability**: Critical project knowledge lives in git-tracked files. Temporary state can stay in session memory, but knowledge that must survive across sessions has to be written to files. What's in your head doesn't count — only what's written down counts.
 
-## A Real Transformation Story
+## Illustrative Example
+
+> This example is a teaching illustration, not a published case study — the numbers are illustrative rather than measured from a real project.
 
 A team maintained an e-commerce platform with roughly 30 microservices. Architecture decisions — inter-service communication protocols, data consistency strategies, API versioning rules — were scattered across: Confluence (partially outdated), Slack (hard to search), a few senior engineers' heads (not scalable), and sporadic code comments (not systematic).
 

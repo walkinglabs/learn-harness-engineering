@@ -93,7 +93,9 @@ If an instruction absolutely must be in the entry file, put it at the top or bot
 
 Both OpenAI and Anthropic implicitly endorse this split approach. OpenAI says entry files should be "short and routing-oriented," while Anthropic says control information for long-running agents should be "concise and high-priority." Both are saying the same thing: don't stuff everything into a single file.
 
-## Real-World Example
+## Illustrative Example
+
+> This example is a teaching illustration, not a published case study — the numbers are illustrative rather than measured from a real project.
 
 A SaaS team's `AGENTS.md` ballooned from 50 lines to 600. The contents mixed together tech stack versions, coding standards, historical bug fix notes, API usage guides, deployment procedures, and team members' personal preferences — everything was in there, but finding the part relevant to the current task was a slog.
 

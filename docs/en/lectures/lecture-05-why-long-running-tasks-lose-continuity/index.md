@@ -143,7 +143,9 @@ Anthropic's actual data: for Sonnet 4.5, context anxiety is severe enough that c
 
 > Source: [Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
-## Real-World Example
+## Illustrative Example
+
+> This example is a teaching illustration, not a published case study — the numbers are illustrative rather than measured from a real project.
 
 An agent was tasked with implementing a blog system with user authentication — 12 feature points, estimated 5 sessions needed.
 

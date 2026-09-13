@@ -143,7 +143,9 @@ Anthropic 的实际数据：对于 Sonnet 4.5，上下文焦虑足够严重，�
 
 > 来源：[Anthropic: Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
-## 实际案例
+## 示意性示例
+
+> 本示例为教学示意，并非已发表的真实案例——文中数字仅为让概念更具体，并非来自真实项目的实测数据。
 
 一个 agent 被要求实现一个带用户认证的博客系统，12 个功能点，预计需要 5 个会话。
 
