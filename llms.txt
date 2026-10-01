@@ -1,0 +1,75 @@
+# Learn Harness Engineering
+
+> A project-based course on building the environment, state management, verification, and control mechanisms that make AI coding agents work reliably. The course argues that "the strongest model in the world will still fail on real engineering tasks if you don't build a proper environment around it" — and teaches the five-subsystem harness (instructions, state, verification, scope, lifecycle) that fixes it.
+
+The repository ships three things you can consume:
+
+- A 12-lecture / 6-project curriculum delivered as a VitePress site, available in 13 languages (English as the structural source of truth; other locales mirror the English tree under `docs/<lang>/`).
+- A capstone Electron + TypeScript + React knowledge-base app that evolves across the 6 projects (`projects/project-NN/starter` and `projects/project-NN/solution`).
+- A reusable `harness-creator` skill (`skills/harness-creator/`) that scaffolds and validates a production-grade harness (AGENTS.md, feature_list.json, init.sh, progress.md, session-handoff.md) for any project.
+
+Conventions an LLM consuming this file should know:
+- `AGENTS.md` / `CLAUDE.md` are the agent operating manuals at a repo root.
+- `feature_list.json` defines machine-readable scope; only one feature is in flight at a time.
+- `init.sh` runs install + verify + health-check at session start; `progress.md` and `session-handoff.md` carry state between sessions.
+- Verification = a passing test suite, not the agent's self-assessment.
+
+## Start here
+
+- [Course README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/README.md): Course overview, learning path, syllabus, and how the 6 projects evolve the same Electron app.
+- [Documentation site (English)](https://walkinglabs.github.io/learn-harness-engineering/): Rendered VitePress site — the canonical reading experience.
+- [CLAUDE.md (repo root)](https://github.com/walkinglabs/learn-harness-engineering/blob/main/CLAUDE.md): How Claude Code should operate inside this repository (commands, structure, key patterns).
+
+## Lectures
+
+- [Lecture 01 — Why capable agents still fail](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-01-why-capable-agents-still-fail/index.md): The capability gap between benchmarks and real engineering; when something fails, check the harness before swapping the model.
+- [Lecture 02 — What a harness actually is](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-02-what-a-harness-actually-is/index.md): A precise definition: five subsystems — instructions, tools, environment, state, feedback. A prompt file is not a harness.
+- [Lecture 03 — The repo is the single source of truth](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-03-repo-as-source-of-truth/index.md): If the agent can't see it in the repo, it doesn't exist for the agent.
+- [Lecture 04 — Split instructions across files](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-04-split-instructions/index.md): Progressive disclosure — give the agent a map, not an encyclopedia.
+- [Lecture 05 — Keep context alive across sessions](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-05-keep-context-alive/index.md): Persist progress to disk; pick up exactly where the previous session left off.
+- [Lecture 06 — Initialize before every agent session](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-06-initialize-session/index.md): Verify the environment is healthy before the agent starts work.
+- [Lecture 07 — Draw clear task boundaries](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-07-task-boundaries/index.md): One feature at a time; an explicit definition of done.
+- [Lecture 08 — Feature lists as harness primitives](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-08-feature-lists/index.md): Machine-readable scope boundaries the agent can't quietly rewrite.
+- [Lecture 09 — Stop agents from declaring victory early](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-09-stop-early-victory/index.md): Verification gaps — confidence is not correctness.
+- [Lecture 10 — Full-pipeline runs are real verification](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-10-full-pipeline-verification/index.md): Only an end-to-end run counts as evidence.
+- [Lecture 11 — Observability belongs inside the harness](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-11-observability/index.md): If you can't see what the agent did, you can't fix what it broke.
+- [Lecture 12 — Every session leaves a clean state](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-12-clean-handoff/index.md): The next session's success depends on this session's cleanup.
+
+## Projects
+
+- [Project 01 — Prompt-only vs. rules-first](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-01): Minimal harness — AGENTS.md + init.sh + feature_list.json — and the measured difference.
+- [Project 02 — Agent-readable workspace](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02): Restructure the repo so the agent can navigate it; persistent state files.
+- [Project 03 — Multi-session continuity](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-03): Progress log + session handoff so the next run picks up exactly where the last one stopped.
+- [Project 04 — Runtime feedback and scope](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-04): Stop the agent from doing too much or too little; incremental indexing.
+- [Project 05 — Self-verification](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-05): Grounded Q&A; evidence-based completion; the agent verifies its own work.
+- [Project 06 — Build a complete harness (capstone)](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-06): Full harness with observability and an ablation study.
+- [Shared Electron foundation](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/shared): The TypeScript + React + Electron base that every project starter/solution derives from.
+
+## Skills
+
+- [harness-creator README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/skills/harness-creator/README.md): A compact skill that scaffolds AGENTS.md, feature_list.json, init.sh, progress.md, and session-handoff.md; detects common project types; validates the five subsystems and emits an HTML report.
+- [harness-creator SKILL.md](https://github.com/walkinglabs/learn-harness-engineering/blob/main/skills/harness-creator/SKILL.md): The skill manifest consumed by agent runtimes.
+- [Skills directory README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/skills/README.md): How the skill was built with the skill-creator methodology (draft → test → evaluate → iterate).
+
+## Resources (templates and references)
+
+- [English resource library](https://github.com/walkinglabs/learn-harness-engineering/tree/main/docs/en/resources): Copy-ready `AGENTS.md`, `feature_list.json`, `init.sh`, `progress.md`, `session-handoff.md` plus reference reading lists.
+- [Core references — OpenAI / Anthropic / LangChain / Cursor](https://github.com/walkinglabs/learn-harness-engineering/blob/main/README.md#core-references): Primary external sources the course synthesizes.
+- [Awesome Harness Engineering](https://github.com/walkinglabs/awesome-harness-engineering): Curated list of articles, benchmarks, and open-source harnesses maintained by the same author.
+
+## Optional
+
+- [简体中文 README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh/README.md): Simplified Chinese landing page.
+- [繁體中文 README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/zh-TW/README.md): Traditional Chinese landing page.
+- [日本語 README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/ja/README.md): Japanese landing page.
+- [한국어 README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/ko/README.md): Korean landing page.
+- [Español README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/es/README.md): Spanish landing page.
+- [Français README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/fr/README.md): French landing page.
+- [Deutsch README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/de/README.md): German landing page.
+- [Русский README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/ru/README.md): Russian landing page.
+- [العربية README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/ar/README.md): Arabic landing page.
+- [Tiếng Việt README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/vi/README.md): Vietnamese landing page.
+- [Oʻzbekcha README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/uz/README.md): Uzbek landing page.
+- [Türkçe README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/tr/README.md): Turkish landing page.
+- [Portuguese (BR) README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/pt-BR/README.md): Brazilian Portuguese landing page.
+- [Expanded context bundle (llms-full.txt)](https://walkinglabs.github.io/learn-harness-engineering/llms-full.txt): A single file that inlines the README and the 12 lecture summaries for one-shot ingestion.
