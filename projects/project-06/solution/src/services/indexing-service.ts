@@ -4,8 +4,8 @@ import { PersistenceService } from './persistence-service';
 import { logger } from './logger';
 
 const SERVICE = 'indexing-service';
-const INDEX_META = 'index-meta.json';
-const CHUNKS_DIR = 'chunks';
+export const INDEX_META = 'index-meta.json';
+export const CHUNKS_DIR = 'chunks';
 
 interface IndexStatus {
   status: 'idle' | 'indexing' | 'ready' | 'error';
@@ -38,6 +38,12 @@ export class IndexingService {
       }
       const chunks = this.chunkDocument(documentId, content);
       this.persistence.writeJson(`${CHUNKS_DIR}/${documentId}.json`, chunks);
+
+      // Register the document in the index so status, retrieval and later
+      // batch runs all see it as indexed.
+      const chunksMeta = this.persistence.readJson<Record<string, string[]>>(INDEX_META) ?? {};
+      chunksMeta[documentId] = chunks.map(c => c.id);
+      this.persistence.writeJson(INDEX_META, chunksMeta);
 
       // Update document status to indexed
       const docsMeta = this.persistence.readJson<Document[]>('documents-meta.json') ?? [];

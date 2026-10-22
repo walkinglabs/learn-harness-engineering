@@ -5,10 +5,11 @@
   "main": "dist/main/main.js",
   "scripts": {
     "dev": "node scripts/dev.js",
-    "build": "tsc -p tsconfig.node.json && vite build",
-    "check": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.json",
+    "build": "tsc -p tsconfig.node.json && node scripts/build-preload.js && vite build",
+    "check": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "vitest run --config vitest.e2e.config.ts"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -16,11 +17,14 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/node": "^22.20.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/uuid": "^9.0.7",
     "@vitejs/plugin-react": "^4.3.4",
     "electron": "^33.2.0",
+    "esbuild": "^0.25.0",
+    "playwright-core": "1.49.1",
     "typescript": "^5.7.0",
     "vite": "^6.0.0",
     "vitest": "^2.1.0"

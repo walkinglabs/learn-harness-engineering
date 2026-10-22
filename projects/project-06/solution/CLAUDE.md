@@ -17,7 +17,7 @@ npm test           # Run vitest suite
 ## Quick Start
 
 ```bash
-bash init.sh       # Full verification: install, check, build
+bash init.sh       # Full verification: install, check, test, build
 ```
 
 ## Key Files

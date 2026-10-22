@@ -92,6 +92,15 @@ export class PersistenceService {
     }
   }
 
+  /** Delete a file relative to the data directory. Returns false if it did not exist. */
+  deleteFile(relativePath: string): boolean {
+    const fullPath = path.join(this.dataDir, relativePath);
+    if (!fs.existsSync(fullPath)) return false;
+    fs.unlinkSync(fullPath);
+    logger.debug(SERVICE, 'Deleted file', { path: relativePath });
+    return true;
+  }
+
   /** List all files in a directory. */
   listFiles(relativePath: string): string[] {
     const fullPath = path.join(this.dataDir, relativePath);

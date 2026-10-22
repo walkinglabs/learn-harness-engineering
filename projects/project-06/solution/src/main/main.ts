@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'path';
 import { registerIpcHandlers } from './ipc-handlers';
 import { DocumentService } from '../services/document-service';
@@ -19,6 +19,9 @@ function createWindow() {
       preload: path.join(__dirname, '..', 'preload', 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
+      // The preload can only require('electron') in the sandbox, so it is
+      // bundled by scripts/build-preload.js.
+      sandbox: true,
     },
     title: 'Knowledge Base',
   });
@@ -37,6 +40,19 @@ function createWindow() {
   logger.info('main', 'BrowserWindow created', { isDev, dimensions: '1200x800' });
 }
 
+/** Native multi-select file dialog limited to the supported formats. */
+async function pickDocumentFiles(): Promise<string[]> {
+  const options: Electron.OpenDialogOptions = {
+    title: 'Import documents',
+    properties: ['openFile', 'multiSelections'],
+    filters: [{ name: 'Text and Markdown', extensions: ['txt', 'md'] }],
+  };
+  const result = mainWindow
+    ? await dialog.showOpenDialog(mainWindow, options)
+    : await dialog.showOpenDialog(options);
+  return result.canceled ? [] : result.filePaths;
+}
+
 function initializeServices() {
   const dataDir = path.join(app.getPath('userData'), 'knowledge-base-data');
   logger.info('main', 'Initializing services', { dataDir });
@@ -51,7 +67,7 @@ function initializeServices() {
     indexingService,
     qaService,
     persistence,
-  });
+  }, pickDocumentFiles);
 
   logger.info('main', 'All services initialized successfully');
 }

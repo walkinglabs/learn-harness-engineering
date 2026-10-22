@@ -7,8 +7,8 @@
       "name": "Window Launch",
       "description": "Electron app opens a BrowserWindow with correct dimensions, preload script, and secure webPreferences",
       "status": "pass",
-      "evidence": "main.ts creates 1200x800 BrowserWindow with contextIsolation=true, nodeIntegration=false, and typed preload script",
-      "testedAt": "2026-03-30T10:00:00Z"
+      "evidence": "Fixed 2026-10-17: the preload was compiled by tsc with require('../shared/types'), which a sandboxed preload cannot load, so contextBridge never ran and window.knowledgeBase was undefined -- every UI action failed. scripts/build-preload.js now bundles it with esbuild. Covered by tests/preload-bundle.test.ts and tests-e2e/app.e2e.ts (exposes the preload bridge).",
+      "testedAt": "2026-10-17T12:00:00Z"
     },
     {
       "id": "document-list",
@@ -23,8 +23,8 @@
       "name": "Document Import",
       "description": "Users can import .txt and .md files via file picker. Documents appear in list with metadata. File validation (size limit).",
       "status": "pass",
-      "evidence": "DocumentService.importDocument() validates file existence, checks 10MB limit, copies file, stores content, creates metadata. ImportPanel triggers import via file input.",
-      "testedAt": "2026-03-30T10:15:00Z"
+      "evidence": "Fixed 2026-10-17: the + Import button was a console.log stub (ImportPanel was never rendered, and File.path no longer exists in Electron 33). It now opens a native multi-select dialog in the main process (documents:pick-and-import) and imports each file, reporting per-file failures. Covered by tests/ipc-handlers.test.ts (PICK_AND_IMPORT_DOCUMENTS) and tests/document-service.test.ts. End-to-end: tests-e2e/app.e2e.ts imports the three sample files through the stubbed dialog.",
+      "testedAt": "2026-10-17T12:00:00Z"
     },
     {
       "id": "document-detail",
@@ -95,8 +95,8 @@
       "name": "Status Bar",
       "description": "Real-time display of index status, document count, indexed count, and last activity timestamp.",
       "status": "pass",
-      "evidence": "StatusBar.tsx shows colored status indicator, document count, indexed count, and formatted timestamp. Updated after document operations and Q&A.",
-      "testedAt": "2026-03-30T11:30:00Z"
+      "evidence": "Fixed 2026-10-17: status IPC channels returned IndexingService's {status,totalDocuments,lastIndexed} while StatusBar reads AppStatus {indexStatus,documentsLoaded,lastActivity}, so it showed a blank index state and 'Documents: undefined' after any action. Channels now map through toAppStatus(). Covered by tests/ipc-handlers.test.ts (status channels return the AppStatus shape).",
+      "testedAt": "2026-10-17T12:00:00Z"
     },
     {
       "id": "benchmark-scripts",
@@ -119,8 +119,16 @@
       "name": "Complete Harness",
       "description": "All harness files present: AGENTS.md, CLAUDE.md, feature_list.json, init.sh, session-handoff.md, clean-state-checklist.md, evaluator-rubric.md, quality-document.md, docs/",
       "status": "pass",
-      "evidence": "All files present and complete. init.sh verifies build. clean-state-checklist.md has 15 check items. docs/ has ARCHITECTURE.md, PRODUCT.md, RELIABILITY.md.",
-      "testedAt": "2026-03-30T11:50:00Z"
+      "evidence": "All files present and complete. init.sh runs type checks, the test suite and the build. clean-state-checklist.md has 15 check items. docs/ has ARCHITECTURE.md, PRODUCT.md, RELIABILITY.md.",
+      "testedAt": "2026-10-16T12:00:00Z"
+    },
+    {
+      "id": "automated-tests",
+      "name": "Automated Test Suite",
+      "description": "Vitest unit suite covering every service, IPC wiring and the preload bundle, plus a Playwright end-to-end suite that drives the built app in a real Electron window. Both run from init.sh and block on failure.",
+      "status": "pass",
+      "evidence": "npm test: 8 files, 73 passed, 1 todo. npm run test:e2e: 8 passed. Unit suite written first against the unmodified services exposed two service bugs (single-document indexing not registered; delete leaving chunks and index entry). Running the app on Windows then exposed three UI bugs the unit suite could not see: unbundled sandboxed preload, stub + Import button, and status field mismatch. The e2e suite fails 7 of 8 against the old preload.",
+      "testedAt": "2026-10-17T12:00:00Z"
     }
   ]
 }

@@ -23,6 +23,9 @@ export function App() {
     try {
       const docs = await window.knowledgeBase.documents.list();
       setDocuments(docs);
+      // Keep the detail panel in sync: show fresh status after indexing,
+      // and clear it if the selected document was deleted.
+      setSelectedDoc(prev => (prev ? docs.find(d => d.id === prev.id) ?? null : null));
       const status = await window.knowledgeBase.indexing.status();
       setAppStatus(status);
     } catch (err) {
@@ -35,8 +38,25 @@ export function App() {
   }, [refreshDocuments]);
 
   const handleImport = useCallback(async () => {
-    console.log('Import triggered - use window.knowledgeBase.documents.import(filePath)');
-  }, []);
+    try {
+      const result = await window.knowledgeBase.documents.pickAndImport();
+      if (result.canceled) return;
+      await refreshDocuments();
+      if (result.imported.length === 1) {
+        setSelectedDoc(result.imported[0]);
+        setViewMode('documents');
+      }
+      if (result.failed.length > 0) {
+        window.alert(
+          'Some files could not be imported:\n\n' +
+            result.failed.map(f => `${f.filePath}\n  ${f.error}`).join('\n\n'),
+        );
+      }
+    } catch (err) {
+      console.error('Import failed:', err);
+      window.alert(`Import failed: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }, [refreshDocuments]);
 
   const handleSelectDocument = useCallback((doc: Document) => {
     setSelectedDoc(doc);

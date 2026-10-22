@@ -77,12 +77,21 @@ When adding new features, update the relevant doc before writing code.
 A feature is "done" when:
 
 1. TypeScript compiles without errors (`npm run check`).
-2. The app launches and the window is visible.
-3. The feature appears in `feature_list.json` with status `"pass"` and evidence.
-4. The code respects Electron layer boundaries.
-5. Structured logging covers all service operations.
-6. `docs/ARCHITECTURE.md` and/or `docs/PRODUCT.md` are updated.
-7. `clean-state-checklist.md` passes all checks.
+2. The test suite passes (`npm test`), and the feature's service behavior is covered by a test in `tests/`. A bug fix starts with a test that fails without the fix.
+3. The app launches and the window is visible.
+4. The feature appears in `feature_list.json` with status `"pass"` and evidence that names the tests that cover it. Prose alone ("verified working") is not evidence.
+5. The code respects Electron layer boundaries.
+6. Structured logging covers all service operations.
+7. `docs/ARCHITECTURE.md` and/or `docs/PRODUCT.md` are updated.
+8. `clean-state-checklist.md` passes all checks.
+
+## Tests
+
+- `tests/` holds the unit suite (`npm test`); it runs in Node against a temporary data directory, without launching Electron.
+- One file per service, plus `ipc-handlers.test.ts` (every IPC channel is wired, status channels return the `AppStatus` shape the renderer reads), `preload-bundle.test.ts` (the sandboxed preload requires nothing but `electron`) and `pipeline.e2e.test.ts` (import, index, ask, restart, reset with the bundled sample documents, checked by `scripts/cleanup-scanner.sh`).
+- `tests-e2e/` drives the built app in a real Electron window with Playwright (`npm run test:e2e`, after `npm run build`): preload bridge, import through a stubbed file dialog, indexing, Q&A, delete. It uses a throwaway profile via `--user-data-dir`, never your real data. The unit suite cannot see a broken preload or UI wiring; this one can.
+- `bash init.sh` runs type checks, unit tests, build and end-to-end tests; a red test stops the session start.
+- Never mark a UI feature `pass` without an end-to-end test that clicks through it.
 
 ## Session Handoff
 

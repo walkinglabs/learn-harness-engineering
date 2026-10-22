@@ -20,8 +20,9 @@ requireDependency('electron');
 console.log('[dev] Building main + preload...');
 try {
   execSync('npx tsc -p tsconfig.node.json', { cwd: root, stdio: 'inherit' });
+  execSync('node scripts/build-preload.js', { cwd: root, stdio: 'inherit' });
 } catch {
-  console.error('[dev] TypeScript compilation failed');
+  console.error('[dev] Main/preload build failed');
   process.exit(1);
 }
 
