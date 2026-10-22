@@ -25,7 +25,7 @@ Did user auth, shopping cart mostly done, still need payments
 
 Can a new agent session answer these questions from this note? What does "mostly done" mean? Which tests did the cart pass? What's blocking payments? The answer to all is "nobody knows."
 
-The result: the new session spends 20 minutes inferring project state, and may end up re-implementing completed features. Anthropic's engineering data shows that good progress records reduce session startup diagnostic time by 60-80%.
+The result: the new session has to infer project state, and may end up re-implementing completed features. Anthropic's advice is to [record progress and verification results in versioned files](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) so the next session can inspect state.
 
 ## Feature State Machine
 
@@ -116,7 +116,7 @@ An e-commerce platform with 10 features. Two tracking approaches compared:
 
 **Structured mode**: Every feature has a clear state and verification command. A new session reads the feature list and in 3 minutes knows: F01-F05 are `passing`, F06 is `active` (in progress), F07-F10 are `not_started`. It picks up directly from F06, with zero rework.
 
-Quantified result: projects using structured feature lists show 45% higher feature completion rate than free-form tracking, with zero duplicate implementations.
+A structured list puts each feature's state and verification command in one place, so the new session knows what is done.
 
 ## Key Takeaways
 

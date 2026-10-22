@@ -9,7 +9,7 @@ Loop Engineering ana akıma girdikten altı hafta sonra, 18 Temmuz 2026'da Peter
 
 > "Hâlâ loop'lardan mı bahsediyoruz, yoksa graph'lara mı geçtik?"
 
-Tek bir tweet — bir gün içinde yaklaşık 570 bin görüntüleme, ay sonuna kadar kabaca 3 milyona ulaştı. Birkaç saat sonra, makine öğrenimi mühendisi Hamel Husain, *Loop Engineering Is Dead. Enter Graph Engineering* başlıklı bir makale yayınladı — gövdesi tek bir "Stop it" GIF'i olan bir makale — ve yaklaşık 680 bin görüntüleme daha topladı.
+Tek bir tweet. Birkaç saat sonra, makine öğrenimi mühendisi Hamel Husain, *Loop Engineering Is Dead. Enter Graph Engineering* başlıklı bir makale yayınladı — gövdesi tek bir "Stop it" GIF'i olan bir makale.
 
 İşin daha da ilginç yanı: **ikisi de şaka olarak atmıştı.** Biri her altı haftada bir yeni terim icat eden bir sektörü hicvediyordu; diğeri şakanın üzerine gidiyordu. Ama şaka yalnızca yaklaşık bir hafta sonu yaşadı — hafta sonu bitmeden kurslar, yol haritaları ve araç yığınları zaman çizelgesine doldu ve arkasında bir yığın uydurma sayı geldi: "+18% doğruluk, −85% maliyet" iddiası sahte (iki sayı gerçekten var ama kimyasal boru hattı şemaları hakkındaki bir makaleden geliyor ve farklı tabanlara karşı karşılaştırılıyor) ve "Microsoft, Stanford ve Anthropic aynı anda graf mühendisliğini keşfetti" iddiası da yanlış. Gerçek denetimi yalnızca tek bir gerçek "öncü" buluyor: Josh Simmons — *We Are Entering the Graph Engineering Phase* adlı yazısı 4 Temmuz tarihli, şakadan tam iki hafta önce. **Şaka fikri popüler yaptı. Fikri yaratmadı.**
 
@@ -257,11 +257,11 @@ Bittiğinde bunu yukarıdaki diyagramla karşılaştırın: el yazınız `graph.
 
 ## Açık Kaynak Projeler: İsimden Sonra, İsimden Önce
 
-Önce çizgiyi çekin: **"Graph Engineering", yalnızca 18 Temmuz 2026'dan sonra var olan bir isimdir.** O tarihten önce açık kaynak yapılan framework'ler, "Graph Engineering sonrası projeler" değildir. Ağustos 2026 başı itibarıyla, ismi doğrudan taşıyan ve ayakta kalan yalnızca bir açık kaynak proje var:
+Önce çizgiyi çekin: **"Graph Engineering", yalnızca 18 Temmuz 2026'dan sonra var olan bir isimdir.** O tarihten önce açık kaynak yapılan framework'ler, "Graph Engineering sonrası projeler" değildir. İsmi açıkça kullanan bir proje GraphARC:
 
 **İsimden sonra gelen projeler**
 
-- [GraphArc](https://github.com/CodeGraphContext/grapharc) (2026-08-02): kendisini "Graph Engineering'in ilk gerçek zamanlı uygulaması" olarak adlandırıyor. Ajan yürütmeyi, loglara gömülü trace'lerden **etkileşimli gerçek zamanlı bir orkestrasyon graf'ına** dönüştürüyor — her ajan, her bağımlılık, her karar noktası çizilir, yürütmeden önce tüm graf görselleştirilir ve siz onayladıktan sonra (telefonunuzdan bile bakabilirsiniz) serbest bırakılır. Yazarın geçmişi 4.000+ geliştirici için graf araçları oluşturmaya dayanıyor; yönü "gözlemlenebilir, hata ayıklanabilir, mühendislik yapılabilir". Çok yeni, hâlâ erken aşamada.
+- [GraphARC](https://github.com/CodeGraphContext/GraphARC) (Temmuz 2026'da oluşturuldu): kendisini "Graph Engineering'in, Andrew NG ve Peter Steinberger tarafından önerildiği şekliyle uçtan uca bir uygulaması" olarak tanımlıyor. Erken aşamada bir Python projesi. Kullanışlı hamle, onun orkestrasyon modelini okuyup yaklaşımın iş akışınıza uyup uymadığına karar vermektir.
 
 **İsimden önce gelen projeler (onu Graph Engineering olarak adlandırmıyorlar — ama gerçekten inşa ederken kullanacağınız şeyler) bunlar**
 
@@ -325,7 +325,7 @@ Her görev bir graf hak etmez. Beş kriter — başlamadan önce en az üçünü
 - [goddaehee: Graph Engineering gerçek denetimi (Korece, 2026-07-30)](https://goddaehee.tistory.com/628) — en kapsamlı gerçek denetimi: şaka köken zaman çizelgesi, sahte sayıların parçalanması, LangGraph verisi, Hacker News sıcaklık karşılaştırması
 - [Josh Simmons: We Are Entering the Graph Engineering Phase (2026-07-04)](https://www.drjoshcsimmons.com/writing/we-are-entering-the-graph-engineering-phase) — şakadan iki hafta önce yazılmış ciddi makale
 - [LangChain: 3 Years of Graph Engineering with LangGraph (2026-07-22)](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) — resmi yanıt: "yeni bir fikir değil, köklü bir yaklaşımın en yeni adı"; LangGraph'ın 65M+ aylık indirmesi
-- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — moda yayılma verisi (ilk tweet'te 575 bin görüntüleme)
+- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — terimin nasıl yayıldığına dair bir anlatı
 - [LangChain: The Best AI Agent Frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — yedi ana akım açık kaynak framework'ün kafa kafaya karşılaştırması: LangGraph, CrewAI, Microsoft Agent Framework, LlamaIndex, Google ADK, OpenAI Agents SDK, Mastra
 - [LangGraph resmi dokümantasyonu](https://docs.langchain.com/oss/python/langgraph/graph-api) — "Nodes do the work, edges tell what to do next"; düğüm ve kenarların kesin tanımları, graf inşa etmek için ilk elden referans
 - [Anthropic: Building Effective Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents) — çizildiğinde graf olan beş desen; workflow vs agent'ın yetkili ayrımı

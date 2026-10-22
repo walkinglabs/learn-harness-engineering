@@ -84,11 +84,11 @@ Ushbu maʼruza mavzusi boʻlgan Loop Engineering (Loop muhandisligi) hech qanday
 
 Siz har safar `/goal` terishingiz shart emas. Lekin u qayerdan kelganini va nima uchun shunday koʻrinishini tushunish — bu loop muhandisligining yadrosini tushunishdir. Murakkabroq loopʼlar shunchaki rejalashtirish, parallelizm, izolyatsiya va xotira kabi qismlarni shu uchta asos: maqsad, tekshirish, toʻxtash sharti ustiga qoʻshadi.
 
-## 2026-yil iyun: Bir haftada uchta odam bir xil gʻoyani oldi
+## Har xil sanalar, bir xil yoʻnalish
 
-2026-yil iyun oyining birinchi haftasida kodlash agentlari infratuzilmasini qurgan uchta amaliyotchilar — bir-birlari bilan maslahatlashmasdan — turli soʻzlar bilan bir xil narsani aytdilar.
+Bir xil gʻoya turli joylarda, turli paytlarda yuzaga chiqdi.
 
-**Peter Steinberger** (OpenClaw yaratuvchisi, [uning postʼi 8 million marta koʻrildi](https://x.com/steipete/status/2063697162748260627)): "Siz endi kodlash agentlariga prompt yozmasligingiz kerak. Siz agentlaringizga prompt yozadigan loopʼlarni loyihalashingiz kerak."
+**Peter Steinberger** (OpenClaw yaratuvchisi, [oʻz postida](https://x.com/steipete/status/2063697162748260627)): "Siz endi kodlash agentlariga prompt yozmasligingiz kerak. Siz agentlaringizga prompt yozadigan loopʼlarni loyihalashingiz kerak."
 
 **Boris Cherny** (Anthropicʼda Claude Code boshligʻi, [Acquired podkastida](https://x.com/rohanpaul_ai/status/2063289804708835412)): "Men endi Claudeʼga prompt yozmayman. Claudeʼga prompt yozadigan va nima qilishni aniqlaydigan loopʼlarim bor. Mening ishim loopʼlar yozishdan iborat."
 
@@ -96,9 +96,9 @@ Siz har safar `/goal` terishingiz shart emas. Lekin u qayerdan kelganini va nima
 
 > **Loop muhandisligi — agentga prompt yozuvchi odam oʻrnini egallashdir. Buning oʻrniga qiluvchi tizimni siz loyihalasiz.**
 
-Cherny raqamlarni oshkor qildi: 30 dan ortiq ketma-ket kun davomida Claude Codeʼga barcha kod hissalari AI tomonidan mustaqil ravishda kiritildi — 259 ta merge qilingan PR, production kodining 80% dan ortigʻi Cloude tomonidan yozildi va ochiq dasturiy vazifalarda 76% muvaffaqiyat darajasi.
+Cherny [2025-yil 27-dekabrdagi shaxsiy hisobotida](https://twitter.com/bcherny/status/2004887829252317325) 30 kun ichida 259 ta PR birlashtirganini yozgan — 497 ta commit, 40 000 qator qoʻshilgan, 38 000 qator oʻchirilgan — va har bir satr Claude Code + Opus 4.5 tomonidan yozilganini taʼkidlagan.
 
-Uchta odam. Bir hafta. Bir xil xulosa. Bu ular kelishganligi uchun emas — infratuzilma jim qorindi oʻtdi. Agentlar no trivial vazifalarni kuzatuvsiz tugatish uchun etarlicha ishonchli holga keldi. Rejalashtirish primitivlari (`/loop`, `/goal`, cron) endi vositalarga oʻrnatilgan edi. Bitta agent ishlashining narxi shunchalik pastlashganki, taymerda qayta-qayta ishlatish isrofgarchi koʻrinishdan chiqdi. Barcha qismlar mavjud boʻlganda, ularni birlashtiruvchi harakat hamma uchun bir zumda aniq boʻladi.
+Bu iqtiboslar turli sanalar, turli formatlar va turli jamoalardan. Ularning umumiy yoʻnalishi — rejalashtirish, tekshirish va toʻxtash qarorini bevosita promptdan tizimga koʻchirish. 2026-yil oʻrtalariga kelib agentlar no trivial vazifalarni kuzatuvsiz tugata oldi, rejalashtirish primitivlari (`/loop`, `/goal`, cron) vositalarga oʻrnatildi va bitta ishga tushirish narxi taymerda takrorlashga arziydigan darajada pasaydi. Qismlar mavjud boʻlganda, ularni bir joyga ulash bir kishining fikri boʻlib qolmaydi.
 
 > Manba: [Addy Osmani: Loop Engineering](https://addyosmani.com/blog/loop-engineering/)
 
@@ -267,7 +267,7 @@ flowchart TD
 
 Bu endi bitta agent ishlash emas. Bu har ertalab uygʻonib, oʻzi yerni supurib, eʼtiboringizga chiqadigan narsalarni oldingizga qoʻyadigan doimiy ishlaydigan tizim. Sizning rolingiz quyidagicha boʻladi: **qutik tarkibini koʻrib chiqish, qarorlar qabul qilish va tizim qila olmaydigan naqshni koʻrganingizda, skill va qoidalarni takomillashtirish.**
 
-Cherny bu naqshni ishlatib, 30 kunda hech qachon IDE ochmasdan 259 PR ni merge qildi. OpenAI muhandislari xuddi shu naqshni ishlatib, qoʻlda million qatorda beta mahsulotini qurdilar — hech bir qator kodni oʻzlari yozmasdan.
+Chernyʼning 30 kunlik hisoboti bu naqshning bir maʼlumot nuqtasi: 259 ta PR, kod Claude Code + Opus 4.5 tomonidan yozilgan. OpenAIʼning [harness hisoboti](https://openai.com/index/harness-engineering/) — yana biri: kichik jamoa yangi repozitoriyda Codex bilan besh oy ishlab, taxminan bir million qator kod va 1 500 ga yaqin PR haqida xabar berdi.
 
 ## Generator/Evaluator boʻlinishi: Nega modelni oʻz ishlari baholashiga yoʻl qoʻymaslik kerak
 
@@ -293,7 +293,7 @@ Esda tutish uchun bir jumla: **ekipajingizda bir kishi sizga ishonmasligi kerak.
 
 Agar siz yaxshi loyihalangan, haqiqatan ishlayotgan loop nima koʻrinishini koʻrmoqchi boʻlsangiz, [Karpathy autoresearch](https://github.com/karpathy/autoresearch) oʻquv qoʻllanma misolidir.
 
-2026-yil martida Karpathy 630 qatordan iborat Python loyihasini chiqardi. Bunga bitta GPU va tadqiqot yoʻnalishini bering, u tun boʻyi ishlaydi — yuzlab ML trening eksperimentlarini bajaradi, faqat haqiqatan yaxshilaydiganlarini saqlab turadi. Loyiha chiqqandan keyin bir necha kun ichida 66,000+ yulduzga erishdi.
+2026-yil martida Karpathy [autoresearch](https://github.com/karpathy/autoresearch) loyihasini chiqardi. Repozitoriy ataylab kichik qilib qurilgan: `prepare.py` — qatʼiy infratuzilma, `train.py` — agent tahrirlaydigan fayl (taxminan 630 qator), `program.md` — inson tahrirlaydigan tadqiqot metodologiyasi. Bunga bitta GPU va tadqiqot yoʻnalishini bering, u tun boʻyi ishlaydi — har bir eksperiment trening uchun 5 daqiqalik qatʼiy vaqt byudjeti oladi (ishga tushirish va kompilyatsiyadan tashqari) va faqat `val_bpb` ni yaxshilaydigan oʻzgarishlar saqlanadi.
 
 ### Uchta fayl, uchta rol
 
@@ -343,9 +343,9 @@ flowchart TD
     8b --> 9
 ```
 
-U soatiga taxminan 12 ta eksperiment ishlatadi. Tunda ishlash (8 soat) taxminan 100 ta eksperiment. Karpathy oʻzi 2 kun davom ettirdi — ~700 ta eksperiment.
+README soatiga taxminan 12 ta eksperiment, yaʼni 8 soatlik tungi ishlashda taxminan 100 ta eksperiment deb baholaydi. 5 daqiqa faqat treningni qoplaydi, ishga tushirish va kompilyatsiyani emas; raundning qolgan qismi tahrirlash, ishga tushirish va baholashga ketadi. Karpathy quyida tasvirlangan nanochat raundi uchun xususiy versiyadagi autoresearchʼni taxminan ikki kun avtonom ishlatganini maʼlum qilgan.
 
-Sobiq 5-daqiqalik vaqt byudjeti muhim dizayn tanlovidir — agent nima oʻzgartirishi qatʼiy nazar, har bir eksperiment bir xil vaqtni oladi. Bu barcha natijalar bir xil vaqt byudjeti ostida bevosita solishtirilishi mumkinligini anglatadi — "buning ishlash vaqti uzoqroq, shuning uchun yaxshiroq" degan bahs yoʻq.
+Qatʼiy 5 daqiqalik trening byudjeti muhim dizayn tanlovidir — agent nima oʻzgartirishidan qatʼiy nazar, trening ishga tushirilishi bir xil vaqt byudjetini oladi. Bu barcha natijalar bir xil trening byudjeti ostida bevosita solishtirilishini anglatadi.
 
 ### Chiqish: Uyqudan uygʻonganda nima koʻrasiz
 
@@ -375,13 +375,9 @@ Agent nima sinaganini, nima ishlaganini, nima ishlamaganini va keyin nima sinash
 
 ### Haqiqatan nima topdi
 
-Karpathyʼning dastlabki 2 kunlik, ~700 eksperimentlik ishlashidan olingan natijalar:
+autoresearch [birinchi raund](https://github.com/karpathy/nanochat/commit/6ed7d1d82cee16c2e26f45d559ad3338447a6c1b) natijalari nanochatʼning GPT-2 darajasidagi trening vaqtini 8×H100 da [**2.02 soatdan 1.80 soatga**](https://github.com/karpathy/nanochat/commit/f06860494848db080c9a80a0ffa83203b042056b) qisqartirdi — trening vaqtida taxminan **10,9%** kamayish.
 
-- ~700 ta urinish ichidan, taxminan **20 ta yonma-yon ishlaydigan haqiqiy yaxshilash** topildi
-- nanochatʼning GPT-2 darajasidagi trening vaqtini 8×H100 da **2.02 soat → 1.80 soat** ga qisqartirdi, taxminan **11% tezroq**
-- Topilmalar orasida: oʻrganish darajasi sozlamalari, optimizator sozlash, aktivatsiyani almashtirish, diqqat naqshlari optimallashtirish va boshqalar
-
-Barcha yaxshilanmalar yer sakraydigan kashfiyotlar edimi? Yoʻq. Koʻpchiligi yonma-yon ishlaydigan kichik optimallashtirishlar edi. Lekin bu 20 ta haqiqiy yaxshilash inson tadqiqotchisiga haftalar qoʻlda ish olib kelgan boʻlar edi — agent buni 48 soatda bajardi.
+Oʻzgarishlarning koʻpchiligi yonma-yon qoʻshiladigan kichik optimallashtirishlar edi. Foydali qismi — loopning oʻzi: qatʼiy byudjet, toʻliq eksperiment jurnali va faqat tasdiqlangan yaxshilanishlar qoladigan qoida.
 
 ### Eng koʻrsatuvchi batafsil: loop ingliz tilida yozilgan, kodda emas.
 
@@ -399,7 +395,7 @@ Tez loopʼlar sizni tekshirishni oʻtkazib yuborishga vasvasilaydi. "Yaxshi koʻ
 
 ### 2. Tushunish parchalanishi (Comprehension rot)
 
-Loop qancha tez code joʻnatsa, sizning oʻz kod bazangizni tushunishingiz haqiqatdan shunchalik uzoqlashadi. Chernyning jamoasida kodning 80% i agentlar tomonidan yozilgan — yaʼni jamoaning aksariyat kodi odam tomonidan yozilmagan. Agar siz loop ishlab chiqargan narsani oʻqmasangiz va ishlatmasangiz, tushunishingiz doimiy ravishda pasayadi. **Tez loopʼlar tez oʻqishni talab qiladi.**
+Loop qancha tez kod chiqarsa, sizning oʻz kod bazangizni tushunishingiz haqiqatdan shunchalik uzoqlashadi. Loop yuzlab PR chiqaradi; jamoa ularni oʻqiydi, muhim diffʼlarni koʻrib chiqadi va kodni ishlatishda davom etadi — shu bilan uning aqliy modeli kod bilan hamqadam boʻlib turadi. **Tez loopʼlar tez oʻqishni talab qiladi.**
 
 ### 3. Kognitiv taslim boʻlish (Cognitive surrender)
 
@@ -407,11 +403,11 @@ Loop silliq ishlaganda, eng qulay holat — fikr bildirishni bas qilishdir. U qa
 
 ### 4. Token portlashi (Token blowout)
 
-Loop ning har bir iteratsiyasi koʻproq kontekst toʻplaydi: yozilgan kod, duch kelgan xatolar, qabul qilingan qarorlar. Kontekst boshqaruvisiz, prompt kattaligi turnlar soniga taxminan kvadratik oʻsadi. Codex buni avtomatik kontekst siqish bilan hal qiladi — maxsus API eski suhbat burilishlarini shifrlangan mazmuni xulosalarga siqib, kerakli bilimni saqlab, ortiqcha detallarni tashlaydi. Bu siz birinchi loopʼdan boshlab hal qilishingiz kerak boʻlgan muhandislik muammosi, keyinroq qoʻshiladigan narsa emas.
+Loop ning har bir iteratsiyasi koʻproq kontekst toʻplaydi: yozilgan kod, duch kelgan xatolar, qabul qilingan qarorlar. Har bir raund taxminan qatʼiy miqdorda yangi kontent qoʻshsa, bitta raund koʻradigan tarix uzunligi raundlar soniga taxminan chiziqli oʻsadi. Agar tizim har raundda butun tarixni qayta ishlasa, N raund boʻyicha jami kirish hajmi taxminan kvadratik oʻsadi. Codex buni avtomatik kontekst siqish bilan hal qiladi — maxsus API eski suhbat burilishlarini shifrlangan mazmuni xulosalarga siqib, kerakli bilimni saqlab, ortiqcha detallarni tashlaydi. Bu siz birinchi loopʼdan boshlab hal qilishingiz kerak boʻlgan muhandislik muammosi, keyinroq qoʻshiladigan narsa emas.
 
 ## Birinchi loopʼingizni qurish
 
-Siz Stripe miqyosidagi pipeline haftasiga 1300 PR merge qilishdan boshlashingiz shart emas. Ishlaydigan eng kichik narsadan boshlang.
+Siz yuqori oʻtkazuvchanlikdagi (high-throughput) pipeline qurishdan boshlashingiz shart emas. Ishlaydigan eng kichik narsadan boshlang.
 
 ### 1-qadam: Bir takrorlanuvchi vazifani tanlang
 

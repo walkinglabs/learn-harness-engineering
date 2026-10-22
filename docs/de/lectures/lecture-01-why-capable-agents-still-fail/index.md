@@ -9,13 +9,13 @@ Du kennst dich in der KI-Welt gut aus: Claude-Pro-Abo, GPT-4o-API-Key, SWE-bench
 
 Dein erster Impuls? "Dieses Modell ist nicht gut genug. Zeit für ein Upgrade." Warte kurz. Bevor du zur Kreditkarte greifst, solltest du in Betracht ziehen, dass das Problem vielleicht gar nicht das Modell ist.
 
-Schauen wir auf ein paar Zahlen. Ende 2025 erreichen die stärksten Coding-Agenten auf SWE-bench Verified ungefähr 50-60%. Und das bei sorgfältig ausgewählten Aufgaben mit klaren Issue-Beschreibungen und vorhandenen Tests. Übertrage das auf deine tägliche Entwicklungsumgebung - vage Anforderungen, keine vorhandenen Tests, überall verstreute implizite Geschäftsregeln - und diese Zahl sinkt weiter.
+Am 29. September 2025 meldete Anthropic für Claude Sonnet 4.5 [77,2 % auf SWE-bench Verified](https://www.anthropic.com/news/claude-sonnet-4-5). Und das bei sorgfältig ausgewählten Aufgaben mit klaren Issue-Beschreibungen und vorhandenen Tests. Übertrage das auf deine tägliche Entwicklungsumgebung - vage Anforderungen, keine vorhandenen Tests, überall verstreute implizite Geschäftsregeln - und diese Zahl sinkt weiter.
 
 Hinter diesen Zahlen steckt aber eine kontraintuitive Wahrheit.
 
 ## Gleiches Pferd, anderes Ergebnis
 
-Anthropic führte ein kontrolliertes Experiment durch. Gleicher Prompt ("baue einen 2D-Retro-Game-Maker"), gleiches Modell (Opus 4.5). Erster Lauf: nackt, ohne Unterstützung - 20 Minuten, 9 Dollar, die Kernfunktionen des Spiels funktionierten überhaupt nicht. Zweiter Lauf: vollständiger Harness (Planner + Generator + Evaluator als Drei-Agenten-Architektur) - 6 Stunden, 200 Dollar, das Spiel war spielbar.
+Anthropic verglich denselben Prompt ("baue einen 2D-Retro-Game-Maker") mit demselben Modell (Opus 4.5) unter zwei Harnesses. Erster Lauf: nackt, ohne Unterstützung - 20 Minuten, 9 Dollar; die App öffnete sich, aber die Entitäten reagierten nicht auf Eingaben. Zweiter Lauf: vollständiger Harness (Planner + Generator + Evaluator als Drei-Agenten-Architektur) - 6 Stunden, 200 Dollar; eine Entität ließ sich bewegen, aber die Physik hatte raue Kanten und eine Wand blockierte den Fortschritt. [Die Kernfunktionen liefen, fertig war die App nicht.](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
 Sie änderten nicht das Modell. Opus 4.5 blieb Opus 4.5. Was sich änderte, war das Zaumzeug.
 
@@ -39,9 +39,9 @@ Lange Aufgaben über mehrere Sitzungen sind noch schlimmer: Alle Erkenntnisse au
 
 Mit diesen Szenarien im Hinterkopf sind die folgenden Begriffe kein bloßer Jargon mehr:
 
-- **Capability Gap**: Die große Lücke zwischen Modellleistung auf Benchmarks und Leistung bei realen Aufgaben. Eine Erfolgsrate von 50-60% auf SWE-bench Verified bedeutet, dass fast die Hälfte realer Issues nicht gelöst wird.
+- **Capability Gap**: Die große Lücke zwischen Modellleistung auf Benchmarks und Leistung bei realen Aufgaben. Benchmark-Aufgaben bringen klare Issue-Beschreibungen, Tests und eine Umgebung mit; bei realen Aufgaben musst du diese oft selbst liefern.
 - **Harness**: Alles außerhalb des Modells - Anweisungen, Tools, Umgebung, Zustandsverwaltung, Verifikationsfeedback. Wenn es keine Modellgewichte sind, gehört es zum Harness. Das ist das "Zaumzeug", von dem wir gesprochen haben.
-- **Harness-Induced Failure**: Das Modell hat grundsätzlich genug Fähigkeit, aber die Ausführungsumgebung hat strukturelle Defekte. Anthropics kontrolliertes Experiment hat genau das gezeigt.
+- **Harness-Induced Failure**: Das Modell hat grundsätzlich genug Fähigkeit, aber die Ausführungsumgebung hat strukturelle Defekte. Der Retro-Game-Vergleich oben ist ein Beispiel.
 - **Verification Gap**: Die Lücke zwischen dem Vertrauen des Agenten in sein Ergebnis und der tatsächlichen Korrektheit. Der Agent sagt "ich bin fertig", obwohl er nicht fertig ist - der häufigste Fehlermodus.
 - **Diagnostic Loop**: Ausführen, Fehler beobachten, einer bestimmten Harness-Schicht zuordnen, diese Schicht reparieren, erneut ausführen. Das ist die Kernmethodik von Harness Engineering.
 - **Definition of Done**: Eine Menge maschinell überprüfbarer Bedingungen - Tests grün, Lint sauber, Type Checks bestanden. Ohne explizite Definition of Done erfindet der Agent seine eigene.
@@ -72,7 +72,7 @@ Completion criteria:
 
 ## Das Millionen-Zeilen-Experiment
 
-OpenAI führte 2025 ein aggressives Experiment durch: Codex sollte aus einem leeren Git-Repository ein vollständiges internes Produkt bauen. Fünf Monate später hatte das Repository ungefähr eine Million Zeilen Code - Anwendungslogik, Infrastruktur, Tooling, Dokumentation, interne Entwicklerwerkzeuge - alles von Agenten erzeugt. Drei Engineers steuerten Codex und öffneten sowie mergten etwa 1.500 PRs. Im Schnitt 3,5 PRs pro Person und Tag.
+Im August 2025 starteten drei Engineers bei OpenAI ein Experiment: Codex sollte aus einem leeren Git-Repository ein vollständiges internes Produkt bauen. [Fünf Monate später enthielt das Repository ungefähr eine Million Zeilen Code](https://openai.com/index/harness-engineering/) - Anwendungslogik, Infrastruktur, Tooling, Dokumentation, interne Entwicklerwerkzeuge - alles von Agenten erzeugt. Das Team wuchs später auf sieben Engineers; insgesamt wurden etwa 1.500 PRs gemergt, im Schnitt 3,5 pro Engineer und Tag.
 
 Die zentrale Einschränkung: **Menschen schreiben nie direkt Code.** Das war kein Trick, sondern sollte das Team zwingen herauszufinden, was sich ändert, wenn die Hauptaufgabe des Engineers nicht mehr Code schreiben ist, sondern Umgebungen zu entwerfen, Absichten präzise auszudrücken und Feedbackschleifen zu bauen.
 
@@ -86,9 +86,9 @@ Dieses Experiment belegt direkt die Kernaussage dieser Lektion: **Dasselbe Model
 
 Ein Team nutzte Claude Sonnet, um einer mittelgroßen Python-Web-App (FastAPI + PostgreSQL + Redis, ca. 15.000 Codezeilen) einen neuen API-Endpunkt hinzuzufügen.
 
-Zunächst gaben sie nur einen Satz: "add user preferences endpoints under `/api/v2/users`." Das Ergebnis? Der Agent verbrauchte 40% seines Kontextfensters damit, die Repository-Struktur zu erkunden, erzeugte Code, der plausibel aussah, aber nicht den Error-Handling-Mustern des Projekts folgte, verwendete alte SQLAlchemy-Syntax und erklärte die Aufgabe für abgeschlossen, obwohl der Endpunkt Laufzeitfehler hatte. Die nächste Sitzung musste die gesamte Entdeckungsarbeit erneut leisten.
+Zunächst gaben sie nur einen Satz: "add user preferences endpoints under `/api/v2/users`." Das Ergebnis? Der Agent verbrachte viel Zeit damit, die Repository-Struktur zu erkunden, erzeugte Code, der plausibel aussah, aber nicht den Error-Handling-Mustern des Projekts folgte, verwendete alte SQLAlchemy-Syntax und erklärte die Aufgabe für abgeschlossen, obwohl der Endpunkt Laufzeitfehler hatte. Die nächste Sitzung musste die gesamte Entdeckungsarbeit erneut leisten.
 
-Später ergänzten sie `AGENTS.md` (mit Projektarchitektur und Tech-Stack-Versionen), explizite Verifikationsbefehle (`pytest tests/api/v2/ && python -m mypy src/`) und Architecture Decision Records. Dasselbe Modell war in allen drei unabhängigen Läufen erfolgreich, mit etwa 60% besserer Kontext-Effizienz.
+Später ergänzten sie `AGENTS.md` (mit Projektarchitektur und Tech-Stack-Versionen), explizite Verifikationsbefehle (`pytest tests/api/v2/ && python -m mypy src/`) und Architecture Decision Records. Dasselbe Modell folgte danach den Konventionen des Projekts und prüfte seine Arbeit mit Befehlen, die es ausführen konnte.
 
 Sie änderten nicht das Modell. Sie änderten den Harness.
 

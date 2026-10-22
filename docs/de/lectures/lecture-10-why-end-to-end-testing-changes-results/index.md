@@ -132,7 +132,7 @@ Jedes Mal, wenn eine neue Art von Agentenfehler beim Code-Review gefunden wird, 
 | Berechtigungsproblem | Unterschiedliche Berechtigungen in der Paketumgebung | Verpasst | Gefunden |
 | Fehlerpropagation | Service-Layer-Exceptions erreichten UI-Schicht nicht | Verpasst | Gefunden |
 
-Alle 5 Defekte wurden von End-to-End-Tests gefunden, während Unit-Tests keinen einzigen entdeckten. Die Kosten waren ein Anstieg der Testzeit von 2 Sekunden auf 15 Sekunden — in einem Agenten-Workflow völlig akzeptabel. Egal wie gut jeder Teil einzeln singt, es kann nicht mit einer vollständigen Ensemble-Probe mithalten.
+Alle 5 Defekte wurden von End-to-End-Tests gefunden, während Unit-Tests keinen einzigen entdeckten. Der End-to-End-Lauf ist langsamer, aber diese Kosten sind klein im Vergleich dazu, fünf Grenzfall-Defekte auszuliefern. Egal wie gut jeder Teil einzeln singt, es kann nicht mit einer vollständigen Ensemble-Probe mithalten.
 
 ## Wichtigste Erkenntnisse
 

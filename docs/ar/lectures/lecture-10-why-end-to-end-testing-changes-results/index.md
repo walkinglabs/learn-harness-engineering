@@ -132,7 +132,7 @@ FIX: Move file operations to src/preload/file-ops.ts and call via window.api.rea
 | Permission Issue | Different permissions in packaged environment | Missed | Caught |
 | Error Propagation | Service layer exceptions didn't reach UI layer | Missed | Caught |
 
-كل العيوب الخمسة اكتُشفت بواسطة اختبارات end-to-end، بينما لم تكتشف اختبارات الوحدات أيًا منها. كانت التكلفة زيادة في وقت الاختبار من ثانيتين إلى 15 ثانية — مقبولة تمامًا في سير عمل agent. مهما غنى كل جزء بشكل جيد بشكل فردي، لا يمكنه التغلب على بروفة جماعية كاملة.
+كل العيوب الخمسة اكتُشفت بواسطة اختبارات end-to-end، بينما لم تكتشف اختبارات الوحدات أيًا منها. التشغيل من الطرف إلى الطرف أبطأ، لكن هذه التكلفة صغيرة مقارنة بشحن خمسة عيوب على الحدود. مهما غنى كل جزء بشكل جيد بشكل فردي، لا يمكنه التغلب على بروفة جماعية كاملة.
 
 ## الخلاصات الأساسية
 

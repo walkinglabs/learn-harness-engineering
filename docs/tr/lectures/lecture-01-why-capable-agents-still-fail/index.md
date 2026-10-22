@@ -9,13 +9,13 @@ Kendinizi yapay zeka dünyasında tecrübeli sayıyorsunuz — Claude Pro abonel
 
 İlk içgüdünüz nedir? "Bu model yeterli değil. Yükseltme zamanı." Bir dakika durun. Cüzdanınıza uzanmadan önce, sorunun model olmama ihtimalini de düşünün.
 
-Birkaç sayıya bakalım. 2025'in sonlarında SWE-bench Verified üzerindeki en güçlü kod yazma ajanları yaklaşık %50-60'a ulaşıyor. Üstelik bu, net açıklamaları ve mevcut test senaryoları olan, özenle seçilmiş görevlerde. Günlük geliştirme ortamınıza geçin — belirsiz gereksinimler, mevcut testin olmaması, her yere dağılmış örtük iş kuralları — ve bu sayı yalnızca düşer.
+29 Eylül 2025'te Anthropic, Claude Sonnet 4.5'in SWE-bench Verified üzerinde [%77,2 başarı oranına](https://www.anthropic.com/news/claude-sonnet-4-5) ulaştığını bildirdi. Bu sayı ilk bakışta fena görünmüyor — ama hemen sevinmeyin: bunlar net açıklamaları ve mevcut test senaryoları olan, özenle seçilmiş görevler. Günlük geliştirme ortamınıza geçin — belirsiz gereksinimler, mevcut testin olmaması, her yere dağılmış örtük iş kuralları — ve bu sayı yalnızca düşer.
 
 Ama bu sayıların ardında sezgilere ters bir gerçek yatıyor.
 
 ## Aynı at, farklı kaderler
 
-Anthropic kontrollü bir deney yaptı. Aynı prompt ("2B retro oyun yapımcısı geliştir"), aynı model (Opus 4.5). İlk koşu: çıplak, hiçbir destek yok — 20 dakika, 9 dolar, oyunun temel özellikleri hiç çalışmadı. İkinci koşu: tam harness (planlayıcı + üretici + değerlendirici üç-ajan mimarisi) — 6 saat, 200 dolar, oyun oynanabilir hâle geldi.
+Anthropic aynı prompt'u ("2B retro oyun yapımcısı geliştir") ve aynı modeli (Opus 4.5) iki farklı harness altında karşılaştırdı. İlk koşu: çıplak, hiçbir destek yok — 20 dakika, 9 dolar; uygulama açıldı ama varlıklar girdiye yanıt vermedi. İkinci koşu: tam harness (planlayıcı + üretici + değerlendirici üç-ajan mimarisi) — 6 saat, 200 dolar; yazar bir varlığı hareket ettirebildi ama fizik pürüzlüydü ve bir duvar ilerlemeyi engelledi. [Temel oynanış çalıştı; uygulama tamamlanmadı.](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
 Modeli değiştirmediler. Opus 4.5 yine Opus 4.5'ti. Değişen şey koşum takımıydı.
 
@@ -39,9 +39,9 @@ Birden fazla oturuma yayılan uzun görevler daha da kötüdür — önceki otur
 
 Bu senaryolar göz önünde bulundurulduğunda bu kavramlar artık sadece jargon değil:
 
-- **Yetenek farkı (Capability Gap)**: Modelin benchmark performansı ile gerçek görev performansı arasındaki büyük uçurum. SWE-bench Verified üzerindeki %50-60 başarı oranı, gerçek sorunların neredeyse yarısının çözülemediği anlamına gelir.
+- **Yetenek farkı (Capability Gap)**: Modelin benchmark performansı ile gerçek görev performansı arasındaki büyük uçurum. Benchmark görevleri net hata açıklamaları, testler ve bir ortamla gelir; gerçek görevler bunları çoğu zaman sizin sağlamanızı gerektirir.
 - **Harness**: Modelin dışındaki her şey — talimatlar, araçlar, ortam, durum yönetimi, doğrulama geri bildirimi. Eğer model ağırlığı değilse, harness'tır. "Koşum takımı" diye andığımız şey.
-- **Harness kaynaklı başarısızlık (Harness-Induced Failure)**: Modelin yeterli yeteneği vardır ama yürütme ortamı yapısal kusurlara sahiptir. Anthropic'in kontrollü deneyi bunu zaten kanıtladı.
+- **Harness kaynaklı başarısızlık (Harness-Induced Failure)**: Modelin yeterli yeteneği vardır ama yürütme ortamı yapısal kusurlara sahiptir. Yukarıdaki retro oyun karşılaştırması buna bir örnektir.
 - **Doğrulama farkı (Verification Gap)**: Ajanın çıktısına olan güveni ile gerçek doğruluk arasındaki fark. Ajan iş bitmemişken "bitirdim" diyor — bu en yaygın başarısızlık modu.
 - **Tanılayıcı döngü (Diagnostic Loop)**: Yürüt, başarısızlığı gözlemle, belirli bir harness katmanına ata, o katmanı düzelt, yeniden yürüt. Bu, harness mühendisliğinin temel metodolojisidir.
 - **Bitirme tanımı (Definition of Done)**: Makine tarafından doğrulanabilir bir dizi koşul — testler geçer, lint temizdir, tip kontrolleri geçer. Açık bir bitirme tanımı olmadan ajan kendi tanımını uyduracaktır.
@@ -72,7 +72,7 @@ Tamamlanma kriterleri:
 
 ## Milyon satırlık deney
 
-OpenAI 2025'te iddialı bir deney yaptı: boş bir git deposundan tam bir iç ürün geliştirmek için Codex kullanın. Beş ay sonra depo yaklaşık bir milyon satır kod içeriyordu — uygulama mantığı, altyapı, araçlar, dokümantasyon, dahili geliştirici araçları — hepsi ajan tarafından üretilmişti. Üç mühendis Codex'i yönetti, yaklaşık 1.500 PR açıp birleştirdi. Kişi başına günde ortalama 3,5 PR.
+Ağustos 2025'te OpenAI'de üç mühendis iddialı bir deney başlattı: boş bir git deposundan tam bir iç ürün geliştirmek için yalnızca Codex kullanılacaktı. [Beş ay sonra depo yaklaşık bir milyon satır kod içeriyordu](https://openai.com/index/harness-engineering/) — uygulama mantığı, altyapı, araçlar, dokümantasyon, dahili geliştirici araçları — hepsi ajan tarafından üretilmişti. Ekip sonradan yedi mühendise çıktı; dönem boyunca yaklaşık 1.500 PR açıp birleştirdiler. Mühendis başına günde ortalama 3,5 PR.
 
 Temel kısıt: **insanlar asla doğrudan kod yazmadı.** Bu bir gösteri değildi — mühendisin birincil işi artık kod yazmak değil, ortamları tasarlamak, niyeti ifade etmek ve geri bildirim döngüleri kurmak olduğunda neyin değiştiğini takımın anlamasını zorlamak için tasarlanmıştı.
 
@@ -86,9 +86,9 @@ Bu deney bu dersin temel tezini doğrudan kanıtlıyor: **aynı model çıplak b
 
 Bir takım orta ölçekli bir Python web uygulamasına (FastAPI + PostgreSQL + Redis, ~15.000 satır kod) yeni bir API uç noktası eklemek için Claude Sonnet kullandı.
 
-Başlangıçta yalnızca tek bir cümle verdiler: "`/api/v2/users` altında kullanıcı tercihleri uç noktaları ekle." Sonuç? Ajan, bağlam penceresinin %40'ını depo yapısını keşfetmek için harcadı, makul görünen ama projenin hata işleme kalıplarını izlemeyen kod üretti, eski SQLAlchemy sözdizimini kullandı ve uç nokta çalışma zamanı hataları içerirken tamamlandığını ilan etti. Sonraki oturumun tüm keşif çalışmasını yeniden yapması gerekti.
+Başlangıçta yalnızca tek bir cümle verdiler: "`/api/v2/users` altında kullanıcı tercihleri uç noktaları ekle." Sonuç? Ajan, oturumun büyük bölümünü depo yapısını keşfetmek için harcadı, makul görünen ama projenin hata işleme kalıplarını izlemeyen kod üretti, eski SQLAlchemy sözdizimini kullandı ve uç nokta çalışma zamanı hataları içerirken tamamlandığını ilan etti. Sonraki oturumun tüm keşif çalışmasını yeniden yapması gerekti.
 
-Daha sonra `AGENTS.md` (proje mimarisi ve teknoloji yığını sürümlerini açıklayan), açık doğrulama komutları (`pytest tests/api/v2/ && python -m mypy src/`) ve mimari karar kayıtları eklediler. Aynı model üç bağımsız koşuda da başarılı oldu, ~%60 daha iyi bağlam verimliliği ile.
+Daha sonra `AGENTS.md` (proje mimarisi ve teknoloji yığını sürümlerini açıklayan), açık doğrulama komutları (`pytest tests/api/v2/ && python -m mypy src/`) ve mimari karar kayıtları eklediler. Aynı model ardından projenin konvansiyonlarına uydu ve işini çalıştırabildiği komutlarla doğruladı.
 
 Modeli değiştirmediler. Harness'ı değiştirdiler.
 

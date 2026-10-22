@@ -44,7 +44,7 @@ Wenn einem harness Beobachtbarkeit fehlt, treten vier Problemtypen systematisch 
 
 **Retries werden blinde Vermutungen**: Wenn der Agent nicht weiß, warum etwas fehlschlägt, ist die Retry-Richtung zufällig. Er kann irrelevante Codepfade reparieren, während die eigentliche Ursache unberührt bleibt. Jeder blinde retry kostet Tokens und Zeit.
 
-**Informationsklippe beim Handoff**: Wenn unvollständige Arbeit an die nächste Session übergeben wird, muss die neue Session ohne Beobachtbarkeit den Systemzustand von Grund auf diagnostizieren. Anthropic beobachtet, dass diese redundante Diagnose 30-50 % der Sessionzeit verbrauchen kann.
+**Informationsklippe beim Handoff**: Wenn unvollständige Arbeit an die nächste Session übergeben wird, muss die neue Session ohne Beobachtbarkeit den Systemzustand von Grund auf diagnostizieren. Die neue Session muss Code erneut lesen, Befehle erneut ausführen und entscheiden, welche Signale zählen; [versionierte Fortschritts- und Verifikationsaufzeichnungen](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) liefern einen inspizierbaren Zustand.
 
 ### Ein realistisches Claude-Code-Szenario
 
@@ -54,7 +54,7 @@ Stell dir einen harness mit planner-generator-evaluator-Workflow vor, der "Dark 
 
 **Mit vollständiger Beobachtbarkeit**: Der planner liefert einen sprint contract mit zu ändernden Komponenten, Verifikationsstandards und Ausschlüssen. Der generator implementiert gemäß Vertrag. Runtime-Beobachtbarkeit zeichnet das Laden und Anwenden der Styles jeder Komponente auf. Der evaluator bewertet Dimension für Dimension anhand einer Rubrik und konkreter Evidenz. Eine Iteration liefert ein hochwertiges Ergebnis in etwa 15 Minuten.
 
-3x Effizienzunterschied. Die einzige Änderung ist Beobachtbarkeit.
+Der Unterschied hängt davon ab, ob Vertrag und Evidenz außerhalb des Kopfes des Agenten existieren.
 
 ### Warum Agenten das nicht selbst lösen können
 
@@ -128,7 +128,7 @@ Ein harness mit planner-generator-evaluator-Workflow führt "Dark Mode Support h
 - Bewertungsrubrik liefert strukturierte Bewertung pro Dimension
 - Eine Iteration liefert hochwertige Ergebnisse in 15 Minuten
 
-3x Effizienzgewinn, stabilere Qualität, reproduzierbare Bewertungen.
+Stabilere Qualität und reproduzierbare Bewertungen.
 
 ## Wichtigste Erkenntnisse
 
@@ -136,7 +136,7 @@ Ein harness mit planner-generator-evaluator-Workflow führt "Dark Mode Support h
 - **Beide Beobachtbarkeitsschichten sind wesentlich**: Runtime-Signale erklären "was passiert ist", Prozessartefakte erklären "warum es so gemacht wurde".
 - **Sprint contracts richten früh aus** und verhindern vorhersehbare Ablehnungen durch evaluator.
 - **Rubriken machen Bewertung reproduzierbar**, sodass verschiedene Evaluatoren ähnliche Scores liefern.
-- **Fehlende Beobachtbarkeit verschwendet 30-50 % der Sessionzeit für redundante Diagnose.**
+- **Beobachtbarkeit verwandelt eine vage Ablehnung in einen konkreten, behebbaren Defekt.**
 
 ## Weiterführende Literatur
 

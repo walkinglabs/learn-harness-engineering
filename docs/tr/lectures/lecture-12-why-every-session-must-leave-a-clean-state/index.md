@@ -54,7 +54,7 @@ flowchart LR
 
 Lehman'ın yazılım evrim yasaları bize şunu söylüyor: sürekli değişime uğrayan sistemler, aktif olarak yönetilmedikçe kaçınılmaz olarak karmaşıklıkta artar. Bu özellikle AI kod yazma ajanları için doğrudur — her oturum değişiklikler getirir ve çıkışta temizlik olmadan teknik borç katlanarak birikir.
 
-Gerçek veriler söyleyicidir. Temizleme stratejisi olmadan ajanlarla 12 hafta geliştirilen bir proje:
+12 haftalık varsayımsal bir proje için şu değerleri ele alalım:
 
 - Hafta 1: Yapı geçme oranı %100, test geçme oranı %100, yeni oturum başlatma 5 dk
 - Hafta 4: Yapı %95, testler %92, başlatma 15 dk
@@ -66,7 +66,7 @@ Aynı proje bir temizleme stratejisiyle:
 - Hafta 1: %100, %100, 5 dk
 - Hafta 12: %97, %95, 9 dk
 
-12 hafta sonra: yapı geçme oranı 29 puan, yeni oturum başlatma süresi %85 farklı. Bu teorik değil — gözlemlenen bir farktır.
+Haftalık bir temizleme döngüsü başlangıç durumunu sabit tutar: her oturum yapı, testler, ilerleme ve geçici artefaktlar düzenli olarak biter, böylece bir sonraki oturum aynı temelden başlar.
 
 ### Temiz durumun beş boyutu
 
@@ -76,7 +76,7 @@ Temiz durum yalnızca "kod derler" değildir. Birlikte değerlendirilen beş boy
 
 **Test boyutu**: Tüm testler geçer mi? Oturum öncesi var olan testler dahil — oturum mevcut işlevselliği bozmamaktan sorumludur. Ve "benim makinemde çalışıyor" yerine CI'de doğrulanmalıdır.
 
-**İlerleme boyutu**: Mevcut ilerleme makine tarafından okunabilir bir artefakta kaydedilmiş mi? Tamamlanan alt görevler geçme kriterleriyle, devam eden ancak tamamlanmayan alt görevler mevcut durumla, henüz başlamamış alt görevler. İyi ilerleme kayıtları oturum başlatma tanı süresini %60-80 azaltır.
+**İlerleme boyutu**: Mevcut ilerleme makine tarafından okunabilir bir artefakta kaydedilmiş mi? Tamamlanan alt görevler geçme kriterleriyle, devam eden ancak tamamlanmayan alt görevler mevcut durumla, henüz başlamamış alt görevler. İlerleme ve doğrulama sonuçlarını sürümlenmiş dosyalara kaydedin, böylece bir sonraki oturum durumu inceleyebilir.
 
 **Artefakt boyutu**: Bayatlamış veya belirsiz geçici artefaktlar var mı? Hata ayıklama günlükleri, geçici dosyalar, yorum satırı yapılmış kod, TODO işaretleri — bunların hepsi bir sonraki oturum için bilişsel yükü artırır.
 
@@ -160,7 +160,7 @@ npm run test  # Temizliğin bir şey bozmadığını doğrula
 
 **Temizleme stratejisiyle** (deneysel grup): Her oturum sonunda tam temiz durum kontrolü + haftalık temizleme döngüsü. Hafta 12, yapı geçme oranı %97, test geçme oranı %95, yeni oturum başlatma 9 dk, bayatlamış artefaktlar 11.
 
-12 haftaya kadar, deneysel grubun yapı geçme oranı 29 puan, test geçme oranı 34 puan daha yüksek ve yeni oturum başlatma süresi %85 daha düşüktür.
+12. haftaya gelindiğinde temizleme grubunun yapı ve test geçme oranları başlangıç noktasına yakın kaldı, yeni bir oturum hızla başlayabildi ve bayat artefaktlar azdı. Temizleme oturum başına birkaç dakika aldı ve bir sonraki oturumun güvenebileceği bir başlangıç durumu bıraktı.
 
 ## Önemli çıkarımlar
 

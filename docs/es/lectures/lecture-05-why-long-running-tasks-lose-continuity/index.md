@@ -52,7 +52,7 @@ flowchart LR
 
 - **Las ventanas de contexto son finitas**: No importa qué tamaño de ventana se reclame (128K, 200K, 1M), las tareas largas eventualmente las agotarán. Tras el agotamiento, se requiere compaction (perdiendo información) o reset (nueva sesión). Ambas pierden algo.
 - **Artefactos de continuidad**: Archivos de estado persistido que permiten a una nueva sesión retomar sin ambigüedad donde la anterior lo dejó. La forma básica: registro de progreso + registro de verificación + próximas acciones. Ese diario del artesano.
-- **Costo de reconstrucción**: El tiempo que una nueva sesión necesita para alcanzar un estado ejecutable. Los buenos harness pueden comprimir el costo de reconstrucción de 15 minutos a 3 minutos.
+- **Costo de reconstrucción**: El tiempo que una nueva sesión necesita para alcanzar un estado ejecutable. Un buen harness deja el progreso, los resultados de verificación y las próximas acciones en archivos, de modo que la nueva sesión parte de un estado escrito.
 - **Deriva (Drift)**: La brecha entre la comprensión del agente y el estado real del repositorio de código. Cada límite de sesión introduce deriva; sin control, se acumula.
 - **Ansiedad de contexto**: Un fenómeno observado por Anthropic — los agentes exhiben un comportamiento de convergencia prematura cuando se acercan a los límites de contexto percibidos, terminando tareas temprano para evitar pérdida de información. Es una ansiedad irracional por los recursos.
 - **Compaction vs reset**: La compaction resume el contexto dentro de la misma sesión (conserva el "qué," puede perder el "por qué"); el reset abre una nueva sesión reconstruyendo desde artefactos persistidos (limpio pero depende de la completitud de los artefactos).
@@ -160,7 +160,7 @@ LangChain informa de una mejora de 52,8% a 66,5%, 13,7 puntos porcentuales, usan
 - Las ventanas de contexto son un recurso finito. Las tareas largas abarcarán sesiones, y las sesiones perderán información — como el artesano que olvida cada día, esto es una realidad objetiva.
 - La solución no son ventanas más grandes — es mejor persistencia del estado. Archivos de progreso + registros de decisiones + puntos de control de git — dale al artesano amnésico un diario confiable.
 - Trata al agente como un ingeniero con amnesia: antes de "terminar el turno," escribe qué se hizo, por qué y qué sigue.
-- El costo de reconstrucción es la métrica clave. Los buenos harness deberían llevar a las nuevas sesiones a un estado ejecutable en menos de 3 minutos.
+- El costo de reconstrucción es la métrica clave. Un buen harness deja el progreso, los resultados de verificación y las próximas acciones en archivos, de modo que una nueva sesión se recupera rápido.
 - Estrategia mixta: tareas cortas dentro de las sesiones, tareas largas con artefactos estructurados para la continuidad.
 
 ## Lecturas adicionales

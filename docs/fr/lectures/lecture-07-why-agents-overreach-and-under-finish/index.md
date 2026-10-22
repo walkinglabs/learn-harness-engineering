@@ -26,7 +26,7 @@ Le comportement réel de Claude Code est révélateur. Demandez-lui d'« ajouter
 
 Six étapes plus tard, chacune est à moitié faite. Pas de vérification de bout en bout, couplage complexe entre le code à moitié cuit, et la session suivante qui devra ramasser les morceaux sera complètement perdue. Comme quelqu'un qui cuisine six plats simultanément — chaque plat est dans la poêle mais aucun n'est dressé. Ils brûlent tous.
 
-Les données expérimentales d'Anthropic le confirment directement : les agents utilisant une stratégie de « petit pas suivant » (équivalent à WIP=1) affichent un taux de complétion de tâches 37 % plus élevé que les agents utilisant des prompts larges. Plus intéressant encore, le nombre de lignes de code générées par les agents est faiblement corrélé négativement avec la complétion réelle des fonctionnalités — plus de code écrit, moins de fonctionnalités complétées. Prendre plus qu'on ne peut mâcher, prouvé par les données.
+Le travail d'Anthropic sur les agents longue durée [demande à l'agent de codage de traiter une fonctionnalité à la fois](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), puis de vérifier, committer et mettre à jour la progression avant de passer à la suivante. Un prompt large invite l'agent à ouvrir plusieurs fils en parallèle, et chaque fil dispute le même contexte et le même budget de vérification.
 
 ## Flux de travail WIP=1
 

@@ -54,7 +54,7 @@ flowchart LR
 
 Dasturiy taʼminot evolyutsiyasining Leman qonunlariga (Lehmanʼs laws) koʻra: doimiy oʻzgarishdagi tizimlarning murakkabligi faol boshqarilmas ekan, u muqarrar ravishda oshib boraveradi. Bu ayniqsa AI kod yozish agentlari uchun toʻgʻri — har bir sessiya oʻzgarishlar olib kiradi va chiqishda tozalab ketilmasa, texnik qarz (technical debt) eksponensial tarzda koʻpayib boradi.
 
-Haqiqiy maʼlumotlar soʻzlaydi. Hech qanday tozalash strategiyasisiz agentlar bilan 12 hafta davomida ishlab chiqilgan loyiha:
+Faraziy 12 haftalik loyiha uchun quyidagi qiymatlarni tasavvur qiling:
 
 - 1-hafta: Build oʻtish darajasi 100%, testlar oʻtish darajasi 100%, yangi sessiyani boshlash 5 daq
 - 4-hafta: Build 95%, testlar 92%, boshlash 15 daq
@@ -66,7 +66,7 @@ Xuddi shu loyiha tozalash strategiyasi bilan:
 - 1-hafta: 100%, 100%, 5 daq
 - 12-hafta: 97%, 95%, 9 daq
 
-12 haftadan soʻng: build oʻtish darajasi oʻrtasida 29 foiz punkti farq, yangi sessiyani boshlash vaqti oʻrtasida esa 85% farq bor. Bu faqat nazariya emas — bu kuzatilgan aniq farqdir.
+Haftalik tozalash sikli boshlangʻich holatni barqaror ushlab turadi: har bir sessiya build, testlar, jarayon va vaqtinchalik artefaktlarni tartibga solingan holda tugaydi, shuning uchun keyingi sessiya xuddi shu bazadan boshlaydi.
 
 ### Toza holatning besh oʻlchami
 
@@ -76,7 +76,7 @@ Toza holat bu shunchaki “kod kompilyatsiya boʻladi” degani emas. U beshta o
 
 **Test oʻlchami**: Barcha testlar oʻtmoqdami? Sessiyadan oldin mavjud boʻlgan testlar ham — bu sessiya mavjud funksiyani (functionality) buzmaslikka masʼuldir. Va u faqat “mening kompyuterimda ishlayapti” boʻlib qolmay, CIʼda ham tekshirilishi shart.
 
-**Jarayon (Progress) oʻlchami**: Joriy ishning jarayoni mashina oʻqiy oladigan artefaktga yozilganmi? Oʻzining qabul qilish shartlariga (passing criteria) ega tugatilgan sub-vazifalar, jarayonda boʻlgan lekin tugallanmaganlarining joriy holati va hali boshlanmaganlari kiritilishi kerak. Yaxshi jarayon qaydlari yangi sessiya ishga tushgandagi diagnostika vaqtini 60-80% gacha kamaytiradi.
+**Jarayon (Progress) oʻlchami**: Joriy ishning jarayoni mashina oʻqiy oladigan artefaktga yozilganmi? Oʻzining qabul qilish shartlariga (passing criteria) ega tugatilgan sub-vazifalar, jarayonda boʻlgan lekin tugallanmaganlarining joriy holati va hali boshlanmaganlari kiritilishi kerak. Jarayon va tekshiruv natijalarini versiyalangan fayllarda qayd eting, shunda keyingi sessiya holatni koʻzdan kechira oladi.
 
 **Artefakt oʻlchami**: Eskirgan yoki noaniq vaqtinchalik artefaktlar qolmadimi? Debug loglari, vaqtinchalik fayllar, izoh qilib qoldirilgan kodlar (commented-out code), TODO eslatmalari — bularning barchasi keyingi sessiya uchun bilish kerak boʻlgan kognitiv yukni (cognitive load) oshiradi.
 
@@ -160,7 +160,7 @@ Ikkita yondashuv bilan 12 hafta davomida agentlar yordamida ishlab chiqilgan Ele
 
 **Tozalash strategiyasi bilan** (tajriba guruhi - experimental group): Har bir sessiya yakunida toʻliq toza-holat tekshiruvi (clean-state check) + haftalik tozalash sikli (weekly cleanup loop). 12-haftada, build oʻtish darajasi 97%, test oʻtish darajasi 95%, yangi sessiyani boshlash vaqti 9 daq, eskirgan artefaktlar 11 ta.
 
-12-haftaga kelib, tajriba guruhining build oʻtish darajasi 29 foiz punkti yuqori, test oʻtish darajasi 34 foiz punkti yuqori va yangi sessiyani boshlash vaqti 85% ga qisqa.
+12-haftaga kelib, tozalash guruhining build va test oʻtish darajalari boshlangʻich darajaga yaqin qoldi, yangi sessiya tez boshlanadi va eskirgan artefaktlar ham oz edi. Tozalash har sessiyada bir necha daqiqa oladi va keyingi sessiya ishonsa boʻladigan boshlangʻich holatni qaytaradi.
 
 ## Asosiy xulosalar
 

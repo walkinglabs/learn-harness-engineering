@@ -44,7 +44,7 @@ Quand un harness manque d'observabilité, quatre problèmes apparaissent systém
 
 **Les retries deviennent des paris aveugles** : quand l'agent ne sait pas pourquoi quelque chose a échoué, la direction du retry est aléatoire. Il peut corriger des chemins de code sans rapport en ignorant la vraie cause racine. Chaque retry aveugle coûte des tokens et du temps.
 
-**Falaise d'information au handoff** : quand un travail incomplet passe à la session suivante, l'absence d'observabilité oblige la nouvelle session à diagnostiquer l'état du système depuis zéro. Les observations d'Anthropic sur les agents longue durée montrent que ce diagnostic redondant peut consommer 30-50 % du temps total de session.
+**Falaise d'information au handoff** : quand un travail incomplet passe à la session suivante, l'absence d'observabilité oblige la nouvelle session à diagnostiquer l'état du système depuis zéro. Elle doit relire le code, relancer les commandes et décider quels signaux comptent ; [des enregistrements versionnés de progression et de vérification](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) fournissent un état inspectable.
 
 ### Un scénario réaliste avec Claude Code
 
@@ -54,7 +54,7 @@ Imaginez un harness avec workflow à trois rôles, planner-generator-evaluator, 
 
 **Avec observabilité complète** : le planner produit un sprint contract listant les composants à modifier, les critères de vérification et les exclusions. Le generator implémente selon le contrat. L'observabilité runtime enregistre le chargement et l'application des styles de chaque composant. L'evaluator utilise une grille de score, dimension par dimension, avec citations de preuves. Une itération produit un résultat de haute qualité en environ 15 minutes.
 
-La différence d'efficacité est de 3x. Le seul changement est l'observabilité.
+La différence tient au fait que le contrat et les preuves existent en dehors de la tête de l'agent.
 
 ### Pourquoi les agents ne peuvent pas résoudre cela seuls
 
@@ -128,7 +128,7 @@ Un harness avec workflow planner-generator-evaluator exécute « ajouter le supp
 - La grille fournit une évaluation structurée dimension par dimension
 - Une itération produit des résultats de haute qualité en 15 minutes
 
-Amélioration d'efficacité de 3x, qualité plus stable, évaluations reproductibles.
+Qualité plus stable, évaluations reproductibles.
 
 ## Points clés
 
@@ -136,7 +136,7 @@ Amélioration d'efficacité de 3x, qualité plus stable, évaluations reproducti
 - **Les deux couches d'observabilité sont essentielles** : les signaux runtime expliquent « ce qui s'est passé », les artefacts de processus expliquent « pourquoi cela a été fait ainsi ».
 - **Les sprint contracts alignent en amont**, évitant qu'un generator construise quelque chose que l'evaluator rejette immédiatement pour des raisons prévisibles.
 - **Les grilles rendent l'évaluation reproductible**, différents évaluateurs produisant des scores proches pour le même résultat.
-- **Le manque d'observabilité gaspille 30-50 % du temps de session en diagnostic redondant.**
+- **L'observabilité transforme un rejet vague en défaut concret et corrigeable.**
 
 ## Pour aller plus loin
 

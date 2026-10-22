@@ -9,13 +9,13 @@ Te consideras una persona con experiencia en el mundo de la IA: suscripción a C
 
 Tu primer instinto puede ser: "este modelo no es suficientemente bueno, toca actualizar". Espera. Antes de sacar la tarjeta, considera que quizá el problema no sea el modelo.
 
-Veamos algunos números. A finales de 2025, los agentes de programación más fuertes en SWE-bench Verified logran aproximadamente 50-60%. Y eso en tareas cuidadosamente seleccionadas, con descripciones claras y tests existentes. Si lo llevas a tu entorno diario de desarrollo — requisitos vagos, sin tests existentes, reglas de negocio implícitas por todas partes — ese número solo baja.
+Veamos algunos números. El 29 de septiembre de 2025, Anthropic reportó Claude Sonnet 4.5 con un [77,2% en SWE-bench Verified](https://www.anthropic.com/news/claude-sonnet-4-5). Y eso en tareas cuidadosamente seleccionadas, con descripciones claras y tests existentes. Si lo llevas a tu entorno diario de desarrollo — requisitos vagos, sin tests existentes, reglas de negocio implícitas por todas partes — ese número solo baja.
 
 Pero detrás de estos números hay una verdad contraintuitiva.
 
 ## El mismo caballo, destinos distintos
 
-Anthropic realizó un experimento controlado. Mismo prompt ("construye un creador de juegos retro 2D"), mismo modelo (Opus 4.5). Primera ejecución: sin apoyo, sin harness — 20 minutos, 9 dólares, las funciones centrales del juego no funcionaban. Segunda ejecución: harness completo, con arquitectura de tres agentes planner + generator + evaluator — 6 horas, 200 dólares, el juego era jugable.
+Anthropic comparó el mismo prompt ("construye un creador de juegos retro 2D") y el mismo modelo (Opus 4.5) con dos harness. Primera ejecución: sin apoyo, sin harness — 20 minutos, 9 dólares; la aplicación abría, pero las entidades no respondían a la entrada. Segunda ejecución: harness completo, con arquitectura de tres agentes planner + generator + evaluator — 6 horas, 200 dólares; se podía mover una entidad, pero la física tenía asperezas y una pared bloqueaba el avance. [El núcleo de la jugabilidad funcionaba; la aplicación no estaba terminada.](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
 No cambiaron el modelo. Opus 4.5 seguía siendo Opus 4.5. Lo que cambió fue el equipo de monta.
 
@@ -39,9 +39,9 @@ Las tareas largas que cruzan sesiones son aún peores: los descubrimientos de la
 
 Con estos escenarios en mente, estos conceptos ya no son jerga:
 
-- **Brecha de capacidad**: la distancia enorme entre el rendimiento del modelo en benchmarks y su rendimiento en tareas reales. Un 50-60% en SWE-bench Verified significa que casi la mitad de los issues reales no se resuelven.
+- **Brecha de capacidad**: la distancia enorme entre el rendimiento del modelo en benchmarks y su rendimiento en tareas reales. Las tareas de benchmark traen descripción del issue, tests y entorno; las tareas reales a menudo exigen que los aportes tú.
 - **Harness**: todo lo que está fuera del modelo: instrucciones, herramientas, entorno, gestión de estado y feedback de verificación. Si no son pesos del modelo, es harness. Es el "equipo de monta" del que hablamos.
-- **Fallo inducido por harness**: el modelo tiene capacidad suficiente, pero el entorno de ejecución tiene defectos estructurales. El experimento controlado de Anthropic ya lo demostró.
+- **Fallo inducido por harness**: el modelo tiene capacidad suficiente, pero el entorno de ejecución tiene defectos estructurales. La comparación del juego retro de arriba es un ejemplo.
 - **Brecha de verificación**: la diferencia entre la confianza del agente en su salida y la corrección real. El agente dice "terminé" cuando no terminó. Es el modo de fallo más común.
 - **Bucle diagnóstico**: ejecutar, observar el fallo, atribuirlo a una capa concreta del harness, corregir esa capa y volver a ejecutar. Es la metodología central del harness engineering.
 - **Definition of Done**: conjunto de condiciones verificables por máquina: tests pasan, lint limpio, type checks pasan. Sin una definición explícita, el agente inventará la suya.
@@ -72,7 +72,7 @@ Completion criteria:
 
 ## El experimento del millón de líneas
 
-OpenAI realizó en 2025 un experimento agresivo: usar Codex para construir un producto interno completo desde un repositorio git vacío. Cinco meses después, el repositorio tenía alrededor de un millón de líneas de código: lógica de aplicación, infraestructura, tooling, documentación y herramientas internas de desarrollo, todo generado por agentes. Tres ingenieros dirigieron Codex, abriendo y fusionando unas 1.500 PRs, con una media de 3,5 PRs por persona al día.
+En agosto de 2025, tres ingenieros de OpenAI comenzaron un experimento agresivo: usar Codex para construir un producto interno completo desde un repositorio git vacío. Cinco meses después, [el repositorio tenía alrededor de un millón de líneas de código](https://openai.com/index/harness-engineering/): lógica de aplicación, infraestructura, tooling, documentación y herramientas internas de desarrollo, todo generado por agentes. El equipo después creció a siete ingenieros; en total se fusionaron unas 1.500 PRs, con una media de 3,5 PRs por ingeniero al día.
 
 La restricción clave: **los humanos nunca escriben código directamente.** No era un truco; estaba diseñado para obligar al equipo a descubrir qué cambia cuando el trabajo principal del ingeniero deja de ser escribir código y pasa a ser diseñar entornos, expresar intención y construir bucles de feedback.
 
@@ -86,9 +86,9 @@ Este experimento demuestra directamente la tesis central de la lección: **el mi
 
 Un equipo usó Claude Sonnet para añadir un nuevo endpoint a una aplicación web Python mediana (FastAPI + PostgreSQL + Redis, unas 15.000 líneas).
 
-Al principio dieron solo una frase: "añade endpoints de preferencias de usuario bajo `/api/v2/users`". ¿El resultado? El agente gastó 40% de su ventana de contexto explorando la estructura del repo, produjo código que parecía razonable pero no seguía los patrones de manejo de errores del proyecto, usó sintaxis antigua de SQLAlchemy y declaró finalización aunque el endpoint tenía errores en runtime. La siguiente sesión tuvo que repetir todo el descubrimiento.
+Al principio dieron solo una frase: "añade endpoints de preferencias de usuario bajo `/api/v2/users`". ¿El resultado? El agente pasó buena parte de la sesión explorando la estructura del repo, produjo código que parecía razonable pero no seguía los patrones de manejo de errores del proyecto, usó sintaxis antigua de SQLAlchemy y declaró finalización aunque el endpoint tenía errores en runtime. La siguiente sesión tuvo que repetir todo el descubrimiento.
 
-Más tarde añadieron `AGENTS.md`, con arquitectura del proyecto y versiones del stack, comandos de verificación explícitos (`pytest tests/api/v2/ && python -m mypy src/`) y registros de decisiones arquitectónicas. El mismo modelo tuvo éxito en tres ejecuciones independientes, con alrededor de 60% más eficiencia de contexto.
+Más tarde añadieron `AGENTS.md`, con arquitectura del proyecto y versiones del stack, comandos de verificación explícitos (`pytest tests/api/v2/ && python -m mypy src/`) y registros de decisiones arquitectónicas. El mismo modelo entonces siguió las convenciones del proyecto y comprobó su trabajo con comandos que podía ejecutar.
 
 No cambiaron el modelo. Cambiaron el harness.
 

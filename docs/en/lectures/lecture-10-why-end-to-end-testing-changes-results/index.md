@@ -130,7 +130,7 @@ Every time you discover a new category of agent error during code review, turn i
 | Permission Issue | Different permissions in packaged environment | Missed | Caught |
 | Error Propagation | Service layer exceptions didn't reach UI layer | Missed | Caught |
 
-All 5 defects were caught by end-to-end tests; unit tests caught none. The trade-off was test time increasing from 2 seconds to 15 seconds — perfectly acceptable in an agent workflow.
+All 5 defects were caught by end-to-end tests; unit tests caught none. The end-to-end run is slower, but that cost is small compared with shipping five boundary defects.
 
 ## Key Takeaways
 

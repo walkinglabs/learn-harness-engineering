@@ -9,7 +9,7 @@ Seis semanas depois que a aula anterior terminou de abordar a Engenharia de Loop
 
 > "Ainda estamos falando de loops, ou já mudamos para graphs?"
 
-Um tweet — cerca de 570 mil visualizações em um dia, subindo para cerca de 3 milhões até o fim do mês. Algumas horas depois, o engenheiro de machine learning Hamel Husain publicou um artigo intitulado *Loop Engineering Is Dead. Enter Graph Engineering* — cujo corpo inteiro era um único GIF dizendo "Stop it" — e alcançou cerca de 680 mil visualizações.
+Um tweet. Algumas horas depois, o engenheiro de machine learning Hamel Husain publicou um artigo intitulado *Loop Engineering Is Dead. Enter Graph Engineering* — cujo corpo inteiro era um único GIF dizendo "Stop it".
 
 O mais interessante é: **os dois estavam fazendo uma piada.** Um estava satirizando uma indústria que inventa um novo termo a cada seis semanas; o outro estava aproveitando a piada. Mas a piada sobreviveu apenas cerca de um fim de semana — cursos, roteiros e stacks de ferramentas inundaram a timeline antes do fim de semana terminar, seguidos por uma pilha de números fabricados: "+18% de precisão, −85% de custo" é dado falso (os 18% e os 85% realmente existem, mas vêm de um artigo sobre diagramas de tubulação química, e comparam contra linhas de base completamente diferentes), e "Microsoft, Stanford e Anthropic descobriram a engenharia de grafos ao mesmo tempo" também é falso. A verificação de fatos confirmou apenas um "pioneiro" real: Josh Simmons, cujo *We Are Entering the Graph Engineering Phase* foi escrito em 4 de julho — duas semanas inteiras antes da piada — **foi a piada que tornou a ideia popular; não foi a piada que criou a ideia.**
 
@@ -257,11 +257,11 @@ Depois de rodar, compare com o grafo acima: o `graph.md` que você escreveu à m
 
 ## Projetos de Código Aberto: Depois vs. Antes do Lançamento do Conceito
 
-Primeiro, deixe claro o limite: **Graph Engineering é um nome que só existe depois de 18 de julho de 2026.** Os frameworks open source anteriores a essa data não são "projetos pós-lançamento da Graph Engineering". Um projeto de código aberto que realmente apareceu com esse nome depois que o conceito explodiu, até o início de agosto de 2026, só existe um que se sustenta:
+Primeiro, deixe claro o limite: **Graph Engineering é um nome que só existe depois de 18 de julho de 2026.** Os frameworks open source anteriores a essa data não são "projetos pós-lançamento da Graph Engineering". Um projeto que usa explicitamente esse nome é o GraphARC:
 
 **Depois do lançamento do conceito**
 
-- [GraphArc](https://github.com/CodeGraphContext/grapharc) (2026-08-02): afirma ser "a primeira implementação em tempo real da Graph Engineering". Ele transforma a execução de agentes, de um trace escondido nos logs, em uma **orquestração em tempo real interativa** — cada agente, cada dependência, cada ponto de decisão é desenhado, e você visualiza o grafo inteiro antes da execução, confirma (pode até ver no celular) e só então libera. O autor tem experiência em construir ferramentas de grafo para 4.000+ desenvolvedores, com a direção de "observável, depurável, passível de engenharia". Muito novo, funcionalidades ainda em fase inicial.
+- [GraphARC](https://github.com/CodeGraphContext/GraphARC) (criado em julho de 2026): descreve-se como "an end to end implementation of Graph Engineering as proposed by Andrew NG and Peter Steinberger". É um projeto Python em estágio inicial. O movimento útil é ler seu modelo de orquestração e decidir se a abordagem se encaixa no seu fluxo de trabalho.
 
 **Antes do lançamento do conceito (não se chamam Graph Engineering, mas são o que você vai usar na prática)**
 
@@ -325,7 +325,7 @@ Nem toda tarefa merece um grafo. Cinco critérios; satisfaça pelo menos três a
 - [goddaehee: Verificação de fatos de Graph Engineering (coreano, 2026-07-30)](https://goddaehee.tistory.com/628) — a verificação de fatos mais completa: a linha do tempo da origem da piada, a análise dos números falsos, os dados do LangGraph e a comparação de popularidade no Hacker News
 - [Josh Simmons: We Are Entering the Graph Engineering Phase (2026-07-04)](https://www.drjoshcsimmons.com/writing/we-are-entering-the-graph-engineering-phase) — o artigo sério duas semanas antes da piada
 - [LangChain: 3 Years of Graph Engineering with LangGraph (2026-07-22)](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) — a resposta oficial: "não é uma ideia nova, é o nome mais recente de um método existente"; mais de 65 milhões de downloads mensais do LangGraph
-- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — os dados de propagação da buzzword (o tweet original com 575 mil visualizações)
+- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — uma narrativa de como o termo se espalhou
 - [LangChain: The Best AI Agent Frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — a comparação horizontal dos sete frameworks open source mais populares: LangGraph, CrewAI, Microsoft Agent Framework, LlamaIndex, Google ADK, OpenAI Agents SDK, Mastra
 - [Documentação oficial do LangGraph](https://docs.langchain.com/oss/python/langgraph/graph-api) — "Nodes do the work, edges tell what to do next"; a definição precisa de nós e arestas, a referência de primeira mão para construir grafos
 - [Anthropic: Building Effective Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents) — os cinco padrões, que, desenhados, formam um grafo; a distinção autoritativa entre workflow e agent

@@ -68,7 +68,7 @@ Một agent đánh giá độc lập, được tinh chỉnh để cố tình "k�
 | Kiến trúc | Thời gian chạy | Chi phí | Tính năng cốt lõi chạy được không? |
 |--------------|---------|------|------------------------|
 | Một agent (chạy trần) | 20 phút | $9 | Không (các thực thể trong trò chơi không phản hồi input) |
-| Ba agent (planner + generator + evaluator) | 6 giờ | $200 | Có (trò chơi chơi được hoàn toàn) |
+| Ba agent (planner + generator + evaluator) | 6 giờ | $200 | Gameplay cốt lõi chạy được; vật lý và màn chơi vẫn còn vấn đề |
 
 Đây là cùng một mô hình (Opus 4.5) với cùng một prompt ("xây dựng trình tạo trò chơi retro 2D"). Điểm khác biệt duy nhất nằm ở harness: từ "chạy trần" sang "planner mở rộng yêu cầu, generator triển khai từng tính năng, evaluator thực sự bấm thử bằng Playwright".
 
@@ -117,7 +117,7 @@ Các tín hiệu runtime hiệu quả gồm:
 
 **Những điểm bị bỏ sót thật sự**: (1) Luồng end-to-end chưa từng được kiểm tra, việc gửi và xác minh thật sự liên kết đặt lại chưa bao giờ được xác nhận. (2) Migration cơ sở dữ liệu lỗi sau khi thực thi một phần, để lại schema không nhất quán. (3) Cấu hình dịch vụ email bị thiếu trong môi trường đích.
 
-**Harness can thiệp**: Xác nhận kết thúc được thực thi, (1) khởi động toàn bộ ứng dụng để xác minh endpoint đặt lại truy cập được; (2) chạy toàn bộ luồng đặt lại; (3) xác minh tính nhất quán trạng thái cơ sở dữ liệu. Mọi khiếm khuyết đều được phát hiện trong phiên, tiết kiệm chi phí sửa sau gấp 5-10 lần.
+**Harness can thiệp**: Xác nhận kết thúc được thực thi, (1) khởi động toàn bộ ứng dụng để xác minh endpoint đặt lại truy cập được; (2) chạy toàn bộ luồng đặt lại; (3) xác minh tính nhất quán trạng thái cơ sở dữ liệu. Cả ba khiếm khuyết đều lộ ra ngay trong phiên, khi chi phí sửa vẫn còn cục bộ.
 
 ## Những điểm chính cần nhớ
 

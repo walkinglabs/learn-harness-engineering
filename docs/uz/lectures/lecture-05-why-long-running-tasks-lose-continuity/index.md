@@ -52,7 +52,7 @@ flowchart LR
 
 - **Kontekst oynalari cheklangan**: Qanday oyna oʻlchami daʼvo qilinmasin (128K, 200K, 1M), uzoq davom etadigan vazifalar oxir-oqibat ularni yeb tugatadi. Tugagandan soʻng, zichlash (maʼlumot yoʻqotish) yoki qayta ishga tushirish (yangi sessiya) talab qilinadi. Ikkalasida ham nimanidir yoʻqotasiz.
 - **Uzluksizlik artefaktlari (Continuity artifacts)**: Yangi sessiyaga oxirgi sessiya toʻxtagan joydan hech qanday noaniqliksiz davom ettirish imkonini beruvchi doimiy saqlangan holat fayllari. Asosiy shakli: jarayon jurnali + tekshiruv qaydnomasi + keyingi qadamlar. Oʻsha ustaning kundaligi kabi.
-- **Tiklash narxi (Rebuild cost)**: Yangi sessiyaning bajariladigan holatga kelishi uchun kerak boʻladigan vaqt. Yaxshi harnessʼlar tiklash narxini 15 daqiqadan 3 daqiqagacha qisqartirishi mumkin.
+- **Tiklash narxi (Rebuild cost)**: Yangi sessiyaning bajariladigan holatga kelishi uchun kerak boʻladigan vaqt. Yaxshi harnessʼ jarayon, tekshiruv natijalari va keyingi qadamlarni fayllarda qoldiradi, shunda yangi sessiya yozib qoʻyilgan holatdan boshlaydi.
 - **Siljish (Drift)**: Agentʼning tushunchasi va kod repozitoriysining haqiqiy holati oʻrtasidagi farq. Har bir sessiya chegarasi siljishni keltirib chiqaradi; nazoratsiz u tobora ortib boradi.
 - **Kontekst xavotiri (Context anxiety)**: Anthropic tomonidan kuzatilgan hodisa — agentlar idrok qilinayotgan kontekst chegaralariga yaqinlashganda erta yakunlash xatti-harakatlarini namoyish etadilar, maʼlumot yoʻqotilishining oldini olish uchun vazifalarni erta yakunlaydilar. Bu asossiz resurs xavotiridir.
 - **Zichlash va qayta ishga tushirish (Compaction vs reset)**: Zichlash joriy sessiya ichidagi kontekstni xulosalaydi (“nima” saqlanadi, lekin “nega” yoʻqolishi mumkin); qayta ishga tushirish esa doimiy saqlangan holatdan tiklanadigan yangi sessiyani ochadi (toza, lekin artefaktlarning toʻliqligiga bogʻliq).
@@ -160,7 +160,7 @@ LangChain bir xil gpt-5.2-codex bilan 89 vazifali Terminal Bench 2.0 natijasi 52
 - Kontekst oynalari cheklangan resursdir. Uzoq vazifalar sessiyalarga boʻlinadi, va sessiyalarda maʼlumot yoʻqoladi — har kuni hamma narsani unutadigan usta kabi, bu obyektiv haqiqatdir.
 - Yechim kattaroq oynalar emas — bu holatni saqlashni yaxshilash. Jarayon fayllari + qaror jurnallari + git checkpointʼlari — amneziyali ustaga ishonchli kundalik bering.
 - Agentʼga xotirasini yoʻqotgan muhandis kabi munosabatda boʻling: u “ishni tugatishidan” (clock out) oldin, nima qilingani, nega qilingani va keyingi nima ekanini yozib qoldirsin.
-- Tiklash narxi (rebuild cost) asosiy koʻrsatkichdir. Yaxshi harnessʼlar yangi sessiyani 3 daqiqa ichida ishga tushiradigan holatga keltirishi kerak.
+- Tiklash narxi (rebuild cost) asosiy koʻrsatkichdir. Yaxshi harnessʼ jarayon, tekshiruv natijalari va keyingi qadamlarni fayllarda qoldiradi, shunda yangi sessiya tezda tiklanadi.
 - Aralash strategiya (Mixed strategy): qisqa vazifalar bitta sessiyada, uzoq davom etadigan vazifalar uzluksizlik uchun tizimli artefaktlar bilan sessiyalararo.
 
 ## Qoʻshimcha oʻqish uchun

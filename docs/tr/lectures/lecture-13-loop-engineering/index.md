@@ -84,11 +84,11 @@ Bu dersin konusu olan Loop Mühendisliği, tek bir komutla ilgili değildir. **T
 
 Her seferinde `/goal` yazmak zorunda değilsiniz. Ama nereden geldiğini ve neden göründüğü gibi olduğunu anlamak — loop mühendisliğinin özünü anlamaktır. Daha karmaşık loop'lar sadece zamanlama, paralellik, izolasyon ve bellek gibi parçaları aynı üç temel üzerine ekler: hedef, doğrulama, durdurma koşulu.
 
-## Haziran 2026: Üç kişi aynı haftada aynı sigortayı yaktı
+## Farklı tarihler, aynı yön
 
-2026 Haziran'ın ilk haftasında, kodlama ajan altyapısı inşa eden üç pratisyen — notlar karşılaştırmadan — farklı kelimelerle aynı şeyi söyledi.
+Aynı fikir farklı yerlerde, farklı zamanlarda ortaya çıktı.
 
-**Peter Steinberger** (OpenClaw yaratıcısı, [yazısı 8 milyon görüntüleme ulaştı](https://x.com/steipete/status/2063697162748260627)): "Artık kodlama ajanlarını prompt etmemelisiniz. Ajanlarınızı prompt eden loop'lar tasarlamalısınız."
+**Peter Steinberger** (OpenClaw yaratıcısı, [bir gönderisinde](https://x.com/steipete/status/2063697162748260627)): "Artık kodlama ajanlarını prompt etmemelisiniz. Ajanlarınızı prompt eden loop'lar tasarlamalısınız."
 
 **Boris Cherny** (Anthropic'te Claude Code başkanı, [Acquired podcast'te](https://x.com/rohanpaul_ai/status/2063289804708835412)): "Artık Claude'ı prompt etmiyorum. Claude'ı prompt eden ve ne yapacağını çözen loop'larım var. Benim işim loop yazmak."
 
@@ -96,9 +96,9 @@ Her seferinde `/goal` yazmak zorunda değilsiniz. Ama nereden geldiğini ve nede
 
 > **Loop mühendisliği, ajanı prompt eden kişi olarak kendinizi değiştirmektir. Onun yerine bunu yapan sistemi tasarlarsınız.**
 
-Cherny sayıları açıkladı: art arda 30 günden fazla, Claude Code'a tüm kod katkıları AI tarafından özerk olarak yapıldı — 259 merge edilmiş PR, üretim kodunun %80'inden fazlası Claude tarafından yazıldı ve açık uçlu yazılım görevlerinde %76 başarı oranı.
+Cherny, [2025-12-27 tarihli kişisel raporunda](https://twitter.com/bcherny/status/2004887829252317325) 30 gün içinde 259 PR birleştirdiğini — 497 commit, 40.000 satır ekleme, 38.000 satır silme — ve her satırın Claude Code + Opus 4.5 tarafından yazıldığını belirtti.
 
-Üç kişi. Bir hafta. Aynı sonuç. Koordine oldukları için değil — altyapı sessizce bir eşiği aştığı için. Ajanlar önemsiz olmayan görevleri denetimsiz bitirecek kadar güvenilir hale gelmişti. Zamanlama ilkelleri (`/loop`, `/goal`, cron) artık araçlara yerleşmişti. Tek bir ajan çalıştırmanın maliyeti, bir zamanlayıcıda tekrar tekrar çalıştırmanın israfçı görünmemesini sağlayacak kadar düşmüştü. Tüm parçalar mevcut olduğunda, onları birleştiren hareket herkes için aynı anda açık hale gelir.
+Alıntılar farklı tarihlerden, formatlardan ve ekiplerden geliyor. Ortak yönleri, zamanlama, doğrulama ve durdurma kararını anlık prompt'tan çıkarıp bir sisteme taşımak. 2026 ortalarına gelindiğinde ajanlar önemsiz olmayan görevleri denetimsiz bitirebiliyordu, zamanlama ilkelleri araçlara yerleşmişti ve tek bir koşu bir zamanlayıcıda tekrarlanacak kadar ucuzdu. Parçalar mevcut olduğunda, birden fazla kişi onları bir araya getirir.
 
 > Kaynak: [Addy Osmani: Loop Engineering](https://addyosmani.com/blog/loop-engineering/)
 
@@ -267,7 +267,7 @@ flowchart TD
 
 Bu artık tek bir ajan çalışması değil. Her sabah uyanan, kendi kendine yeri süpüren ve dikkatinizi gerektiren şeyleri önünüze koyan sürekli çalışan bir sistemdir. Rolünüz şu hale gelir: **gelen kutusu içeriğini gözden geçirin, kararlar verin ve sistemin kaldıramayacağı bir desen gördüğünüzde becerileri ve kuralları iyileştirin.**
 
-Cherny bu deseni kullanarak 30 günde 259 PR'ı tek bir IDE açmadan merge etti. OpenAI mühendisleri aynı deseni kullanarak kabaca bir milyon satırlık bir beta ürünü elle — tek bir satır kod kendileri yazmadan — inşa ettiler.
+Cherny'nin 30 günlük raporu bu desen için bir veri noktasıdır: 259 PR, kod Claude Code + Opus 4.5 tarafından yazıldı. OpenAI'nin [harness raporu](https://openai.com/index/harness-engineering/) bir başkasıdır: küçük bir ekip Codex'i sıfırdan bir depoda beş ay kullandı ve yaklaşık bir milyon satır ile yaklaşık 1.500 PR bildirdi.
 
 ## Üretici/Değerlendirici Ayrımı: Neden Modelin Kendi Çalışmasını Notlandırmasına İzin Veremezsiniz
 
@@ -293,7 +293,7 @@ Hatırlanacak tek cümle: **ekibinizdeki biri size inanmamalıdır.**
 
 İyi tasarlanmış, gerçekten çalışan bir loop'un neye benzediğini görmek istiyorsanız, [Karpathy'nin autoresearch'ı](https://github.com/karpathy/autoresearch) ders kitabı örneğidir.
 
-Mart 2026'da Karpathy 630 satırlık bir Python projesi yayınladı. Ona bir GPU ve bir araştırma yönü verin ve bütün gece çalışır — yüzlerce ML eğitim deneyi tamamlar, sadece gerçekten iyileştirenleri tutar. Proje yayınlanmasından birkaç gün içinde 66.000+ yıldıza ulaştı.
+Mart 2026'da Karpathy [autoresearch](https://github.com/karpathy/autoresearch)'ı yayınladı. Depo kasıtlı olarak küçüktür: `prepare.py` sabit altyapıdır, `train.py` ajanın düzenlediği dosyadır (yaklaşık 630 satır) ve `program.md` insanın düzenlediği araştırma metodolojisidir. Ona bir GPU ve bir araştırma yönü verin; bütün gece çalışır — her deney sabit 5 dakikalık bir eğitim duvar saati bütçesi alır (başlatma ve derleme hariç) ve yalnızca `val_bpb`'yi iyileştiren değişiklikler tutulur.
 
 ### Üç Dosya, Üç Rol
 
@@ -343,9 +343,9 @@ flowchart TD
     8b --> 9
 ```
 
-Saatte kabaca 12 deney çalıştırır. Bir gecelik çalışma (8 saat) yaklaşık 100 deneydir. Karpathy kendisi 2 gün çalıştırdı — ~700 deney.
+README saatte yaklaşık 12 deney, 8 saatlik bir gecelik çalışmada ise yaklaşık 100 deney öngörüyor. 5 dakikalık bütçe eğitimi kapsar, başlatma veya derlemeyi değil; her turun geri kalanı düzenleme, başlatma ve değerlendirmeye gider. Karpathy, aşağıda anlatılan nanochat turu için autoresearch'ın özel bir sürümünü yaklaşık iki gün boyunca özerk olarak çalıştırdığını bildirdi.
 
-Sabit 5 dakikalık duvar saati bütçesi önemli bir tasarım seçimidir — ajan ne değiştirirse değiştirsin, her deney tam olarak aynı zamanı alır. Bu, tüm sonuçların aynı zaman bütçesi altında doğrudan karşılaştırılabilir olduğu anlamına gelir — "bunun daha uzun süre çalıştığı için daha iyi" tartışması yok.
+Sabit 5 dakikalık eğitim bütçesi önemli bir tasarım seçimidir — ajan ne değiştirirse değiştirsin, eğitim koşusu aynı duvar saati bütçesini alır. Bu, tüm sonuçların aynı eğitim bütçesi altında doğrudan karşılaştırılabilir olduğu anlamına gelir.
 
 ### Çıktı: Uyandığınızda ne görürsünüz
 
@@ -375,13 +375,9 @@ Ajan ne denediğini, neyin işe yaradığını, neyin yaramadığını ve sırad
 
 ### Gerçekte ne buldu
 
-Karpathy'nin ilk 2 günlük ~700 deney çalışmasının sonuçları:
+autoresearch [1. tur](https://github.com/karpathy/nanochat/commit/6ed7d1d82cee16c2e26f45d559ad3338447a6c1b) sonuçları, nanochat'in 8×H100 üzerindeki GPT-2 seviyesi eğitim süresini [**2,02 saatten 1,80 saate**](https://github.com/karpathy/nanochat/commit/f06860494848db080c9a80a0ffa83203b042056b) düşürdü — eğitim süresinde yaklaşık **%10,9** azalma.
 
-- ~700 denemeden yaklaşık **20 yığılabilir gerçek iyileştirme** bulundu
-- nanochat'ın GPT-2 seviyesi eğitim süresini 8×H100'de **2,02 saat → 1,80 saat** olarak azalttı, yaklaşık **%11 daha hızlı**
-- Bulgular şunları içeriyordu: öğrenme oranı ayarlamaları, optimize edici ayarı, aktivasyon değişimleri, dikkat deseni optimizasyonları vb.
-
-Tüm iyileştirmeler yer sarsıcı keşifler miydi? Hayır. Çoğu yığılan küçük optimizasyonlardı. Ama bu 20 geçerli iyileştirme bir insan araştırmacının haftalarca manuel çalışmasını alırdı — ajan 48 saatte yaptı.
+Değişikliklerin çoğu yığılan küçük optimizasyonlardı. İşe yarayan kısım loop'un kendisi: sabit bütçe, eksiksiz deney günlüğü ve yalnızca doğrulanmış iyileştirmelerin kalması kuralı.
 
 ### En anlatıcı detay: Loop İngilizce yazılır, kodla değil.
 
@@ -399,7 +395,7 @@ Hızlı loop'lar sizi doğrulamayı atlamaya kışkırtır. "Güzel görünüyor
 
 ### 2. Anlama Çürümesi
 
-Bir loop kod o kadar hızlı gönderir ki, kendi kod tabanınıza dair anlayışınız gerçeklikten o kadar uzaklaşır. Cherny'nin ekibinin kodunun %80'i ajanlar tarafından yazıldı — yani bir ekibin kodunun çoğu bir kişi tarafından yazılmadı. Loop'un ürettiğini okumaz ve kullanmazsanız, anlayışınız sürekli olarak çürür. **Hızlı loop'lar hızlı okuma gerektirir.**
+Bir loop kod o kadar hızlı gönderir ki, kendi kod tabanınıza dair anlayışınız gerçeklikten o kadar uzaklaşır. Bir loop yüzlerce PR üretir; ekip bu PR'ları okur, önemli diff'leri inceler ve kodu kullanmaya devam eder, böylece zihinsel modeli güncel kalır. **Hızlı loop'lar hızlı okuma gerektirir.**
 
 ### 3. Bilişsel Teslimiyet
 
@@ -407,11 +403,11 @@ Loop sorunsuz çalıştığında, en rahat duruş fikir sahibi olmayı bırakmak
 
 ### 4. Token Patlaması
 
-Bir loop'un her iterasyonu daha fazla bağlam biriktirir: yazılan kod, karşılaşılan hatalar, verilen kararlar. Bağlam yönetimi olmadan, prompt boyutu tur sayısıyla kabaca ikinci dereceden büyür. Codex bunu otomatik bağlam sıkıştırmasıyla ele alır — özel bir API eski konuşma turlarını şifreli içerik özetlerine sıkıştırır, temel bilgiyi korurken gereksiz detayı atar. Bu, ilk loop'tan ele almanız gereken bir mühendislik endişesidir, sonradan takılan bir ek değil.
+Bir loop'un her iterasyonu daha fazla bağlam biriktirir: yazılan kod, karşılaşılan hatalar, verilen kararlar. Her tur yaklaşık sabit miktarda yeni içerik eklediğinde, tek bir turun gördüğü geçmiş uzunluğu tur sayısıyla kabaca doğrusal büyür. Sistem her turda tüm geçmişi yeniden işlerse, N tur boyunca kümülatif girdi kabaca ikinci dereceden büyür. Codex bunu otomatik bağlam sıkıştırmasıyla ele alır — özel bir API eski konuşma turlarını şifreli içerik özetlerine sıkıştırır, temel bilgiyi korurken gereksiz detayı atar. Bu, ilk loop'tan ele almanız gereken bir mühendislik endişesidir, sonradan takılan bir ek değil.
 
 ## İlk Loop'unuzu Oluşturmak
 
-Haftada 1.300 PR merge eden Stripe ölçeğinde bir pipeline ile başlamak zorunda değilsiniz. Çalışan en küçük şeyle başlayın.
+Yüksek verimli bir pipeline ile başlamak zorunda değilsiniz. Çalışan en küçük şeyle başlayın.
 
 ### Adım 1: Tekrarlayan Bir Görev Seçin
 

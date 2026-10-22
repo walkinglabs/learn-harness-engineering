@@ -132,7 +132,7 @@ Kod incelemesi sırasında yeni bir ajan hatası türü bulunduğunda, onu otoma
 | İzin sorunu | Paketlenmiş ortamda farklı izinler | Kaçırıldı | Yakalandı |
 | Hata yayma | Servis katmanı istisnaları UI katmanına ulaşmadı | Kaçırıldı | Yakalandı |
 
-5 kusurun hepsi uçtan uca testlerle yakalandı, birim testleri hiçbirini yakalamadı. Maliyet test süresinin 2 saniyeden 15 saniyeye çıkmasıydı — ajan iş akışında tamamen kabul edilebilir. Her parçanın bireysel olarak ne kadar iyi söylediği önemli değil, tam bir ansambl provasını yenemez.
+5 kusurun hepsi uçtan uca testlerle yakalandı, birim testleri hiçbirini yakalamadı. Uçtan uca koşu daha yavaştır, ancak bu maliyet beş sınır hatasını üretime göndermekle karşılaştırıldığında küçüktür. Her parçanın bireysel olarak ne kadar iyi söylediği önemli değil, tam bir ansambl provasını yenemez.
 
 ## Önemli çıkarımlar
 

@@ -26,7 +26,7 @@ Claude Codes tatsächliches Verhalten ist aufschlussreich. Bitten Sie es, „Ben
 
 Sechs Schritte später ist jeder halb fertig. Keine End-to-End-Verifizierung, komplexe Kopplung zwischen dem halbfertigen Code, und die nächste Session, die alles aufarbeiten muss, wird völlig verloren sein. Wie jemand, der sechs Gerichte gleichzeitig kocht — jedes Gericht ist in der Pfanne, aber keines ist angerichtet. Sie alle verbrennen.
 
-Anthropics experimentelle Daten unterstützen dies direkt: Agenten mit einer „kleiner nächster Schritt"-Strategie (entspricht WIP=1) zeigen eine um 37% höhere Aufgaben-Abschlussrate als Agenten mit breiten Prompts. Noch interessanter: Die Anzahl der vom Agenten generierten Codezeilen ist schwach negativ korreliert mit dem tatsächlichen Feature-Abschluss — mehr Code geschrieben, weniger Features abgeschlossen. Sich mehr auf den Teller laden, als man bewältigen kann, datenbewiesen.
+Anthropics Leitfaden für langlebige Agenten [verlangt vom Coding-Agenten, jeweils an einem Feature zu arbeiten](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), es dann zu verifizieren, zu committen und den Fortschritt zu aktualisieren, bevor es weitergeht. Ein breiter Prompt lädt den Agenten ein, mehrere Stränge gleichzeitig zu beginnen, und jeder Strang konkurriert um dasselbe Kontext- und Verifikationsbudget.
 
 ## WIP=1-Workflow
 

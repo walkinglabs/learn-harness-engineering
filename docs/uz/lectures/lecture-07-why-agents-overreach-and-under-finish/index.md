@@ -26,7 +26,7 @@ Claude Codeʼning haqiqiy xatti-harakati buni aniq koʻrsatadi. Unga “foydalan
 
 Oltita qadam oʻtgach, ularning har biri chala bajarilgan boʻladi. Hech qanday end-to-end tekshiruv (verification) yoʻq, chala pishgan kodlar oʻrtasida murakkab bogʻlanishlar mavjud boʻladi va chala ishlarni davom ettirishi kerak boʻlgan keyingi sessiya mutlaqo adashib qoladi. Xuddi bir vaqtning oʻzida oltita taom pishirayotgan odamga oʻxshaydi — hamma ovqat tovadadir, lekin birortasi ham tortilmagan (plated). Ularning hammasi kuyadi.
 
-Anthropicʼning eksperimental maʼlumotlari buni bevosita tasdiqlaydi: “kichik keyingi qadam” (small next step) strategiyasidan (WIP=1 ga teng) foydalanadigan agentlar keng promptʼlardan foydalanadigan agentlarga qaraganda 37% yuqori vazifa yakunlash darajasini koʻrsatadi. Eng qizigʻi shundaki, agentlar tomonidan yozilgan kod qatorlarining soni haqiqatda yakunlangan funksiyalar bilan zaif manfiy (teskari) korrelyatsiyaga ega — kod qanchalik koʻp yozilsa, shuncha kam funksiyalar yakunlanadi. Oʻzi chaynay oladiganidan kattaroq tishlash, maʼlumotlar bilan isbotlangan.
+Anthropicʼning uzoq davom etadigan agentlar boʻyicha koʻrsatmasi [kodlash agentidan bir vaqtda bitta funksiya ustida ishlashni](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) soʻraydi, soʻng davom etishdan oldin tekshirishni, commit qilishni va jarayonni yangilashni talab qiladi. Keng prompt esa agentni bir nechta yoʻnalishni birvarakayiga boshlashga undaydi, va har bir yoʻnalish bir xil kontekst hamda tekshiruv byudjeti uchun raqobatlashadi.
 
 ## WIP=1 Ish jarayoni (Workflow)
 

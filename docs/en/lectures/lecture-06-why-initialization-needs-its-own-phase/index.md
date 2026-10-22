@@ -37,7 +37,7 @@ flowchart TB
 
 ## What Happens When You Mix Them
 
-The most direct problem: infrastructure doesn't get built solidly. The agent spends 80% of its effort on feature code and the remaining 20% casually setting up some infrastructure. The test framework is configured but never verified, lint rules are set but too loose, no progress file created. These defects aren't obvious in the first session (because the agent still remembers what it did), but they surface in the second session: the new agent doesn't know how to run the project, how to test, or where things stand.
+The most direct problem: infrastructure doesn't get built solidly. The agent spends most of its effort on feature code and treats infrastructure as an afterthought. The test framework is configured but never verified, lint rules are set but too loose, no progress file created. These defects aren't obvious in the first session (because the agent still remembers what it did), but they surface in the second session: the new agent doesn't know how to run the project, how to test, or where things stand.
 
 A more hidden cost is "unverified accumulation." Feature code written before the test framework is properly configured — when you finally go back to add tests, you might discover the design itself was flawed. Had you known earlier, you would have implemented it differently. The more code written up front, the more has to be torn down and redone later.
 
@@ -45,7 +45,7 @@ Context budget is being wasted too. Initialization work (configuring environment
 
 The most easily overlooked problem is implicit assumption landmines. Decisions the agent makes during initialization (which test framework, how to organize directories, dependency management) — if not explicitly recorded, subsequent sessions may make contradictory choices. The first session chose Vitest as the test framework, but the second session's agent doesn't know and introduces Jest. Two test frameworks coexist, and maintenance costs double.
 
-Anthropic's long-running application development research explicitly recommends separating initialization from implementation. Their experimental data: projects using a dedicated initialization phase showed 31% higher feature completion rates in multi-session scenarios compared to mixed approaches. And the time invested in the initialization phase is fully recovered within the next 3-4 sessions.
+Anthropic's long-running-agent work [makes initialization a separate first session](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). The initializer writes an `init.sh` script, a progress file, a feature list, and an initial git commit; later coding sessions read that state, work on one feature at a time, test it end to end, commit, and update the progress file.
 
 OpenAI's Codex harness engineering guide also emphasizes the "repository as operational record" principle: establish clear operational structure from the very first run, or every new session has to re-infer project conventions.
 

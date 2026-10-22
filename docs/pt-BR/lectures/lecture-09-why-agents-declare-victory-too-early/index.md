@@ -68,7 +68,7 @@ Um agente de avaliação independente, especificamente ajustado para ser criteri
 | Arquitetura                                     | Tempo de Execução | Custo   | Funcionalidades Principais Funcionando?                    |
 | ----------------------------------------------- | ----------------- | ------- | ---------------------------------------------------------- |
 | Agente único (execução simples)                 | 20 min            | US$ 9   | Não (entidades do jogo não respondem à entrada do usuário) |
-| Três agentes (planejador + gerador + avaliador) | 6 horas           | US$ 200 | Sim (o jogo é totalmente jogável)                          |
+| Três agentes (planejador + gerador + avaliador) | 6 horas           | US$ 200 | A jogabilidade central funcionava; a física e o nível ainda tinham problemas |
 
 Trata-se exatamente do mesmo modelo (Opus 4.5) com exatamente o mesmo prompt ("construa um editor de jogos retrô 2D"). A única diferença é o harness: em vez de uma **execução simples**, utiliza-se um fluxo em que o **planejador expande os requisitos → o gerador implementa funcionalidade por funcionalidade → o avaliador realiza testes reais de clique usando Playwright**.
 
@@ -128,7 +128,7 @@ Sinais eficazes de tempo de execução incluem:
 2. Executar o fluxo completo de redefinição.
 3. Verificar a consistência do estado do banco de dados.
 
-Todos os defeitos foram descobertos durante a sessão, economizando de 5 a 10 vezes o custo de correções posteriores.
+Todos os três defeitos aparecem ainda dentro da sessão, quando o custo da correção ainda é local.
 
 ## Principais Aprendizados
 

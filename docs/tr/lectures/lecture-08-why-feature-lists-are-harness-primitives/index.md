@@ -22,7 +22,7 @@ Kullanıcı kimlik doğrulamasını yaptım, alışveriş sepeti çoğunlukla ta
 ```
 Yeni bir ajan oturumu bu nottan şu sorulara cevap verebilir mi? "Çoğunlukla tamam" ne demek? Sepet hangi testleri geçti? Ödemeleri ne engelliyor? Hepsinin cevabı "kimse bilmiyor." Doktorunuza "midem ağrıyor, son zamanlarda iyiydi" demek gibi — hangi ilacı yazabilirler?
 
-Sonuç: yeni oturum proje durumunu çıkarmak için 20 dakika harcar ve tamamlanmış özellikleri yeniden uygulayabilir. Anthropic'in mühendislik verileri iyi ilerleme kayıtlarının oturum başlatma tanı süresini %60-80 azalttığını gösteriyor.
+Sonuç: yeni oturum proje durumunu çıkarmak zorundadır ve tamamlanmış özellikleri yeniden uygulayabilir. Anthropic'in önerisi, [ilerleme ve doğrulama sonuçlarını sürümlenmiş dosyalara kaydetmektir](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents); böylece bir sonraki oturum durumu inceleyebilir.
 
 ## Özellik durum makinesi
 
@@ -111,7 +111,7 @@ Her özellik öğesi "bir oturumda tamamlanabilir" olacak şekilde kapsamlandır
 
 **Omurga modu**: Her özelliğin net bir durumu ve doğrulama komutu vardır. Yeni oturum özellik listesini okur ve 3 dakika içinde bilir: F01-F05 `passing`, F06 `active`, F07-F10 `not_started`. Doğrudan F06'dan devam eder, sıfır yeniden çalışma.
 
-Nicel sonuç: yapılandırılmış özellik listeleri kullanan projeler serbest formatlı takipten %45 daha yüksek özellik tamamlanma oranı gösterir, sıfır mükerrer uygulama ile.
+Yapılandırılmış bir liste, her özelliğin durumunu ve doğrulama komutunu tek bir yerde tutar; böylece yeni oturum neyin tamamlandığını bilir.
 
 ## Önemli çıkarımlar
 

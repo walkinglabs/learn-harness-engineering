@@ -70,7 +70,7 @@ Anthropicは2026年の研究で、より深い失敗パターンを発見しま�
 | Architecture | Runtime | Cost | Core Features Working? |
 |--------------|---------|------|------------------------|
 | Single Agent (bare run) | 20 mins | $9 | No (game entities unresponsive to input) |
-| Three Agents (planner + generator + evaluator) | 6 hours | $200 | Yes (game is fully playable) |
+| Three Agents (planner + generator + evaluator) | 6 hours | $200 | Core gameplay worked; physics and level issues remained |
 
 これは全く同じモデル（Opus 4.5）で、全く同じプロンプト（"build a 2D retro game editor"）を使用しています。唯一の違いはharnessです——「ベア実行」から「plannerが要件を展開 → generatorが機能ごとに実装 → evaluatorがPlaywrightを使って実際のクリックテストを実行」へ。
 
@@ -119,7 +119,7 @@ OpenAIはCodexの実践で特に効果的なパターンを導入しました：
 
 **実際の減点**：（1）End-to-endフローが未テスト——リセットリンクの実際の送信と検証が一度も確認されていない。（2）データベースマイグレーションが部分実行後に失敗し、スキーマの不整合が発生。（3）対象環境にメールサービスの設定が不足。
 
-**Harness介入**：終了検証を強制——（1）フルアプリを起動してリセットエンドポイントのアクセシビリティを検証。（2）フルリセットフローを実行。（3）データベース状態の一貫性を検証。すべての欠陥がセッション内で発見され、後続の修正コストの5〜10倍を節約。独立した採点者が本当の問題を見つけました。
+**Harness介入**：終了検証を強制——（1）フルアプリを起動してリセットエンドポイントのアクセシビリティを検証。（2）フルリセットフローを実行。（3）データベース状態の一貫性を検証。3 つの欠陥はすべてセッション内で表面化し、修正コストがまだ局所的なうちに対処できました。独立した採点者が本当の問題を見つけました。
 
 ## 重要なポイント
 

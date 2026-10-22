@@ -132,7 +132,7 @@ Har gal kod review (kodni tekshirish) paytida yangi agent xatosi topilsa, shunga
 | Ruxsat berish (Permission Issue) | Yuklangan (packaged) muhitida ruxsat berish konfiguratsiyasi xatosi | Oʻtkazib yuborilgan | Tutilgan |
 | Xatolar (Error Propagation) | Service qatlamidagi istisnolar UI qatlamiga yetib bormagan | Oʻtkazib yuborilgan | Tutilgan |
 
-Yuqoridagi 5 muammoni E2E tutilganida, unit testlarning birontasi ushlab qola olmadi. Bunga 2 soniyadan 15 soniyagacha oshgan sinov vaqti evaziga erishildi — agent workflowʼida buning hech yomon yeri yoʻq. Har bir partiya alohida qanchalik yaxshi kuylanmasin, toʻliq xor mashqi bilan tenglasholmaydi.
+Yuqoridagi 5 muammoni E2E tutilganida, unit testlarning birontasi ushlab qola olmadi. Bunga end-to-end sinovning sekinroq ishlashi evaziga erishildi — ammo bu xarajat beshta chegara nuqsonini chiqarib yuborish bilan solishtirganda kichik. Har bir partiya alohida qanchalik yaxshi kuylanmasin, toʻliq xor mashqi bilan tenglasholmaydi.
 
 ## Asosiy xulosalar
 

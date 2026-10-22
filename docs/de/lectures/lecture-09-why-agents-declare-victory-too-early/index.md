@@ -70,7 +70,7 @@ Ein unabhängiger evaluierender Agent, der speziell darauf abgestimmt ist, „pi
 | Architektur | Laufzeit | Kosten | Kernfunktionen funktionsfähig? |
 |--------------|---------|------|------------------------|
 | Einzelner Agent (ohne Harness) | 20 Min. | $9 | Nein (Spiel-Entitäten reagieren nicht auf Eingabe) |
-| Drei Agenten (Planer + Generator + Evaluator) | 6 Stunden | $200 | Ja (Spiel ist vollständig spielbar) |
+| Drei Agenten (Planer + Generator + Evaluator) | 6 Stunden | $200 | Kern-Gameplay lief; Physik- und Level-Probleme blieben |
 
 Dies ist exakt dasselbe Modell (Opus 4.5) mit exakt demselben Prompt („build a 2D retro game editor"). Der einzige Unterschied ist der Harness — vom „nackten Ausführen" zu „Planer entfaltet Anforderungen → Generator implementiert Feature für Feature → Evaluator führt tatsächliches Klick-Testing mit Playwright durch".
 
@@ -119,7 +119,7 @@ Wirksame Laufzeit-Signale umfassen:
 
 **Tatsächliche Punkteabzüge**: (1) End-to-End-Ablauf ungetestet — das tatsächliche Senden und Verifizieren des Zurücksetzungslinks wurde nie bestätigt. (2) Datenbankmigration scheiterte nach teilweiser Ausführung, was eine Schemainkonsistenz verursachte. (3) E-Mail-Service-Konfiguration fehlte in der Zielumgebung.
 
-**Harness-Intervention**: Terminierungsvalidierung erzwungen — (1) Vollständige App starten, um die Erreichbarkeit des Reset-Endpunkts zu verifizieren; (2) Den vollständigen Reset-Flow ausführen; (3) Datenbankzustandskonsistenz verifizieren. Alle Defekte wurden innerhalb der Session gefunden, was 5-10x der Kosten für spätere Reparaturen einsparte. Der unabhängige Korrektor fand die echten Probleme.
+**Harness-Intervention**: Terminierungsvalidierung erzwungen — (1) Vollständige App starten, um die Erreichbarkeit des Reset-Endpunkts zu verifizieren; (2) Den vollständigen Reset-Flow ausführen; (3) Datenbankzustandskonsistenz verifizieren. Alle drei Defekte tauchen innerhalb der Session auf, solange die Behebung noch lokal ist. Der unabhängige Korrektor fand die echten Probleme.
 
 ## Wichtigste Erkenntnisse
 

@@ -26,7 +26,7 @@ El comportamiento real de Claude Code es revelador. Pídele que "añada registro
 
 Seis pasos después, cada uno está a medio hacer. Sin verificación end-to-end, acoplamiento complejo entre el código a medio cocinar, y la siguiente sesión que tenga que recoger los pedazos estará completamente perdida. Como alguien cocinando seis platos simultáneamente — cada plato está en la sartén pero ninguno ha sido emplatado. Todos se queman.
 
-Los datos experimentales de Anthropic apoyan esto directamente: los agentes que usan una estrategia de "pequeño siguiente paso" (equivalente a WIP=1) muestran un 37% más de tasa de completitud de tareas que los agentes que usan prompts amplios. Más interesante aún, el número de líneas de código generadas por los agentes está débilmente correlacionado negativamente con la completitud real de funcionalidades — más código escrito, menos funcionalidades completadas. Morder más de lo que puedes masticar, comprobado con datos.
+La guía de Anthropic para agentes de larga duración [pide al agente de codificación trabajar en una funcionalidad a la vez](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), y luego verificar, hacer commit y actualizar el progreso antes de pasar a la siguiente. Un prompt amplio invita al agente a abrir varios frentes, y cada frente compite por el mismo contexto y el mismo presupuesto de verificación.
 
 ## Flujo de trabajo WIP=1
 

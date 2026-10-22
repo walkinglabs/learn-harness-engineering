@@ -9,7 +9,7 @@ Sáu tuần sau khi Bài giảng trước vừa giới thiệu xong Loop Enginee
 
 > "Chúng ta vẫn đang nói về Loop, hay đã chuyển sang Graph rồi?"
 
-Một dòng tweet, trong một ngày đã đạt khoảng 575 nghìn lượt xem, đến cuối tháng tăng lên khoảng 3 triệu. Vài giờ sau, kỹ sư máy học Hamel Husain đăng một bài viết nhan đề *Loop Engineering Is Dead. Enter Graph Engineering* — toàn bộ nội dung chỉ là một ảnh động ghi chữ "Stop it" — và nhận thêm khoảng 680 nghìn lượt xem.
+Một dòng tweet. Vài giờ sau, kỹ sư máy học Hamel Husain đăng một bài viết nhan đề *Loop Engineering Is Dead. Enter Graph Engineering* — toàn bộ nội dung chỉ là một ảnh động ghi chữ "Stop it".
 
 Điều đáng suy ngẫm hơn: **cả hai người đều đăng như một trò đùa.** Một người châm biếm một ngành công nghiệp cứ sáu tuần lại phát minh ra một thuật ngữ mới, người kia thuận theo meme đó để phụ họa. Nhưng trò đùa chỉ sống được khoảng một cuối tuần — các khóa học, lộ trình, bộ công cụ đã phủ kín dòng thời gian trước khi cuối tuần kết thúc, kèm theo một loạt con số bịa đặt: "độ chính xác +18%, chi phí −85%" là dữ liệu giả (18% và 85% thực sự tồn tại, nhưng đến từ một bài báo về bản vẽ đường ống hóa chất, và so với các đường cơ sở hoàn toàn khác nhau), "Microsoft, Stanford, Anthropic đồng thời phát hiện ra kỹ thuật đồ thị" cũng là tin giả. Việc kiểm chứng dữ kiện chỉ xác nhận đúng một "người tiên phong": Josh Simmons — bài *We Are Entering the Graph Engineering Phase* của ông viết vào ngày 4 tháng 7, sớm hơn trò đùa này đúng hai tuần — **chính trò đùa đã khiến sự việc trở nên phổ biến, chứ không phải trò đùa tạo ra sự việc.**
 
@@ -257,11 +257,11 @@ Chạy xong đối chiếu với đồ thị phía trên: `graph.md` bạn viế
 
 ## Dự án mã nguồn mở: thứ chỉ có sau khi phát hành, thứ đã có trước khi phát hành
 
-Trước tiên vạch rõ ranh giới: **Graph Engineering là cái tên chỉ tồn tại sau ngày 18 tháng 7 năm 2026.** Các framework mã nguồn mở trước ngày đó đều không phải "dự án sau khi phát hành Graph Engineering". Kể đến đầu tháng 8 năm 2026, các dự án mã nguồn mở thực sự xuất hiện trực tiếp với cái tên này sau khi khái niệm bùng nổ, mới chỉ có một dự án đứng vững:
+Trước tiên vạch rõ ranh giới: **Graph Engineering là cái tên chỉ tồn tại sau ngày 18 tháng 7 năm 2026.** Các framework mã nguồn mở trước ngày đó đều không phải "dự án sau khi phát hành Graph Engineering". Một dự án sử dụng tên này một cách tường minh là GraphARC:
 
 **Thứ chỉ có sau khi khái niệm phát hành**
 
-- [GraphArc](https://github.com/CodeGraphContext/grapharc) (2026-08-02): tự xưng là "triển khai thời gian thực đầu tiên của Graph Engineering". Nó biến quá trình thực thi agent từ trace chôn trong log thành một **đồ thị điều phối thời gian thực tương tác** — mỗi agent, mỗi quan hệ phụ thuộc, mỗi điểm quyết định đều được vẽ ra, trực quan hóa toàn bộ đồ thị trước khi thực thi, bạn xác nhận (thậm chí có thể xem bằng điện thoại) rồi mới cho chạy. Tác giả có nền tảng làm công cụ đồ thị cho hơn 4000 nhà phát triển, định hướng là "quan sát được, gỡ lỗi được, kỹ thuật hóa được". Rất mới, tính năng còn ở giai đoạn đầu.
+- [GraphARC](https://github.com/CodeGraphContext/GraphARC) (tạo tháng 7 năm 2026): tự mô tả là "an end to end implementation of Graph Engineering as proposed by Andrew NG and Peter Steinberger". Đây là một dự án Python ở giai đoạn đầu. Việc hữu ích là đọc mô hình điều phối của nó và quyết định xem cách tiếp cận này có phù hợp với quy trình của bạn không.
 
 **Thứ đã có trước khi khái niệm phát hành (chúng không gọi là Graph Engineering, nhưng chúng mới là thứ bạn dùng khi xây dựng)**
 
@@ -325,7 +325,7 @@ Không phải mọi nhiệm vụ đều đáng để vẽ đồ thị. Năm tiê
 - [goddaehee: Kiểm chứng dữ kiện Graph Engineering (tiếng Hàn, 2026-07-30)](https://goddaehee.tistory.com/628) — kiểm chứng dữ kiện đầy đủ nhất: dòng thời gian nguồn gốc trò đùa, phân tích các con số giả, dữ liệu LangGraph, so sánh độ nóng Hacker News
 - [Josh Simmons: We Are Entering the Graph Engineering Phase (2026-07-04)](https://www.drjoshcsimmons.com/writing/we-are-entering-the-graph-engineering-phase) — bài viết nghiêm túc đi trước trò đùa đó hai tuần
 - [LangChain: 3 Years of Graph Engineering with LangGraph (2026-07-22)](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) — phản hồi chính thức: "không phải ý tưởng mới, là cái tên mới nhất của một cách tiếp cận đã có"; LangGraph 65 triệu+ lượt tải mỗi tháng
-- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — dữ liệu lan truyền từ khóa nóng (575 nghìn lượt xem trên tweet đầu tiên)
+- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — một tường thuật về cách thuật ngữ lan truyền
 - [LangChain: The Best AI Agent Frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — so sánh ngang bảy framework mã nguồn mở chủ lưu: LangGraph, CrewAI, Microsoft Agent Framework, LlamaIndex, Google ADK, OpenAI Agents SDK, Mastra
 - [Tài liệu chính thức LangGraph](https://docs.langchain.com/oss/python/langgraph/graph-api) — "Nodes do the work, edges tell what to do next"; định nghĩa chính xác về nút và cạnh, nguồn tham khảo trực tiếp để xây dựng đồ thị
 - [Anthropic: Building Effective Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents) — năm mẫu hình, vẽ ra chính là đồ thị; phân biệt workflow vs agent có thẩm quyền

@@ -44,7 +44,7 @@ Bir harness gözlemlenebilirlikten yoksun olduğunda dört tür sorun sistematik
 
 **Yeniden denemeler kör tahminlere dönüşür**: Ajan neden başarısız olduğunu bilmediğinde yeniden deneme yönü rastgeledir. Yanlış yönde tekrar tekrar deneyebilir — gerçek başarısızlık kök nedenini göz ardı ederken ilgisiz kod yollarını düzeltebilir. Her kör yeniden deneme token ve zamana mal olur.
 
-**Oturum devir bilgi uçurumu**: Eksiksiz olmayan iş bir sonraki oturuma teslim edildiğinde, gözlemlenebilirlik eksikliği yeni oturumun sistem durumunu sıfırdan teşhis etmek zorunda olduğu anlamına gelir. Anthropic'in uzun süre çalışan ajan gözlemleri bu gereksiz tanının toplam oturum süresinin %30-50'sini tüketebileceğini gösteriyor.
+**Oturum devir bilgi uçurumu**: Eksiksiz olmayan iş bir sonraki oturuma teslim edildiğinde, gözlemlenebilirlik eksikliği yeni oturumun sistem durumunu sıfırdan teşhis etmek zorunda olduğu anlamına gelir. Yeni oturum kodu yeniden okumak, komutları yeniden çalıştırmak ve hangi sinyallerin önemli olduğuna karar vermek zorundadır; [sürümlenmiş ilerleme ve doğrulama kayıtları](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) incelenebilir bir durum sağlar.
 
 ### Gerçek bir Claude Code senaryosu
 
@@ -54,7 +54,7 @@ Bir harness gözlemlenebilirlikten yoksun olduğunda dört tür sorun sistematik
 
 **Tam gözlemlenebilirlikle**: Planlayıcı bir sprint sözleşmesi çıkarır — hangi bileşenleri değiştireceğini, her biri için doğrulama standartlarını ve hariç tutmaları (yazdırma stilleri yok) listeler. Üretici sözleşmeye göre uygular. Runtime gözlemlenebilirliği her bileşenin stil yükleme ve uygulama sürecini kaydeder. Değerlendirici spesifik kanıt alıntılarıyla boyut boyut değerlendirmek için bir puanlama ölçütü kullanır. Bir iterasyon yüksek kaliteli bir sonuç üretir, yaklaşık 15 dakika.
 
-3 kat verim farkı. Tek değişen şey gözlemlenebilirlik.
+Fark, sözleşmenin ve kanıtın ajanın kafasının dışında var olup olmamasından geliyor.
 
 ### Ajanlar bunu neden kendileri çözemez
 
@@ -128,7 +128,7 @@ Her harness oturumu için bir iz, her görev için bir span ve her doğrulama ad
 - Puanlama ölçütü boyut boyut yapılandırılmış değerlendirme sağlar
 - Bir iterasyon yüksek kaliteli sonuçlar üretir, 15 dakika
 
-3 kat verim iyileştirmesi, daha kararlı kalite, tekrarlanabilir değerlendirmeler.
+Kalite daha kararlı, değerlendirmeler tekrarlanabilir.
 
 ## Önemli çıkarımlar
 
@@ -136,7 +136,7 @@ Her harness oturumu için bir iz, her görev için bir span ve her doğrulama ad
 - **Her iki gözlemlenebilirlik katmanı da gereklidir** — runtime sinyalleri "ne oldu"yu, süreç artefaktları "neden bu şekilde yapıldı"yı açıklar.
 - **Sprint sözleşmeleri hizalamayı öne çeker** — "üreticinin değerlendiricinin öngörülebilir nedenlerle hemen reddedeceği bir şey inşa etmesi"ni önler.
 - **Puanlama ölçütleri değerlendirmeyi tekrarlanabilir yapar** — farklı değerlendiriciler aynı çıktı için benzer puanlar üretir.
-- **Gözlemlenebilirlik eksikliği oturum süresinin %30-50'sini gereksiz tanılara harcar.**
+- **Gözlemlenebilirlik, belirsiz bir reddi spesifik ve düzeltilebilir bir kusura dönüştürür.**
 
 ## Daha fazla okuma
 

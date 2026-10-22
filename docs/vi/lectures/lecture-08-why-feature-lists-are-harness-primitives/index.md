@@ -25,7 +25,7 @@ Nhìn mẫu ghi chú tiến độ quen thuộc này:
 
 Một phiên agent mới đọc ghi chú này thì trả lời được gì? "Hầu như xong" nghĩa là gì? Giỏ hàng đã pass test nào? Cái gì đang chặn thanh toán? Câu trả lời cho tất cả: "không ai biết". Cũng giống như bảo bác sĩ "bụng tôi đau, dạo này có vẻ ổn hơn", bác sĩ biết kê đơn thuốc nào đây?
 
-Hệ quả: phiên mới tốn 20 phút để dò ra trạng thái dự án, và có khi lại triển khai lại những tính năng đã hoàn thành. Dữ liệu kỹ thuật của Anthropic cho thấy bản ghi tiến độ tốt giảm thời gian chẩn đoán lúc khởi động phiên từ 60% đến 80%.
+Hệ quả: phiên mới phải dò ra trạng thái dự án, và có khi lại triển khai lại những tính năng đã hoàn thành. Lời khuyên của Anthropic là [ghi tiến độ và kết quả xác minh vào các tệp được quản lý phiên bản](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), để phiên tiếp theo có thể kiểm tra trạng thái.
 
 ## Máy trạng thái tính năng
 
@@ -116,7 +116,7 @@ Một nền tảng thương mại điện tử với 10 tính năng. Hai cách t
 
 **Chế độ có cấu trúc**: Mỗi tính năng có trạng thái và lệnh xác minh rõ ràng. Phiên mới đọc feature list và trong 3 phút đã biết: F01-F05 đang `passing`, F06 đang `active` (đang triển khai), F07-F10 đang `not_started`. Nối tiếp thẳng vào F06, không có phần việc nào phải làm lại.
 
-Kết quả định lượng: các dự án dùng feature list có cấu trúc đạt tỷ lệ hoàn thành tính năng cao hơn 45% so với theo dõi tự do, và số lần triển khai trùng lặp bằng 0.
+Một danh sách có cấu trúc đặt trạng thái và lệnh xác minh của từng tính năng vào một chỗ, nên phiên mới biết cái gì đã xong.
 
 ## Những điểm chính cần nhớ
 

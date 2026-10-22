@@ -54,7 +54,7 @@ flowchart LR
 
 Les lois de Lehman sur l'évolution logicielle nous disent : les systèmes soumis à des changements continus augmenteront inévitablement en complexité s'ils ne sont pas activement gérés. C'est particulièrement vrai pour les agents de codage IA — chaque session introduit des changements, et sans nettoyage à la sortie, la dette technique s'accumule de manière exponentielle.
 
-Les données réelles sont éloquentes. Un projet développé avec des agents pendant 12 semaines, sans stratégie de nettoyage :
+Pour un projet hypothétique de 12 semaines, supposons les valeurs suivantes :
 
 - Semaine 1 : Taux de réussite du build 100 %, taux de réussite des tests 100 %, démarrage de nouvelle session 5 min
 - Semaine 4 : Build 95 %, tests 92 %, démarrage 15 min
@@ -66,7 +66,7 @@ Le même projet avec une stratégie de nettoyage :
 - Semaine 1 : 100 %, 100 %, 5 min
 - Semaine 12 : 97 %, 95 %, 9 min
 
-Après 12 semaines : le taux de réussite du build diffère de 29 points de pourcentage, le temps de démarrage d'une nouvelle session diffère de 85 %. Ce n'est pas théorique — c'est une différence observée.
+Une boucle de nettoyage hebdomadaire maintient l'état de départ stable : chaque session se termine avec le build, les tests, l'avancement et les artefacts temporaires en ordre, si bien que la session suivante part de la même base.
 
 ### Les cinq dimensions de l'état propre
 
@@ -76,7 +76,7 @@ L'état propre, ce n'est pas juste « le code compile ». C'est cinq dimensions 
 
 **Dimension tests** : Tous les tests passent-ils ? Y compris les tests qui existaient avant la session — la session est responsable de ne pas casser les fonctionnalités existantes. Et cela devrait être vérifié dans le CI, pas juste « ça marche chez moi ».
 
-**Dimension avancement** : L'avancement actuel est-il enregistré dans un artefact lisible par machine ? Sous-tâches terminées avec leurs critères de réussite, sous-tâches en cours mais incomplètes avec leur état actuel, sous-tâches non encore commencées. De bons enregistrements d'avancement réduisent de 60 à 80 % le temps de diagnostic au démarrage d'une session.
+**Dimension avancement** : L'avancement actuel est-il enregistré dans un artefact lisible par machine ? Sous-tâches terminées avec leurs critères de réussite, sous-tâches en cours mais incomplètes avec leur état actuel, sous-tâches non encore commencées. Enregistrez l'avancement et les résultats de vérification dans des fichiers versionnés pour que la session suivante puisse inspecter l'état.
 
 **Dimension artefacts** : Y a-t-il des artefacts temporaires périmés ou ambigus ? Logs de debug, fichiers temporaires, code commenté, marqueurs TODO — tous ces éléments augmentent la charge cognitive pour la prochaine session.
 
@@ -160,7 +160,7 @@ Une application Electron développée avec des agents sur 12 semaines, comparant
 
 **Avec stratégie de nettoyage** (groupe expérimental) : Vérification complète d'état propre à chaque fin de session + boucle de nettoyage hebdomadaire. Semaine 12, taux de réussite du build 97 %, taux de réussite des tests 95 %, démarrage de nouvelle session 9 min, artefacts périmés 11.
 
-À la semaine 12, le taux de réussite du build du groupe expérimental est de 29 points de pourcentage plus élevé, le taux de réussite des tests de 34 points plus élevé, et le temps de démarrage d'une nouvelle session réduit de 85 %.
+À la semaine 12, le groupe expérimental garde des taux de build et de tests proches du point de départ, démarre plus vite et laisse peu d'artefacts périmés. Le nettoyage coûte quelques minutes par session et donne à la session suivante un état de départ fiable.
 
 ## Points clés
 

@@ -9,7 +9,7 @@ Oʻtgan maʼruzadagi Loop Engineering tugaganidan olti hafta oʻtib, 2026-yil 18
 
 > "Biz hali ham Loop haqida gapiryapmizmi, yoki allaqachon Graphʼga oʻtib boʻldikmi?"
 
-Bitta tvit bir kunda taxminan 570 ming koʻrish, oy oxiriga kelib esa taxminan 3 million koʻrish oldi. Bir necha soatdan soʻng, mashina oʻqitish boʻyicha muhandis Hamel Husain "Loop Engineering Is Dead. Enter Graph Engineering" nomli maqola chop etdi — matnida faqat "Stop it" yozuvi tushirilgan GIF bor edi — va u ham taxminan 680 ming koʻrish oldi.
+Bitta tvit. Bir necha soatdan soʻng, mashina oʻqitish boʻyicha muhandis Hamel Husain "Loop Engineering Is Dead. Enter Graph Engineering" nomli maqola chop etdi — matnida faqat "Stop it" yozuvi tushirilgan GIF bor edi.
 
 Eng qiziq tomoni: **ikkalasi ham buni hazil sifatida yozgan edi.** Biri sanoat har olti haftada yangi atama ixtiro qilishini masxara qilayotgan edi, ikkinchisi esa shu memʼni davom ettirib, hazillashib javob berayotgan edi. Ammo hazil faqat taxminan bir dam olish kunigacha yashadi — oʻquv kurslari, yoʻl xaritalari va vositalar toʻplami hafta oxirigacha feedʼni toʻldirib tashladi, bir toʻda uydirma raqamlar bilan: "aniqlik +18%, xarajat −85%" — bu soxta maʼlumot (18% va 85% haqiqatan mavjud, lekin ular kimyo quvurlari sxemalari haqidagi ilmiy maqoladan olingan va taqqoslash bazisi butunlay boshqacha), "Microsoft, Stanford va Anthropic bir vaqtda grafik muhandisligini kashf etdi" degani ham yolgʻon xabar. Fakt-tekshiruv tasdiqlagan yagona "kashfiyotchi" — Josh Simmons: uning "We Are Entering the Graph Engineering Phase" maqolasi 4-iyulda yozilgan, bu hazildan roppa-rosa ikki hafta oldin — **hazil bu narsani mashhur qildi, lekin bu narsani yaratgan emas.**
 
@@ -257,11 +257,11 @@ Ishga tushirgach, yuqoridagi grafik bilan solishtiring: qoʻlda yozgan `graph.md
 
 ## Ochiq manbali loyihalar: eʼlondan keyin paydo boʻlganlar va eʼlondan oldin mavjud boʻlganlar
 
-Avval chegarani aniq belgilaylik: **Graph Engineering — 2026-yil 18-iyuldan keyin paydo boʻlgan nom.** Undan oldin ochiq manbali boʻlgan freymvorklar "Graph Engineering eʼlondan keyingi loyihalar" emas. Kontsepsiya portlab ketgandan keyin, toʻgʻridan-toʻgʻri shu nom bilan paydo boʻlgan ochiq manbali loyihalar, 2026-yil avgust boshi holatiga koʻra, faqat bittasi tan olinadi:
+Avval chegarani aniq belgilaylik: **Graph Engineering — 2026-yil 18-iyuldan keyin paydo boʻlgan nom.** Undan oldin ochiq manbali boʻlgan freymvorklar "Graph Engineering eʼlondan keyingi loyihalar" emas. GraphARC nomini bevosita ishlatadigan bitta loyiha bor:
 
-**Kontsepsiya eʼlonidan keyin paydo boʻlganlar**
+**Eʼlondan keyingi loyihalar (aslida Graph Engineering deb ataladigan yagona loyiha)**
 
-- [GraphArc](https://github.com/CodeGraphContext/grapharc) (2026-08-02): oʻzini "Graph Engineeringʼning birinchi real vaqt implementatsiyasi" deb ataydi. U agent bajarilishini logʼlarga koʻmilgan traceʼdan **interaktiv real vaqt orkestratsiya grafigiga** aylantiradi — har bir agent, har bir bogʻliqlik, har bir qaror nuqtasi chiziladi, bajarilishdan oldin butun grafik vizualizatsiya qilinadi, siz tasdiqlaganingizdan (hatto telefonda koʻrib) keyin ruxsat beriladi. Muallifning tajribasi — 4000+ ishlab chiquvchi uchun grafik vositalari yaratish, yoʻnalish — "kuzatiladigan, tuzatiladigan, muhandislashtiriladigan". Juda yangi, funksiyalari hali erta bosqichda.
+- [GraphARC](https://github.com/CodeGraphContext/GraphARC) (2026-yil iyulda yaratilgan): oʻzini "an end to end implementation of Graph Engineering as proposed by Andrew NG and Peter Steinberger" deb taʼriflaydi. Bu erta bosqichdagi Python loyihasi. Foydali yoʻl — uning orkestratsiya modelini oʻqib chiqish va bu yondashuv sizning ish oqimingizga mos keladimi-yoʻqmi, shuni hal qilish.
 
 **Kontsepsiya eʼlonidan oldin mavjud boʻlganlar (ular Graph Engineering deb atalmaydi, lekin siz qurishda aynan ularni ishlatasiz)**
 
@@ -325,7 +325,7 @@ Barcha vazifalar grafik chizishga arzimaydi. Beshta mezon, kamida uchtasi bajari
 - [goddaehee: Graph Engineering fakt-tekshiruvi (koreyscha, 2026-07-30)](https://goddaehee.tistory.com/628) — eng toʻliq fakt-tekshiruv: hazil kelib chiqishi xronologiyasi, soxta raqamlar tahlili, LangGraph maʼlumotlari, Hacker News qiziqish taqqoslash
 - [Josh Simmons: We Are Entering the Graph Engineering Phase (2026-07-04)](https://www.drjoshcsimmons.com/writing/we-are-entering-the-graph-engineering-phase) — oʻsha hazildan ikki hafta oldin yozilgan jiddiy maqola
 - [LangChain: 3 Years of Graph Engineering with LangGraph (2026-07-22)](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) — rasmiy javob: "yangi gʻoya emas, mavjud yondashuvning eng yangi nomi"; LangGraph oylik 65 million+ yuklab olish
-- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — hot atama tarqalish maʼlumotlari (birinchi tvit 575 ming koʻrish)
+- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — bu atama qanday tarqalgani haqidagi hikoya
 - [LangChain: The Best AI Agent Frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — yettita asosiy ochiq manbali freymvorkning yonma-yon taqqoslash: LangGraph, CrewAI, Microsoft Agent Framework, LlamaIndex, Google ADK, OpenAI Agents SDK, Mastra
 - [LangGraph rasmiy hujjatlari](https://docs.langchain.com/oss/python/langgraph/graph-api) — "Nodes do the work, edges tell what to do next"; tugun va chekkaning aniq taʼrifi, grafik qurish uchun birinchi qoʻl maʼlumotnoma
 - [Anthropic: Building Effective Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents) — besh naqsh, chizilganda grafik boʻladi; workflow vs agentʼning nufuzli farqi

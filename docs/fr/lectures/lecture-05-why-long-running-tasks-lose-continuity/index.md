@@ -52,7 +52,7 @@ flowchart LR
 
 - **Les fenêtres de contexte sont finies** : Quelle que soit la taille de fenêtre annoncée (128K, 200K, 1M), les tâches longues finiront par les épuiser. Après épuisement, soit la compaction (perte d'informations) soit la réinitialisation (nouvelle session) est nécessaire. Les deux perdent quelque chose.
 - **Artefacts de continuité** : Fichiers d'état persistés qui permettent à une nouvelle session de reprendre sans ambiguïté là où la précédente s'est arrêtée. La forme de base : journal de progression + enregistrement de vérification + actions suivantes. Le journal de l'artisan.
-- **Coût de reconstruction** : Le temps nécessaire à une nouvelle session pour atteindre un état exécutable. Les bons harness peuvent comprimer le coût de reconstruction de 15 minutes à 3 minutes.
+- **Coût de reconstruction** : Le temps nécessaire à une nouvelle session pour atteindre un état exécutable. Un bon harness laisse la progression, les résultats de vérification et les prochaines actions dans des fichiers, pour que la nouvelle session démarre depuis un état écrit.
 - **Dérive** : L'écart entre la compréhension de l'agent et l'état réel du dépôt de code. Chaque frontière de session introduit de la dérive ; sans contrôle, elle se cumule.
 - **Anxiété de contexte** : Un phénomène observé par Anthropic — les agents présentent un comportement de convergence prématurée à l'approche des limites de contexte perçues, terminant les tâches prématurément pour éviter la perte d'informations. C'est une anxiété irrationnelle face aux ressources.
 - **Compaction vs réinitialisation** : La compaction résume le contexte au sein de la même session (conserve le « quoi », peut perdre le « pourquoi ») ; la réinitialisation ouvre une nouvelle session reconstruisant à partir de l'état persisté (propre mais dépend de l'exhaustivité des artefacts).
@@ -160,7 +160,7 @@ LangChain rapporte un score passant de 52,8% à 66,5%, soit 13,7 points, avec le
 - Les fenêtres de contexte sont une ressource finie. Les tâches longues s'étaleront sur plusieurs sessions, et les sessions perdront de l'information — comme l'artisan qui oublie chaque jour, c'est une réalité objective.
 - La solution n'est pas des fenêtres plus grandes — c'est une meilleure persistance de l'état. Fichiers de progression + journaux de décisions + points de contrôle git — donnez à l'artisan amnésique un journal fiable.
 - Traitez l'agent comme un ingénieur atteint d'amnésie : avant de « terminer sa journée », notez ce qui a été fait, pourquoi, et ce qui reste à faire.
-- Le coût de reconstruction est la métrique clé. Les bons harness devraient amener les nouvelles sessions à un état exécutable en moins de 3 minutes.
+- Le coût de reconstruction est la métrique clé. Un bon harness laisse la progression, les résultats de vérification et les prochaines actions dans des fichiers, pour qu'une nouvelle session récupère rapidement.
 - Stratégie mixte : tâches courtes en session, tâches longues avec des artefacts structurés pour la continuité.
 
 ## Pour aller plus loin

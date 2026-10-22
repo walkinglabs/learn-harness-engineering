@@ -84,11 +84,11 @@ Loop Engineering, chủ đề của bài giảng này, không phải về một 
 
 Bạn không cần phải gõ `/goal` mỗi lần. Nhưng hiểu nó đến từ đâu và tại sao nó trông như thế nào — đó là hiểu cốt lõi của loop engineering. Các vòng lặp phức tạp hơn chỉ thêm các phần như lập lịch, song song, cô lập, và bộ nhớ lên trên ba nguyên tắc cơ bản giống nhau: mục tiêu, xác minh, điều kiện dừng.
 
-## Tháng Sáu 2026: Ba Người Đốt Cùng Một Que Diêm Trong Một Tuần
+## Những Ngày Khác Nhau, Cùng Một Hướng
 
-Trong tuần đầu tiên của tháng 6 năm 2026, ba người thực hành xây dựng cơ sở hạ tầng agent coding — mà không so sánh ghi chú — đã nói cùng một điều bằng những lời khác nhau.
+Cùng một ý tưởng xuất hiện ở những nơi khác nhau, vào những thời điểm khác nhau.
 
-**Peter Steinberger** (người tạo ra OpenClaw, [bài đăng của ông đạt 8 triệu lượt xem](https://x.com/steipete/status/2063697162748260627)): "Bạn không nên còn đang nhắc lệnh các agent coding nữa. Bạn nên thiết kế các vòng lặp nhắc lệnh agent của bạn."
+**Peter Steinberger** (người tạo ra OpenClaw, [trong một bài đăng](https://x.com/steipete/status/2063697162748260627)): "Bạn không nên còn đang nhắc lệnh các agent coding nữa. Bạn nên thiết kế các vòng lặp nhắc lệnh agent của bạn."
 
 **Boris Cherny** (trưởng phòng Claude Code tại Anthropic, [trên podcast Acquired](https://x.com/rohanpaul_ai/status/2063289804708835412)): "Tôi không còn nhắc lệnh Claude nữa. Tôi có các vòng lặp chạy nhắc lệnh Claude và tìm ra phải làm gì. Công việc của tôi là viết các vòng lặp."
 
@@ -96,9 +96,9 @@ Trong tuần đầu tiên của tháng 6 năm 2026, ba người thực hành xâ
 
 > **Loop engineering là thay thế bản thân bạn với tư cách là người nhắc lệnh agent. Bạn thiết kế hệ thống làm việc đó thay thế.**
 
-Cherny tiết lộ con số: trong hơn 30 ngày liên tiếp, tất cả các đóng góp code cho Claude Code đều được thực hiện tự chủ bởi AI — 259 PR đã được merge, hơn 80% code sản xuất được viết bởi Claude, và tỷ lệ thành công 76% đối với các nhiệm vụ phần mềm mở.
+Cherny viết trong một [báo cáo cá nhân ngày 27-12-2025](https://twitter.com/bcherny/status/2004887829252317325) rằng trong hơn 30 ngày anh đã merge 259 PR — 497 commit, thêm 40.000 dòng, xóa 38.000 dòng — và mọi dòng đều do Claude Code + Opus 4.5 viết.
 
-Ba người. Một tuần. Cùng một kết luận. Không phải vì họ phối hợp — mà vì cơ sở hạ tầng đã lặng lẽ vượt qua một ngưỡng. Các agent đã trở nên đủ tin cậy để hoàn thành các nhiệm vụ không tầm thường mà không cần giám sát. Các nguyên thủy lập lịch (`/loop`, `/goal`, cron) giờ đã được tích hợp sẵn trong các công cụ. Chi phí của một lần chạy agent đã giảm đủ thấp để việc chạy một cách lặp đi lặp lại theo bộ hẹn giờ trông không còn lãng phí. Khi tất cả các bộ phận đều có mặt, bước di chuyển kết hợp chúng trở nên hiển nhiên với mọi người cùng một lúc.
+Những câu trích dẫn đến từ các ngày, định dạng và đội ngũ khác nhau. Hướng đi chung của họ là đưa việc lập lịch, xác minh và quyết định dừng ra khỏi prompt thời điểm và vào trong một hệ thống. Đến giữa năm 2026, agent đã có thể hoàn thành các tác vụ không tầm thường mà không cần giám sát, các nguyên thủy lập lịch đã được tích hợp sẵn, và một lần chạy đã đủ rẻ để lặp lại theo bộ hẹn giờ. Khi các mảnh đã có mặt, không chỉ một người ghép chúng lại.
 
 > Nguồn: [Addy Osmani: Loop Engineering](https://addyosmani.com/blog/loop-engineering/)
 
@@ -267,7 +267,7 @@ flowchart TD
 
 Đây không còn là một lần chạy agent đơn lẻ nữa. Đó là một hệ thống vận hành liên tục thức dậy mỗi buổi sáng, tự quét dọn sàn nhà, và đặt những thứ cần sự chú ý của bạn ra trước mặt bạn. Vai trò của bạn trở thành: **review nội dung hộp thư, đưa ra quyết định, và khi bạn phát hiện một mẫu hệ thống không thể xử lý, tinh chỉnh các kỹ năng và quy tắc.**
 
-Cherny đã sử dụng mẫu này để merge 259 PR trong 30 ngày mà không cần mở IDE một lần nào. Các kỹ sư OpenAI đã sử dụng cùng một mẫu để xây dựng một sản phẩm beta khoảng một triệu dòng mã bằng tay — mà không cần tự viết một dòng mã nào.
+Báo cáo 30 ngày của Cherny là một điểm dữ liệu cho mẫu này: 259 PR, với code do Claude Code + Opus 4.5 viết. [Bản ghi harness của OpenAI](https://openai.com/index/harness-engineering/) là một điểm khác: một đội nhỏ dùng Codex trên một kho lưu trữ hoàn toàn mới trong năm tháng và báo cáo khoảng một triệu dòng cùng khoảng 1.500 PR.
 
 ## Phân tách Generator/Evaluator: Tại sao Bạn Không thể Để Mô hình Chấm Điểm Công việc của Chính Mình
 
@@ -293,7 +293,7 @@ Một câu để nhớ: **ai đó trong đội của bạn phải không tin b�
 
 Nếu bạn muốn xem một vòng lặp được thiết kế tốt, thực sự đang chạy trông như thế nào, [autoresearch của Karpathy](https://github.com/karpathy/autoresearch) là ví dụ sách giáo khoa.
 
-Vào tháng 3 năm 2026, Karpathy phát hành một dự án Python 630 dòng. Đưa cho nó một GPU và một hướng nghiên cứu, và nó chạy cả đêm — hoàn thành hàng trăm thí nghiệm huấn luyện ML, chỉ giữ lại những cái thực sự cải thiện. Dự án đạt 66.000+ sao trong vài ngày sau khi phát hành.
+Vào tháng 3 năm 2026, Karpathy phát hành [autoresearch](https://github.com/karpathy/autoresearch). Kho lưu trữ được cố ý làm nhỏ: `prepare.py` là hạ tầng cố định, `train.py` là tệp agent sửa (khoảng 630 dòng), và `program.md` là phương pháp luận nghiên cứu do người sửa. Đưa cho nó một GPU và một hướng nghiên cứu, và nó chạy qua đêm — mỗi thí nghiệm có ngân sách thời gian thực huấn luyện cố định 5 phút (không tính khởi động và biên dịch), và chỉ những thay đổi cải thiện `val_bpb` mới được giữ lại.
 
 ### Ba Tệp, Ba Vai trò
 
@@ -343,9 +343,9 @@ flowchart TD
     8b --> 9
 ```
 
-Nó chạy khoảng 12 thí nghiệm mỗi giờ. Một lần chạy qua đêm (8 giờ) là khoảng 100 thí nghiệm. Bản thân Karpathy đã chạy nó trong 2 ngày — ~700 thí nghiệm.
+README ước tính khoảng 12 thí nghiệm mỗi giờ, tức khoảng 100 trong một lần chạy qua đêm 8 giờ. Ngân sách 5 phút chỉ bao gồm huấn luyện, không tính khởi động hay biên dịch; phần còn lại của mỗi vòng dành cho sửa, chạy và đánh giá. Karpathy báo cáo đã tự chủ chạy một phiên bản riêng của autoresearch trong khoảng hai ngày cho vòng nanochat dưới đây.
 
-Ngân sách thời gian thực 5 phút cố định là một lựa chọn thiết kế quan trọng — bất kể agent thay đổi gì, mọi thí nghiệm đều mất đúng cùng một thời gian. Điều này có nghĩa là tất cả các kết quả đều có thể so sánh trực tiếp dưới cùng một ngân sách thời gian — không có tranh cãi về "cái này chạy lâu hơn nên nó tốt hơn."
+Ngân sách huấn luyện 5 phút cố định là một lựa chọn thiết kế quan trọng — bất kể agent thay đổi gì, lần chạy huấn luyện nhận cùng một ngân sách thời gian thực. Điều này có nghĩa là tất cả các kết quả đều có thể so sánh trực tiếp dưới cùng một ngân sách huấn luyện.
 
 ### Đầu ra: Bạn Nhìn Thấy Gì Khi Thức Dậy
 
@@ -375,13 +375,9 @@ Agent viết các thông điệp commit rõ ràng về những gì nó đã th�
 
 ### Nó Thực sự Tìm Thấy Gì
 
-Kết quả từ lần chạy 2 ngày, ~700 thí nghiệm ban đầu của Karpathy:
+Kết quả từ [vòng 1](https://github.com/karpathy/nanochat/commit/6ed7d1d82cee16c2e26f45d559ad3338447a6c1b) của autoresearch đã giảm thời gian huấn luyện GPT-2 của nanochat trên 8×H100 [từ **2,02 giờ xuống 1,80 giờ**](https://github.com/karpathy/nanochat/commit/f06860494848db080c9a80a0ffa83203b042056b), tức giảm khoảng **10,9%** thời gian huấn luyện.
 
-- Trong khoảng ~700 lần thử, đã tìm thấy khoảng **20 cải thiện thực sự có thể xếp chồng lên nhau**
-- Giảm thời gian huấn luyện cấp GPT-2 của nanochat trên 8×H100 từ **2,02 giờ → 1,80 giờ**, nhanh hơn khoảng **11%**
-- Các phát hiện bao gồm: điều chỉnh learning rate, tinh chỉnh optimizer, hoán đổi hàm kích hoạt, tối ưu hóa mẫu attention, v.v.
-
-Tất cả các cải thiện có phải là những khám phá làm chấn động địa cầu không? Không. Hầu hết là các tối ưu nhỏ xếp chồng lên nhau. Nhưng 20 cải thiện hợp lệ đó sẽ mất một nhà nghiên cứu con người hàng tuần công việc thủ công — agent đã làm nó trong 48 giờ.
+Hầu hết các thay đổi là những tối ưu nhỏ xếp chồng lên nhau. Phần hữu ích là vòng lặp: ngân sách cố định, nhật ký thí nghiệm đầy đủ, và quy tắc chỉ giữ lại những cải thiện đã được xác minh.
 
 ### Chi tiết Nói lên Nhiều Nhất: Vòng lặp được Viết Bằng Tiếng Anh, Không Phải Code.
 
@@ -399,7 +395,7 @@ Các vòng lặp nhanh cám dỗ bạn bỏ qua xác minh. "Trông ổn" không 
 
 ### 2. Sự thối rữa Hiểu biết
 
-Vòng lặp giao code càng nhanh, sự hiểu biết của bạn về chính codebase của bạn càng trôi dạt xa khỏi thực tế. Đội của Cherny có 80% code được viết bởi agent — có nghĩa là hầu hết code của một đội không được viết bởi một con người. Nếu bạn không đọc và sử dụng những gì vòng lặp tạo ra, sự hiểu biết của bạn liên tục suy thoái. **Các vòng lặp nhanh đòi hỏi đọc nhanh.**
+Vòng lặp giao code càng nhanh, sự hiểu biết của bạn về chính codebase của bạn càng trôi dạt xa khỏi thực tế. Một vòng lặp merge hàng trăm PR; đội đọc những PR đó, review những diff quan trọng, và tiếp tục dùng chính code ấy, nên mô hình tinh thần của họ bắt kịp. **Các vòng lặp nhanh đòi hỏi đọc nhanh.**
 
 ### 3. Sự đầu hàng Nhận thức
 
@@ -407,11 +403,11 @@ Khi vòng lặp chạy trơn tru, tư thế thoải mái nhất là ngừng có 
 
 ### 4. Bùng nổ Token
 
-Mỗi lần lặp của một vòng lặp tích lũy thêm ngữ cảnh: code đã viết, lỗi đã gặp, quyết định đã đưa ra. Nếu không có quản lý ngữ cảnh, kích thước prompt tăng khoảng bậc hai theo số lượt. Codex giải quyết vấn đề này với nén ngữ cảnh tự động — một API chuyên dụng nén các lượt cuộc trò chuyện cũ thành các tóm tắt nội dung được mã hóa, giữ lại kiến thức thiết yếu trong khi loại bỏ chi tiết dư thừa. Đây là một mối quan tâm kỹ thuật bạn phải giải quyết từ vòng lặp đầu tiên, không phải thêm vào sau này.
+Mỗi lần lặp của một vòng lặp tích lũy thêm ngữ cảnh: code đã viết, lỗi đã gặp, quyết định đã đưa ra. Khi mỗi vòng chỉ thêm một lượng nội dung mới gần như cố định, độ dài lịch sử mà một vòng đơn lẻ nhìn thấy tăng gần như tuyến tính theo số vòng. Nếu hệ thống xử lý lại toàn bộ lịch sử mỗi vòng, tổng đầu vào tích lũy qua N vòng tăng gần như bậc hai. Codex giải quyết vấn đề này với nén ngữ cảnh tự động — một API chuyên dụng nén các lượt cuộc trò chuyện cũ thành các tóm tắt nội dung được mã hóa, giữ lại kiến thức thiết yếu trong khi loại bỏ chi tiết dư thừa. Đây là một mối quan tâm kỹ thuật bạn phải giải quyết từ vòng lặp đầu tiên, không phải thêm vào sau này.
 
 ## Xây dựng Vòng lặp Đầu tiên của Bạn
 
-Bạn không cần bắt đầu với một đường ống quy mô Stripe merge 1.300 PR một tuần. Bắt đầu với thứ nhỏ nhất hoạt động được.
+Bạn không cần bắt đầu với một pipeline thông lượng cao. Hãy bắt đầu với thứ nhỏ nhất hoạt động được.
 
 ### Bước 1: Chọn Một Nhiệm vụ Lặp lại
 

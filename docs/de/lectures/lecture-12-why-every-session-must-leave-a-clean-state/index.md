@@ -52,7 +52,7 @@ flowchart LR
 
 Lehmans Gesetze der Software-Evolution sagen uns: Systeme, die kontinuierlichen Änderungen unterliegen, werden unausweichlich an Komplexität zunehmen, es sei denn, sie werden aktiv verwaltet. Dies gilt insbesondere für KI-Coding-Agenten — jede Session führt Änderungen ein, und ohne Cleanup beim Exit akkumuliert sich technische Schuld exponentiell.
 
-Echte Daten sind aussagekräftig. Ein Projekt, das 12 Wochen lang mit Agenten entwickelt wurde, ohne Cleanup-Strategie:
+Für ein hypothetisches 12-Wochen-Projekt nehmen wir die folgenden Werte an:
 
 - Woche 1: Build-Pass-Rate 100%, Test-Pass-Rate 100%, neue Session Startup 5 Min.
 - Woche 4: Build 95%, Tests 92%, Startup 15 Min.
@@ -64,7 +64,7 @@ Dasselbe Projekt mit einer Cleanup-Strategie:
 - Woche 1: 100%, 100%, 5 Min.
 - Woche 12: 97%, 95%, 9 Min.
 
-Nach 12 Wochen: Die Build-Pass-Rate unterscheidet sich um 29 Prozentpunkte, die Startup-Zeit für neue Sessions um 85%. Das ist nicht theoretisch — es ist ein beobachteter Unterschied.
+Eine wöchentliche Cleanup-Schleife hält den Ausgangszustand stabil: Jede Session endet mit bestandenem Build, bestandenen Tests, dokumentiertem Fortschritt und aufgeräumten temporären Artefakten, sodass die nächste Session von derselben Basis startet.
 
 ### Fünf Dimensionen des Clean State
 
@@ -74,7 +74,7 @@ Clean State bedeutet nicht nur „der Code kompiliert". Es sind fünf Dimensione
 
 **Test-Dimension**: Bestehen alle Tests? Einschließlich der Tests, die vor der Session existierten — die Session ist dafür verantwortlich, bestehende Funktionalität nicht zu beschädigen. Und es sollte in CI verifiziert werden, nicht nur „funktioniert auf meinem Rechner".
 
-**Fortschritts-Dimension**: Ist der aktuelle Fortschritt in einem maschinenlesbaren Artefakt dokumentiert? Abgeschlossene Teilaufgaben mit ihren Bestehenskriterien, in Bearbeitung befindliche aber unvollständige Teilaufgaben mit aktuellem Zustand, noch nicht gestartete Teilaufgaben. Gute Fortschrittsaufzeichnungen reduzieren 60-80% der Diagnosezeit beim Session-Startup.
+**Fortschritts-Dimension**: Ist der aktuelle Fortschritt in einem maschinenlesbaren Artefakt dokumentiert? Abgeschlossene Teilaufgaben mit ihren Bestehenskriterien, in Bearbeitung befindliche aber unvollständige Teilaufgaben mit aktuellem Zustand, noch nicht gestartete Teilaufgaben. Fortschritt und Verifikationsergebnisse gehören in versionierte Dateien, damit die nächste Session den Zustand einsehen kann.
 
 **Artefakt-Dimension**: Gibt es veraltete oder mehrdeutige temporäre Artefakte? Debug-Logs, temporäre Dateien, auskommentierter Code, TODO-Marker — all diese erhöhen die kognitive Belastung für die nächste Session.
 
@@ -158,7 +158,7 @@ Eine Electron-App, die über 12 Wochen mit Agenten entwickelt wurde, im Vergleic
 
 **Mit Cleanup-Strategie** (Versuchsgruppe): Vollständiger Clean-State-Check am Ende jeder Session + wöchentliche Cleanup-Schleife. Woche 12, Build-Pass-Rate 97%, Test-Pass-Rate 95%, neue Session Startup 9 Min., veraltete Artefakte 11.
 
-In Woche 12 liegt die Build-Pass-Rate der Versuchsgruppe um 29 Prozentpunkte höher, die Test-Pass-Rate um 34 Punkte höher und die Startup-Zeit für neue Sessions um 85% niedriger.
+In Woche 12 lagen Build- und Test-Pass-Rate der Cleanup-Gruppe noch nahe am Ausgangspunkt, eine neue Session konnte schnell starten, und es gab nur wenige veraltete Artefakte. Das Cleanup kostete pro Session nur wenige Minuten und hinterließ einen Ausgangszustand, dem die nächste Session vertrauen konnte.
 
 ## Wichtigste Erkenntnisse
 

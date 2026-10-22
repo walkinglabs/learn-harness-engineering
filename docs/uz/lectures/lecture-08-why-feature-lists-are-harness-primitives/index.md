@@ -22,7 +22,7 @@ User auth qilindi, savat asosan tugatildi, toʻlov qismi (payments) hali kerak
 ```
 Yangi agent sessiyasi ushbu eslatmadan quyidagi savollarga javob bera oladimi? “Asosan tugatildi” deganda nima nazarda tutilgan? Savat qaysi testlardan oʻtdi? Toʻlovlar (payments) qilinishiga nima toʻsqinlik qilyapti (blocking)? Bularning barchasiga javob — “hech kim bilmaydi”. Xuddi shifokorga “oshqozonim ogʻriyapti, lekin oxirgi paytda yaxshi edim” deyishga oʻxshaydi — u sizga qanday dori yozib bera oladi?
 
-Natija: yangi sessiya loyiha holatini (project state) tushunish uchun 20 daqiqa sarflaydi va allaqachon bajarilgan funksiyalarni qaytadan yozib chiqishi mumkin. Anthropicʼning muhandislik maʼlumotlari shuni koʻrsatadiki, jarayon boʻyicha yaxshi qaydlar sessiyani ishga tushishdan keyingi tashxis vaqtini 60-80% ga qisqartiradi.
+Natija: yangi sessiya loyiha holatini (project state) oʻzi taxmin qilishiga toʻgʻri keladi va allaqachon bajarilgan funksiyalarni qaytadan yozib chiqishi mumkin. Anthropicʼning maslahati — [jarayon va tekshiruv natijalarini versiyalangan fayllarda qayd etish](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), shunda keyingi sessiya holatni koʻzdan kechira oladi.
 
 ## Funksiya holati mashinasi (Feature State Machine)
 
@@ -111,7 +111,7 @@ Har bir funksiya (feature) bandi “bitta sessiyada tugatilishi mumkin” boʻlg
 
 **Umurtqa pogʻona rejimi (Backbone mode)**: Har bir funksiyaning (feature) aniq holati va tekshiruv buyrugʻi (verification command) bor. Yangi sessiya funksiyalar roʻyxatini oʻqiydi va 3 daqiqa ichida hamma narsani tushunib oladi: F01-F05 — `passing`, F06 — `active`, F07-F10 — `not_started`. Ishni toʻgʻridan-toʻgʻri F06 dan boshlaydi, hech qanday ishni boshidan qilmaydi (zero rework).
 
-Miqdoriy natija (Quantified result): Strukturalangan funksiyalar roʻyxatidan (structured feature lists) foydalangan loyihalar erkin kuzatish (free-form tracking) tizimidagiga qaraganda 45% ga yuqori funksiyalarni tugallash (feature completion) darajasini koʻrsatdi va hech qanday funksiya takror amalga oshirilmadi.
+Strukturalangan roʻyxat har bir funksiyaning holati va tekshiruv buyrugʻini bir joyga jamlaydi, shunda yangi sessiya nima bajarilganini biladi.
 
 ## Asosiy xulosalar
 

@@ -37,7 +37,7 @@ flowchart TB
 
 ## Chuyện gì xảy ra khi bạn trộn chúng
 
-Vấn đề trực tiếp nhất: hạ tầng không được xây cho ra hồn. Agent dành 80% sức cho code tính năng, 20% còn lại tiện tay dựng đại vài thứ cho hạ tầng. Khung test cấu hình xong nhưng chưa bao giờ được xác minh, quy tắc lint đặt ra nhưng quá lỏng, không có tệp tiến độ nào được tạo. Những khiếm khuyết ấy không lộ ra ở phiên đầu (vì agent vẫn còn nhớ mình đã làm gì), nhưng bùng lên ở phiên thứ hai: agent mới không biết cách chạy dự án, không biết test ở đâu, không biết mọi thứ đang tới đâu.
+Vấn đề trực tiếp nhất: hạ tầng không được xây cho ra hồn. Agent dành phần lớn sức cho code tính năng và chỉ tiện tay dựng đại hạ tầng như một việc phụ. Khung test cấu hình xong nhưng chưa bao giờ được xác minh, quy tắc lint đặt ra nhưng quá lỏng, không có tệp tiến độ nào được tạo. Những khiếm khuyết ấy không lộ ra ở phiên đầu (vì agent vẫn còn nhớ mình đã làm gì), nhưng bùng lên ở phiên thứ hai: agent mới không biết cách chạy dự án, không biết test ở đâu, không biết mọi thứ đang tới đâu.
 
 Một chi phí ẩn hơn là "tích tụ chưa xác minh". Code tính năng viết trước khi khung test được cấu hình chuẩn, bản thân nó là code không có xác minh. Khi bạn quay lại thêm test, có khi phát hiện ra ngay từ đầu thiết kế đã sai, nếu biết trước, bạn đã triển khai khác đi. Code viết trước càng nhiều, phần phải đập đi làm lại càng lớn.
 
@@ -45,7 +45,7 @@ Ngân sách ngữ cảnh cũng đang bị lãng phí. Phần việc khởi tạo
 
 Vấn đề dễ bị bỏ qua nhất là bãi mìn giả định ngầm. Những quyết định agent đưa ra trong lúc khởi tạo (dùng khung test nào, tổ chức thư mục ra sao, quản lý dependency thế nào) nếu không ghi lại tường minh, các phiên sau có thể đưa ra lựa chọn mâu thuẫn. Phiên đầu chọn Vitest làm khung test, phiên sau agent không biết, lại đưa Jest vào. Hai khung test cùng tồn tại, chi phí bảo trì nhân đôi.
 
-Nghiên cứu về phát triển ứng dụng chạy lâu của Anthropic đặc biệt khuyến nghị tách khởi tạo khỏi triển khai. Dữ liệu thực nghiệm của họ: các dự án có giai đoạn khởi tạo riêng biệt đạt tỷ lệ hoàn thành tính năng cao hơn 31% trong kịch bản đa phiên, so với cách trộn lẫn. Thời gian đầu tư cho khởi tạo được thu hồi hoàn toàn trong 3-4 phiên kế tiếp.
+Công trình về long-running agent của Anthropic [đặt khởi tạo vào một phiên đầu tiên riêng biệt](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). Initializer viết script `init.sh`, tệp tiến độ, danh sách tính năng và commit Git đầu tiên; các phiên code sau đọc trạng thái đó, làm từng tính năng một, test đầu-cuối, commit và cập nhật tệp tiến độ.
 
 Hướng dẫn harness engineering cho Codex của OpenAI cũng nhấn mạnh nguyên tắc "kho lưu trữ là bản ghi hoạt động": thiết lập cấu trúc vận hành rõ ràng ngay từ lần chạy đầu tiên, nếu không mỗi phiên mới sẽ phải tự suy ra quy ước dự án.
 

@@ -84,11 +84,11 @@ L'ingénierie des boucles, sujet de ce cours, ne concerne pas une commande en pa
 
 Vous n'avez pas à taper `/goal` à chaque fois. Mais comprendre d'où il vient et pourquoi il a cette apparence — c'est comprendre le cœur de l'ingénierie des boucles. Les boucles plus complexes ajoutent simplement des éléments comme la planification, le parallélisme, l'isolation et la mémoire sur ces mêmes trois fondamentaux : but, vérification, condition d'arrêt.
 
-## Juin 2026 : Trois personnes ont allumé la même mèche en une semaine
+## Des dates différentes, la même direction
 
-La première semaine de juin 2026, trois praticiens construisant une infrastructure d'agents de codage — sans se consulter — ont dit la même chose avec des mots différents.
+La même idée a émergé à des endroits et à des moments différents.
 
-**Peter Steinberger** (créateur d'OpenClaw, [son post a atteint 8 millions de vues](https://x.com/steipete/status/2063697162748260627)) : « Vous ne devriez plus faire de prompting à des agents de codage. Vous devriez concevoir des boucles qui font du prompting à vos agents. »
+**Peter Steinberger** (créateur d'OpenClaw, [dans un post](https://x.com/steipete/status/2063697162748260627)) : « Vous ne devriez plus faire de prompting à des agents de codage. Vous devriez concevoir des boucles qui font du prompting à vos agents. »
 
 **Boris Cherny** (responsable de Claude Code chez Anthropic, [sur le podcast Acquired](https://x.com/rohanpaul_ai/status/2063289804708835412)) : « Je ne fais plus de prompting à Claude. J'ai des boucles qui tournent et qui font du prompting à Claude et trouvent quoi faire. Mon travail, c'est écrire des boucles. »
 
@@ -96,9 +96,9 @@ La première semaine de juin 2026, trois praticiens construisant une infrastruct
 
 > **L'ingénierie des boucles, c'est vous remplacer vous-même comme la personne qui fait du prompting à l'agent. Vous concevez le système qui le fait à votre place.**
 
-Cherny a divulgué des chiffres : pendant plus de 30 jours consécutifs, toutes les contributions de code à Claude Code ont été faites de manière autonome par l'IA — 259 PR fusionnées, plus de 80 % du code de production écrit par Claude, et un taux de réussite de 76 % sur les tâches logicielles ouvertes.
+Cherny écrit dans un [rapport personnel du 2025-12-27](https://twitter.com/bcherny/status/2004887829252317325) qu'en 30 jours il a fusionné 259 PR — 497 commits, 40 000 lignes ajoutées, 38 000 supprimées — et que chaque ligne a été écrite par Claude Code + Opus 4.5.
 
-Trois personnes. Une semaine. La même conclusion. Pas parce qu'ils se sont coordonnés — mais parce que l'infrastructure avait discrètement franchi un seuil. Les agents étaient devenus suffisamment fiables pour terminer des tâches non triviales sans surveillance. Les primitives de planification (`/loop`, `/goal`, cron) étaient désormais intégrées aux outils. Le coût d'une seule exécution d'agent avait suffisamment baissé pour que l'exécuter répétitivement sur une minuterie ne paraisse plus gaspillé. Quand toutes les pièces sont présentes, le mouvement qui les combine devient évident pour tout le monde en même temps.
+Ces citations viennent de dates, de formats et d'équipes différents. Leur direction commune : sortir la planification, la vérification et la décision d'arrêt du prompt du moment pour les confier à un système. Mi-2026, les agents pouvaient terminer des tâches non triviales sans surveillance, les primitives de planification étaient intégrées, et une exécution coûtait assez peu pour être répétée sur une minuterie. Quand les pièces sont là, plus d'une personne les assemble.
 
 > Source : [Addy Osmani : Loop Engineering](https://addyosmani.com/blog/loop-engineering/)
 
@@ -267,7 +267,7 @@ flowchart TD
 
 Ce n'est plus une simple exécution d'agent. C'est un système en fonctionnement continu qui se réveille chaque matin, balaye le sol de lui-même, et met les choses qui nécessitent votre attention devant vous. Votre rôle devient : **revoir le contenu de la boîte de réception, prendre des décisions, et quand vous repérez un schéma que le système ne peut pas gérer, affiner les skills et les règles.**
 
-Cherny a utilisé ce schéma pour fusionner 259 PR en 30 jours sans ouvrir un IDE une seule fois. Les ingénieurs d'OpenAI ont utilisé le même schéma pour construire un produit bêta d'environ un million de lignes à la main — sans écrire une seule ligne de code eux-mêmes.
+Le rapport de 30 jours de Cherny est un point de données pour ce schéma : 259 PR, code écrit par Claude Code + Opus 4.5. Le [compte rendu du harness d'OpenAI](https://openai.com/index/harness-engineering/) en est un autre : une petite équipe a utilisé Codex sur un dépôt vierge pendant cinq mois et rapporte environ un million de lignes et près de 1 500 PR.
 
 ## Séparation générateur/évaluateur : Pourquoi vous ne pouvez pas laisser le modèle noter son propre travail
 
@@ -293,7 +293,7 @@ Une phrase à retenir : **quelqu'un dans votre équipe ne doit pas vous croire.*
 
 Si vous voulez voir à quoi ressemble une boucle bien conçue et qui tourne réellement, [l'autoresearch de Karpathy](https://github.com/karpathy/autoresearch) est l'exemple de manuel.
 
-En mars 2026, Karpathy a publié un projet Python de 630 lignes. Donnez-lui un GPU et une direction de recherche, et il tourne toute la nuit — complétant des centaines d'expériences d'entraînement ML, ne gardant que celles qui s'améliorent réellement. Le projet a atteint 66 000+ étoiles en quelques jours après sa sortie.
+En mars 2026, Karpathy a publié [autoresearch](https://github.com/karpathy/autoresearch). Le dépôt est volontairement petit : `prepare.py` est l'infrastructure fixe, `train.py` est le fichier que l'agent modifie (environ 630 lignes), et `program.md` est la méthodologie de recherche que l'humain modifie. Donnez-lui un GPU et une direction de recherche, et il tourne toute la nuit — chaque expérience reçoit un budget d'entraînement fixe de 5 minutes (temps d'horloge, hors démarrage et compilation), et seuls les changements qui améliorent `val_bpb` sont conservés.
 
 ### Trois fichiers, trois rôles
 
@@ -343,9 +343,9 @@ flowchart TD
     8b --> 9
 ```
 
-Il exécute environ 12 expériences par heure. Une exécution de nuit (8 heures) représente environ 100 expériences. Karpathy lui-même l'a fait tourner pendant 2 jours — ~700 expériences.
+Le README estime environ 12 expériences par heure, soit environ 100 pour une exécution de nuit de 8 heures. Le budget de 5 minutes couvre l'entraînement, pas le démarrage ni la compilation ; le reste de chaque tour sert à modifier le code, lancer l'expérience et évaluer le résultat. Karpathy rapporte avoir fait tourner une version privée d'autoresearch de façon autonome pendant environ deux jours pour le tour nanochat décrit ci-dessous.
 
-Le budget de temps réel fixe de 5 minutes est un choix de conception clé — peu importe ce que l'agent modifie, chaque expérience prend exactement le même temps. Cela signifie que tous les résultats sont directement comparables sous le même budget temps — pas de débat sur « celui-ci a tourné plus longtemps donc c'est mieux ».
+Le budget d'entraînement fixe de 5 minutes est un choix de conception clé — peu importe ce que l'agent modifie, l'entraînement reçoit le même budget d'horloge. Cela signifie que tous les résultats sont directement comparables sous le même budget d'entraînement.
 
 ### Sortie : Ce que vous voyez quand vous vous réveillez
 
@@ -375,13 +375,9 @@ L'agent écrit des messages de commit clairs sur ce qu'il a essayé, ce qui a fo
 
 ### Ce qu'il a réellement trouvé
 
-Résultats de la course initiale de 2 jours, ~700 expériences de Karpathy :
+Le [tour 1](https://github.com/karpathy/nanochat/commit/6ed7d1d82cee16c2e26f45d559ad3338447a6c1b) d'autoresearch a réduit le temps d'entraînement de niveau GPT-2 de nanochat sur 8×H100 [de **2,02 heures à 1,80 heure**](https://github.com/karpathy/nanochat/commit/f06860494848db080c9a80a0ffa83203b042056b), soit une réduction d'environ **10,9 %** du temps d'entraînement.
 
-- Sur ~700 tentatives, environ **20 améliorations réelles empilables** ont été trouvées
-- Réduit le temps d'entraînement de niveau GPT-2 de nanochat sur 8×H100 de **2,02 heures → 1,80 heure**, environ **11 % plus rapide**
-- Les découvertes incluaient : ajustements du taux d'apprentissage, réglage de l'optimiseur, échanges d'activation, optimisations de schéma d'attention, etc.
-
-Toutes les améliorations étaient-elles des découvertes bouleversantes ? Non. La plupart étaient de petites optimisations qui se sont empilées. Mais ces 20 améliorations valides auraient pris à un chercheur humain des semaines de travail manuel — l'agent l'a fait en 48 heures.
+La plupart des changements étaient de petites optimisations empilées. Ce qui compte, c'est la boucle : un budget fixe, un journal d'expériences complet et une règle selon laquelle seules les améliorations vérifiées restent.
 
 ### Le détail le plus révélateur : La boucle est écrite en anglais, pas en code.
 
@@ -399,7 +395,7 @@ Les boucles rapides vous tentent de sauter la vérification. « Ça a l'air bien
 
 ### 2. Pourriture de compréhension
 
-Plus une boucle livre du code vite, plus votre compréhension de votre propre base de code s'éloigne de la réalité. L'équipe de Cherny avait 80 % du code écrit par des agents — ce qui signifie que la plupart du code d'une équipe n'a pas été écrit par une personne. Si vous ne lisez pas et n'utilisez pas ce que la boucle produit, votre compréhension décline continuellement. **Les boucles rapides nécessitent une lecture rapide.**
+Plus une boucle livre du code vite, plus votre compréhension de votre propre base de code s'éloigne de la réalité. Une boucle fusionne des centaines de PR ; l'équipe lit ces PR, examine les diffs qui comptent et continue d'utiliser le code, si bien que son modèle mental suit. **Les boucles rapides nécessitent une lecture rapide.**
 
 ### 3. Abandon cognitif
 
@@ -407,11 +403,11 @@ Quand la boucle tourne bien, la posture la plus confortable est d'arrêter d'avo
 
 ### 4. Explosion de tokens
 
-Chaque itération d'une boucle accumule plus de contexte : code écrit, erreurs rencontrées, décisions prises. Sans gestion du contexte, la taille du prompt grossit approximativement quadratiquement avec le nombre de tours. Codex résout ça avec une compaction automatique du contexte — une API dédiée compresse les anciens tours de conversation en résumés de contenu chiffrés, conservant les connaissances essentielles tout en rejetant les détails redondants. C'est une préoccupation d'ingénierie que vous devez aborder dès la première boucle, pas un ajout ultérieur.
+Chaque itération d'une boucle accumule plus de contexte : code écrit, erreurs rencontrées, décisions prises. Quand chaque tour ajoute à peu près une quantité fixe de contenu nouveau, la longueur d'historique vue par un tour croît approximativement linéairement avec le nombre de tours. Si le système retraite tout l'historique à chaque tour, l'entrée cumulée sur N tours croît approximativement quadratiquement. Codex résout ça avec une compaction automatique du contexte — une API dédiée compresse les anciens tours de conversation en résumés de contenu chiffrés, conservant les connaissances essentielles tout en rejetant les détails redondants. C'est une préoccupation d'ingénierie que vous devez aborder dès la première boucle, pas un ajout ultérieur.
 
 ## Construire votre première boucle
 
-Vous n'avez pas besoin de commencer par un pipeline à l'échelle Stripe fusionnant 1 300 PR par semaine. Commencez par la plus petite chose qui fonctionne.
+Vous n'avez pas besoin de commencer par un pipeline à haut débit fusionnant des centaines de PR par semaine. Commencez par la plus petite chose qui fonctionne.
 
 ### Étape 1 : Choisissez une tâche récurrente
 

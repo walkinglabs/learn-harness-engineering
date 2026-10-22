@@ -52,7 +52,7 @@ flowchart LR
 
 - **Kontextfenster sind endlich**: Egal welche Fenstergröße behauptet wird (128K, 200K, 1M) — lange Aufgaben werden sie schließlich erschöpfen. Nach der Erschöpfung ist entweder Kompression (Informationsverlust) oder ein Reset (neue Session) erforderlich. Beide verlieren etwas.
 - **Kontinuitäts-Artefakte**: Persistierte Zustandsdateien, die es einer neuen Session ermöglichen, eindeutig dort fortzufahren, wo die letzte aufgehört hat. Die Grundform: Fortschrittsprotokoll + Verifizierungsdatensatz + nächste Aktionen. Das Tagebuch dieses Handwerkers.
-- **Rebuild-Kosten**: Die Zeit, die eine neue Session benötigt, um einen ausführbaren Zustand zu erreichen. Gute harness-Konstruktionen können die Rebuild-Kosten von 15 Minuten auf 3 Minuten komprimieren.
+- **Rebuild-Kosten**: Die Zeit, die eine neue Session benötigt, um einen ausführbaren Zustand zu erreichen. Ein guter Harness hinterlässt Fortschritt, Verifikationsergebnisse und nächste Aktionen in Dateien, sodass die neue Session von einem schriftlich festgehaltenen Zustand aus startet.
 - **Drift**: Die Lücke zwischen dem Verständnis des Agenten und dem tatsächlichen Zustand des Code-Repositorys. Jede Sitzungsgrenze führt Drift ein; ohne Kontrolle summiert er sich.
 - **Context Anxiety**: Ein von Anthropic beobachtetes Phänomen — Agenten zeigen voreiliges Konvergenzverhalten, wenn sie sich wahrgenommenen Kontextgrenzen nähern, und beenden Aufgaben vorzeitig, um Informationsverlust zu vermeiden. Es ist eine irrationale Ressourcenangst.
 - **Kompression vs. Reset**: Kompression fasst den Kontext innerhalb derselben Session zusammen (behält das „was", verliert möglicherweise das „warum"); Reset öffnet eine neue Session, die aus persistiertem Zustand wieder aufgebaut wird (sauber, aber abhängig von der Vollständigkeit der Artefakte).
@@ -160,7 +160,7 @@ LangChain berichtet bei gleichem gpt-5.2-codex auf Terminal Bench 2.0 mit 89 Auf
 - Kontextfenster sind eine endliche Ressource. Lange Aufgaben werden Sessions überspannen, und Sessions werden Informationen verlieren — wie der Handwerker, der jeden Tag vergisst, ist das objektive Realität.
 - Die Lösung sind nicht größere Fenster — sondern bessere Zustandspersistenz. Fortschrittsdateien + Entscheidungsprotokolle + Git-Kontrollpunkte — geben Sie dem amnestischen Handwerker ein zuverlässiges Tagebuch.
 - Behandeln Sie den Agenten wie einen Ingenieur mit Amnesie: Bevor er „aussticht", schreibt er auf, was getan wurde, warum und was als Nächstes ansteht.
-- Rebuild-Kosten sind die zentrale Kennzahl. Gute harness-Konstruktionen sollten neue Sessions innerhalb von 3 Minuten in einen ausführbaren Zustand bringen.
+- Rebuild-Kosten sind die zentrale Kennzahl. Ein guter Harness hinterlässt Fortschritt, Verifikationsergebnisse und nächste Aktionen in Dateien, sodass eine neue Session schnell wieder arbeitsfähig ist.
 - Gemischte Strategie: kurze Aufgaben innerhalb von Sessions, lange Aufgaben mit strukturierten Artefakten für Kontinuität.
 
 ## Weiterführende Literatur

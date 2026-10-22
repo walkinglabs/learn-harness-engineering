@@ -26,7 +26,7 @@ Claude Code'un gerçek davranışı söyleyicidir. Ona "kullanıcı kaydı ekle"
 
 Altı adım sonra her biri yarı tamamlandı. Uçtan uca doğrulama yok, yarı pişmiş kodlar arasında karmaşık bağlaşım var ve parçaları toplamak için bir sonraki oturum tamamen kayıp olacak. Aynı anda altı yemek pişiren biri gibi — her yemek tencerede ama hiçbiri tabağa konmadı. Hepsi yanıyor.
 
-Anthropic'in deneysel verileri bunu doğrudan destekliyor: "küçük bir sonraki adım" stratejisi kullanan ajanlar (WIP=1'e eşdeğer) geniş promptlar kullanan ajanlardan %37 daha yüksek görev tamamlanma oranı gösteriyor. Daha ilginç olanı, ajanlar tarafından üretilen kod satırı sayısı gerçek özellik tamamlamasıyla zayıf negatif korelasyona sahiptir — daha fazla kod yazıldı, daha az özellik tamamlandı. Çiğneyebileceğinden fazlasını ısırmak, veriyle kanıtlandı.
+Anthropic'in uzun süre çalışan ajan rehberi [kodlama ajanının her seferinde tek bir özellik üzerinde çalışmasını ister](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents); ardından doğrula, commit et ve ilerlemeyi güncelle. Geniş bir prompt ajanı birkaç iş parçacığı başlatmaya davet eder ve her parçacık aynı bağlam ve doğrulama bütçesi için yarışır.
 
 ## WIP=1 iş akışı
 

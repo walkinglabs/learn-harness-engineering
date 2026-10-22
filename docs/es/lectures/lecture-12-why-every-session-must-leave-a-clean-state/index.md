@@ -52,7 +52,7 @@ flowchart LR
 
 Las leyes de Lehman sobre la evolución del software nos dicen: los sistemas sometidos a cambios continuos aumentarán inevitablemente en complejidad a menos que se gestionen activamente. Esto es especialmente cierto para los agentes de codificación con IA—cada sesión introduce cambios, y sin limpieza al salir, la deuda técnica se acumula exponencialmente.
 
-Los datos reales son reveladores. Un proyecto desarrollado con agentes durante 12 semanas, sin estrategia de limpieza:
+Para un proyecto hipotético de 12 semanas, supongamos los siguientes valores, sin estrategia de limpieza:
 
 - Semana 1: Tasa de build exitoso 100%, tasa de pruebas exitosas 100%, inicio de nueva sesión 5 min
 - Semana 4: Build 95%, pruebas 92%, inicio 15 min
@@ -64,7 +64,7 @@ Mismo proyecto con una estrategia de limpieza:
 - Semana 1: 100%, 100%, 5 min
 - Semana 12: 97%, 95%, 9 min
 
-Después de 12 semanas: la tasa de build exitoso difiere en 29 puntos porcentuales, el tiempo de inicio de nueva sesión difiere en un 85%. Esto no es teórico—es una diferencia observada.
+Un bucle de limpieza semanal mantiene estable el estado de partida: cada sesión termina con build, pruebas, progreso y artefactos temporales en orden, de modo que la siguiente sesión parte de la misma base.
 
 ### Cinco dimensiones del clean state
 
@@ -74,7 +74,7 @@ El clean state no es solo "el código compila." Son cinco dimensiones evaluadas 
 
 **Dimensión de pruebas**: ¿Pasán todas las pruebas? Incluyendo las pruebas que existían antes de la sesión—la sesión es responsable de no romper la funcionalidad existente. Y debería verificarse en CI, no solo "funciona en mi máquina."
 
-**Dimensión de progreso**: ¿Está el progreso actual registrado en un artefacto legible por máquina? Subtareas completadas con sus criterios de aprobación, subtareas en progreso pero incompletas con su estado actual, subtareas aún no iniciadas. Los buenos registros de progreso reducen un 60-80% del tiempo de diagnóstico al inicio de la sesión.
+**Dimensión de progreso**: ¿Está el progreso actual registrado en un artefacto legible por máquina? Subtareas completadas con sus criterios de aprobación, subtareas en progreso pero incompletas con su estado actual, subtareas aún no iniciadas. Registrar el progreso y los resultados de verificación en archivos versionados permite que la siguiente sesión inspeccione el estado.
 
 **Dimensión de artefactos**: ¿Hay artefactos temporales obsoletos o ambiguos? Logs de debug, archivos temporales, código comentado, marcadores TODO—todos estos aumentan la carga cognitiva para la siguiente sesión.
 
@@ -158,7 +158,7 @@ Una aplicación Electron desarrollada con agentes durante 12 semanas, comparando
 
 **Con estrategia de limpieza** (grupo experimental): Verificación completa de clean state al final de cada sesión + bucle de limpieza semanal. Semana 12, tasa de build exitoso 97%, tasa de pruebas exitosas 95%, inicio de nueva sesión 9 min, artefactos obsoletos 11.
 
-En la semana 12, la tasa de build exitoso del grupo experimental es 29 puntos porcentuales más alta, la tasa de pruebas exitosas 34 puntos más alta, y el tiempo de inicio de nueva sesión un 85% menor.
+En la semana 12, las tasas de build y pruebas del grupo con limpieza se mantuvieron cerca del punto de partida, una nueva sesión podía empezar rápido y los artefactos obsoletos eran pocos. La limpieza tomaba unos minutos por sesión y devolvía un estado de partida en el que la siguiente sesión podía confiar.
 
 ## Ideas clave
 

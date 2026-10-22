@@ -25,7 +25,7 @@ Autenticação do usuário concluída, carrinho de compras quase pronto, faltam 
 
 Uma nova sessão de agente consegue responder às seguintes perguntas com base nessa anotação? O que significa "quase concluído"? Quais testes o carrinho passou? O que está bloqueando os pagamentos? A resposta para todas elas é: "ninguém sabe".
 
-O resultado: a nova sessão passa 20 minutos tentando inferir o estado do projeto e pode acabar reimplementando funcionalidades já concluídas. Dados de engenharia da Anthropic mostram que bons registros de progresso reduzem o tempo de diagnóstico no início de uma sessão em 60–80%.
+O resultado: a nova sessão precisa inferir o estado do projeto e pode acabar reimplementando funcionalidades já concluídas. A recomendação da Anthropic é [registrar o progresso e os resultados de verificação em arquivos versionados](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), para que a próxima sessão possa inspecionar o estado.
 
 ## Máquina de Estados das Funcionalidades
 
@@ -116,7 +116,7 @@ Uma plataforma de e-commerce com 10 funcionalidades. Duas abordagens de acompanh
 
 **Modo estruturado**: Cada funcionalidade possui um estado claro e um comando de verificação. Uma nova sessão lê a lista de funcionalidades e, em 3 minutos, sabe que: F01–F05 estão em `passing`, F06 está em `active` (em andamento) e F07–F10 estão em `not_started`. Ela continua diretamente a partir da F06, sem retrabalho.
 
-Resultado quantificado: projetos que utilizam listas de funcionalidades estruturadas apresentam uma taxa de conclusão de funcionalidades 45% maior do que aqueles que utilizam acompanhamento livre, com zero implementações duplicadas.
+Uma lista estruturada coloca o estado de cada funcionalidade e seu comando de verificação em um único lugar, para que a nova sessão saiba o que já foi feito.
 
 ## Principais Aprendizados
 

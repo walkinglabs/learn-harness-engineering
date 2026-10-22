@@ -70,7 +70,7 @@ Bu sorun öznel görevlerde (tasarım estetiği gibi) özellikle şiddetlidir �
 | Mimari | Runtime | Maliyet | Çekirdek özellikler çalışıyor mu? |
 |--------------|---------|------|------------------------|
 | Tek Ajan (çıplak koşu) | 20 dk | 9$ | Hayır (oyun varlıkları girdiye yanıt vermiyor) |
-| Üç Ajan (planlayıcı + üretici + değerlendirici) | 6 saat | 200$ | Evet (oyun tamamen oynanabilir) |
+| Üç Ajan (planlayıcı + üretici + değerlendirici) | 6 saat | 200$ | Çekirdek oynanış çalıştı; fizik ve seviye sorunları kaldı |
 
 Bu tam olarak aynı model (Opus 4.5) ve tam olarak aynı prompt ("2B retro oyun editörü inşa et"). Tek fark harness — "çıplak çalıştırma"dan "planlayıcı gereksinimleri genişletir → üretici özellik bazında uygular → değerlendirici Playwright kullanarak gerçek tıklama testi yapar"a.
 
@@ -119,7 +119,7 @@ Etkili runtime sinyalleri şunları içerir:
 
 **Gerçek puan düşürmeleri**: (1) Uçtan uca akış test edilmedi — sıfırlama bağlantısının gerçek gönderimi ve doğrulanması hiçbir zaman onaylanmadı. (2) Veritabanı geçişi kısmi yürütmeden sonra başarısız oldu, şema tutarsızlığına neden oldu. (3) Hedef ortamda e-posta servis yapılandırması eksikti.
 
-**Harness müdahalesi**: Sonlandırma doğrulaması zorlandı — (1) Sıfırlama uç noktası erişilebilirliğini doğrulamak için tam uygulamayı başlatın; (2) Tam sıfırlama akışını yürütün; (3) Veritabanı durumu tutarlılığını doğrulayın. Tüm kusurlar oturum içinde bulundu, sonraki düzeltmelerin maliyetinin 5-10 katından tasarruf edildi. Bağımsız notlayıcı gerçek sorunları buldu.
+**Harness müdahalesi**: Sonlandırma doğrulaması zorlandı — (1) Sıfırlama uç noktası erişilebilirliğini doğrulamak için tam uygulamayı başlatın; (2) Tam sıfırlama akışını yürütün; (3) Veritabanı durumu tutarlılığını doğrulayın. Üç kusur da oturum içinde yüzeye çıktı ve düzeltme maliyeti hâlâ yereldi. Bağımsız notlayıcı gerçek sorunları buldu.
 
 ## Önemli çıkarımlar
 

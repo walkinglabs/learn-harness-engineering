@@ -15,7 +15,7 @@ Các định luật tiến hoá phần mềm của Lehman cho thấy hệ thốn
 
 Trong năm tháng thí nghiệm Codex, OpenAI quan sát thấy một điều đáng chú ý: **agent sao chép các pattern đang có trong kho lưu trữ, ngay cả khi những pattern ấy không nhất quán hoặc chưa tối ưu.** Lâu dần, việc sao chép này tất yếu dẫn đến trôi dạt. Người đầu tiên để lại một cái cốc cà phê ở khu vực chung; người thứ hai thấy "chỗ này đã lộn xộn rồi" và cũng để thêm một cái; một tuần sau, cả mặt bàn chìm trong cốc. Một codebase cũng vận hành y hệt thế.
 
-Đội ngũ OpenAI ban đầu dành 20% thời gian mỗi thứ Sáu để dọn thủ công "rác do AI", nhưng cách này rõ ràng không mở rộng được. Cuối cùng họ đi đến một giải pháp có hệ thống:
+Đội ngũ OpenAI ban đầu dành thứ Sáu, [một ngày làm việc, khoảng 20% năng lực của tuần](https://openai.com/index/harness-engineering/), để dọn thủ công "rác do AI". Khi thông lượng tăng lên, chi phí dọn thủ công vượt quá lợi ích thu về. Cuối cùng họ đi đến một giải pháp có hệ thống:
 
 1. **Mã hoá "quy tắc vàng" vào kho lưu trữ**: Các quy tắc kiểu "ưu tiên dùng package tiện ích dùng chung thay vì helper tự chế tay" (giữ bất biến ở một nơi) và "đừng đoán mò cấu trúc dữ liệu" (xác minh ranh giới hoặc dựa vào SDK có kiểu). Những quy tắc này cụ thể, cơ học và kiểm tra được tự động.
 2. **Thiết lập quy trình dọn dẹp định kỳ**: Một đội các task Codex nền thường xuyên quét tìm sai lệch, cập nhật điểm chất lượng, mở PR tái cấu trúc có mục tiêu. Phần lớn có thể review và auto-merge trong vòng một phút.
@@ -43,7 +43,7 @@ flowchart LR
     Fix --> Build
 ```
 
-Nhưng thế vẫn chưa đủ. Tiến độ hiện tại phải được ghi vào artifact máy đọc được: các subtask đã hoàn thành kèm tiêu chí pass, các subtask đang làm dở kèm trạng thái hiện tại, các subtask chưa bắt đầu. Bản ghi tiến độ tốt giảm thời gian chẩn đoán lúc khởi động phiên từ 60-80%. Artifact tạm (debug log, tệp tạm, code bị comment out, marker TODO) cũng phải được dọn, vì chúng tăng tải nhận thức cho phiên sau. Đường khởi động chuẩn phải còn chạy được. Phiên sau có thể bắt đầu làm việc mà không cần can thiệp thủ công không? Khởi tạo môi trường, tải codebase, thu thập ngữ cảnh, chọn tác vụ, không đường nào được hỏng cả.
+Nhưng thế vẫn chưa đủ. Tiến độ hiện tại phải được ghi vào artifact máy đọc được: các subtask đã hoàn thành kèm tiêu chí pass, các subtask đang làm dở kèm trạng thái hiện tại, các subtask chưa bắt đầu. Ghi tiến độ và kết quả xác minh vào các tệp được quản lý phiên bản để phiên sau có thể kiểm tra trạng thái. Artifact tạm (debug log, tệp tạm, code bị comment out, marker TODO) cũng phải được dọn, vì chúng tăng tải nhận thức cho phiên sau. Đường khởi động chuẩn phải còn chạy được. Phiên sau có thể bắt đầu làm việc mà không cần can thiệp thủ công không? Khởi tạo môi trường, tải codebase, thu thập ngữ cảnh, chọn tác vụ, không đường nào được hỏng cả.
 
 ```mermaid
 flowchart LR
@@ -72,7 +72,7 @@ Cái bẫy tâm lý phổ biến nhất là "phiên này không có thời gian 
 
 Tệ hơn, mỗi phiên có mục tiêu tác vụ riêng. Phiên mới vào để làm việc mới, không phải dọn mớ hỗn độn của phiên trước. Nó sẽ phớt lờ sự lộn xộn rồi xây tiếp lên trên, lại đẻ thêm hỗn loạn. Đó chính là vòng phản hồi dương của entropy.
 
-Con số kể lại tất cả. Một dự án phát triển bằng agent trong 12 tuần, không có chiến lược dọn dẹp:
+Với một dự án 12 tuần giả định, hãy giả sử các giá trị sau:
 
 - Tuần 1: build pass 100%, test pass 100%, khởi động phiên mới 5 phút
 - Tuần 4: build 95%, test 92%, khởi động 15 phút
@@ -84,7 +84,7 @@ Cùng dự án nhưng có chiến lược dọn dẹp:
 - Tuần 1: 100%, 100%, 5 phút
 - Tuần 12: 97%, 95%, 9 phút
 
-Sau 12 tuần: tỷ lệ build pass chênh 29 điểm phần trăm, thời gian khởi động phiên mới chênh 85%. Đây không phải lý thuyết, đây là khác biệt được quan sát.
+Một vòng dọn hàng tuần giữ trạng thái xuất phát ổn định: mỗi phiên kết thúc với build, test, tiến độ và artifact tạm đều ngăn nắp, để phiên sau bắt đầu từ cùng một đường cơ sở.
 
 ## Cách làm đúng
 
@@ -137,7 +137,7 @@ Phiên mới đọc tài liệu này là biết ngay ưu tiên ở đâu. Sửa 
 
 Mỗi thành phần harness tồn tại vì mô hình chưa thể tự làm việc đó một cách đáng tin. Nhưng khi mô hình mạnh lên, những giả định ấy trở nên lỗi thời.
 
-Thí nghiệm của Anthropic chứng minh trực tiếp điều này. Harness ban đầu của họ có cơ chế chia sprint, chia việc thành từng khúc nhỏ để Sonnet 4.5 làm từng khúc một. Khi Opus 4.6 ra mắt, năng lực của mô hình đã tự phân rã công việc được, việc dựng sprint trở thành overhead thừa. Gỡ bỏ xong, agent builder làm việc liên tục hơn hai tiếng không trôi dạt, và còn trôi chảy hơn.
+Báo cáo harness của Anthropic cho thấy trực tiếp điều này. Harness ba agent đầu tiên, xây cho Opus 4.5, có generator làm việc theo sprint. Khi [Opus 4.6](https://www.anthropic.com/engineering/harness-design-long-running-apps) ra mắt, mô hình đã tự phân rã được công việc, nên cấu trúc sprint trở thành thứ thừa. Trong lần chạy DAW cập nhật, builder làm việc liên tục hơn hai tiếng mà không trôi dạt.
 
 Nhưng câu chuyện ở evaluator lại khác. Kể cả với Opus 4.6 mạnh hơn, khi tác vụ tiệm cận biên năng lực mô hình, evaluator vẫn mang lại giá trị thật, bắt được các tính năng thiếu và stub của generator. Điều này nghĩa là evaluator không phải quyết định có/không cố định, nó phụ thuộc vào vị trí độ khó tác vụ so với năng lực mô hình.
 
@@ -170,7 +170,7 @@ Một ứng dụng Electron phát triển bằng agent trong 12 tuần, so sánh
 
 **Có chiến lược dọn dẹp** (nhóm thực nghiệm): Kiểm tra trạng thái sạch đầy đủ cuối mỗi phiên, cộng với vòng dọn hàng tuần. Tuần 12, build pass 97%, test pass 95%, khởi động phiên mới 9 phút, 11 artifact cũ.
 
-Đến tuần 12, nhóm thực nghiệm có build pass cao hơn 29 điểm phần trăm, test pass cao hơn 34 điểm, và thời gian khởi động phiên mới thấp hơn 85%. Mỗi phiên chỉ tốn thêm 5 phút dọn dẹp, nhưng suốt 12 tuần nó tiết kiệm được hàng chục giờ hỗn loạn.
+Đến tuần 12, nhóm có dọn dẹp giữ tỷ lệ build và test pass gần với điểm xuất phát, phiên mới có thể bắt đầu nhanh, và artifact cũ còn rất ít. Dọn dẹp tốn vài phút mỗi phiên và trả lại một trạng thái xuất phát mà phiên sau có thể tin tưởng.
 
 ## Những điểm chính cần nhớ
 

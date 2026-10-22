@@ -44,7 +44,7 @@ Harnessʼda kuzatuvchanlik boʻlmasa, tizimli ravishda toʻrt turdagi muammo yuz
 
 **Qayta urinishlar (Retries) koʻr-koʻrona taxminga aylanadi**: Qachonki agent biror narsa nega yiqilganini bilmasa, qayta urinish yoʻnalishi mutlaqo tasodifiy boʻladi. U notoʻgʻri yoʻnalishda qayta-qayta urinishi mumkin — xatoning asl sababini eʼtiborsiz qoldirib, unga umuman aloqasi boʻlmagan joylarni tuzatib yotadi. Har bir koʻr-koʻrona urinish token va vaqt sarflaydi.
 
-**Sessiyalararo maʼlumot jarligi (Session handoff information cliff)**: Chala bajarilgan ish keyingi sessiyaga uzatilsa, kuzatuvchanlikning yoʻqligi yangi sessiya tizim holatini boshidan oʻrganishga majbur boʻlishini anglatadi. Anthropicʼning uzoq davom etadigan agentlar boʻyicha kuzatuvlari shuni koʻrsatadiki, bu takroriy oʻrganish (redundant diagnosis) jami sessiya vaqtining 30-50% ini yeb qoʻyishi mumkin.
+**Sessiyalararo maʼlumot jarligi (Session handoff information cliff)**: Chala bajarilgan ish keyingi sessiyaga uzatilsa, kuzatuvchanlikning yoʻqligi yangi sessiya tizim holatini boshidan oʻrganishga majbur boʻlishini anglatadi. Yangi sessiya kodni qayta oʻqishi, buyruqlarni qayta ishga tushirishi va qaysi signallar muhimligini oʻzi hal qilishi kerak; [versiyalangan jarayon va tekshiruv qaydlari](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) koʻzdan kechirsa boʻladigan holatni beradi.
 
 ### Claude Code ishtirokidagi hayotiy vaziyat
 
@@ -54,7 +54,7 @@ Faraz qiling, harness “rejalashtiruvchi-yaratuvchi-baholovchi (planner-generat
 
 **Toʻliq kuzatuvchanlik bilan**: Rejalashtiruvchi sprint shartnomasini — qaysi komponentlar oʻzgarishi, har biri uchun tekshirish standartlari va istisnolar (masalan, bosma uchun stillar chiqarilmasin) ni aniq chiqarib beradi. Yaratuvchi xuddi shu shartnoma asosida kod yozadi. Runtime kuzatuvchanligi har bir komponentning stil yuklanishi va qoʻllanish jarayonini qayd etadi. Baholovchi baholash rubrikasidan foydalanib oʻlchamlar boʻyicha baholaydi va aniq dalillarni keltiradi. Bitta iteratsiya (aylanish) yuqori sifatli natija beradi va bor-yoʻgʻi 15 daqiqa oladi.
 
-3 barobar samaradorlik farqi. Yagona farq — kuzatuvchanlikdir.
+Farq shundan kelib chiqadiki, shartnoma va dalillar agentning boshidan tashqarida mavjudmi yoki yoʻq.
 
 ### Nega agentlar buni oʻzlari yecha olishmaydi
 
@@ -128,7 +128,7 @@ Rejalashtiruvchi-yaratuvchi-baholovchi (planner-generator-evaluator) jarayonidan
 - Baholash rubrikasi oʻlchamlar boʻyicha tuzilmali baho berish imkoniyatini taqdim etadi
 - Bitta aylanishda (iteration) 15 daqiqada yuqori sifatli natija yuzaga keladi
 
-Samaradorlik 3 barobar yaxshilanadi, sifat barqarorlashadi va baholashlar takrorlanuvchan (reproducible) boʻladi.
+Natija sifati barqarorlashadi va baholashlar takrorlanuvchan (reproducible) boʻladi.
 
 ## Asosiy xulosalar
 
@@ -136,7 +136,7 @@ Samaradorlik 3 barobar yaxshilanadi, sifat barqarorlashadi va baholashlar takror
 - **Ikkala kuzatuv qatlami ham zarur** — runtime signallar “nima boʻlganini” tushuntirsa, jarayon artefaktlari “nima uchun aynan shunday qilinganini” tushuntiradi.
 - **Sprint shartnomalari tushunmovchilikni boshidanoq yoʻqotadi** — “yaratuvchi baholovchi koʻriboq rad etadigan narsani yasashini” oldini oladi.
 - **Baholash rubrikalari bahoni takrorlanuvchan (reproducible) qiladi** — turli xil baholovchilar ayni bitta natija uchun bir xil baho berishini taʼminlaydi.
-- **Kuzatuvchanliksiz sessiya vaqtining 30-50% qismi ortiqcha narsalarni takror oʻrganishga sarflanadi.**
+- **Kuzatuvchanlik noaniq rad etishni aniq, tuzatish mumkin boʻlgan nuqsonga aylantiradi.**
 
 ## Qoʻshimcha oʻqish uchun
 

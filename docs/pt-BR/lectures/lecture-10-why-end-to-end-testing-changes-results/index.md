@@ -130,7 +130,7 @@ Sempre que você descobrir uma nova categoria de erro cometido por agentes duran
 | Problema de Permissão | Permissões diferentes no ambiente empacotado | Não detectado | Detectado |
 | Propagação de Erros | Exceções da camada de serviço não chegaram à camada de UI | Não detectado | Detectado |
 
-Todos os 5 defeitos foram detectados pelos testes end-to-end; os testes unitários não detectaram nenhum. O custo foi um aumento no tempo de execução dos testes de 2 segundos para 15 segundos — perfeitamente aceitável em um fluxo de trabalho com agentes.
+Todos os 5 defeitos foram detectados pelos testes end-to-end; os testes unitários não detectaram nenhum. A execução end-to-end é mais lenta, mas esse custo é pequeno comparado ao de publicar cinco defeitos de fronteira.
 
 ## Principais Conclusões
 

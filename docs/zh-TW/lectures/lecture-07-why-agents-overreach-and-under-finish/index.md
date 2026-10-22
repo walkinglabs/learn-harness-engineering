@@ -26,7 +26,7 @@ Claude Code 的真實行為很說明問題。你讓它「新增使用者註冊�
 
 6 步之後，每一個都是半成品。沒有端到端驗證，程式碼之間耦合複雜，下一個工作階段來接手時將完全無從下手。
 
-Anthropic 的實驗資料直接支援這一點：使用「小下一步」策略（等價於 WIP=1）的 agent，任務完成率比使用寬泛提示的 agent 高 37%。更有意思的是，agent 生成的程式碼行數和實際完成的功能數量呈弱負相關，寫得越多，完成得越少。貪多嚼不爛，資料為證。
+Anthropic 的長執行 agent 指南[要求 coding agent 一次只做一個功能](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)，驗證、提交、更新進度，再繼續下一個。寬泛的 prompt 會讓 agent 同時開幾條線，每條線都在爭搶同一份脈絡和驗證預算。
 
 ## WIP=1 工作流
 

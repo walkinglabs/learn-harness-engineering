@@ -70,7 +70,7 @@ Un agent d'évaluation indépendant, spécifiquement réglé pour être « point
 | Architecture | Durée d'exécution | Coût | Fonctionnalités principales fonctionnelles ? |
 |--------------|---------|------|------------------------|
 | Agent unique (exécution nue) | 20 min | 9 $ | Non (entités du jeu ne réagissent pas aux entrées) |
-| Trois agents (planificateur + générateur + évaluateur) | 6 heures | 200 $ | Oui (le jeu est entièrement jouable) |
+| Trois agents (planificateur + générateur + évaluateur) | 6 heures | 200 $ | Le cœur du gameplay fonctionnait ; la physique et les niveaux posaient encore problème |
 
 C'est exactement le même modèle (Opus 4.5) avec exactement le même prompt (« construire un éditeur de jeu rétro 2D »). La seule différence est le harness — passer d'une « exécution nue » à « planificateur détaille les exigences → générateur implémente fonctionnalité par fonctionnalité → évaluateur effectue des tests de clic réels avec Playwright ».
 
@@ -119,7 +119,7 @@ Les signaux à l'exécution efficaces incluent :
 
 **Déductions de points réelles** : (1) Le flux de bout en bout n'a pas été testé — l'envoi et la vérification réels du lien de réinitialisation n'ont jamais été confirmés. (2) La migration de la base de données a échoué après une exécution partielle, causant une incohérence du schéma. (3) La configuration du service email manquait dans l'environnement cible.
 
-**Intervention du harness** : Validation d'achèvement imposée — (1) Démarrer l'application complète pour vérifier l'accessibilité de l'endpoint de réinitialisation ; (2) Exécuter le flux complet de réinitialisation ; (3) Vérifier la cohérence de l'état de la base de données. Tous les défauts ont été trouvés dans la session, permettant d'économiser 5 à 10 fois le coût des corrections ultérieures. Le correcteur indépendant a trouvé les vrais problèmes.
+**Intervention du harness** : Validation d'achèvement imposée — (1) Démarrer l'application complète pour vérifier l'accessibilité de l'endpoint de réinitialisation ; (2) Exécuter le flux complet de réinitialisation ; (3) Vérifier la cohérence de l'état de la base de données. Les trois défauts apparaissent dans la session, quand le coût de correction reste local. Le correcteur indépendant a trouvé les vrais problèmes.
 
 ## Points clés
 

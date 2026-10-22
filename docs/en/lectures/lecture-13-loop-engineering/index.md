@@ -84,11 +84,11 @@ Loop Engineering, the subject of this lecture, isn't about any one command. It's
 
 You don't have to type `/goal` every time. But understanding where it came from and why it looks the way it does — that's understanding the core of loop engineering. More complex loops just add parts like scheduling, parallelism, isolation, and memory on top of these same three fundamentals: goal, verification, stopping condition.
 
-## June 2026: Three People Lit the Same Fuse in One Week
+## Different Dates, the Same Direction
 
-In the first week of June 2026, three practitioners building coding agent infrastructure — without comparing notes — said the same thing in different words.
+The same idea surfaced in different places, at different times.
 
-**Peter Steinberger** (creator of OpenClaw, [his post reached 8 million views](https://x.com/steipete/status/2063697162748260627)): "You shouldn't be prompting coding agents anymore. You should be designing loops that prompt your agents."
+**Peter Steinberger** (creator of OpenClaw, [in a post](https://x.com/steipete/status/2063697162748260627)): "You shouldn't be prompting coding agents anymore. You should be designing loops that prompt your agents."
 
 **Boris Cherny** (head of Claude Code at Anthropic, [on the Acquired podcast](https://x.com/rohanpaul_ai/status/2063289804708835412)): "I don't prompt Claude anymore. I have loops running that prompt Claude and figure out what to do. My job is to write loops."
 
@@ -96,9 +96,9 @@ In the first week of June 2026, three practitioners building coding agent infras
 
 > **Loop engineering is replacing yourself as the person who prompts the agent. You design the system that does it instead.**
 
-Cherny disclosed numbers: over 30 consecutive days, all code contributions to Claude Code were made autonomously by AI — 259 merged PRs, over 80% of production code authored by Claude, and a 76% success rate on open-ended software tasks.
+Cherny wrote in a [2025-12-27 personal report](https://twitter.com/bcherny/status/2004887829252317325) that over 30 days he landed 259 PRs — 497 commits, 40,000 lines added, 38,000 removed — and that every line was written by Claude Code + Opus 4.5.
 
-Three people. One week. The same conclusion. Not because they coordinated — because the infrastructure had quietly crossed a threshold. Agents had become reliable enough to finish non-trivial tasks unattended. Scheduling primitives (`/loop`, `/goal`, cron) were now built into the tools. The cost of a single agent run had dropped low enough that running one repeatedly on a timer stopped looking wasteful. When all the parts are present, the move that combines them becomes obvious to everyone at once.
+The quotes come from different dates, formats, and teams. Their shared direction is to move scheduling, verification, and the stopping decision out of the moment-to-moment prompt and into a system. By mid-2026, agents could finish non-trivial tasks unattended, scheduling primitives were built in, and a run was cheap enough to repeat on a timer. When the pieces are present, more than one person puts them together.
 
 > Source: [Addy Osmani: Loop Engineering](https://addyosmani.com/blog/loop-engineering/)
 
@@ -267,7 +267,7 @@ flowchart TD
 
 This is no longer a single agent run. It is a continuously operating system that wakes up every morning, sweeps the floor on its own, and puts the things that need your attention in front of you. Your role becomes: **review the inbox contents, make decisions, and when you spot a pattern the system can't handle, refine the skills and rules.**
 
-Cherny used this pattern to merge 259 PRs in 30 days without opening an IDE once. OpenAI engineers used the same pattern to build a roughly one-million-line beta product by hand — without writing a single line of code themselves.
+Cherny's 30-day report is one data point for this pattern: 259 PRs, with the code written by Claude Code + Opus 4.5. OpenAI's [harness account](https://openai.com/index/harness-engineering/) is another: a small team used Codex on a greenfield repository for five months and reported about one million lines and roughly 1,500 PRs.
 
 ## Generator/Evaluator Separation: Why You Can't Let the Model Grade Its Own Work
 
@@ -293,7 +293,7 @@ One sentence to remember: **someone in your crew must not believe you.**
 
 If you want to see what a well-designed, actually-running loop looks like, [Karpathy's autoresearch](https://github.com/karpathy/autoresearch) is the textbook example.
 
-In March 2026, Karpathy released a 630-line Python project. Give it one GPU and a research direction, and it runs all night — completing hundreds of ML training experiments, keeping only the ones that truly improve. The project hit 66,000+ stars within days of release.
+In March 2026, Karpathy released [autoresearch](https://github.com/karpathy/autoresearch). The repository is deliberately small: `prepare.py` is fixed infrastructure, `train.py` is the file the agent edits (about 630 lines), and `program.md` is the research methodology the human edits. Give it one GPU and a research direction, and it runs overnight — each experiment gets a fixed 5-minute training wall-clock budget (excluding startup and compilation), and only changes that improve `val_bpb` are kept.
 
 ### Three Files, Three Roles
 
@@ -343,9 +343,9 @@ flowchart TD
     8b --> 9
 ```
 
-It runs roughly 12 experiments per hour. An overnight run (8 hours) is about 100 experiments. Karpathy himself ran it for 2 days — ~700 experiments.
+The README estimates about 12 experiments per hour, or roughly 100 in an 8-hour overnight run. The 5-minute budget covers training, not startup or compilation; the rest of each round goes to editing, launching, and evaluating. Karpathy reported running a private version of autoresearch autonomously for about two days for the nanochat round described below.
 
-The fixed 5-minute wall-clock budget is a key design choice — no matter what the agent changes, every experiment takes exactly the same time. This means all results are directly comparable under the same time budget — no argument about "this one ran longer so it's better."
+The fixed 5-minute training budget is a key design choice — no matter what the agent changes, the training run gets the same wall-clock budget. This means all results are directly comparable under the same training budget.
 
 ### Output: What You See When You Wake Up
 
@@ -375,13 +375,9 @@ The agent writes clear commit messages about what it tried, what worked, what di
 
 ### What It Actually Found
 
-Results from Karpathy's initial 2-day, ~700-experiment run:
+Results from autoresearch [round 1](https://github.com/karpathy/nanochat/commit/6ed7d1d82cee16c2e26f45d559ad3338447a6c1b) reduced nanochat's GPT-2-level training time on 8×H100 [from **2.02 hours to 1.80 hours**](https://github.com/karpathy/nanochat/commit/f06860494848db080c9a80a0ffa83203b042056b), a reduction of about **10.9%** in training time.
 
-- Out of ~700 attempts, about **20 stackable real improvements** were found
-- Reduced nanochat's GPT-2-level training time on 8×H100 from **2.02 hours → 1.80 hours**, about **11% faster**
-- Findings included: learning rate adjustments, optimizer tuning, activation swaps, attention pattern optimizations, etc.
-
-Were all improvements earth-shattering discoveries? No. Most were small optimizations that stacked. But those 20 valid improvements would have taken a human researcher weeks of manual work — the agent did it in 48 hours.
+Most of the changes were small optimizations that stacked. The useful part is the loop: a fixed budget, a complete experiment log, and a rule that only verified improvements stay.
 
 ### The Most Telling Detail: The Loop Is Written in English, Not Code.
 
@@ -399,7 +395,7 @@ Fast loops tempt you to skip verification. "Looks fine" is not the same as "conf
 
 ### 2. Comprehension Rot
 
-The faster a loop ships code, the further your understanding of your own codebase drifts from reality. Cherny's team had 80% of code authored by agents — meaning most of a team's code wasn't written by a person. If you don't read and use what the loop produces, your comprehension decays continuously. **Fast loops require fast reading.**
+The faster a loop ships code, the further your understanding of your own codebase drifts from reality. A loop lands hundreds of PRs; the team reads those PRs, reviews the diffs that matter, and keeps using the code, so its mental model keeps up. **Fast loops require fast reading.**
 
 ### 3. Cognitive Surrender
 
@@ -407,11 +403,11 @@ When the loop runs smoothly, the most comfortable posture is to stop having opin
 
 ### 4. Token Blowout
 
-Every iteration of a loop accumulates more context: code written, errors encountered, decisions made. Without context management, prompt size grows roughly quadratically with the number of turns. Codex addresses this with automatic context compaction — a dedicated API compresses older conversation turns into encrypted content summaries, retaining essential knowledge while discarding redundant detail. This is an engineering concern you must address from the first loop, not a bolt-on later.
+Every iteration of a loop accumulates more context: code written, errors encountered, decisions made. When each round adds roughly a fixed amount of new content, the history length seen by a single round grows roughly linearly with the number of rounds. If the system reprocesses the entire history every round, the cumulative input across N rounds grows roughly quadratically. Codex addresses this with automatic context compaction — a dedicated API compresses older conversation turns into encrypted content summaries, retaining essential knowledge while discarding redundant detail. This is an engineering concern you must address from the first loop, not a bolt-on later.
 
 ## Building Your First Loop
 
-You don't need to start with a Stripe-scale pipeline merging 1,300 PRs a week. Start with the smallest thing that works.
+You don't need to start with a high-throughput pipeline. Start with the smallest thing that works.
 
 ### Step 1: Pick One Recurring Task
 

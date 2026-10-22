@@ -5,13 +5,13 @@
 
 # Bài 01. Mô hình mạnh không có nghĩa là thực thi đáng tin cậy
 
-Tính đến cuối năm 2025, các coding agent mạnh nhất trên SWE-bench Verified đạt tỷ lệ vượt qua khoảng 50-60%. Nghe thì có vẻ khá, nhưng đừng vội ăn mừng. Đó là những tác vụ được lựa chọn cẩn thận với mô tả vấn đề rõ ràng và bộ test có sẵn. Đưa cho agent yêu cầu thực tế hàng ngày của bạn: đặc tả mơ hồ, không có test, quy tắc nghiệp vụ ẩn rải rác trong codebase, thì tỷ lệ vượt qua chỉ giảm thêm nữa. Bạn hào hứng giao một tác vụ, agent chạy 20 phút rồi báo "xong rồi", và bạn nhìn vào code: nó thêm một tính năng nhưng làm hỏng test, sửa một lỗi nhưng sinh ra lỗi mới, và kết quả cuối cùng còn không đúng thứ bạn yêu cầu.
+Ngày 29 tháng 9 năm 2025, Anthropic công bố Claude Sonnet 4.5 đạt [77,2% trên SWE-bench Verified](https://www.anthropic.com/news/claude-sonnet-4-5). Con số đó nghe có vẻ khá, nhưng đừng vội ăn mừng. Đó là những tác vụ được lựa chọn cẩn thận với mô tả vấn đề rõ ràng và bộ test có sẵn. Đưa cho agent yêu cầu thực tế hàng ngày của bạn: đặc tả mơ hồ, không có test, quy tắc nghiệp vụ ẩn rải rác trong codebase, thì tỷ lệ vượt qua chỉ giảm thêm nữa. Bạn hào hứng giao một tác vụ, agent chạy 20 phút rồi báo "xong rồi", và bạn nhìn vào code: nó thêm một tính năng nhưng làm hỏng test, sửa một lỗi nhưng sinh ra lỗi mới, và kết quả cuối cùng còn không đúng thứ bạn yêu cầu.
 
 Khi chuyện này xảy ra, phản ứng đầu tiên của hầu hết mọi người là "mô hình chưa đủ tốt, thử sang cái đắt tiền hơn xem sao". Trước khi mở ví, hãy cân nhắc: vấn đề có thể hoàn toàn không nằm ở mô hình.
 
 ## Cùng con ngựa, số phận khác nhau
 
-Anthropic đã thực hiện một thí nghiệm có kiểm soát minh họa chính xác điểm này. Cùng một prompt ("xây dựng một trình tạo trò chơi retro 2D"), cùng một mô hình (Opus 4.5), hai lần chạy. Lần chạy đầu tiên: trần trụi, không có hỗ trợ, 20 phút, $9, các tính năng cốt lõi của trò chơi không hoạt động. Lần chạy thứ hai: harness đầy đủ, kiến trúc ba agent gồm planner, generator, evaluator, 6 giờ, $200, trò chơi có thể chơi được hoàn toàn.
+Anthropic đã so sánh cùng một prompt ("xây dựng một trình tạo trò chơi retro 2D") và cùng một mô hình (Opus 4.5) dưới hai harness. Lần chạy đầu tiên: trần trụi, không có hỗ trợ, 20 phút, $9; ứng dụng mở được, nhưng các thực thể không phản hồi với input. Lần chạy thứ hai: harness đầy đủ, kiến trúc ba agent gồm planner, generator, evaluator, 6 giờ, $200; có thể di chuyển một thực thể, nhưng vật lý còn thô và một bức tường chặn đường đi. [Gameplay cốt lõi chạy được; ứng dụng vẫn chưa hoàn thành.](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
 Họ không thay đổi mô hình. Opus 4.5 vẫn là Opus 4.5. Thứ thay đổi là bộ yên cương.
 
@@ -31,9 +31,9 @@ Các chế độ thất bại cụ thể thực ra chỉ gói gọn trong vài �
 
 Với các tình huống trên, những khái niệm này không còn chỉ là thuật ngữ suông:
 
-- **Khoảng cách Năng lực (Capability Gap)**: Khoảng cách lớn giữa hiệu suất mô hình trên benchmark và hiệu suất trên tác vụ thực tế. Tỷ lệ 50-60% trên SWE-bench Verified có nghĩa là gần một nửa vấn đề thực tế không được giải quyết.
+- **Khoảng cách Năng lực (Capability Gap)**: Khoảng cách lớn giữa hiệu suất mô hình trên benchmark và hiệu suất trên tác vụ thực tế. Các tác vụ benchmark đi kèm mô tả vấn đề rõ ràng, test và môi trường; tác vụ thực tế thường buộc bạn phải tự cung cấp những thứ đó.
 - **Harness**: Mọi thứ bên ngoài mô hình, hướng dẫn, công cụ, môi trường, quản lý trạng thái, phản hồi xác minh. Không phải trọng số mô hình, thì đó là harness. Chính là thứ chúng ta vẫn gọi là "bộ yên cương".
-- **Lỗi Do Harness (Harness-Induced Failure)**: Mô hình có đủ năng lực, nhưng môi trường thực thi có khiếm khuyết cấu trúc. Thí nghiệm có kiểm soát của Anthropic đã chứng minh điều này.
+- **Lỗi Do Harness (Harness-Induced Failure)**: Mô hình có đủ năng lực, nhưng môi trường thực thi có khiếm khuyết cấu trúc. So sánh trò chơi retro ở trên là một ví dụ.
 - **Khoảng cách Xác minh (Verification Gap)**: Khoảng cách giữa sự tự tin của agent về kết quả đầu ra và tính đúng đắn thực tế. Agent nói "tôi đã xong" khi chưa xong, đây là chế độ thất bại phổ biến nhất.
 - **Vòng lặp Chẩn đoán (Diagnostic Loop)**: Thực thi, quan sát lỗi, quy cho một lớp harness cụ thể, sửa lớp đó, thực thi lại. Đây là phương pháp luận cốt lõi của harness engineering.
 - **Định nghĩa Hoàn thành (Definition of Done)**: Một tập các điều kiện có thể xác minh bằng lệnh: test vượt qua, lint sạch, type check vượt qua. Không có định nghĩa hoàn thành rõ ràng, agent sẽ tự bịa ra định nghĩa của riêng nó.
@@ -60,7 +60,7 @@ Từ đó, xây dựng vòng lặp chẩn đoán. Đừng xem lỗi là "mô hì
 
 ## Thí nghiệm triệu dòng code
 
-Vào năm 2025, ba kỹ sư tại OpenAI bắt đầu một thí nghiệm. Quy tắc đơn giản: chính họ không viết code, chỉ Codex viết. Bắt đầu từ một kho git trống, năm tháng sau kho chứa khoảng một triệu dòng code. Logic ứng dụng, hạ tầng, công cụ, tài liệu, tất cả đều do agent tạo. Ba kỹ sư mở tổng cộng 1.500 PR, trung bình 3.5 PR mỗi người mỗi ngày.
+Vào tháng 8 năm 2025, ba kỹ sư tại OpenAI bắt đầu một thí nghiệm. Quy tắc đơn giản: chính họ không viết code, chỉ Codex viết. Bắt đầu từ một kho git trống, năm tháng sau [kho chứa khoảng một triệu dòng code](https://openai.com/index/harness-engineering/). Logic ứng dụng, hạ tầng, công cụ, tài liệu, tất cả đều do agent tạo. Nhóm sau đó phát triển lên bảy kỹ sư; trong cả giai đoạn đã hợp nhất khoảng 1.500 PR, trung bình 3,5 PR mỗi kỹ sư mỗi ngày.
 
 Tiến độ ban đầu chậm hơn dự kiến một cách đáng ngạc nhiên. Codex không tệ, nó chỉ thiếu các công cụ và cấu trúc đủ hoàn chỉnh để hướng đến mục tiêu cấp cao. Ba kỹ sư dần tìm ra quy luật: chia nhỏ mục tiêu lớn thành các khối xây dựng nhỏ, thiết kế, code, review, test, để agent lắp ráp từng khối một, rồi dùng các khối đó để tổng hợp các tác vụ phức tạp hơn. Mỗi khi có trục trặc, vấn đề hầu như không bao giờ là "cố gắng chưa đủ", mà luôn là "agent còn thiếu năng lực gì, và thiếu năng lực đó có thể được cung cấp theo cách vừa dễ hiểu vừa có thể thực thi không".
 
@@ -72,9 +72,9 @@ Thí nghiệm này chứng minh trực tiếp luận điểm cốt lõi của b�
 
 Một nhóm dùng Claude Sonnet để thêm API endpoint mới vào một ứng dụng web Python cỡ trung (FastAPI + PostgreSQL + Redis, khoảng 15.000 dòng code).
 
-Ban đầu họ chỉ đưa ra một câu: "thêm endpoint tùy chọn người dùng dưới `/api/v2/users`". Kết quả? Agent dành 40% cửa sổ ngữ cảnh để khám phá cấu trúc repo, tạo ra code trông có vẻ hợp lý nhưng không theo mẫu xử lý lỗi của dự án, dùng cú pháp SQLAlchemy cũ, và tuyên bố hoàn thành trong khi endpoint vẫn có lỗi runtime. Phiên tiếp theo phải làm lại toàn bộ phần khám phá.
+Ban đầu họ chỉ đưa ra một câu: "thêm endpoint tùy chọn người dùng dưới `/api/v2/users`". Kết quả? Agent dành phần lớn phiên để khám phá cấu trúc repo, tạo ra code trông có vẻ hợp lý nhưng không theo mẫu xử lý lỗi của dự án, dùng cú pháp SQLAlchemy cũ, và tuyên bố hoàn thành trong khi endpoint vẫn có lỗi runtime. Phiên tiếp theo phải làm lại toàn bộ phần khám phá.
 
-Sau đó họ bổ sung `AGENTS.md` (mô tả kiến trúc dự án và phiên bản tech stack), các lệnh xác minh rõ ràng (`pytest tests/api/v2/ && python -m mypy src/`), và các bản ghi quyết định kiến trúc. Cùng một mô hình thành công trong cả ba lần chạy độc lập, với hiệu quả ngữ cảnh tốt hơn khoảng 60%.
+Sau đó họ bổ sung `AGENTS.md` (mô tả kiến trúc dự án và phiên bản tech stack), các lệnh xác minh rõ ràng (`pytest tests/api/v2/ && python -m mypy src/`), và các bản ghi quyết định kiến trúc. Cùng một mô hình sau đó đã tuân theo quy ước của dự án và kiểm tra công việc bằng các lệnh nó có thể chạy.
 
 Họ không thay đổi mô hình. Họ thay đổi harness.
 

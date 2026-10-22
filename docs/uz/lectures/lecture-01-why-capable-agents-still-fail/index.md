@@ -9,13 +9,13 @@ Oʻzingizni AI olamida tajribali deb hisoblaysiz — Claude Pro obunangiz bor, G
 
 Birinchi reaksiyangiz? “Bu model yetarli emas. Yaxshiroq modelga oʻtish vaqti keldi.” Toʻxtang. Yangi obunaga pul sarflashga shoshilmang — ehtimol, muammo umuman modelda emasdir.
 
-Raqamlarga qaraylik. 2025-yil oxiriga kelib, SWE-bench Verifiedʼdagi eng kuchli kodlash agentlari taxminan 50–60% natija koʻrsatmoqda. Bu — sinchiklab tanlangan, aniq tavsifli va testlari mavjud vazifalarda. Kundalik dasturlash muhitiga oʻtsangiz — talablar noaniq, testlar yoʻq, biznes qoidalari hamma joyga sochilib yotgan — bu raqam yana ham pasayadi.
+Raqamlarga qaraylik. 2025-yil 29-sentabrda Anthropic Claude Sonnet 4.5 modelini eʼlon qildi: [SWE-bench Verified boʻyicha 77,2%](https://www.anthropic.com/news/claude-sonnet-4-5). Bu — sinchiklab tanlangan, aniq tavsifli va testlari mavjud vazifalarda. Kundalik dasturlash muhitiga oʻtsangiz — talablar noaniq, testlar yoʻq, biznes qoidalari hamma joyga sochilib yotgan — bu raqam yana ham pasayadi.
 
 Ammo bu raqamlar ortida intuitsiyaga zid bir haqiqat yashiringan.
 
 ## Bir xil ot, turlicha taqdir
 
-Anthropic nazorat ostida tajriba oʻtkazdi. Bir xil prompt (“2D retro oʻyinlar yaratish dasturini qur”), bir xil model (Opus 4.5). Birinchi sinov — hech qanday qoʻshimcha vositasiz: 20 daqiqa, 9 dollar; oʻyinning asosiy funksiyalari umuman ishlamadi. Ikkinchi sinov — toʻliq harness bilan (planner + generator + evaluator — uch agentli arxitektura): 6 soat, 200 dollar; oʻyin oʻynaladigan holatda chiqdi.
+Anthropic bir xil prompt (“2D retro oʻyinlar yaratish dasturini qur”) va bir xil modelni (Opus 4.5) ikki xil harness ostida solishtirdi. Birinchi sinov — hech qanday qoʻshimcha vositasiz: 20 daqiqa, 9 dollar; dastur ochildi, lekin obyektlar kiritilgan buyruqlarga javob bermadi. Ikkinchi sinov — toʻliq harness bilan (planner + generator + evaluator — uch agentli arxitektura): 6 soat, 200 dollar; bitta obyektni siljitish mumkin edi, ammo fizika dagʻal, devor esa yoʻlni toʻsib qoʻygan edi. [Asosiy oʻyin mexanikasi ishladi, ammo dastur tugallanmagan.](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
 Ular modelni oʻzgartirmadi. Opus 4.5 hamon Opus 4.5 edi. Oʻzgargan narsa — ot anjomlari.
 
@@ -39,9 +39,9 @@ Bir necha sessiyaga choʻzilgan uzun vazifalar yana ham yomonroq — oldingi ses
 
 Bu ssenariylarni nazarda tutsak, quyidagi atamalar endi shunchaki jargon emas — har biri aniq muvaffaqiyatsizlik turini nomlaydi:
 
-- **Capability Gap (Imkoniyatlar tafovuti)**: Modelning benchmark natijalari va haqiqiy vazifalarda koʻrsatadigan natijalari oʻrtasidagi katta tafovut. SWE-bench Verifiedʼda 50–60% muvaffaqiyat darajasi haqiqiy muammolarning deyarli yarmi hal qilinmasligini bildiradi.
+- **Capability Gap (Imkoniyatlar tafovuti)**: Modelning benchmark natijalari va haqiqiy vazifalarda koʻrsatadigan natijalari oʻrtasidagi katta tafovut. Benchmark vazifalarida aniq tavsif, testlar va tayyor muhit boʻladi; haqiqiy vazifalarda bularning koʻpini siz taʼminlashingizga toʻgʻri keladi.
 - **Harness**: Modeldan tashqaridagi hamma narsa — yoʻriqnomalar, vositalar, muhit, holat boshqaruvi, tekshiruv qayta aloqasi. Agar bu model ogʻirliklari boʻlmasa — bu harness. Biz “ot anjomlari” deb atayotgan narsamiz.
-- **Harness-Induced Failure (Harness keltirib chiqargan muvaffaqiyatsizlik)**: Modelda yetarli imkoniyat mavjud, ammo bajarilish muhitida strukturaviy nuqsonlar bor. Anthropicʼning nazoratli tajribasi buni allaqachon isbotladi.
+- **Harness-Induced Failure (Harness keltirib chiqargan muvaffaqiyatsizlik)**: Modelda yetarli imkoniyat mavjud, ammo bajarilish muhitida strukturaviy nuqsonlar bor. Yuqoridagi retro oʻyin taqqoslamasi — shunga misol.
 - **Verification Gap (Tekshiruv tafovuti)**: Agentning oʻz natijasiga ishonchi va haqiqiy toʻgʻrilik oʻrtasidagi farq. Agent “men tugatdim” deydi, aslida tugatmagan — bu eng keng tarqalgan muvaffaqiyatsizlik turi.
 - **Diagnostic Loop (Diagnostik sikl)**: Bajarish, muvaffaqiyatsizlikni kuzatish, uni maʼlum bir harness qatlamiga bogʻlash, oʻsha qatlamni tuzatish, qaytadan bajarish. Bu — harness muhandisligining asosiy metodikasi.
 - **Definition of Done (Bajarilganlik mezonlari)**: Mashina tomonidan tekshirilishi mumkin boʻlgan shartlar toʻplami — testlar oʻtadi, lint toza, type check muvaffaqiyatli. Aniq DoD boʻlmasa, agent oʻzicha ixtiro qiladi.
@@ -73,7 +73,7 @@ Bajarilganlik mezonlari:
 
 ## Million qatorlik tajriba
 
-OpenAI 2025-yilda jasoratli tajriba oʻtkazdi: boʻsh git repozitoriyasidan boshlab, Codex yordamida butun ichki mahsulotni qurish. Besh oydan soʻng repoda taxminan bir million qator kod paydo boʻldi — ilova mantiqi, infratuzilma, asboblar, hujjatlar, ichki dev vositalar — barchasi agent tomonidan yaratilgan. Uchta muhandis Codexʼni boshqarib, taxminan 1 500 ta PR ochib va birlashtirib bordi. Kuniga har bir kishiga oʻrtacha 3,5 ta PR.
+2025-yil avgustida OpenAIʼda uchta muhandis jasoratli tajriba boshladi va qoidalar oddiy edi: ular oʻzlari kod yozmaydi — faqat Codex yozadi. Boʻsh git repozitoriyasidan boshlab, [besh oydan soʻng repoda taxminan bir million qator kod](https://openai.com/index/harness-engineering/) paydo boʻldi — ilova mantiqi, infratuzilma, asboblar, hujjatlar, ichki dev vositalar — barchasi agent tomonidan yaratilgan. Keyinchalik jamoa yettita muhandisga yetdi; shu davr mobaynida taxminan 1 500 ta PR birlashtirildi — kuniga har bir muhandisga oʻrtacha 3,5 tadan.
 
 Asosiy cheklov: **odamlar hech qachon kodni toʻgʻridan-toʻgʻri yozmagan.** Bu hiyla emas edi — bu jamoani muhandisning asosiy ishi endi kod yozish emas, balki muhitlarni loyihalash, niyatni ifodalash va qayta aloqa sikllarini qurishga aylanganda nima oʻzgarishini aniqlashga majbur qilish uchun moʻljallangan edi.
 
@@ -87,9 +87,9 @@ Bu tajriba mazkur maʼruzaning asosiy tezisini bevosita isbotlaydi: **bir xil mo
 
 Bir jamoa Claude Sonnetʼdan foydalanib oʻrta hajmdagi Python web ilovasiga (FastAPI + PostgreSQL + Redis, ~15 000 qator kod) yangi API endpoint qoʻshdi.
 
-Boshida ular faqat bir jumla berishdi: “`/api/v2/users` ostida foydalanuvchi sozlamalari endpointʼlarini qoʻsh”. Natija? Agent kontekst oynasining 40%'ini repo strukturasini oʻrganishga sarfladi, koʻrinishidan oqilona kodni yozdi, ammo loyihaning xatoliklarni boshqarish naqshlariga rioya qilmadi, eski SQLAlchemy sintaksisidan foydalandi va endpointʼda esa runtime xatoliklari mavjud edi — agent buni eʼtiborga olmay “tayyor” deb eʼlon qildi. Keyingi sessiya butun oʻrganish ishini boshidan boshlashga majbur boʻldi.
+Boshida ular faqat bir jumla berishdi: “`/api/v2/users` ostida foydalanuvchi sozlamalari endpointʼlarini qoʻsh”. Natija? Agent sessiyasining katta qismini repo strukturasini oʻrganishga sarfladi, koʻrinishidan oqilona kodni yozdi, ammo loyihaning xatoliklarni boshqarish naqshlariga rioya qilmadi, eski SQLAlchemy sintaksisidan foydalandi va endpointʼda esa runtime xatoliklari mavjud edi — agent buni eʼtiborga olmay “tayyor” deb eʼlon qildi. Keyingi sessiya butun oʻrganish ishini boshidan boshlashga majbur boʻldi.
 
-Keyin ular `AGENTS.md` qoʻshdi (loyiha arxitekturasi va texnologiya versiyalari tasviri bilan), aniq tekshirish buyruqlari (`pytest tests/api/v2/ && python -m mypy src/`) va arxitektura qaroriga oid yozuvlar qoʻshdilar. Aynan oʻsha model uchchala mustaqil sinovda muvaffaqiyatga erishdi, kontekst samaradorligi taxminan 60%'ga yaxshilandi.
+Keyin ular `AGENTS.md` qoʻshdi (loyiha arxitekturasi va texnologiya versiyalari tasviri bilan), aniq tekshirish buyruqlari (`pytest tests/api/v2/ && python -m mypy src/`) va arxitektura qaroriga oid yozuvlar qoʻshdilar. Aynan oʻsha model loyiha konvensiyalariga rioya qildi va ishini oʻzi ishga tushira oladigan buyruqlar bilan tekshirdi.
 
 Ular modelni oʻzgartirmadi. Ular harnessʼni oʻzgartirdi.
 

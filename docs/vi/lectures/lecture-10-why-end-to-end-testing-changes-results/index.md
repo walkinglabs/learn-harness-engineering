@@ -130,7 +130,7 @@ Mỗi lần phát hiện một loại lỗi agent mới trong code review, hãy 
 | Vấn đề quyền | Quyền khác nhau trong môi trường đã đóng gói | Bỏ sót | Bắt được |
 | Lan truyền lỗi | Ngoại lệ lớp service không đến được lớp UI | Bỏ sót | Bắt được |
 
-Cả 5 khiếm khuyết đều bị end-to-end test bắt, unit test không bắt được cái nào. Đánh đổi là thời gian test tăng từ 2 giây lên 15 giây, hoàn toàn chấp nhận được trong quy trình làm việc với agent.
+Cả 5 khiếm khuyết đều bị end-to-end test bắt, unit test không bắt được cái nào. Chạy end-to-end chậm hơn, nhưng chi phí đó nhỏ so với việc đưa năm khiếm khuyết biên ra bản phát hành.
 
 ## Những điểm chính cần nhớ
 

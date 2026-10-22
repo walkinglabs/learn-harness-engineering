@@ -9,7 +9,7 @@
 
 > "우리는 아직 Loop을 이야기하고 있는가, 아니면 이미 Graph로 넘어갔는가?"
 
-트윗 하나가 하루 만에 약 57만 뷰를 얻었고, 월말에는 약 300만 뷰까지 늘었습니다. 몇 시간 뒤 머신러닝 엔지니어 Hamel Husain은 《Loop Engineering Is Dead. Enter Graph Engineering》이라는 제목의 글을 올렸습니다 — 본문은 "Stop it"이라고 쓰인 움짤 하나뿐이었습니다 — 또 약 68만 뷰를 얻었습니다.
+트윗 하나. 몇 시간 뒤 머신러닝 엔지니어 Hamel Husain은 《Loop Engineering Is Dead. Enter Graph Engineering》이라는 제목의 글을 올렸습니다 — 본문은 "Stop it"이라고 쓰인 움짤 하나뿐이었습니다.
 
 더 흥미로운 점은 이렇습니다: **두 사람 모두 농담으로 올린 것입니다.** 한쪽은 이 업계가 6주마다 새 용어를 만들어낸다는 것을 풍자했고, 한쪽은 그 밈에 맞장구를 쳤습니다. 하지만 농담은 겨우 한 주말 정도만 살아남았습니다 — 강의, 로드맵, 도구 스택이 주말이 끝나기 전에 타임라인을 가득 채웠고, 그 뒤에 지어낸 숫자들도 따라왔습니다: "정확도 +18%, 비용 -85%"는 가짜 데이터입니다(18%와 85%는 실제로 존재하지만, 화학 배관 도면에 관한 논문에서 나온 것이며 비교 기준도 완전히 다릅니다), "마이크로소프트, 스탠포드, Anthropic이 동시에 그래프 엔지니어링을 발견했다"는 것도 가짜 뉴스입니다. 사실 확인을 통해 확인된 유일한 "선행자"는 Josh Simmons입니다. 그의 《We Are Entering the Graph Engineering Phase》는 7월 4일에 쓰였는데, 이 농담보다 꼭 2주 앞선 것입니다 — **농담이 이 일을 유행하게 만든 것이지, 농담이 이 일을 만들어낸 것이 아닙니다.**
 
@@ -257,11 +257,11 @@ run(graph, entry={"requirements": "로그인 페이지 버그 수정"}, thread="
 
 ## 오픈소스 프로젝트: 출시 후에 생긴 것, 출시 전에 있던 것
 
-먼저 선을 그어 봅시다: **Graph Engineering은 2026년 7월 18일 이후에야 생긴 이름입니다.** 그 전에 오픈소스로 출시된 프레임워크는 "Graph Engineering 출시 후의 프로젝트"가 아닙니다. 개념이 폭발적으로 뜬 뒤 정말로 이 이름으로 직접 나타난 오픈소스 프로젝트는, 2026년 8월 초 기준으로 근거 있는 것이 하나뿐입니다:
+먼저 선을 그어 봅시다: **Graph Engineering은 2026년 7월 18일 이후에야 생긴 이름입니다.** 그 전에 오픈소스로 출시된 프레임워크는 "Graph Engineering 출시 후의 프로젝트"가 아닙니다. 이 이름을 직접 사용하는 프로젝트 하나가 GraphARC입니다:
 
 **개념 출시 후에 생긴 것**
 
-- [GraphArc](https://github.com/CodeGraphContext/grapharc)(2026-08-02): 스스로 "Graph Engineering의 첫 번째 실시간 구현"이라고 부릅니다. 에이전트 실행을 로그에 묻혀 있던 trace에서 **상호작용 가능한 실시간 오케스트레이션 그래프**로 바꿉니다 — 각 엔진, 각 의존성, 각 결정 지점을 그려서, 실행 전에 전체 그래프를 시각화하고, 당신이 확인한(심지어 휴대폰으로 볼 수도 있는) 뒤에야 통과시킵니다. 저자는 4,000+ 개발자용 그래프 도구를 만든 배경이며, 방향은 "관측 가능, 디버그 가능, 공학화 가능"입니다. 아주 새롭고, 기능은 아직 초기 단계입니다.
+- [GraphARC](https://github.com/CodeGraphContext/GraphARC)(2026년 7월 생성): 스스로 "an end to end implementation of Graph Engineering as proposed by Andrew NG and Peter Steinberger"라고 설명합니다. 초기 단계의 Python 프로젝트입니다. 유용한 방법은 그 오케스트레이션 모델을 읽고 이 접근이 자신의 워크플로에 맞는지 판단하는 것입니다.
 
 **개념 출시 전에 있던 것 (Graph Engineering이라고 부르지 않지만, 당신이 구축할 때 쓸 것은 바로 이것들)**
 
@@ -325,7 +325,7 @@ agent를 시작하는 것은 버튼 하나, 한 마디입니다. 그러나 agent
 - [goddaehee: Graph Engineering 사실 확인 (한국어, 2026-07-30)](https://goddaehee.tistory.com/628) — 가장 완전한 사실 확인: 농담 기원 타임라인, 가짜 숫자 분해, LangGraph 데이터, Hacker News 인기 비교
 - [Josh Simmons: We Are Entering the Graph Engineering Phase (2026-07-04)](https://www.drjoshcsimmons.com/writing/we-are-entering-the-graph-engineering-phase) — 그 농담보다 2주 앞선 진지한 글
 - [LangChain: 3 Years of Graph Engineering with LangGraph (2026-07-22)](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) — 공식 응답: "새 아이디어가 아니라 기존 방법의 최신 이름"; LangGraph 월 다운로드 6,500만+
-- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — 뜨거운 용어의 전파 데이터(첫 트윗 57.5만 뷰)
+- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — 이 용어가 어떻게 퍼졌는지에 대한 서술
 - [LangChain: The Best AI Agent Frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — 일곱 개 주요 오픈소스 프레임워크의 가로 비교: LangGraph, CrewAI, Microsoft Agent Framework, LlamaIndex, Google ADK, OpenAI Agents SDK, Mastra
 - [LangGraph 공식 문서](https://docs.langchain.com/oss/python/langgraph/graph-api) — "Nodes do the work, edges tell what to do next"; 노드와 엣지의 정확한 정의, 그래프 구축의 1차 참조
 - [Anthropic: Building Effective Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents) — 다섯 가지 패턴, 그리면 그래프; workflow vs agent의 권위 있는 구분

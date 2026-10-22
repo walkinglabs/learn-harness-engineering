@@ -23,7 +23,7 @@ Did user auth, shopping cart mostly done, still need payments
 
 Kann eine neue Agentensitzung daraus diese Fragen beantworten? Was bedeutet "mostly done"? Welche Tests hat der Warenkorb bestanden? Was blockiert Payments? Die Antwort auf alles lautet: "Niemand weiß es." Wie wenn du deinem Arzt sagst: "Mein Bauch tut weh, war in letzter Zeit schon okay" - welches Medikament soll er verschreiben?
 
-Das Ergebnis: Die neue Sitzung verbringt 20 Minuten damit, den Projektzustand zu erschließen, und implementiert möglicherweise bereits fertige Features erneut. Anthropics Engineering-Daten zeigen, dass gute Fortschrittsaufzeichnungen die Diagnosezeit beim Sitzungsstart um 60-80% reduzieren.
+Das Ergebnis: Die neue Sitzung muss den Projektzustand erst erschließen und implementiert möglicherweise bereits fertige Features erneut. Anthropics Empfehlung ist, [Fortschritt und Verifikationsergebnisse in versionierten Dateien festzuhalten](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), damit die nächste Sitzung den Zustand einsehen kann.
 
 ## Feature-Zustandsmaschine
 
@@ -112,7 +112,7 @@ Eine E-Commerce-Plattform mit 10 Features. Zwei Tracking-Ansätze wurden verglic
 
 **Rückgrat-Modus**: Jedes Feature hat einen klaren Zustand und einen Verifikationsbefehl. Eine neue Sitzung liest die Feature-Liste und weiß in 3 Minuten: F01-F05 sind `passing`, F06 ist `active`, F07-F10 sind `not_started`. Sie macht direkt bei F06 weiter, ohne Nacharbeit.
 
-Quantifiziertes Ergebnis: Projekte mit strukturierten Feature-Listen zeigen eine 45% höhere Feature-Abschlussrate als Freiform-Tracking, bei null doppelten Implementierungen.
+Eine strukturierte Liste bringt Zustand und Verifikationsbefehl jedes Features an einen Ort, sodass die neue Sitzung weiß, was erledigt ist.
 
 ## Wichtigste Erkenntnisse
 

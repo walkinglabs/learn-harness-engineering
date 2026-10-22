@@ -15,7 +15,7 @@ Lehman's laws of software evolution tell us that systems undergoing continuous c
 
 During five months of Codex experiments, OpenAI observed something striking: **agents copy patterns already present in the repository, even when those patterns are inconsistent or suboptimal.** Over time, this copying inevitably leads to drift. The first person leaves a coffee cup in the common area; the second person figures "it's already messy" and leaves another; a week later the table is buried under cups. A codebase works the same way.
 
-The OpenAI team initially spent 20% of every Friday manually cleaning up "AI slop," but this approach clearly doesn't scale. They eventually arrived at a systematic solution:
+The OpenAI team initially set aside Fridays — [one workday, about 20% of the week's capacity](https://openai.com/index/harness-engineering/) — for manually cleaning up "AI slop." As throughput grew, manual cleanup cost more than it returned. They eventually arrived at a systematic solution:
 
 1. **Encode "golden rules" into the repository**: Rules like "prefer the shared utility package over hand-rolled ad-hoc helpers" (keep invariants centralized) and "don't YOLO-guess data structures" (validate boundaries or depend on typed SDKs). These rules are concrete, mechanical, and automatically checkable.
 2. **Establish periodic cleanup workflows**: A fleet of background Codex tasks that regularly scan for deviations, update quality scores, and open targeted refactoring PRs. Most can be reviewed and auto-merged within a minute.
@@ -43,7 +43,7 @@ flowchart LR
     Fix --> Build
 ```
 
-But that's still not enough. Current progress must be recorded in machine-readable artifacts: completed subtasks with their passing criteria, in-progress but incomplete subtasks with current state, and not-yet-started subtasks. Good progress records can reduce session startup diagnostic time by 60–80%. Temporary artifacts — debug logs, temporary files, commented-out code, TODO markers — must also be cleaned up, because they increase cognitive load for the next session. The standard startup path must remain functional too. Can the next session start working without manual intervention? Environment initialization, codebase loading, context acquisition, task selection — none of these paths can be broken.
+But that's still not enough. Current progress must be recorded in machine-readable artifacts: completed subtasks with their passing criteria, in-progress but incomplete subtasks with current state, and not-yet-started subtasks. Record progress and verification results in versioned files so the next session can inspect state. Temporary artifacts — debug logs, temporary files, commented-out code, TODO markers — must also be cleaned up, because they increase cognitive load for the next session. The standard startup path must remain functional too. Can the next session start working without manual intervention? Environment initialization, codebase loading, context acquisition, task selection — none of these paths can be broken.
 
 ```mermaid
 flowchart LR
@@ -72,7 +72,7 @@ The most common mental trap is "no time to clean up this session, I'll do it nex
 
 Worse, every session has its own task objectives. The new session is there to do new work, not clean up the previous session's mess. It'll ignore the chaos and start new work on top of it, introducing even more chaos. This is entropy's positive feedback loop.
 
-The numbers tell the story. A project developed with agents for 12 weeks, without a cleanup strategy:
+For a hypothetical 12-week project, suppose the following values:
 
 - Week 1: Build pass rate 100%, test pass rate 100%, new session startup 5 min
 - Week 4: Build 95%, tests 92%, startup 15 min
@@ -84,7 +84,7 @@ Same project with a cleanup strategy:
 - Week 1: 100%, 100%, 5 min
 - Week 12: 97%, 95%, 9 min
 
-After 12 weeks: build pass rate differs by 29 percentage points, new session startup time differs by 85%. This is not theoretical — it's an observed difference.
+A weekly cleanup loop keeps the starting state stable: each session ends with build, tests, progress, and temporary artifacts in order, so the next session starts from the same baseline.
 
 ## How to Do It
 
@@ -137,7 +137,7 @@ New sessions read this document and immediately know where to prioritize. Fix th
 
 Every harness component exists because the model couldn't reliably do something on its own. But as models improve, these assumptions become outdated.
 
-Anthropic's experiments demonstrated this directly. Their initial harness included a sprint-splitting mechanism — breaking work into small chunks for Sonnet 4.5 to complete one at a time. When Opus 4.6 shipped, the model's native capabilities could handle work decomposition autonomously, making sprint construction unnecessary overhead. After removing it, the builder agent could work continuously for over two hours without drifting — and was actually smoother.
+Anthropic's harness report shows this directly. The first three-agent harness, built for Opus 4.5, had the generator work in sprints. When [Opus 4.6](https://www.anthropic.com/engineering/harness-design-long-running-apps) shipped, the model could handle work decomposition, so the sprint construct became unnecessary. In the updated DAW run, the builder worked continuously for over two hours without drifting.
 
 But the evaluator told a different story. Even with Opus 4.6's stronger capabilities, when tasks approached the model's capability boundary, the evaluator still provided real value — catching the generator's missing functionality and stub implementations. This means the evaluator isn't a fixed yes/no decision; it depends on where task difficulty sits relative to model capability.
 
@@ -170,7 +170,7 @@ An Electron app developed with agents over 12 weeks, comparing two approaches:
 
 **With cleanup strategy** (experimental group): Full clean-state check at every session end, plus a weekly cleanup loop. Week 12, build pass rate 97%, test pass rate 95%, new session startup 9 min, 11 stale artifacts.
 
-By week 12, the experimental group's build pass rate was 29 percentage points higher, test pass rate 34 points higher, and new session startup time 85% lower. Each session spent an extra 5 minutes on cleanup, but over 12 weeks that saved dozens of hours of chaos.
+By week 12, the cleanup group's build and test pass rates remained close to the starting point, a new session could start quickly, and stale artifacts were few. Cleanup took a few minutes per session and returned a starting state the next session could trust.
 
 ## Key Takeaways
 

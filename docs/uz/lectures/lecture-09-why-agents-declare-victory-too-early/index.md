@@ -70,7 +70,7 @@ Mustaqil baholovchi (evaluator) agentni aynan “injiq” (picky) boʻlishga soz
 | Arxitektura | Runtime | Narx | Asosiy funksiyalar ishlayaptimi? |
 |--------------|---------|------|------------------------|
 | Bitta Agent (bare run) | 20 daq | $9 | Yoʻq (oʻyin obyektlari javob qaytarmaydi) |
-| Uchta Agent (rejalashtiruvchi + yaratuvchi + tekshiruvchi) | 6 soat | $200 | Ha (oʻyin toʻliq ishlaydi) |
+| Uchta Agent (rejalashtiruvchi + yaratuvchi + tekshiruvchi) | 6 soat | $200 | Asosiy oʻyin mexanikasi ishladi; fizika va daraja muammolari qoldi |
 
 Bu ayni bitta model (Opus 4.5) va bitta prompt (“2D retro oʻyin muharririni yarat”). Faqatgina harness farq qiladi — “qoʻshimcha tuzilmasiz muhit (bare environment)” dan “rejalashtiruvchi talablarni kengaytiradi → yaratuvchi birin-ketin funksiyalarni bajaradi → tekshiruvchi Playwright yordamida haqiqiy klik orqali testlarni (click testing) amalga oshiradi” formatiga oʻtilgan.
 
@@ -119,7 +119,7 @@ Samarali runtime signallarga quyidagilar kiradi:
 
 **Aslida qayerdan ball olib tashlangan (Point deductions)**: (1) End-to-end oqimi sinovdan oʻtmagan — haqiqiy havolani yuborish va parolni tiklash ishlashi tasdiqlanmagan. (2) Maʼlumotlar bazasi migratsiyasi yarmi ishlagandan soʻng yiqilib, sxema nomuvofiqligini keltirib chiqargan. (3) Target muhitda elektron pochta xizmati sozlamalari (config) kiritilmagan.
 
-**Harness aralashuvi**: Tugatish validatsiyasi (Termination validation) ishga tushdi — (1) Tiklash (reset) endpointʼiga kirish mumkinligini tekshirish uchun toʻliq ilovani ishga tushirish; (2) Toʻliq tiklash oqimini (reset flow) bajarish; (3) Maʼlumotlar bazasi holati toʻgʻriligini (consistency) tekshirish. Barcha xatoliklar shu sessiyaning oʻzida aniqlandi, bu esa keyingi yuzaga keladigan tuzatish narxini 5-10 barobargacha tejadi. Haqiqiy muammolarni mustaqil baholovchi (evaluator) topdi.
+**Harness aralashuvi**: Tugatish validatsiyasi (Termination validation) ishga tushdi — (1) Tiklash (reset) endpointʼiga kirish mumkinligini tekshirish uchun toʻliq ilovani ishga tushirish; (2) Toʻliq tiklash oqimini (reset flow) bajarish; (3) Maʼlumotlar bazasi holati toʻgʻriligini (consistency) tekshirish. Uchala xatolik ham shu sessiyaning ichida yuzaga chiqadi — tuzatish narxi hali mahalliy boʻlganda. Haqiqiy muammolarni mustaqil baholovchi (evaluator) topdi.
 
 ## Asosiy xulosalar
 

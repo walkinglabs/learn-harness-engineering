@@ -84,11 +84,11 @@ Loop Engineering, el tema de esta lección, no trata sobre ningún comando en pa
 
 No tienes que escribir `/goal` cada vez. Pero entender de dónde vino y por qué se ve como se ve — eso es entender el núcleo del loop engineering. Los loops más complejos solo añaden partes como planificación, paralelismo, aislamiento y memoria sobre estos mismos tres fundamentos: objetivo, verificación, condición de parada.
 
-## Junio 2026: Tres Personas Encendieron la Mecha en Una Semana
+## Fechas Distintas, la Misma Dirección
 
-En la primera semana de junio de 2026, tres profesionales que construían infraestructura de agentes de codificación — sin comparar notas — dijeron lo mismo con palabras diferentes.
+La misma idea surgió en lugares y momentos distintos.
 
-**Peter Steinberger** (creador de OpenClaw, [su publicación alcanzó 8 millones de vistas](https://x.com/steipete/status/2063697162748260627)): "Ya no deberías estar haciendo prompting a agentes de codificación. Deberías estar diseñando loops que hacen prompting a tus agentes."
+**Peter Steinberger** (creador de OpenClaw, [en una publicación](https://x.com/steipete/status/2063697162748260627)): "Ya no deberías estar haciendo prompting a agentes de codificación. Deberías estar diseñando loops que hacen prompting a tus agentes."
 
 **Boris Cherny** (jefe de Claude Code en Anthropic, [en el podcast Acquired](https://x.com/rohanpaul_ai/status/2063289804708835412)): "Ya no le hago prompting a Claude. Tengo loops ejecutándose que le hacen prompting a Claude y descubren qué hacer. Mi trabajo es escribir loops."
 
@@ -96,9 +96,9 @@ En la primera semana de junio de 2026, tres profesionales que construían infrae
 
 > **Loop engineering es reemplazarte a ti mismo como la persona que hace prompting al agente. Diseñas el sistema que lo hace en su lugar.**
 
-Cherny reveló cifras: durante más de 30 días consecutivos, todas las contribuciones de código a Claude Code fueron realizadas autónomamente por IA — 259 PRs fusionados, más del 80% del código de producción autorado por Claude, y una tasa de éxito del 76% en tareas de software de final abierto.
+Cherny escribió en un [informe personal del 2025-12-27](https://twitter.com/bcherny/status/2004887829252317325) que en 30 días fusionó 259 PRs — 497 commits, 40.000 líneas añadidas y 38.000 eliminadas — y que cada línea la escribió Claude Code + Opus 4.5.
 
-Tres personas. Una semana. La misma conclusión. No porque se coordinaran — sino porque la infraestructura había cruzado silenciosamente un umbral. Los agentes se habían vuelto lo suficientemente confiables como para terminar tareas no triviales sin supervisión. Las primitivas de planificación (`/loop`, `/goal`, cron) ahora estaban integradas en las herramientas. El costo de una sola ejecución de agente había bajado lo suficiente como para que ejecutar uno repetidamente en un temporizador dejara de parecer un desperdicio. Cuando todas las piezas están presentes, el movimiento que las combina se vuelve obvio para todos al mismo tiempo.
+Las citas provienen de fechas, formatos y equipos distintos. Su dirección compartida es mover la planificación, la verificación y la decisión de parada fuera del prompt momento a momento y hacia un sistema. A mediados de 2026, los agentes podían terminar tareas no triviales sin supervisión, las primitivas de planificación estaban integradas y una ejecución era lo bastante barata como para repetirla con un temporizador. Cuando las piezas están presentes, más de una persona las junta.
 
 > Fuente: [Addy Osmani: Loop Engineering](https://addyosmani.com/blog/loop-engineering/)
 
@@ -267,7 +267,7 @@ flowchart TD
 
 Esto ya no es una sola ejecución de agente. Es un sistema que opera continuamente que se despierta cada mañana, barre el piso por sí solo, y pone las cosas que necesitan tu atención frente a ti. Tu rol se convierte en: **revisar el contenido de la bandeja, tomar decisiones, y cuando detectes un patrón que el sistema no puede manejar, refinar los skills y las reglas.**
 
-Cherny usó este patrón para fusionar 259 PRs en 30 días sin abrir un IDE ni una vez. Los ingenieros de OpenAI usaron el mismo patrón para construir un producto beta de aproximadamente un millón de líneas a mano — sin escribir una sola línea de código ellos mismos.
+El informe de 30 días de Cherny es un punto de datos para este patrón: 259 PRs, con el código escrito por Claude Code + Opus 4.5. El [informe de harness de OpenAI](https://openai.com/index/harness-engineering/) es otro: un equipo pequeño usó Codex en un repositorio desde cero durante cinco meses y reportó cerca de un millón de líneas y unas 1.500 PRs.
 
 ## Separación Generador/Evaluador: Por Qué No Puedes Dejar que el Modelo Califique Su Propio Trabajo
 
@@ -293,7 +293,7 @@ Una frase para recordar: **alguien en tu equipo no debe creerte.**
 
 Si quieres ver cómo se ve un loop bien diseñado y realmente en ejecución, [el autoresearch de Karpathy](https://github.com/karpathy/autoresearch) es el ejemplo de libro de texto.
 
-En marzo de 2026, Karpathy lanzó un proyecto Python de 630 líneas. Dale una GPU y una dirección de investigación, y corre toda la noche — completando cientos de experimentos de entrenamiento de ML, quedándose solo con los que realmente mejoran. El proyecto alcanzó 66,000+ estrellas en pocos días después del lanzamiento.
+En marzo de 2026, Karpathy lanzó [autoresearch](https://github.com/karpathy/autoresearch). El repositorio es deliberadamente pequeño: `prepare.py` es infraestructura fija, `train.py` es el archivo que edita el agente (unas 630 líneas) y `program.md` es la metodología de investigación que edita la persona. Dale una GPU y una dirección de investigación, y corre toda la noche — cada experimento recibe un presupuesto fijo de 5 minutos de tiempo de reloj para el entrenamiento (sin contar arranque ni compilación), y solo se conservan los cambios que mejoran `val_bpb`.
 
 ### Tres Archivos, Tres Roles
 
@@ -343,9 +343,9 @@ flowchart TD
     8b --> 9
 ```
 
-Ejecuta aproximadamente 12 experimentos por hora. Una ejecución nocturna (8 horas) son unos 100 experimentos. El propio Karpathy lo ejecutó durante 2 días — ~700 experimentos.
+El README estima unos 12 experimentos por hora, o aproximadamente 100 en una ejecución nocturna de 8 horas. El presupuesto de 5 minutos cubre el entrenamiento, no el arranque ni la compilación; el resto de cada ronda se va en editar, lanzar y evaluar. Karpathy reportó que ejecutó una versión privada de autoresearch de forma autónoma durante unos dos días para la ronda de nanochat que se describe abajo.
 
-El presupuesto fijo de 5 minutos de reloj es una elección de diseño clave — sin importar lo que cambie el agente, cada experimento toma exactamente el mismo tiempo. Esto significa que todos los resultados son directamente comparables bajo el mismo presupuesto de tiempo — sin discusiones sobre "este corrió más tiempo así que es mejor".
+El presupuesto fijo de 5 minutos de entrenamiento es una elección de diseño clave — sin importar lo que cambie el agente, la ejecución de entrenamiento recibe el mismo presupuesto de tiempo de reloj. Esto significa que todos los resultados son directamente comparables bajo el mismo presupuesto de entrenamiento.
 
 ### Salida: Lo Que Ves Cuando Te Despiertas
 
@@ -375,13 +375,9 @@ El agente escribe mensajes de commit claros sobre lo que probó, lo que funcion�
 
 ### Lo Que Realmente Encontró
 
-Resultados de la ejecución inicial de 2 días y ~700 experimentos de Karpathy:
+Los resultados de la [ronda 1](https://github.com/karpathy/nanochat/commit/6ed7d1d82cee16c2e26f45d559ad3338447a6c1b) de autoresearch redujeron el tiempo de entrenamiento a nivel GPT-2 de nanochat en 8×H100 [de **2,02 horas a 1,80 horas**](https://github.com/karpathy/nanochat/commit/f06860494848db080c9a80a0ffa83203b042056b), una reducción de aproximadamente **10,9%** del tiempo de entrenamiento.
 
-- De ~700 intentos, se encontraron aproximadamente **20 mejoras reales acumulables**
-- Redujo el tiempo de entrenamiento a nivel GPT-2 de nanochat en 8×H100 de **2.02 horas → 1.80 horas**, aproximadamente **11% más rápido**
-- Los hallazgos incluyeron: ajustes de tasa de aprendizaje, afinación de optimizador, cambios de activación, optimizaciones de patrón de atención, etc.
-
-¿Fueron todas las mejoras descubrimientos trascendentales? No. La mayoría fueron pequeñas optimizaciones que se acumularon. Pero esas 20 mejoras válidas le habrían tomado a un investigador humano semanas de trabajo manual — el agente lo hizo en 48 horas.
+La mayoría de los cambios fueron pequeñas optimizaciones que se acumularon. Lo útil es el loop en sí: un presupuesto fijo, un registro completo de experimentos y una regla de que solo se quedan las mejoras verificadas.
 
 ### El Detalle Más Revelador: El Loop Está Escrito en Inglés, No en Código.
 
@@ -399,7 +395,7 @@ Los loops rápidos te tientan a saltarte la verificación. "Se ve bien" no es lo
 
 ### 2. Deterioro de la Comprensión
 
-Cuanto más rápido envía código un loop, más se aleja tu comprensión de tu propia base de código de la realidad. El equipo de Cherny tenía el 80% del código autorado por agentes — lo que significa que la mayor parte del código de un equipo no fue escrito por una persona. Si no lees y usas lo que produce el loop, tu comprensión decae continuamente. **Los loops rápidos requieren lectura rápida.**
+Cuanto más rápido envía código un loop, más se aleja tu comprensión de tu propia base de código de la realidad. Un loop aterriza cientos de PRs; el equipo los lee, revisa los diffs que importan y sigue usando el código, de modo que su modelo mental se mantiene al día. **Los loops rápidos requieren lectura rápida.**
 
 ### 3. Rendición Cognitiva
 
@@ -407,11 +403,11 @@ Cuando el loop corre sin problemas, la postura más cómoda es dejar de tener op
 
 ### 4. Explosión de Tokens
 
-Cada iteración de un loop acumula más contexto: código escrito, errores encontrados, decisiones tomadas. Sin gestión del contexto, el tamaño del prompt crece aproximadamente cuadráticamente con el número de turnos. Codex aborda esto con la compactación automática de contexto — una API dedicada comprime los turnos de conversación antiguos en resúmenes de contenido cifrados, reteniendo el conocimiento esencial mientras descarta el detalle redundante. Esto es una preocupación de ingeniería que debes abordar desde el primer loop, no un añadido posterior.
+Cada iteración de un loop acumula más contexto: código escrito, errores encontrados, decisiones tomadas. Cuando cada ronda añade una cantidad aproximadamente fija de contenido nuevo, la longitud del historial que ve una sola ronda crece aproximadamente de forma lineal con el número de rondas. Si el sistema reprocesa todo el historial en cada ronda, la entrada acumulada a lo largo de N rondas crece aproximadamente de forma cuadrática. Codex aborda esto con la compactación automática de contexto — una API dedicada comprime los turnos de conversación antiguos en resúmenes de contenido cifrados, reteniendo el conocimiento esencial mientras descarta el detalle redundante. Esto es una preocupación de ingeniería que debes abordar desde el primer loop, no un añadido posterior.
 
 ## Construyendo Tu Primer Loop
 
-No necesitas empezar con un pipeline a escala de Stripe fusionando 1,300 PRs a la semana. Empieza con lo más pequeño que funcione.
+No necesitas empezar con un pipeline de alto rendimiento. Empieza con lo más pequeño que funcione.
 
 ### Paso 1: Elige Una Tarea Recurrente
 

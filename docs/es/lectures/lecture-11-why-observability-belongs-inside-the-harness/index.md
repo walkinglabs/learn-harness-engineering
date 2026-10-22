@@ -44,7 +44,7 @@ Cuando un harness no tiene observabilidad, aparecen sistemáticamente cuatro tip
 
 **Los reintentos se vuelven conjeturas ciegas**: cuando el agente no sabe por qué falló algo, la dirección del reintento es aleatoria. Puede corregir rutas de código irrelevantes mientras ignora la causa raíz. Cada reintento ciego cuesta tokens y tiempo.
 
-**Acantilado de información en el handoff**: cuando se entrega trabajo incompleto a la siguiente sesión, la falta de observabilidad obliga a diagnosticar el estado del sistema desde cero. Las observaciones de Anthropic muestran que ese diagnóstico redundante puede consumir 30-50% del tiempo total de sesión.
+**Acantilado de información en el handoff**: cuando se entrega trabajo incompleto a la siguiente sesión, la falta de observabilidad obliga a diagnosticar el estado del sistema desde cero. La nueva sesión tiene que releer código, reejecutar comandos y decidir qué señales importan; [los registros versionados de progreso y verificación](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) ofrecen un estado inspeccionable.
 
 ### Un escenario realista con Claude Code
 
@@ -54,7 +54,7 @@ Imagina un harness con workflow de tres roles, planner-generator-evaluator, ejec
 
 **Con observabilidad completa**: el planner produce un sprint contract que lista los componentes a modificar, los estándares de verificación y las exclusiones. El generator implementa según el contrato. La observabilidad de runtime registra cómo carga y aplica estilos cada componente. El evaluator usa una rúbrica con evidencias concretas por dimensión. Una iteración produce un resultado de alta calidad en unos 15 minutos.
 
-La diferencia de eficiencia es 3x. Lo único que cambió fue la observabilidad.
+La diferencia está en si el contrato y la evidencia existen fuera de la cabeza del agente.
 
 ### Por qué los agentes no pueden resolverlo solos
 
@@ -128,7 +128,7 @@ Un harness con workflow planner-generator-evaluator ejecuta "añadir soporte de 
 - La rúbrica da una evaluación estructurada por dimensiones
 - Una iteración produce resultados de alta calidad en 15 minutos
 
-Mejora de eficiencia 3x, calidad más estable y evaluaciones reproducibles.
+Menos reintentos ciegos, calidad más estable y evaluaciones reproducibles.
 
 ## Ideas clave
 
@@ -136,7 +136,7 @@ Mejora de eficiencia 3x, calidad más estable y evaluaciones reproducibles.
 - **Ambas capas de observabilidad son esenciales**: las señales de runtime explican "qué pasó"; los artefactos de proceso explican "por qué se hizo así".
 - **Los sprint contracts alinean por adelantado**, evitando que el generator construya algo que el evaluator rechaza por razones previsibles.
 - **Las rúbricas hacen reproducible la evaluación**, de modo que distintos evaluadores produzcan puntuaciones parecidas.
-- **La falta de observabilidad desperdicia 30-50% del tiempo de sesión en diagnóstico redundante.**
+- **La observabilidad convierte un rechazo vago en un defecto concreto y corregible.**
 
 ## Lecturas adicionales
 

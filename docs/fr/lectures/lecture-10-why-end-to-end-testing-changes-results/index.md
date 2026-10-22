@@ -132,7 +132,7 @@ Chaque fois qu'un nouveau type d'erreur d'agent est découvert lors d'une revue 
 | Problème de permissions | Permissions différentes dans l'environnement packaging | Manqué | Détecté |
 | Propagation d'erreur | Les exceptions de la couche service n'atteignaient pas la couche UI | Manqué | Détecté |
 
-Les 5 défauts ont été détectés par les tests de bout en bout, tandis que les tests unitaires n'en ont détecté aucun. Le coût a été une augmentation du temps de test de 2 secondes à 15 secondes — tout à fait acceptable dans un flux de travail d'agent. Aussi bien que chaque partie chante individuellement, ça ne remplace pas une répétition générale complète.
+Les 5 défauts ont été détectés par les tests de bout en bout, tandis que les tests unitaires n'en ont détecté aucun. L'exécution de bout en bout est plus lente, mais ce coût est faible face à la livraison de cinq défauts de frontière. Aussi bien que chaque partie chante individuellement, ça ne remplace pas une répétition générale complète.
 
 ## Points clés
 

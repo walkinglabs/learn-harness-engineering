@@ -9,13 +9,13 @@ Vous pensez connaître le monde de l'IA : abonnement Claude Pro, clé API GPT-4o
 
 Votre premier réflexe pourrait être : « ce modèle n'est pas assez bon, il faut passer au niveau supérieur ». Attendez. Avant de sortir la carte bancaire, envisagez que le problème ne soit peut-être pas le modèle.
 
-Regardons quelques chiffres. Fin 2025, les meilleurs agents de codage atteignent environ 50-60 % sur SWE-bench Verified. Et cela sur des tâches soigneusement choisies, avec descriptions claires et tests existants. Dans votre environnement quotidien — exigences floues, peu ou pas de tests, règles métier implicites partout — ce chiffre baisse encore.
+Regardons quelques chiffres. Le 29 septembre 2025, Anthropic a annoncé Claude Sonnet 4.5 à [77,2 % sur SWE-bench Verified](https://www.anthropic.com/news/claude-sonnet-4-5). Et cela sur des tâches soigneusement choisies, avec descriptions claires et tests existants. Dans votre environnement quotidien — exigences floues, peu ou pas de tests, règles métier implicites partout — ce chiffre baisse encore.
 
 Derrière ces chiffres se cache pourtant une vérité contre-intuitive.
 
 ## Même cheval, destins différents
 
-Anthropic a mené une expérience contrôlée. Même prompt (« construire un éditeur de jeux rétro 2D »), même modèle (Opus 4.5). Premier essai : nu, sans support — 20 minutes, 9 dollars, les fonctionnalités centrales ne fonctionnent pas. Deuxième essai : harness complet (architecture planner + generator + evaluator) — 6 heures, 200 dollars, le jeu est jouable.
+Anthropic a comparé le même prompt (« construire un éditeur de jeux rétro 2D ») et le même modèle (Opus 4.5) sous deux harness. Premier essai : nu, sans support — 20 minutes, 9 dollars ; l'application s'ouvre, mais les entités ne réagissent pas aux entrées. Deuxième essai : harness complet (architecture planner + generator + evaluator) — 6 heures, 200 dollars ; on peut déplacer une entité, mais la physique est approximative et un mur bloque la progression. [Le cœur du gameplay fonctionne ; l'application reste inachevée.](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
 Ils n'ont pas changé de modèle. Opus 4.5 restait Opus 4.5. Ce qui a changé, c'est le harnachement.
 
@@ -37,9 +37,9 @@ Les tâches longues sur plusieurs sessions sont encore pires : les découvertes 
 
 ## Concepts clés
 
-- **Écart de capacité** : l'écart entre performance sur benchmark et performance réelle. 50-60 % sur SWE-bench Verified signifie que près de la moitié des vrais problèmes restent non résolus.
+- **Écart de capacité** : l'écart entre performance sur benchmark et performance réelle. Les tâches de benchmark fournissent une description claire, des tests et un environnement ; les tâches réelles demandent souvent de les fournir soi-même.
 - **Harness** : tout ce qui est hors du modèle — instructions, outils, environnement, gestion d'état, feedback de vérification. Si ce ne sont pas des poids de modèle, c'est du harness.
-- **Échec induit par le harness** : le modèle a la capacité, mais l'environnement d'exécution a des défauts structurels.
+- **Échec induit par le harness** : le modèle a la capacité, mais l'environnement d'exécution a des défauts structurels. La comparaison du jeu rétro ci-dessus en est un exemple.
 - **Écart de vérification** : différence entre la confiance de l'agent et la correction réelle. L'agent dit « terminé » alors que ce n'est pas terminé.
 - **Boucle de diagnostic** : exécuter, observer l'échec, l'attribuer à une couche du harness, corriger cette couche, réexécuter.
 - **Definition of Done** : ensemble de conditions vérifiables par machine — tests passent, lint propre, types valides. Sans définition explicite, l'agent invente la sienne.
@@ -68,7 +68,7 @@ Completion criteria:
 
 ## L'expérience du million de lignes
 
-OpenAI a mené en 2025 une expérience ambitieuse : utiliser Codex pour construire un produit interne complet depuis un dépôt git vide. Cinq mois plus tard, le dépôt comptait environ un million de lignes — logique applicative, infrastructure, tooling, documentation, outils internes — toutes générées par agents. Trois ingénieurs pilotaient Codex, ouvrant et fusionnant environ 1 500 PRs, soit 3,5 PRs par personne et par jour.
+OpenAI a mené en août 2025 une expérience ambitieuse : utiliser Codex pour construire un produit interne complet depuis un dépôt git vide. [Cinq mois plus tard, le dépôt comptait environ un million de lignes](https://openai.com/index/harness-engineering/) — logique applicative, infrastructure, tooling, documentation, outils internes — toutes générées par agents. Trois ingénieurs pilotaient Codex ; l'équipe est ensuite passée à sept personnes et a fusionné environ 1 500 PRs, soit 3,5 PRs par ingénieur et par jour.
 
 Contrainte clé : **les humains n'écrivent jamais directement le code.** Ce n'était pas un gadget, mais un moyen de forcer l'équipe à comprendre ce qui change quand le travail principal de l'ingénieur n'est plus d'écrire du code, mais de concevoir des environnements, exprimer l'intention et construire des boucles de feedback.
 
@@ -82,9 +82,9 @@ Cette expérience prouve directement la thèse de cette leçon : **le même mod�
 
 Une équipe a utilisé Claude Sonnet pour ajouter un endpoint API à une application Python moyenne (FastAPI + PostgreSQL + Redis, environ 15 000 lignes).
 
-Au départ, elle donne une seule phrase : « ajoute les endpoints de préférences utilisateur sous `/api/v2/users` ». Résultat : l'agent consomme 40 % de son contexte à explorer le dépôt, produit un code plausible mais incompatible avec les patterns d'erreur du projet, utilise l'ancienne syntaxe SQLAlchemy et déclare terminé alors que l'endpoint échoue au runtime. La session suivante doit refaire toute la découverte.
+Au départ, elle donne une seule phrase : « ajoute les endpoints de préférences utilisateur sous `/api/v2/users` ». Résultat : l'agent passe une grande partie de la session à explorer le dépôt, produit un code plausible mais incompatible avec les patterns d'erreur du projet, utilise l'ancienne syntaxe SQLAlchemy et déclare terminé alors que l'endpoint échoue au runtime. La session suivante doit refaire toute la découverte.
 
-Plus tard, l'équipe ajoute `AGENTS.md`, des commandes de vérification explicites (`pytest tests/api/v2/ && python -m mypy src/`) et des décisions d'architecture. Le même modèle réussit trois exécutions indépendantes, avec environ 60 % d'efficacité de contexte en plus.
+Plus tard, l'équipe ajoute `AGENTS.md`, des commandes de vérification explicites (`pytest tests/api/v2/ && python -m mypy src/`) et des décisions d'architecture. Le même modèle suit alors les conventions du projet et vérifie son travail avec des commandes qu'il peut exécuter.
 
 Ils n'ont pas changé le modèle. Ils ont changé le harness.
 

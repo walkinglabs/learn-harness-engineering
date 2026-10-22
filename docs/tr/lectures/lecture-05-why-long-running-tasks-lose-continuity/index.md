@@ -52,7 +52,7 @@ flowchart LR
 
 - **Bağlam pencereleri sonludur**: Hangi pencere boyutu iddia edilirse edilsin (128K, 200K, 1M), uzun görevler sonunda bunları tüketecektir. Tüketildikten sonra ya sıkıştırma (bilgi kaybı) ya da sıfırlama (yeni oturum) gerekir. Her ikisi de bir şey kaybeder.
 - **Süreklilik artefaktları**: Yeni bir oturumun geçen oturumun bıraktığı yerden net bir şekilde devam etmesini sağlayan kalıcılaştırılmış durum dosyaları. Temel form: ilerleme günlüğü + doğrulama kaydı + sonraki eylemler. O zanaatkârın günlüğü.
-- **Yeniden inşa maliyeti**: Yeni bir oturumun yürütülebilir bir duruma ulaşması için gereken süre. İyi harness'lar yeniden inşa maliyetini 15 dakikadan 3 dakikaya sıkıştırabilir.
+- **Yeniden inşa maliyeti**: Yeni bir oturumun yürütülebilir bir duruma ulaşması için gereken süre. İyi bir harness ilerlemeyi, doğrulama sonuçlarını ve sonraki eylemleri dosyalarda bırakır; böylece yeni oturum yazılı bir durumdan başlar.
 - **Sürüklenme (Drift)**: Ajanın anlayışı ile kod deposunun gerçek durumu arasındaki fark. Her oturum sınırı sürüklenme getirir; kontrol olmadan birikir.
 - **Bağlam kaygısı**: Anthropic tarafından gözlemlenen bir olgu — ajanlar algılanan bağlam sınırlarına yaklaştıklarında bilgi kaybını önlemek için görevleri erken bitirerek erken yakınsama davranışı sergiler. Bu mantıksız bir kaynak kaygısıdır.
 - **Sıkıştırma vs sıfırlama**: Sıkıştırma aynı oturum içinde bağlamı özetler ("neyi" tutar, "neden"i kaybedebilir); sıfırlama kalıcılaştırılmış durumdan yeniden inşa eden yeni bir oturum açar (temiz ama artefakt eksiksizliğine bağımlıdır).
@@ -160,7 +160,7 @@ LangChain, aynı gpt-5.2-codex ile 89 görevlik Terminal Bench 2.0 skorunun %52,
 - Bağlam pencereleri sonlu bir kaynaktır. Uzun görevler oturumları aşacak ve oturumlar bilgi kaybedecektir — her gün unutan zanaatkâr gibi, bu objektif bir gerçektir.
 - Çözüm daha büyük pencereler değil — daha iyi durum kalıcılığıdır. İlerleme dosyaları + karar günlükleri + git kontrol noktaları — unutkan zanaatkâra güvenilir bir günlük verin.
 - Ajanı amnezili bir mühendis gibi ele alın: "iş çıkışından" önce ne yapıldığını, neden yapıldığını ve sıradakinin ne olduğunu yazın.
-- Yeniden inşa maliyeti kilit metriktir. İyi harness'lar yeni oturumları 3 dakika içinde yürütülebilir bir duruma getirebilmelidir.
+- Yeniden inşa maliyeti kilit metriktir. İyi bir harness ilerlemeyi, doğrulama sonuçlarını ve sonraki eylemleri dosyalarda bırakır; böylece yeni oturum hızla toparlanır.
 - Karma strateji: oturumlar içinde kısa görevler, süreklilik için yapılandırılmış artefaktlarla uzun görevler.
 
 ## Daha fazla okuma

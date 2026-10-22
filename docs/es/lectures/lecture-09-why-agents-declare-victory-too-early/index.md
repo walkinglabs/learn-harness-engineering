@@ -70,7 +70,7 @@ Un agent evaluador independiente, ajustado específicamente para ser "exigente",
 | Architecture | Runtime | Cost | Core Features Working? |
 |--------------|---------|------|------------------------|
 | Single Agent (bare run) | 20 mins | $9 | No (game entities unresponsive to input) |
-| Three Agents (planner + generator + evaluator) | 6 hours | $200 | Yes (game is fully playable) |
+| Three Agents (planner + generator + evaluator) | 6 hours | $200 | Core gameplay worked; physics and level issues remained |
 
 Este es exactamente el mismo modelo (Opus 4.5) con exactamente el mismo prompt ("build a 2D retro game editor"). La única diferencia es el harness—desde "ejecución sin arnés" hasta "el planner expande los requisitos → el generador implementa funcionalidad por funcionalidad → el evaluador realiza pruebas reales de clics usando Playwright".
 
@@ -119,7 +119,7 @@ Las señales efectivas en tiempo de ejecución incluyen:
 
 **Deducciones reales**: (1) Flujo end-to-end sin probar—el envío y verificación real del enlace de restablecimiento nunca se confirmó. (2) La migración de base de datos falló después de una ejecución parcial, causando inconsistencia en el esquema. (3) Faltaba la configuración del servicio de correo electrónico en el entorno destino.
 
-**Intervención del harness**: Validación de terminación impuesta—(1) Iniciar la aplicación completa para verificar la accesibilidad del endpoint de restablecimiento; (2) Ejecutar el flujo completo de restablecimiento; (3) Verificar la consistencia del estado de la base de datos. Todos los defectos se encontraron dentro de la sesión, ahorrando 5-10x el costo de correcciones posteriores. El calificador independiente encontró los problemas reales.
+**Intervención del harness**: Validación de terminación impuesta—(1) Iniciar la aplicación completa para verificar la accesibilidad del endpoint de restablecimiento; (2) Ejecutar el flujo completo de restablecimiento; (3) Verificar la consistencia del estado de la base de datos. Los tres defectos aparecen dentro de la sesión, cuando el costo de arreglo todavía es local. El calificador independiente encontró los problemas reales.
 
 ## Ideas clave
 

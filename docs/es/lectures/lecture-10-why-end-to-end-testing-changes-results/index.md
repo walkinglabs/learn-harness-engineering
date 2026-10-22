@@ -132,7 +132,7 @@ Cada vez que se encuentre un nuevo tipo de error del agent durante una revisión
 | Permission Issue | Different permissions in packaged environment | Missed | Caught |
 | Error Propagation | Service layer exceptions didn't reach UI layer | Missed | Caught |
 
-Los 5 defectos fueron detectados por las pruebas end-to-end, mientras que las pruebas unitarias no detectaron ninguno. El costo fue un aumento en el tiempo de prueba de 2 segundos a 15 segundos—completamente aceptable en un flujo de trabajo de agent. Por muy bien que cada parte cante individualmente, no puede superar un ensayo completo del conjunto.
+Los 5 defectos fueron detectados por las pruebas end-to-end, mientras que las pruebas unitarias no detectaron ninguno. La ejecución end-to-end es más lenta, pero ese costo es pequeño comparado con entregar cinco defectos de frontera. Por muy bien que cada parte cante individualmente, no puede superar un ensayo completo del conjunto.
 
 ## Ideas clave
 

@@ -49,7 +49,7 @@ flowchart LR
 
 * **Janelas de contexto são finitas**: Não importa o tamanho anunciado da janela (128K, 200K, 1M de tokens), tarefas longas eventualmente irão esgotá-la. Quando isso acontece, é necessário realizar uma compactação do contexto (com perda de informações) ou iniciar uma nova sessão — e ambas as opções implicam algum tipo de perda.
 * **Arquivos de persistência de estado**: Arquivos que armazenam o estado atual do trabalho e permitem que uma nova sessão retome exatamente de onde a anterior parou. Na forma mais simples, incluem registros de progresso, resultados de verificações e próximos passos.
-* **Custo de reconstrução** (*rebuild cost*): O tempo necessário para que uma nova sessão alcance um estado em que consiga executar trabalho de forma produtiva. Um bom *harness* pode reduzir esse tempo de 15 minutos para apenas 3 minutos.
+* **Custo de reconstrução** (*rebuild cost*): O tempo necessário para que uma nova sessão alcance um estado em que consiga executar trabalho de forma produtiva. Um bom *harness* deixa o progresso, os resultados de verificação e os próximos passos em arquivos, para que a nova sessão comece a partir de um estado escrito.
 * **Drift (desvio)**: A diferença entre o entendimento do agente e o estado real do repositório de código. Cada troca de sessão introduz algum nível de desvio; sem controle, esse efeito se acumula ao longo do tempo.
 * **Ansiedade de contexto** (*context anxiety*): Fenômeno observado pela Anthropic em que agentes passam a acelerar a conclusão de tarefas ao perceberem que o limite de contexto está próximo. Eles encerram atividades prematuramente para evitar perda de informação. Em essência, trata-se de uma ansiedade irracional relacionada ao consumo de recursos.
 * **Compactação versus reinicialização** (*compaction vs. reset*): A compactação resume informações dentro da mesma sessão (preservando o "o quê", mas potencialmente perdendo o "porquê"). A reinicialização inicia uma nova sessão a partir de artefatos persistidos (ambiente mais limpo, mas dependente da qualidade e completude desses artefatos).
@@ -156,7 +156,7 @@ A LangChain relata aumento de 52,8% para 66,5%, 13,7 pontos percentuais, com o m
 - Janelas de contexto são um recurso finito. Tarefas longas inevitavelmente se estenderão por múltiplas sessões, e as sessões perderão informações ao longo do tempo — essa é uma realidade objetiva.
 - A solução não é ter janelas de contexto maiores, mas sim uma melhor persistência de estado. Arquivos de progresso, registros de decisões e checkpoints do Git trabalham em conjunto para permitir que novas sessões retomem o trabalho de onde as anteriores pararam.
 - Trate o agente como um engenheiro cuja memória de curto prazo é apagada ao final de cada sessão: antes de “encerrar o expediente”, registre o que foi feito, por que foi feito e quais são os próximos passos.
-- O custo de reconstrução (*rebuild cost*) é a métrica principal. Um bom *harness* deve permitir que novas sessões retornem a um estado executável em até 3 minutos.
+- O custo de reconstrução (*rebuild cost*) é a métrica principal. Um bom *harness* deixa o progresso, os resultados de verificação e os próximos passos em arquivos, para que uma nova sessão se recupere rapidamente.
 - Estratégia híbrida: tarefas curtas dentro de uma mesma sessão; tarefas longas utilizando artefatos estruturados para garantir continuidade entre sessões.
 
 ## Leitura Complementar

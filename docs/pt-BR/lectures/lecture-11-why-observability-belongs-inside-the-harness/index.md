@@ -21,7 +21,7 @@ Quando um harness não possui observabilidade, quatro categorias de problemas ap
 
 **As tentativas de correção se tornam suposições cegas.** Quando o agente não sabe por que algo falhou, a direção da correção é aleatória. Ele pode insistir repetidamente na direção errada — corrigindo caminhos de código não relacionados enquanto ignora a verdadeira causa raiz. Cada tentativa cega consome tokens e tempo.
 
-**Abismo de informação na troca de sessão.** Quando um trabalho incompleto é transferido para uma nova sessão, a falta de observabilidade faz com que a nova sessão precise diagnosticar o estado do sistema do zero. Observações da Anthropic sobre agentes de longa duração mostram que esse diagnóstico redundante pode consumir entre 30% e 50% do tempo total da sessão.
+**Abismo de informação na troca de sessão.** Quando um trabalho incompleto é transferido para uma nova sessão, a falta de observabilidade faz com que a nova sessão precise diagnosticar o estado do sistema do zero. Ela precisa reler o código, rerodar comandos e decidir quais sinais importam; [registros versionados de progresso e verificação](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) fornecem um estado inspecionável.
 
 ## Um Cenário Real com Claude Code
 
@@ -31,7 +31,7 @@ Considere um harness utilizando um fluxo de trabalho com três papéis: planejad
 
 **Com observabilidade completa:** O planejador produz um contrato de sprint listando quais componentes devem ser modificados, os critérios de verificação de cada um e as exclusões (por exemplo, não alterar estilos de impressão). O gerador implementa a funcionalidade seguindo esse contrato, e a observabilidade de runtime registra o processo de carregamento e aplicação de estilos em cada componente. O avaliador utiliza uma rubrica de pontuação para avaliar cada dimensão separadamente, apresentando evidências específicas: "O contraste de cores do botão é insuficiente (padrão WCAG AA 4,5:1, valor medido 2,1:1)." Uma única iteração produz um resultado de alta qualidade em aproximadamente 15 minutos.
 
-Uma diferença de eficiência de 3x. A única variável alterada é a observabilidade.
+A diferença vem de o contrato e as evidências existirem fora da cabeça do agente.
 
 ## Observabilidade em Camadas
 
@@ -122,7 +122,7 @@ Crie um *trace* para cada sessão do harness, um *span* para cada tarefa e *sub-
 
 ## Experimento da Anthropic com Arquitetura de Três Agentes
 
-Em março de 2026, a Anthropic publicou um experimento sistemático de harness. Eles executaram a mesma tarefa ("construir uma DAW baseada em navegador utilizando a Web Audio API") com três arquiteturas diferentes e registraram dados detalhados de cada fase:
+A Anthropic publicou em março de 2026 a [execução atualizada da DAW com a mesma arquitetura de três agentes](https://www.anthropic.com/engineering/harness-design-long-running-apps) (“construir uma DAW baseada em navegador utilizando a Web Audio API”). A primeira versão, criada para o Opus 4.5, usava um gerador trabalhando em sprints e um avaliador que pontuava cada sprint. A versão atualizada, executada no Opus 4.6, removeu o conceito de sprint: o construtor trabalha continuamente, e o avaliador revisa após cada rodada de construção. A tabela abaixo é a execução atualizada:
 
 | Agente e Fase | Duração | Custo |
 |---------------|----------|--------|
@@ -135,7 +135,7 @@ Em março de 2026, a Anthropic publicou um experimento sistemático de harness. 
 | QA rodada 3 | 9,6 min | US$ 4,06 |
 | **Total** | **3 h 50 min** | **US$ 124,70** |
 
-Cada um dos três agentes possuía uma função distinta, e cada um desempenhava um papel importante na observabilidade:
+Cada papel desempenha uma parte clara na observabilidade. As descrições de papéis abaixo cobrem a primeira versão; a versão atualizada remove a camada de sprint do gerador:
 
 **Planejador (*Planner*):** Recebe um requisito do usuário com 1 a 4 frases e o expande para uma especificação completa de produto. Ele foi instruído a "ser ousado no escopo" e a "focar no contexto do produto e no design técnico de alto nível, em vez de detalhes técnicos de implementação". O motivo é simples: se o planejador especificar detalhes técnicos granulares prematuramente e estiver errado, esses erros se propagam para as etapas seguintes. Uma abordagem melhor é restringir os entregáveis e permitir que o agente encontre seu próprio caminho durante a execução.
 
@@ -159,7 +159,7 @@ O avaliador nem sempre foi tão eficaz. As primeiras versões identificavam prob
 - **Ambas as camadas de observabilidade são essenciais.** Os sinais de runtime explicam "o que aconteceu"; os artefatos de processo explicam "por que foi feito dessa forma".
 - **Contratos de sprint antecipam o alinhamento.** Eles evitam que o gerador implemente algo que o avaliador rejeitará imediatamente por motivos previsíveis.
 - **Rubricas de pontuação tornam a avaliação reproduzível.** Diferentes avaliadores produzem pontuações semelhantes para a mesma entrega.
-- **A falta de observabilidade desperdiça de 30% a 50% do tempo da sessão em diagnósticos redundantes.**
+- **A observabilidade transforma uma rejeição vaga em um defeito específico e corrigível.**
 
 ## Leitura Complementar
 

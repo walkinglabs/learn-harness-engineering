@@ -23,7 +23,7 @@ Did user auth, shopping cart mostly done, still need payments
 
 Une nouvelle session d'agent peut-elle répondre à ces questions à partir de cette note ? Que signifie "mostly done" ? Quels tests le panier a-t-il réussis ? Qu'est-ce qui bloque les paiements ? La réponse à tout cela est "personne ne sait". Comme dire à votre médecin "j'ai mal au ventre, ça va à peu près ces derniers temps" : quel médicament peut-il prescrire ?
 
-Résultat : la nouvelle session passe 20 minutes à inférer l'état du projet et peut réimplémenter des fonctionnalités déjà terminées. Les données d'ingénierie d'Anthropic montrent que de bons enregistrements de progression réduisent le temps de diagnostic au démarrage d'une session de 60 à 80%.
+Résultat : la nouvelle session doit inférer l'état du projet et peut réimplémenter des fonctionnalités déjà terminées. Le conseil d'Anthropic est de [consigner la progression et les résultats de vérification dans des fichiers versionnés](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) pour que la session suivante puisse inspecter l'état.
 
 ## Machine d'état des fonctionnalités
 
@@ -112,7 +112,7 @@ Une plateforme e-commerce avec 10 fonctionnalités. Deux approches de suivi ont 
 
 **Mode colonne vertébrale** : chaque fonctionnalité a un état clair et une commande de vérification. La nouvelle session lit la liste et sait en 3 minutes : F01-F05 sont `passing`, F06 est `active`, F07-F10 sont `not_started`. Elle reprend directement à F06, sans retravail.
 
-Résultat quantifié : les projets utilisant des listes de fonctionnalités structurées affichent un taux d'achèvement 45% supérieur au suivi libre, avec zéro implémentation dupliquée.
+Une liste structurée rassemble l'état de chaque fonctionnalité et sa commande de vérification au même endroit, si bien que la nouvelle session sait ce qui est terminé.
 
 ## Points clés
 

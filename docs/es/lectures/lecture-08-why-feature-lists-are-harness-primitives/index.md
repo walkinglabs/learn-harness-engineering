@@ -23,7 +23,7 @@ Did user auth, shopping cart mostly done, still need payments
 
 ¿Puede una nueva sesión de agente responder preguntas a partir de esta nota? ¿Qué significa "mostly done"? ¿Qué tests pasó el carrito? ¿Qué bloquea los pagos? La respuesta a todo es "nadie lo sabe". Es como decirle al médico "me duele el estómago, últimamente más o menos bien": ¿qué medicina puede recetar?
 
-Resultado: la nueva sesión gasta 20 minutos infiriendo el estado del proyecto y quizá reimplementa funciones ya terminadas. Los datos de ingeniería de Anthropic muestran que buenos registros de progreso reducen el tiempo de diagnóstico al iniciar sesión entre 60% y 80%.
+Resultado: la nueva sesión tiene que inferir el estado del proyecto y quizá reimplementa funciones ya terminadas. La recomendación de Anthropic es [registrar el progreso y los resultados de verificación en archivos versionados](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) para que la siguiente sesión pueda inspeccionar el estado.
 
 ## Máquina de estados de funciones
 
@@ -112,7 +112,7 @@ Una plataforma e-commerce con 10 funciones. Se compararon dos enfoques de seguim
 
 **Modo columna vertebral**: Cada función tiene estado claro y comando de verificación. La nueva sesión lee la lista y en 3 minutos sabe: F01-F05 están `passing`, F06 está `active`, F07-F10 están `not_started`. Continúa directamente desde F06, sin retrabajo.
 
-Resultado cuantificado: los proyectos que usan listas de funciones estructuradas muestran una tasa de finalización de funciones 45% mayor que el seguimiento libre, con cero implementaciones duplicadas.
+Una lista estructurada pone el estado de cada funcionalidad y su comando de verificación en un solo lugar, de modo que la nueva sesión sabe qué está hecho.
 
 ## Ideas clave
 

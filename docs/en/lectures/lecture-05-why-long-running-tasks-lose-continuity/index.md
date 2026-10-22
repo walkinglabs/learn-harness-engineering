@@ -50,7 +50,7 @@ flowchart LR
 
 - **Context windows are finite**: No matter what window size is claimed (128K, 200K, 1M), long tasks will eventually exhaust them. After exhaustion, either compaction (losing information) or reset (starting a new session) is required — both lose something.
 - **State persistence files**: Persisted state files that let a new session unambiguously resume where the last one left off. The most basic form includes progress logs, verification records, and next actions.
-- **Rebuild cost**: The time a new session needs to reach an executable state. A good harness can compress rebuild cost from 15 minutes to 3 minutes.
+- **Rebuild cost**: The time a new session needs to reach an executable state. A good harness leaves progress, verification results, and next actions in files, so the new session starts from a written state.
 - **Drift**: The gap between the agent's understanding and the actual state of the code repository. Every session boundary introduces drift; without control, it compounds session after session.
 - **Context anxiety**: A phenomenon observed by Anthropic — agents exhibit rushed finish behavior when approaching context limits, ending tasks early to avoid information loss. At its core, it's an irrational resource anxiety.
 - **Compaction vs. reset**: Compaction summarizes context within the same session (keeps "what," may lose "why"); reset opens a new session rebuilding from persisted state (clean but depends on artifact completeness).
@@ -158,7 +158,7 @@ LangChain reports an actual harness improvement using the same gpt-5.2-codex mod
 - Context windows are a finite resource. Long tasks will span sessions, and sessions will lose information — this is objective reality.
 - The solution isn't bigger windows — it's better state persistence. Progress files, decision logs, and git checkpoints work together to let new sessions pick up where previous ones left off.
 - Treat the agent like an engineer whose short-term memory gets wiped every session: before "clocking out," write down what was done, why, and what's next.
-- Rebuild cost is the key metric. A good harness should get new sessions to an executable state within 3 minutes.
+- Rebuild cost is the key metric. A good harness leaves progress, verification results, and next actions in files, so a new session recovers quickly.
 - Mixed strategy: short tasks within sessions, long tasks with structured artifacts for continuity.
 
 ## Further Reading

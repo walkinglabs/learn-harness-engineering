@@ -132,7 +132,7 @@ FIX: Move file operations to src/preload/file-ops.ts and call via window.api.rea
 | Permission Issue | Different permissions in packaged environment | Missed | Caught |
 | Error Propagation | Service layer exceptions didn't reach UI layer | Missed | Caught |
 
-5つの欠陥すべてがend-to-endテストで検出され、ユニットテストは一つも検出しませんでした。コストはテスト時間が2秒から15秒への増加——agentのワークフローでは完全に許容範囲です。各パートがどれほど上手に単独で歌えても、合同リハーサルには勝てません。
+5つの欠陥すべてがend-to-endテストで検出され、ユニットテストは一つも検出しませんでした。エンドツーエンドの実行は遅くなりますが、そのコストは 5 つの境界欠陥を出荷するのに比べれば小さいものです。各パートがどれほど上手に単独で歌えても、合同リハーサルには勝てません。
 
 ## 重要なポイント
 

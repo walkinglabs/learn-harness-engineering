@@ -9,7 +9,7 @@
 
 > 「まだループの話をしているの？それとももうグラフに移ったの？」
 
-1本のツイートが、1日で約57万回の閲覧を獲得し、月末には約300万回にまで増えました。数時間後、機械学習エンジニアのHamel Husainが『Loop Engineering Is Dead. Enter Graph Engineering』というタイトルの記事を投稿しました——本文は「Stop it」と書かれた動画一枚だけ——それも約68万回の閲覧を獲得しました。
+1本のツイート。数時間後、機械学習エンジニアのHamel Husainが『Loop Engineering Is Dead. Enter Graph Engineering』というタイトルの記事を投稿しました——本文は「Stop it」と書かれた動画一枚だけでした。
 
 さらに興味深いのは：**この2人はどちらも冗談として投稿していたことです。** 一人は業界が6週間ごとに新しい流行語を発明していることを皮肉り、もう一人はそのネタに乗って一搭一宕で応じました。しかし、その冗談はおよそ1週末しか持ちませんでした——コース、ロードマップ、ツールスタックが週末のうちにタイムラインを埋め尽くし、さらに一連の捏造された数字も付いてきました：「精度+18%、コスト-85%」は偽のデータです（18%と85%は確かに存在しますが、化学プラントの配管図に関する論文からのもので、比較基線も根本的に異なります）、「マイクロソフト、スタンフォード、Anthropicが同時にグラフエンジニアリングを発見した」も偽の情報です。事実確認で確認された唯一の「先行者」はJosh Simmonsです：彼の『We Are Entering the Graph Engineering Phase』は7月4日に書かれており、この冗談より丸2週間も早いのです——**この流行を流行らせたのは冗談であり、冗談がその現象を作り出したわけではありません。**
 
@@ -257,11 +257,11 @@ run(graph, entry={"requirements": "ログインページのバグを修正"}, th
 
 ## オープンソースプロジェクト：公開後に出たもの、公開前にあったもの
 
-先に線を引きます：**Graph Engineeringは2026年7月18日以降にできた名前です。** それ以前にオープンソース化されたフレームワークは、いずれも「Graph Engineering公開後のプロジェクト」ではありません。概念が爆発的に流行った後に、直接この名前で出てきたオープンソースプロジェクトは、2026年8月初時点で、ちゃんと立っているのは一つだけです：
+先に線を引きます：**Graph Engineeringという名前が生まれたのは2026年7月18日以降です。** それ以前にオープンソース化されたフレームワークは、より早い段階のグラフ／ワークフローツールです。名前の上でGraph Engineeringを直接使っているプロジェクトのひとつがGraphARCです：
 
 **概念公開後に出たもの**
 
-- [GraphArc](https://github.com/CodeGraphContext/grapharc)（2026-08-02）：自称「Graph Engineeringの最初のリアルタイム実装」。エージェント実行をログに埋もれたtraceから、一枚の**インタラクティブなリアルタイム編成グラフ**に変えます——各エージェント、各依存関係、各決定ポイントが描かれ、実行前にグラフ全体を可視化し、あなたが確認して（スマホで見ることもできます）から放行します。作者の背景は4000人以上の開発者向けのグラフツール作りで、方向性は「観測可能、デバッグ可能、エンジニアリング可能」です。非常に新しいので、機能はまだ初期段階です。
+- [GraphARC](https://github.com/CodeGraphContext/GraphARC)（2026年7月作成）：自称「an end to end implementation of Graph Engineering as proposed by Andrew NG and Peter Steinberger」。初期段階のPythonプロジェクトです。有用なのは、その編成モデルを読んで、この方法が自分のワークフローに合うかどうかを判断することです。
 
 **概念公開前にあったもの（それらはGraph Engineeringと呼ばれていないが、あなたが構築するときに使うのはそれら）**
 
@@ -325,7 +325,7 @@ run(graph, entry={"requirements": "ログインページのバグを修正"}, th
 - [goddaehee: Graph Engineering ファクトチェック（韓国語、2026-07-30）](https://goddaehee.tistory.com/628) — 最も完全なファクトチェック：冗談の起源のタイムライン、偽の数字の分解、LangGraphデータ、Hacker Newsの熱度比較
 - [Josh Simmons: We Are Entering the Graph Engineering Phase (2026-07-04)](https://www.drjoshcsimmons.com/writing/we-are-entering-the-graph-engineering-phase) — あの冗談より2週間早い真面目な記事
 - [LangChain: 3 Years of Graph Engineering with LangGraph (2026-07-22)](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) — 公式の応答：「新しいアイデアではなく、既存の方法の最新の名前」；LangGraphの月間ダウンロード6500万+
-- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — 流行語の伝播データ（最初のツイート57.5万回閲覧）
+- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — この言葉がどのように広まったかについての叙述
 - [LangChain: The Best AI Agent Frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — 7つの主流オープンソースフレームワークの横断比較：LangGraph、CrewAI、Microsoft Agent Framework、LlamaIndex、Google ADK、OpenAI Agents SDK、Mastra
 - [LangGraph公式ドキュメント](https://docs.langchain.com/oss/python/langgraph/graph-api) — "Nodes do the work, edges tell what to do next"；ノードとエッジの正確な定義、グラフ構築の第一手リファレンス
 - [Anthropic: Building Effective Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents) — 5つのパターン、描けばそれがグラフ；workflow vs agentの権威ある区別

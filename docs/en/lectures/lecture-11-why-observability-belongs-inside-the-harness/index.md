@@ -21,7 +21,7 @@ When a harness lacks observability, four categories of problems appear systemati
 
 **Retries become blind guesses.** When the agent doesn't know why something failed, its retry direction is random. It might hammer away in the wrong direction — fixing unrelated code paths while ignoring the real root cause. Every blind retry burns tokens and time.
 
-**Session handoff information cliff.** When incomplete work is handed to the next session, missing observability means the new session has to diagnose the system state from scratch. Anthropic's observations of long-running agents show that this redundant diagnosis can eat up 30-50% of total session time.
+**Session handoff information cliff.** When incomplete work is handed to the next session, missing observability means the new session has to diagnose the system state from scratch. The new session has to reread code, rerun commands, and decide which signals matter; [versioned progress and verification records](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) provide inspectable state.
 
 ## A Real Claude Code Scenario
 
@@ -31,7 +31,7 @@ Consider a harness using a "planner-generator-evaluator" three-role workflow, ex
 
 **With full observability:** The planner outputs a sprint contract listing which components to modify, verification standards for each, and exclusions (e.g., no print styles). The generator implements according to the contract, and runtime observability records each component's style loading and application process. The evaluator uses a scoring rubric to evaluate dimension by dimension, citing specific evidence: "Button color contrast is insufficient (WCAG AA standard 4.5:1, measured 2.1:1)." One iteration produces a high-quality result, in about 15 minutes.
 
-3x efficiency difference. The only variable is observability.
+The difference comes from whether the contract and evidence exist outside the agent's head.
 
 ## Layered Observability
 
@@ -122,7 +122,7 @@ Create a trace for each harness session, a span for each task, and sub-spans for
 
 ## Anthropic's Three-Agent Architecture Experiment
 
-In March 2026, Anthropic published a systematic harness experiment. They ran the same task ("build a browser-based DAW using the Web Audio API") with three different architectures and recorded detailed phase-by-phase data:
+Anthropic's March 2026 report gives the [updated DAW run of the same three-agent architecture](https://www.anthropic.com/engineering/harness-design-long-running-apps) ("build a browser-based DAW using the Web Audio API"). The first version, built for Opus 4.5, used a generator working in sprints and an evaluator grading each sprint. The updated version, run on Opus 4.6, removed the sprint construct: the builder works continuously, and the evaluator reviews after each build round. The table below is the updated run:
 
 | Agent & Phase | Duration | Cost |
 |---------------|----------|------|
@@ -135,7 +135,7 @@ In March 2026, Anthropic published a systematic harness experiment. They ran the
 | QA round 3 | 9.6 min | $4.06 |
 | **Total** | **3 hr 50 min** | **$124.70** |
 
-Each of the three agents had a distinct role, and each played a clear part in observability:
+Each role plays a clear part in observability. The role descriptions below cover the first version; the updated version removes the generator's sprint layer:
 
 **Planner:** Receives a 1-4 sentence user requirement and expands it into a full product spec. It was instructed to "be bold in scope" and "focus on product context and high-level technical design rather than detailed technical implementation." The reasoning: if the planner prematurely specifies granular technical details and gets them wrong, those errors cascade downstream. A better approach is to constrain deliverables and let the agent find its own path during execution.
 
@@ -155,7 +155,7 @@ The evaluator wasn't always this sharp. Early versions would identify reasonable
 - **Both observability layers are essential.** Runtime signals explain "what happened," process artifacts explain "why it was done this way."
 - **Sprint contracts front-load alignment.** They prevent the generator from building something the evaluator immediately rejects for foreseeable reasons.
 - **Scoring rubrics make evaluation reproducible.** Different evaluators produce similar scores for the same output.
-- **Missing observability wastes 30-50% of session time on redundant diagnosis.**
+- **Observability turns a vague rejection into a specific, fixable defect.**
 
 ## Further Reading
 

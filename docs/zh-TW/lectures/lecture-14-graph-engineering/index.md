@@ -9,7 +9,7 @@
 
 > 「我們還在談 Loop，還是已經轉向 Graph 了？」
 
-一條推，一天內就拿到約 57 萬瀏覽，到月底漲到約 300 萬。幾小時後，機器學習工程師 Hamel Husain 發了一篇題為《Loop Engineering Is Dead. Enter Graph Engineering》的文章——正文只有一張寫著 "Stop it" 的動圖——又拿了約 68 萬瀏覽。
+一條推。幾小時後，機器學習工程師 Hamel Husain 發了一篇題為《Loop Engineering Is Dead. Enter Graph Engineering》的文章——正文只有一張寫著 "Stop it" 的動圖。
 
 更耐人尋味的是：**這兩個人都是當作玩笑在發。** 一個在諷刺行業每六週發明一個新名詞，一個在順著這個梗一捧一逗。但玩笑只存活了大約一個週末——課程、路線圖、工具棧在週末結束前就鋪滿了時間軸，還跟著一堆編造出來的數字：「準確率 +18%、成本 -85%」是假數據（18% 和 85% 確實存在，但出自一篇關於化工管道圖紙的論文，且對照基線根本不同），「微軟、史丹佛、Anthropic 同時發現了圖工程」也是假消息。事實查核確認的唯一「先行者」是 Josh Simmons：他的《We Are Entering the Graph Engineering Phase》寫於 7 月 4 日，比這場玩笑早了整整兩週——**是玩笑讓這件事變得流行，不是玩笑創造了這件事。**
 
@@ -257,11 +257,11 @@ run(graph, entry={"requirements": "修復登入頁 bug"}, thread="session-1")
 
 ## 開源專案：發布後才有的，發布前就有的
 
-先劃清界線：**Graph Engineering 是 2026 年 7 月 18 日之後才有的名字。** 在那之前開源的框架，都不是「Graph Engineering 發布後的專案」。真正在概念爆火後、直接以這個名字出現的開源專案，截至 2026 年 8 月初，站得住的只有一個：
+先劃清界線：**Graph Engineering 是 2026 年 7 月 18 日之後才有的名字。** 在那之前開源的框架，都不是「Graph Engineering 發布後的專案」。一個直接在名字上使用 Graph Engineering 的專案是 GraphARC：
 
 **概念發布後才有的**
 
-- [GraphArc](https://github.com/CodeGraphContext/grapharc)（2026-08-02）：自稱「Graph Engineering 的第一個即時實作」。它把 agent 執行從埋在日誌裡的 trace 變成一張**可互動的即時編排圖**——每個 agent、每條依賴、每個決策點都畫出來，在執行前視覺化整張圖，你確認（甚至可以拿手機看）之後再放行。作者背景是給 4000+ 開發者做圖工具，方向是「可觀測、可除錯、可工程化」。非常新，功能還在早期。
+- [GraphARC](https://github.com/CodeGraphContext/GraphARC)（2026 年 7 月建立）：自稱「an end to end implementation of Graph Engineering as proposed by Andrew NG and Peter Steinberger」。它是一個早期階段的 Python 專案。有用的做法是讀它的編排模型，判斷這套方法是否適合你的工作流。
 
 **概念發布前就有的（它們不叫 Graph Engineering，但它們才是你建構時要用的）**
 
@@ -325,7 +325,7 @@ run(graph, entry={"requirements": "修復登入頁 bug"}, thread="session-1")
 - [goddaehee: Graph Engineering 事實查核（韓語，2026-07-30）](https://goddaehee.tistory.com/628) — 最完整的事實查核：玩笑起源時間軸、假數字拆解、LangGraph 數據、Hacker News 熱度對比
 - [Josh Simmons: We Are Entering the Graph Engineering Phase (2026-07-04)](https://www.drjoshcsimmons.com/writing/we-are-entering-the-graph-engineering-phase) — 比那場玩笑早兩週的嚴肅文章
 - [LangChain: 3 Years of Graph Engineering with LangGraph (2026-07-22)](https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph) — 官方回應：「不是新想法，是既有方法的最新名字」；LangGraph 月下載 6500 萬+
-- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — 熱詞傳播數據（首發推文 57.5 萬瀏覽）
+- [explainx: Graph Engineering: AI Agents as Multi-Agent Organizations (2026-07)](https://explainx.ai/blog/graph-engineering-ai-agents-multi-agent-organizations-2026) — 對這個詞如何傳播的敘述
 - [LangChain: The Best AI Agent Frameworks in 2026](https://www.langchain.com/resources/ai-agent-frameworks) — 七個主流開源框架的橫向對比：LangGraph、CrewAI、Microsoft Agent Framework、LlamaIndex、Google ADK、OpenAI Agents SDK、Mastra
 - [LangGraph 官方文件](https://docs.langchain.com/oss/python/langgraph/graph-api) — "Nodes do the work, edges tell what to do next"；節點和邊的精確定義，建構圖的第一手參考
 - [Anthropic: Building Effective Agents (Dec 2024)](https://www.anthropic.com/engineering/building-effective-agents) — 五種模式，畫出來就是圖；workflow vs agent 的權威區分

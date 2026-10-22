@@ -21,7 +21,7 @@ Khi harness thiếu khả năng quan sát, bốn nhóm vấn đề sẽ xuất h
 
 **Thử lại trở thành đoán mù.** Khi agent không biết vì sao một việc fail, hướng thử lại hoàn toàn ngẫu nhiên. Nó có khi sửa mãi những đường đi không liên quan, bỏ qua tận gốc nguyên nhân thật. Mỗi lần thử lại mù quáng đốt cả token lẫn thời gian.
 
-**Vực thông tin lúc bàn giao phiên.** Khi phần việc chưa xong được chuyển cho phiên sau, thiếu khả năng quan sát đồng nghĩa với việc phiên mới phải chẩn đoán lại trạng thái hệ thống từ đầu. Quan sát của Anthropic về các long-running agent cho thấy khâu chẩn đoán trùng lặp này có thể nuốt tới 30-50% tổng thời gian phiên.
+**Vực thông tin lúc bàn giao phiên.** Khi phần việc chưa xong được chuyển cho phiên sau, thiếu khả năng quan sát đồng nghĩa với việc phiên mới phải chẩn đoán lại trạng thái hệ thống từ đầu. Phiên mới phải đọc lại code, chạy lại lệnh và quyết định tín hiệu nào quan trọng; [bản ghi tiến độ và xác minh được quản lý phiên bản](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) cung cấp trạng thái có thể kiểm tra.
 
 ## Một kịch bản Claude Code thật
 
@@ -31,7 +31,7 @@ Hãy hình dung một harness dùng quy trình ba vai "planner-generator-evaluat
 
 **Có đầy đủ khả năng quan sát:** Planner đưa ra sprint contract, liệt kê component nào cần sửa, tiêu chuẩn xác minh cho từng cái, và các ngoại lệ (ví dụ không xử lý print styles). Generator triển khai theo contract, và khả năng quan sát runtime ghi lại quá trình tải style của từng component. Evaluator dùng rubric chấm điểm để đánh giá từng chiều, kèm bằng chứng cụ thể: "Độ tương phản màu nút chưa đạt (chuẩn WCAG AA 4.5:1, đo được 2.1:1)". Một vòng lặp cho ra kết quả chất lượng cao, trong khoảng 15 phút.
 
-Hiệu quả chênh nhau 3 lần. Biến duy nhất là khả năng quan sát.
+Sự khác biệt đến từ việc hợp đồng và bằng chứng có tồn tại bên ngoài đầu agent hay không.
 
 ## Quan sát phân lớp
 
@@ -122,7 +122,7 @@ Tạo một trace cho mỗi phiên harness, một span cho mỗi tác vụ, và 
 
 ## Thí nghiệm kiến trúc ba agent của Anthropic
 
-Tháng 3 năm 2026, Anthropic công bố một thí nghiệm harness có hệ thống. Họ chạy cùng một tác vụ ("xây dựng một DAW trên trình duyệt dùng Web Audio API") với ba kiến trúc khác nhau và ghi lại dữ liệu chi tiết theo từng pha:
+Báo cáo tháng 3 năm 2026 của Anthropic đưa ra [dữ liệu chạy DAW cập nhật của cùng kiến trúc ba agent](https://www.anthropic.com/engineering/harness-design-long-running-apps) ("xây dựng một DAW trên trình duyệt dùng Web Audio API"). Bản đầu tiên, xây cho Opus 4.5, dùng generator làm việc theo sprint và evaluator chấm từng sprint. Bản cập nhật, chạy trên Opus 4.6, bỏ cấu trúc sprint: builder làm việc liên tục, evaluator xem xét sau mỗi vòng build. Bảng dưới đây là dữ liệu của bản cập nhật:
 
 | Agent và pha | Thời lượng | Chi phí |
 |---------------|----------|------|
@@ -135,7 +135,7 @@ Tháng 3 năm 2026, Anthropic công bố một thí nghiệm harness có hệ th
 | QA vòng 3 | 9.6 phút | $4.06 |
 | **Tổng** | **3 giờ 50 phút** | **$124.70** |
 
-Mỗi agent trong ba đó giữ vai trò riêng, và mỗi vai đều đóng góp rõ ràng vào khả năng quan sát:
+Mỗi vai đóng một phần rõ ràng vào khả năng quan sát. Các mô tả vai dưới đây ứng với bản đầu tiên; bản cập nhật bỏ lớp sprint của generator:
 
 **Planner:** Nhận yêu cầu người dùng từ 1-4 câu rồi mở rộng thành product spec đầy đủ. Nó được nhắc "mạnh dạn về phạm vi" và "tập trung vào ngữ cảnh sản phẩm và thiết kế kỹ thuật cấp cao thay vì chi tiết triển khai". Lý do: nếu planner sớm chốt chi tiết kỹ thuật nhỏ mà sai, lỗi ấy sẽ lan xuống các bước sau. Cách tốt hơn là ràng buộc sản phẩm đầu ra, để agent tự tìm đường đi trong lúc thực thi.
 
@@ -155,7 +155,7 @@ Evaluator không phải lúc nào cũng bén nhạy như vậy. Phiên bản đ�
 - **Cả hai lớp quan sát đều cần thiết.** Tín hiệu runtime giải thích "chuyện gì đã xảy ra", artifact quá trình giải thích "vì sao lại làm thế này".
 - **Sprint contract đẩy việc căn chỉnh lên đầu.** Chúng ngăn generator xây thứ mà evaluator sẽ lập tức từ chối vì lý do có thể dự đoán trước.
 - **Rubric chấm điểm làm đánh giá có thể tái lập.** Evaluator khác nhau cho điểm tương tự với cùng một đầu ra.
-- **Thiếu khả năng quan sát phí phạm 30-50% thời gian phiên cho khâu chẩn đoán trùng lặp.**
+- **Khả năng quan sát biến một lời từ chối mơ hồ thành một khiếm khuyết cụ thể, có thể sửa.**
 
 ## Đọc thêm
 

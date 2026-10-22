@@ -37,7 +37,7 @@ flowchart TB
 
 ## Karıştırdığınızda ne olur
 
-En doğrudan sorun: temel düzgün oturmaz. Ajan çabasının %80'ini özellik koduna ve %20'sini gelişigüzel bazı altyapı kurmaya harcar. Test çerçevesi yapılandırılır ama hiç doğrulanmaz, lint kuralları ayarlanır ama çok gevşektir, ilerleme dosyası oluşturulmaz. Bu kusurlar ilk oturumda belirgin değildir (çünkü ajan hâlâ ne yaptığını hatırlar), ancak ikinci oturumda yüzeye çıkar — yeni ajan nasıl çalıştırılacağını, test edileceğini veya nerede durduğunu bilmiyor. Özensiz temel, sallantılı bina.
+En doğrudan sorun: temel düzgün oturmaz. Ajan çabasının çoğunu özellik koduna harcar ve altyapıyı sonradan akla gelen bir iş olarak görür. Test çerçevesi yapılandırılır ama hiç doğrulanmaz, lint kuralları ayarlanır ama çok gevşektir, ilerleme dosyası oluşturulmaz. Bu kusurlar ilk oturumda belirgin değildir (çünkü ajan hâlâ ne yaptığını hatırlar), ancak ikinci oturumda yüzeye çıkar — yeni ajan nasıl çalıştırılacağını, test edileceğini veya nerede durduğunu bilmiyor. Özensiz temel, sallantılı bina.
 
 Daha gizli bir maliyet "doğrulanmamış birikme"dir — test çerçevesi yapılandırılmadan önce yazılan özellik kodu doğrulanmamış koddur. Sonunda o kod için test eklemeye geri döndüğünüzde, tasarımın en başından yanlış olduğunu keşfedebilirsiniz — bilseydiniz farklı şekilde uygulayacaktınız. Islak betona fayans döşemek gibi — zeminin düz olmadığını keşfettiğinizde tüm fayansları kaldırıp yeniden döşemek zorundasınız.
 
@@ -45,7 +45,7 @@ Oturum bütçesi de boşa harcanır. Başlatma işi (ortamları yapılandırma, 
 
 En kolay gözden kaçırılan sorun örtük varsayım mayınlarıdır. Ajanın başlatma sırasında verdiği kararlar (hangi test çerçevesi, dizinleri nasıl organize etmek, bağımlılık yönetimi) — açıkça kaydedilmezse, sonraki oturumlar bu seçimleri anlayamaz. Daha kötüsü, sonraki oturumlar çelişen seçimler yapabilir. İlk inşaat ekibi beton temel kullandı, ikinci ekip bilmediği için içine ahşap kazıklar çaktı — temel çatlar.
 
-Anthropic'in uzun süre çalışan uygulama geliştirme araştırması başlatmayı uygulamadan ayırmayı açıkça önerir. Deneysel verileri: adanmış bir başlatma aşaması kullanan projeler, karışık yaklaşımlara kıyasla çok oturumlu senaryolarda %31 daha yüksek özellik tamamlanma oranı gösterdi. Temel içgörü — başlatma aşamasında yatırılan zaman sonraki 3-4 oturumda tamamen geri kazanılır. Temel ne kadar sağlamsa duvarlar o kadar hızlı yükselir.
+Anthropic'in uzun süre çalışan ajan çalışması [başlatmayı ayrı bir ilk oturum hâline getirir](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). Başlatıcı bir `init.sh` betiği, bir ilerleme dosyası, bir özellik listesi ve başlangıç git commit'i yazar; sonraki kodlama oturumları bu durumu okur, her seferinde tek bir özellik üzerinde çalışır, uçtan uca test eder, commit eder ve ilerleme dosyasını günceller. Temel ne kadar sağlamsa duvarlar o kadar hızlı yükselir.
 
 OpenAI'nin Codex harness mühendisliği kılavuzu da "operasyonel kayıt olarak depo" ilkesini vurgular — ilk koşudan itibaren net operasyonel yapı kurun, aksi takdirde her yeni oturum proje kurallarını yeniden çıkarmak zorunda kalır.
 

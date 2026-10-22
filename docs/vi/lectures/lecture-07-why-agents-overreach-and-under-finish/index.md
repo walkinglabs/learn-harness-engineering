@@ -26,7 +26,7 @@ Hành vi thật của Claude Code rất minh họa. Bảo nó "thêm đăng ký 
 
 Sáu bước sau, mỗi cái đều làm dở. Không có xác minh end-to-end, code nửa vời cộng lẫn vào nhau rất phức tạp, phiên sau muốn dọn cũng chẳng biết bắt đầu từ đâu.
 
-Dữ liệu thực nghiệm của Anthropic hỗ trợ trực tiếp điều này: agent sử dụng chiến lược "bước tiếp theo nhỏ" (tương đương WIP=1) đạt tỷ lệ hoàn thành tác vụ cao hơn 37% so với agent nhận prompt rộng. Thú vị hơn, số dòng code agent tạo ra có tương quan âm yếu với tỷ lệ hoàn thành tính năng thực tế, viết nhiều code hơn, hoàn thành ít tính năng hơn. Câu "ăn vội nuốt tươi" được dữ liệu xác nhận.
+Hướng dẫn về long-running agent của Anthropic [yêu cầu coding agent làm từng tính năng một](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), sau đó xác minh, commit và cập nhật tiến độ trước khi chuyển sang việc tiếp theo. Một prompt rộng mời gọi agent mở nhiều luồng cùng lúc, và mỗi luồng lại tranh nhau cùng một ngân sách ngữ cảnh và xác minh.
 
 ## Quy trình WIP=1
 

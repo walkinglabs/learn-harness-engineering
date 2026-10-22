@@ -68,7 +68,7 @@ An independent evaluation agent, specifically tuned to be "nitpicky," is far mor
 | Architecture | Runtime | Cost | Core Features Working? |
 |--------------|---------|------|------------------------|
 | Single agent (bare run) | 20 mins | $9 | No (game entities unresponsive to input) |
-| Three agents (planner + generator + evaluator) | 6 hours | $200 | Yes (game is fully playable) |
+| Three agents (planner + generator + evaluator) | 6 hours | $200 | Core gameplay worked; physics and level issues remained |
 
 This is the exact same model (Opus 4.5) with the exact same prompt ("build a 2D retro game editor"). The only difference is the harness: from "running bare" to "planner expands requirements → generator implements feature by feature → evaluator performs actual click testing using Playwright."
 
@@ -117,7 +117,7 @@ Effective runtime signals include:
 
 **Actual omissions**: (1) End-to-end flow untested—the actual sending and verification of the reset link was never confirmed. (2) Database migration failed after partial execution, leaving the schema inconsistent. (3) Email service configuration was missing in the target environment.
 
-**Harness intervention**: Termination validation is enforced—(1) start the full application to verify the reset endpoint is accessible; (2) execute the complete reset flow; (3) verify database state consistency. All defects were discovered within the session, saving 5-10x the cost of post-hoc fixes.
+**Harness intervention**: Termination validation is enforced—(1) start the full application to verify the reset endpoint is accessible; (2) execute the complete reset flow; (3) verify database state consistency. All three defects surface inside the session, while the fix cost is still local.
 
 ## Key Takeaways
 
