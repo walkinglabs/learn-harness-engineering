@@ -393,6 +393,11 @@ Harness Engineering 是围绕模型构建一个完整的工作环境，使其产
     P08  把你的工作流画成一张图
          （显式图、并行 fan-out/fan-in、
           回退边、人机协同）
+
+    阶段 9：运行一支舰队
+    =============================
+    L15  从单个 agent 到 agent 舰队——
+         隔离、集成、舰队信号
 ```
 
 </details>
@@ -403,7 +408,7 @@ Harness Engineering 是围绕模型构建一个完整的工作环境，使其产
 
 ## 课程大纲
 
-### 讲座——14 个概念单元，每个回答一个核心问题
+### 讲座——15 个概念单元，每个回答一个核心问题
 
 *在[文档网站](https://walkinglabs.github.io/learn-harness-engineering/)上阅读每讲完整文本。*
 
@@ -425,6 +430,7 @@ Harness Engineering 是围绕模型构建一个完整的工作环境，使其产
 ### 项目——6 个动手项目，将讲座方法应用到同一个 Electron 应用上
 | [L13](../../docs/zh/lectures/lecture-13-loop-engineering/index.md) | 为什么你需要停止亲自提示你的代理？ | 从手动驱动到自动循环——目标循环、定时循环、制造者-检查者分离 |
 | [L14](../../docs/zh/lectures/lecture-14-graph-engineering/index.md) | 为什么单循环会演变成图？ | 从单循环到图工程——节点、边、共享状态、路由，以及何时真正值得画图 |
+| [L15](../../docs/zh/lectures/lecture-15-parallel-agent-fleets/index.md) | 为什么一支由可靠 agent 组成的舰队仍会失败？ | 从单个 agent 到舰队——超越 worktree 的隔离、验证组合结果的合并队列、共享环境漂移、生命周期状态机、结构化结论、行为信号与模型路由 |
 
 ### 项目——8 个动手项目，将讲座方法应用到同一个 Electron 应用上
 
