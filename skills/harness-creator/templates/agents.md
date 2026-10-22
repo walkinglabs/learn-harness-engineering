@@ -10,7 +10,7 @@ Before writing code:
 2. **Read this file** completely
 3. **Read project docs if present** (`docs/ARCHITECTURE.md`, `docs/PRODUCT.md`, README, or equivalent)
 4. **Run `./init.sh`** to verify environment is healthy
-5. **Read `feature_list.json`** to see current feature state
+5. **Read `feature_list.json`** (or run `make status`) to see current feature state and backlog progress
 6. **Review recent commits** with `git log --oneline -5`
 
 If baseline verification is failing, repair that first before adding new scope.
@@ -58,6 +58,9 @@ Before ending a session:
 
 Required checks:
 {{VERIFICATION_COMMANDS}}
+
+# Backlog inspection
+make status
 
 ## Escalation
 

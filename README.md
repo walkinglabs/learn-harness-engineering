@@ -694,7 +694,8 @@ learn-harness-engineering/
 ├── skills/                        # Reusable AI agent skills
 │   └── harness-creator/           # Harness engineering skill
 ├── tools/                         # Zero-dependency shell utilities
-│   └── audit-harness.sh           # Shell-based harness audit (L03–L12, no Node.js needed)
+│   ├── audit-harness.sh           # Shell-based harness audit (L03–L12, no Node.js needed)
+│   └── status.sh                  # Shell-based backlog status viewer
 ├── package.json                   # VitePress + dev tooling
 └── CLAUDE.md                      # Claude Code instructions for this repo
 ```
@@ -729,6 +730,13 @@ curl -fsSL https://raw.githubusercontent.com/walkinglabs/learn-harness-engineeri
 
 # Or after cloning
 bash tools/audit-harness.sh /path/to/your/repo
+```
+
+- [**status.sh**](./tools/status.sh): A shell-based status script that displays the feature list backlog (developed, active, and remaining tasks). Also runnable via `make status`.
+
+```bash
+# Check task backlog status on any repo
+bash tools/status.sh /path/to/your/repo
 ```
 
 ---

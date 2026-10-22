@@ -306,6 +306,10 @@ check_recommended "make vcr target exists in Makefile [L07]" \
   "$(makefile_has_target "vcr")" \
   "Add a 'vcr:' target to Makefile that prints the VCR ratio: passing features / activated features (e.g. uses jq on feature_list.json)."
 
+check_recommended "make status target exists in Makefile [L08]" \
+  "$(makefile_has_target "status")" \
+  "Add a 'status:' target to Makefile that prints task backlog status (developed, in progress, remaining)." 
+
 # Runtime VCR check — compute from feature_list.json
 if [[ "$(any_file_match "feature_list.json" "features.json")" == "pass" ]]; then
   _vcr_file=""
