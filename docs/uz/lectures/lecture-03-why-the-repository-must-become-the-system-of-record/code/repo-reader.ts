@@ -13,8 +13,8 @@
  * Run: npx tsx docs/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/code/repo-reader.ts
  */
 
-import * as fs from “node:fs”;
-import * as path from “node:path”;
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 // ---------------------------------------------------------------------------
 // Scoring criteria
@@ -29,98 +29,98 @@ interface Check {
 
 const checks: Check[] = [
   {
-    name: “AGENTS.md / CLAUDE.md”,
-    description: “Agent-readable instruction file at repo root”,
+    name: "AGENTS.md / CLAUDE.md",
+    description: "Agent-readable instruction file at repo root",
     maxPoints: 15,
     check: (dir) => {
-      const candidates = [“AGENTS.md”, “CLAUDE.md”, “.claude/CLAUDE.md”];
+      const candidates = ["AGENTS.md", "CLAUDE.md", ".claude/CLAUDE.md"];
       const found = candidates.filter((f) => fs.existsSync(path.join(dir, f)));
       return { points: found.length > 0 ? 15 : 0, found, missing: found.length > 0 ? [] : candidates };
     },
   },
   {
-    name: “Documentation directory”,
-    description: “Dedicated docs/ or documentation/ directory”,
+    name: "Documentation directory",
+    description: "Dedicated docs/ or documentation/ directory",
     maxPoints: 10,
     check: (dir) => {
-      const candidates = [“docs”, “documentation”, “doc”];
+      const candidates = ["docs", "documentation", "doc"];
       const found = candidates.filter((f) => {
         const p = path.join(dir, f);
         return fs.existsSync(p) && fs.statSync(p).isDirectory();
       });
-      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : [“docs/”] };
+      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : ["docs/"] };
     },
   },
   {
-    name: “Architecture documentation”,
-    description: “Files describing system architecture”,
+    name: "Architecture documentation",
+    description: "Files describing system architecture",
     maxPoints: 15,
     check: (dir) => {
       const patterns = [
-        “architecture.md”, “ARCHITECTURE.md”, “docs/architecture.md”,
-        “docs/architecture/”, “design.md”, “DESIGN.md”,
+        "architecture.md", "ARCHITECTURE.md", "docs/architecture.md",
+        "docs/architecture/", "design.md", "DESIGN.md",
       ];
       const found = patterns.filter((f) => fs.existsSync(path.join(dir, f)));
-      return { points: found.length > 0 ? 15 : 0, found, missing: found.length > 0 ? [] : [“architecture.md or docs/architecture/”] };
+      return { points: found.length > 0 ? 15 : 0, found, missing: found.length > 0 ? [] : ["architecture.md or docs/architecture/"] };
     },
   },
   {
-    name: “Feature tracking”,
-    description: “Feature list or task tracking file”,
+    name: "Feature tracking",
+    description: "Feature list or task tracking file",
     maxPoints: 15,
     check: (dir) => {
       const patterns = [
-        “feature_list.json”, “features.md”, “FEATURES.md”,
-        “docs/features.md”, “tasks.json”, “TODO.md”,
+        "feature_list.json", "features.md", "FEATURES.md",
+        "docs/features.md", "tasks.json", "TODO.md",
       ];
       const found = patterns.filter((f) => fs.existsSync(path.join(dir, f)));
-      return { points: found.length > 0 ? 15 : 0, found, missing: found.length > 0 ? [] : [“feature_list.json or features.md”] };
+      return { points: found.length > 0 ? 15 : 0, found, missing: found.length > 0 ? [] : ["feature_list.json or features.md"] };
     },
   },
   {
-    name: “Handoff / session continuity”,
-    description: “Files for multi-session continuity”,
+    name: "Handoff / session continuity",
+    description: "Files for multi-session continuity",
     maxPoints: 15,
     check: (dir) => {
       const patterns = [
-        “HANDOFF.md”, “handoff.md”, “SESSION_NOTES.md”,
-        “docs/handoff.md”, “.handoff”, “PROGRESS.md”,
+        "HANDOFF.md", "handoff.md", "SESSION_NOTES.md",
+        "docs/handoff.md", ".handoff", "PROGRESS.md",
       ];
       const found = patterns.filter((f) => fs.existsSync(path.join(dir, f)));
-      return { points: found.length > 0 ? 15 : 0, found, missing: found.length > 0 ? [] : [“HANDOFF.md or PROGRESS.md”] };
+      return { points: found.length > 0 ? 15 : 0, found, missing: found.length > 0 ? [] : ["HANDOFF.md or PROGRESS.md"] };
     },
   },
   {
-    name: “Testing structure”,
-    description: “Test directory or test configuration”,
+    name: "Testing structure",
+    description: "Test directory or test configuration",
     maxPoints: 10,
     check: (dir) => {
-      const patterns = [“test”, “tests”, “__tests__”, “spec”];
+      const patterns = ["test", "tests", "__tests__", "spec"];
       const found = patterns.filter((f) => {
         const p = path.join(dir, f);
         return fs.existsSync(p) && fs.statSync(p).isDirectory();
       });
-      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : [“test/ or tests/”] };
+      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : ["test/ or tests/"] };
     },
   },
   {
-    name: “Configuration files”,
-    description: “Project config (package.json, tsconfig, etc.)”,
+    name: "Configuration files",
+    description: "Project config (package.json, tsconfig, etc.)",
     maxPoints: 10,
     check: (dir) => {
-      const patterns = [“package.json”, “tsconfig.json”, “pyproject.toml”, “Cargo.toml”, “go.mod”];
+      const patterns = ["package.json", "tsconfig.json", "pyproject.toml", "Cargo.toml", "go.mod"];
       const found = patterns.filter((f) => fs.existsSync(path.join(dir, f)));
-      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : [“package.json or equivalent”] };
+      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : ["package.json or equivalent"] };
     },
   },
   {
-    name: “README”,
-    description: “Root README file”,
+    name: "README",
+    description: "Root README file",
     maxPoints: 10,
     check: (dir) => {
-      const patterns = [“README.md”, “README.rst”, “README.txt”, “README”];
+      const patterns = ["README.md", "README.rst", "README.txt", "README"];
       const found = patterns.filter((f) => fs.existsSync(path.join(dir, f)));
-      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : [“README.md”] };
+      return { points: found.length > 0 ? 10 : 0, found, missing: found.length > 0 ? [] : ["README.md"] };
     },
   },
 ];
@@ -130,7 +130,7 @@ const checks: Check[] = [
 // ---------------------------------------------------------------------------
 
 function pad(s: string, len: number): string {
-  return s.length >= len ? s : s + “ ”.repeat(len - s.length);
+  return s.length >= len ? s : s + " ".repeat(len - s.length);
 }
 
 function scoreRepo(targetDir: string): void {
@@ -141,9 +141,9 @@ function scoreRepo(targetDir: string): void {
     process.exit(1);
   }
 
-  console.log(“\n” + “=”.repeat(80));
-  console.log(“  REPOSITORY DISCOVERABILITY SCORE”);
-  console.log(“=”.repeat(80));
+  console.log("\n" + "=".repeat(80));
+  console.log("  REPOSITORY DISCOVERABILITY SCORE");
+  console.log("=".repeat(80));
   console.log(`  Target: ${resolved}\n`);
 
   const header = `| ${pad("Criterion", 30)}| ${pad("Points", 8)}| ${pad("Status", 10)}| Details`;
@@ -158,27 +158,27 @@ function scoreRepo(targetDir: string): void {
     const result = check.check(resolved);
     totalScore += result.points;
     maxScore += check.maxPoints;
-    const status = result.points > 0 ? “PASS” : “FAIL”;
-    const detail = result.found.length > 0 ? result.found.join(“, ”) : result.missing[0];
+    const status = result.points > 0 ? "PASS" : "FAIL";
+    const detail = result.found.length > 0 ? result.found.join(", ") : result.missing[0];
 
     console.log(`| ${pad(check.name, 30)}| ${pad(result.points + "/" + check.maxPoints, 8)}| ${pad(status, 10)}| ${detail}`);
   }
 
   // Final score
-  console.log(“\n” + “-”.repeat(80));
+  console.log("\n" + "-".repeat(80));
   console.log(`  TOTAL SCORE: ${totalScore} / ${maxScore}  (${Math.round((totalScore / maxScore) * 100)}%)`);
 
   // Grade
   const pct = totalScore / maxScore;
   let grade: string;
-  if (pct >= 0.9) grade = “A -- Repository is a strong system of record”;
-  else if (pct >= 0.7) grade = “B -- Good foundation, minor gaps”;
-  else if (pct >= 0.5) grade = “C -- Partial structure, significant gaps”;
-  else if (pct >= 0.3) grade = “D -- Minimal structure, hard for agents to navigate”;
-  else grade = “F -- Repository lacks discoverability signals”;
+  if (pct >= 0.9) grade = "A -- Repository is a strong system of record";
+  else if (pct >= 0.7) grade = "B -- Good foundation, minor gaps";
+  else if (pct >= 0.5) grade = "C -- Partial structure, significant gaps";
+  else if (pct >= 0.3) grade = "D -- Minimal structure, hard for agents to navigate";
+  else grade = "F -- Repository lacks discoverability signals";
 
   console.log(`  GRADE: ${grade}`);
-  console.log(“=”.repeat(80) + “\n”);
+  console.log("=".repeat(80) + "\n");
 }
 
 // ---------------------------------------------------------------------------

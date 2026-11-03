@@ -3,8 +3,8 @@
  *
  * A minimal E2E test harness. Defines test cases as user action sequences
  * (import doc -> index -> ask question -> verify citation). Simulates
- * running them and shows the difference between “unit tests pass” and
- * “full pipeline works”.
+ * running them and shows the difference between "unit tests pass" and
+ * "full pipeline works".
  *
  * Run: npx tsx docs/lectures/lecture-10-why-end-to-end-testing-changes-results/code/e2e-runner.ts
  */
@@ -17,7 +17,7 @@ interface PipelineStep {
   name: string;
   unitTestPasses: boolean;
   // Simulated actual behavior in the pipeline
-  actualBehavior: “works” | “fails” | “partial”;
+  actualBehavior: "works" | "fails" | "partial";
   failureReason?: string;
 }
 
@@ -30,8 +30,8 @@ interface TestResult {
   testCase: string;
   unitTestsPassed: number;
   unitTestsTotal: number;
-  unitTestResult: “PASS” | “FAIL”;
-  e2eResult: “PASS” | “FAIL”;
+  unitTestResult: "PASS" | "FAIL";
+  e2eResult: "PASS" | "FAIL";
   e2eFailureStep?: string;
   e2eFailureReason?: string;
 }
@@ -42,89 +42,89 @@ interface TestResult {
 
 const testCases: TestCase[] = [
   {
-    name: “Import document and ask question”,
+    name: "Import document and ask question",
     steps: [
       {
-        name: “Parse uploaded document”,
+        name: "Parse uploaded document",
         unitTestPasses: true,
-        actualBehavior: “works”,
+        actualBehavior: "works",
       },
       {
-        name: “Store document chunks”,
+        name: "Store document chunks",
         unitTestPasses: true,
-        actualBehavior: “works”,
+        actualBehavior: "works",
       },
       {
-        name: “Index chunks for retrieval”,
+        name: "Index chunks for retrieval",
         unitTestPasses: true,
-        actualBehavior: “partial”, // Indexes but with wrong embedding dimensions
-        failureReason: “Embedding dimension mismatch between indexer and retriever”,
+        actualBehavior: "partial", // Indexes but with wrong embedding dimensions
+        failureReason: "Embedding dimension mismatch between indexer and retriever",
       },
       {
-        name: “Retrieve relevant chunks”,
+        name: "Retrieve relevant chunks",
         unitTestPasses: true, // Unit test uses mock data with correct dimensions
-        actualBehavior: “fails”,
-        failureReason: “Empty results due to dimension mismatch from previous step”,
+        actualBehavior: "fails",
+        failureReason: "Empty results due to dimension mismatch from previous step",
       },
       {
-        name: “Generate answer with citations”,
+        name: "Generate answer with citations",
         unitTestPasses: true, // Unit test provides pre-retrieved chunks
-        actualBehavior: “fails”,
-        failureReason: “No chunks retrieved, so answer has no citations”,
+        actualBehavior: "fails",
+        failureReason: "No chunks retrieved, so answer has no citations",
       },
     ],
   },
   {
-    name: “Delete document and verify removal”,
+    name: "Delete document and verify removal",
     steps: [
       {
-        name: “Find document by ID”,
+        name: "Find document by ID",
         unitTestPasses: true,
-        actualBehavior: “works”,
+        actualBehavior: "works",
       },
       {
-        name: “Delete document record”,
+        name: "Delete document record",
         unitTestPasses: true,
-        actualBehavior: “works”,
+        actualBehavior: "works",
       },
       {
-        name: “Remove indexed chunks”,
+        name: "Remove indexed chunks",
         unitTestPasses: true,
-        actualBehavior: “fails”, // Orphaned chunks remain in the index
-        failureReason: “Index cleanup query timed out, chunks remain orphaned”,
+        actualBehavior: "fails", // Orphaned chunks remain in the index
+        failureReason: "Index cleanup query timed out, chunks remain orphaned",
       },
       {
-        name: “Verify document not in search results”,
+        name: "Verify document not in search results",
         unitTestPasses: true, // Unit test mocks the search
-        actualBehavior: “fails”,
-        failureReason: “Orphaned chunks from previous step still appear in results”,
+        actualBehavior: "fails",
+        failureReason: "Orphaned chunks from previous step still appear in results",
       },
     ],
   },
   {
-    name: “Multi-user concurrent access”,
+    name: "Multi-user concurrent access",
     steps: [
       {
-        name: “User A imports document”,
+        name: "User A imports document",
         unitTestPasses: true,
-        actualBehavior: “works”,
+        actualBehavior: "works",
       },
       {
-        name: “User B imports document”,
+        name: "User B imports document",
         unitTestPasses: true,
-        actualBehavior: “works”,
+        actualBehavior: "works",
       },
       {
-        name: “User A queries their document”,
+        name: "User A queries their document",
         unitTestPasses: true,
-        actualBehavior: “partial”, // Cross-contamination of results
-        failureReason: “No user-scoping on retrieval, returns chunks from User Bʼs doc”,
+        actualBehavior: "partial", // Cross-contamination of results
+        failureReason: "No user-scoping on retrieval, returns chunks from User Bʼs doc",
       },
       {
-        name: “Verify only User Aʼs results returned”,
+        name: "Verify only User Aʼs results returned",
         unitTestPasses: true,
-        actualBehavior: “fails”,
-        failureReason: “Results include documents from other users”,
+        actualBehavior: "fails",
+        failureReason: "Results include documents from other users",
       },
     ],
   },
@@ -142,27 +142,27 @@ function runUnitTests(tc: TestCase): { passed: number; total: number } {
 function runE2ETest(tc: TestCase): { pass: boolean; failureStep?: string; failureReason?: string } {
   // Pipeline: if any step actually fails, the whole E2E fails
   for (const step of tc.steps) {
-    if (step.actualBehavior === “fails”) {
+    if (step.actualBehavior === "fails") {
       return {
         pass: false,
         failureStep: step.name,
-        failureReason: step.failureReason ?? “Unknown failure”,
+        failureReason: step.failureReason ?? "Unknown failure",
       };
     }
-    // “partial” means the step technically completes but creates problems downstream
+    // "partial" means the step technically completes but creates problems downstream
     // We let it continue but track it
   }
-  // Check if any step was “partial” (which may cause downstream issues)
-  const partialSteps = tc.steps.filter((s) => s.actualBehavior === “partial”);
+  // Check if any step was "partial" (which may cause downstream issues)
+  const partialSteps = tc.steps.filter((s) => s.actualBehavior === "partial");
   if (partialSteps.length > 0) {
     // The partial steps may or may not cause overall failure
     // In our simulation, partial steps always lead to failure downstream
-    // unless thereʼs an explicit “fails” step that already caught it
-    // This case means all steps were either “works” or “partial”
+    // unless thereʼs an explicit "fails" step that already caught it
+    // This case means all steps were either "works" or "partial"
     return {
       pass: false,
       failureStep: partialSteps[partialSteps.length - 1].name,
-      failureReason: partialSteps[partialSteps.length - 1].failureReason ?? “Partial completion”,
+      failureReason: partialSteps[partialSteps.length - 1].failureReason ?? "Partial completion",
     };
   }
 
@@ -174,13 +174,13 @@ function runE2ETest(tc: TestCase): { pass: boolean; failureStep?: string; failur
 // ---------------------------------------------------------------------------
 
 function pad(s: string, len: number): string {
-  return s.length >= len ? s : s + “ ”.repeat(len - s.length);
+  return s.length >= len ? s : s + " ".repeat(len - s.length);
 }
 
 function run(): void {
-  console.log(“\n” + “=”.repeat(95));
-  console.log(“  E2E TEST RUNNER -- Unit Tests vs Full Pipeline”);
-  console.log(“=”.repeat(95));
+  console.log("\n" + "=".repeat(95));
+  console.log("  E2E TEST RUNNER -- Unit Tests vs Full Pipeline");
+  console.log("=".repeat(95));
 
   const results: TestResult[] = testCases.map((tc) => {
     const unit = runUnitTests(tc);
@@ -190,8 +190,8 @@ function run(): void {
       testCase: tc.name,
       unitTestsPassed: unit.passed,
       unitTestsTotal: unit.total,
-      unitTestResult: unit.passed === unit.total ? “PASS” : “FAIL”,
-      e2eResult: e2e.pass ? “PASS” : “FAIL”,
+      unitTestResult: unit.passed === unit.total ? "PASS" : "FAIL",
+      e2eResult: e2e.pass ? "PASS" : "FAIL",
       e2eFailureStep: e2e.failureStep,
       e2eFailureReason: e2e.failureReason,
     };
@@ -202,8 +202,8 @@ function run(): void {
     const tc = testCases[i];
     const r = results[i];
 
-    console.log(“\n  Test Case: ” + tc.name);
-    console.log(“  ” + “-”.repeat(70));
+    console.log("\n  Test Case: " + tc.name);
+    console.log("  " + "-".repeat(70));
 
     const stepHeader = `  | ${pad("Step", 40)}| ${pad("Unit Test", 11)}| ${pad("E2E Actual", 12)}|`;
     const stepSep = `  |${"-".repeat(42)}|${"-".repeat(13)}|${"-".repeat(14)}|`;
@@ -211,13 +211,13 @@ function run(): void {
     console.log(stepSep);
 
     for (const step of tc.steps) {
-      const utLabel = step.unitTestPasses ? “PASS” : “FAIL”;
+      const utLabel = step.unitTestPasses ? "PASS" : "FAIL";
       let e2eLabel: string;
-      if (step.actualBehavior === “works”) e2eLabel = “PASS”;
-      else if (step.actualBehavior === “partial”) e2eLabel = “PARTIAL*”;
-      else e2eLabel = “FAIL”;
+      if (step.actualBehavior === "works") e2eLabel = "PASS";
+      else if (step.actualBehavior === "partial") e2eLabel = "PARTIAL*";
+      else e2eLabel = "FAIL";
 
-      const marker = step.actualBehavior !== “works” ? “>>” : “  ”;
+      const marker = step.actualBehavior !== "works" ? ">>" : "  ";
       console.log(`${marker}| ${pad(step.name, 40)}| ${pad(utLabel, 11)}| ${pad(e2eLabel, 12)}|`);
     }
 
@@ -228,9 +228,9 @@ function run(): void {
   }
 
   // Summary comparison
-  console.log(“\n” + “=”.repeat(95));
-  console.log(“  COMPARISON: Unit Tests vs E2E Tests”);
-  console.log(“=”.repeat(95) + “\n”);
+  console.log("\n" + "=".repeat(95));
+  console.log("  COMPARISON: Unit Tests vs E2E Tests");
+  console.log("=".repeat(95) + "\n");
 
   const header = `| ${pad("Test Case", 35)}| ${pad("Unit Tests", 15)}| ${pad("E2E Result", 12)}| Discrepancy`;
   const sep = `|${"-".repeat(37)}|${"-".repeat(17)}|${"-".repeat(14)}|${"-".repeat(30)}`;
@@ -239,15 +239,15 @@ function run(): void {
 
   for (const r of results) {
     const utLabel = `${r.unitTestsPassed}/${r.unitTestsTotal} ${r.unitTestResult}`;
-    const discrepancy = r.unitTestResult === “PASS” && r.e2eResult === “FAIL”;
-    const discLabel = discrepancy ? “UNIT PASS BUT E2E FAIL” : “Consistent”;
+    const discrepancy = r.unitTestResult === "PASS" && r.e2eResult === "FAIL";
+    const discLabel = discrepancy ? "UNIT PASS BUT E2E FAIL" : "Consistent";
 
     console.log(`| ${pad(r.testCase, 35)}| ${pad(utLabel, 15)}| ${pad(r.e2eResult, 12)}| ${discLabel}`);
   }
 
-  const falseConfidence = results.filter((r) => r.unitTestResult === “PASS” && r.e2eResult === “FAIL”).length;
-  console.log(“\n  False confidence count: ” + falseConfidence + “ of ” + results.length);
-  console.log(“  Unit tests pass but E2E reveals integration failures that units cannot catch.\n”);
+  const falseConfidence = results.filter((r) => r.unitTestResult === "PASS" && r.e2eResult === "FAIL").length;
+  console.log("\n  False confidence count: " + falseConfidence + " of " + results.length);
+  console.log("  Unit tests pass but E2E reveals integration failures that units cannot catch.\n");
 }
 
 run();
