@@ -1,5 +1,5 @@
 type Message = {
-  role: “user” | “assistant”;
+  role: "user" | "assistant";
   content: string;
 };
 
@@ -9,7 +9,7 @@ type ToolResult = {
 };
 
 function runTool(name: string, input: string): ToolResult {
-  if (name === “read_file”) {
+  if (name === "read_file") {
     return { ok: true, output: `contents of ${input}` };
   }
 
@@ -18,8 +18,8 @@ function runTool(name: string, input: string): ToolResult {
 
 export function minimalHarness(messages: Message[]) {
   const nextAction = {
-    tool: “read_file”,
-    input: “README.md”
+    tool: "read_file",
+    input: "README.md"
   };
 
   const result = runTool(nextAction.tool, nextAction.input);
@@ -28,7 +28,7 @@ export function minimalHarness(messages: Message[]) {
     messages: [
       ...messages,
       {
-        role: “assistant”,
+        role: "assistant",
         content: `Tool ${nextAction.tool} returned: ${result.output}`
       }
     ]

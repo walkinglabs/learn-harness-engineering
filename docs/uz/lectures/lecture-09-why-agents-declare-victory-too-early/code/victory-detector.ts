@@ -22,7 +22,7 @@ interface VerificationCheck {
   description: string;
   claimed: boolean; // What the agent says
   actual: boolean;  // What is actually true
-  severity: “critical” | “warning”;
+  severity: "critical" | "warning";
 }
 
 // ---------------------------------------------------------------------------
@@ -31,110 +31,110 @@ interface VerificationCheck {
 
 const tasks: Task[] = [
   {
-    name: “Add search endpoint”,
+    name: "Add search endpoint",
     claimedComplete: true,
     checks: [
       {
-        description: “Route handler exists”,
+        description: "Route handler exists",
         claimed: true,
         actual: true,
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Authentication middleware applied”,
+        description: "Authentication middleware applied",
         claimed: true,
         actual: false, // Agent forgot auth
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Input validation added”,
+        description: "Input validation added",
         claimed: true,
         actual: true,
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Unit tests written”,
+        description: "Unit tests written",
         claimed: true,
         actual: false, // Agent skipped tests
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Integration tests pass”,
+        description: "Integration tests pass",
         claimed: true,
         actual: false, // No tests to run
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Documentation updated”,
+        description: "Documentation updated",
         claimed: true,
         actual: false, // Agent skipped docs
-        severity: “warning”,
+        severity: "warning",
       },
     ],
   },
   {
-    name: “Fix pagination bug”,
+    name: "Fix pagination bug",
     claimedComplete: true,
     checks: [
       {
-        description: “Bug reproduction case confirmed”,
+        description: "Bug reproduction case confirmed",
         claimed: true,
         actual: true,
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Root cause identified”,
+        description: "Root cause identified",
         claimed: true,
         actual: true,
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Fix applied”,
+        description: "Fix applied",
         claimed: true,
         actual: true,
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Edge cases tested”,
+        description: "Edge cases tested",
         claimed: true,
         actual: false, // Only happy path tested
-        severity: “warning”,
+        severity: "warning",
       },
       {
-        description: “Regression tests added”,
+        description: "Regression tests added",
         claimed: true,
         actual: false,
-        severity: “critical”,
+        severity: "critical",
       },
     ],
   },
   {
-    name: “Refactor auth module”,
+    name: "Refactor auth module",
     claimedComplete: true,
     checks: [
       {
-        description: “Old code removed”,
+        description: "Old code removed",
         claimed: true,
         actual: false, // Old code still present
-        severity: “warning”,
+        severity: "warning",
       },
       {
-        description: “All existing tests still pass”,
+        description: "All existing tests still pass",
         claimed: true,
         actual: false, // Two tests broke
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “New auth flow works”,
+        description: "New auth flow works",
         claimed: true,
         actual: true,
-        severity: “critical”,
+        severity: "critical",
       },
       {
-        description: “Migration guide written”,
+        description: "Migration guide written",
         claimed: true,
         actual: false,
-        severity: “warning”,
+        severity: "warning",
       },
     ],
   },
@@ -175,19 +175,19 @@ function verifyTask(task: Task): TaskVerification {
 // ---------------------------------------------------------------------------
 
 function pad(s: string, len: number): string {
-  return s.length >= len ? s : s + “ ”.repeat(len - s.length);
+  return s.length >= len ? s : s + " ".repeat(len - s.length);
 }
 
 function run(): void {
-  console.log(“\n” + “=”.repeat(90));
-  console.log(“  VICTORY DETECTOR -- Claimed vs Actual Verification”);
-  console.log(“=”.repeat(90));
+  console.log("\n" + "=".repeat(90));
+  console.log("  VICTORY DETECTOR -- Claimed vs Actual Verification");
+  console.log("=".repeat(90));
 
   const verifications = tasks.map(verifyTask);
 
   for (const v of verifications) {
-    console.log(“\n  Task: ” + v.taskName);
-    console.log(“  ” + “-”.repeat(70));
+    console.log("\n  Task: " + v.taskName);
+    console.log("  " + "-".repeat(70));
     console.log(`  Agent claimed:  ${v.claimedComplete ? "COMPLETE" : "NOT COMPLETE"}`);
     console.log(`  Actually is:    ${v.actuallyComplete ? "COMPLETE" : "INCOMPLETE"}`);
 
@@ -197,25 +197,25 @@ function run(): void {
 
     // Detailed checks for this task
     const task = tasks.find((t) => t.name === v.taskName)!;
-    console.log(“\n  Check detail:”);
+    console.log("\n  Check detail:");
     const header = `  | ${pad("Check", 40)}| ${pad("Claimed", 9)}| ${pad("Actual", 9)}| ${pad("Gap?", 6)}|`;
     const sep = `  |${"-".repeat(42)}|${"-".repeat(11)}|${"-".repeat(11)}|${"-".repeat(8)}|`;
     console.log(header);
     console.log(sep);
 
     for (const check of task.checks) {
-      const claimedLabel = check.claimed ? “PASS” : “FAIL”;
-      const actualLabel = check.actual ? “PASS” : “FAIL”;
-      const gapLabel = check.claimed && !check.actual ? “GAP” : “”;
-      const marker = gapLabel ? “>>” : “  ”;
+      const claimedLabel = check.claimed ? "PASS" : "FAIL";
+      const actualLabel = check.actual ? "PASS" : "FAIL";
+      const gapLabel = check.claimed && !check.actual ? "GAP" : "";
+      const marker = gapLabel ? ">>" : "  ";
       console.log(`${marker}| ${pad(check.description, 40)}| ${pad(claimedLabel, 9)}| ${pad(actualLabel, 9)}| ${pad(gapLabel, 6)}|`);
     }
   }
 
   // Overall summary
-  console.log(“\n” + “=”.repeat(90));
-  console.log(“  OVERALL SUMMARY”);
-  console.log(“=”.repeat(90) + “\n”);
+  console.log("\n" + "=".repeat(90));
+  console.log("  OVERALL SUMMARY");
+  console.log("=".repeat(90) + "\n");
 
   const sHeader = `| ${pad("Task", 28)}| ${pad("Claimed", 10)}| ${pad("Actual", 10)}| ${pad("Gaps", 6)}| ${pad("Accuracy", 10)}|`;
   const sSep = `|${"-".repeat(30)}|${"-".repeat(12)}|${"-".repeat(12)}|${"-".repeat(8)}|${"-".repeat(12)}|`;
@@ -224,18 +224,18 @@ function run(): void {
 
   for (const v of verifications) {
     const accuracy = Math.round((v.actualPassing / v.totalChecks) * 100);
-    const cLabel = v.claimedComplete ? “Done” : “Pending”;
-    const aLabel = v.actuallyComplete ? “Done” : “Incomplete”;
+    const cLabel = v.claimedComplete ? "Done" : "Pending";
+    const aLabel = v.actuallyComplete ? "Done" : "Incomplete";
     console.log(`| ${pad(v.taskName, 28)}| ${pad(cLabel, 10)}| ${pad(aLabel, 10)}| ${pad(String(v.gaps.length), 6)}| ${pad(accuracy + "%", 10)}|`);
   }
 
   const totalGaps = verifications.reduce((s, v) => s + v.gaps.length, 0);
   const falseVictories = verifications.filter((v) => v.claimedComplete && !v.actuallyComplete).length;
 
-  console.log(“\n  False victories: ” + falseVictories + “ of ” + verifications.length + “ tasks”);
-  console.log(“  Total undetected gaps: ” + totalGaps);
-  console.log(“\n  The agent declared 'done' on every task, but verification reveals ” + totalGaps + “ unmet criteria.”);
-  console.log(“  Without explicit verification, premature victory declarations go unchecked.\n”);
+  console.log("\n  False victories: " + falseVictories + " of " + verifications.length + " tasks");
+  console.log("  Total undetected gaps: " + totalGaps);
+  console.log("\n  The agent declared 'done' on every task, but verification reveals " + totalGaps + " unmet criteria.");
+  console.log("  Without explicit verification, premature victory declarations go unchecked.\n");
 }
 
 run();

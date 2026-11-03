@@ -3,7 +3,7 @@
  *
  * Creates a monolithic instruction file (~200 lines) and then shows how
  * splitting into 4 focused files dramatically reduces the context needed
- * for any single query. Simulates an “agent” searching for a specific rule
+ * for any single query. Simulates an "agent" searching for a specific rule
  * and measures how many lines it must read in each approach.
  *
  * Run: npx tsx docs/lectures/lecture-04-why-one-giant-instruction-file-fails/code/split-vs-monolithic.ts
@@ -19,8 +19,8 @@ const monolithicInstructions: { lineNumber: number; section: string; content: st
 for (let i = 1; i <= 50; i++) {
   monolithicInstructions.push({
     lineNumber: i,
-    section: “Project Overview”,
-    content: i === 25 ? “This project uses React 18 with TypeScript strict mode.” : `Overview detail line ${i}`,
+    section: "Project Overview",
+    content: i === 25 ? "This project uses React 18 with TypeScript strict mode." : `Overview detail line ${i}`,
   });
 }
 
@@ -28,12 +28,12 @@ for (let i = 1; i <= 50; i++) {
 for (let i = 51; i <= 100; i++) {
   monolithicInstructions.push({
     lineNumber: i,
-    section: “Code Style”,
+    section: "Code Style",
     content:
       i === 72
-        ? “RULE: Always use explicit return types on exported functions.”
+        ? "RULE: Always use explicit return types on exported functions."
         : i === 78
-          ? “RULE: Use const assertions for immutable arrays.”
+          ? "RULE: Use const assertions for immutable arrays."
           : `Style rule detail line ${i}`,
   });
 }
@@ -42,12 +42,12 @@ for (let i = 51; i <= 100; i++) {
 for (let i = 101; i <= 150; i++) {
   monolithicInstructions.push({
     lineNumber: i,
-    section: “Testing”,
+    section: "Testing",
     content:
       i === 120
-        ? “RULE: Every new endpoint must have integration tests.”
+        ? "RULE: Every new endpoint must have integration tests."
         : i === 135
-          ? “RULE: Test files must mirror the source file structure.”
+          ? "RULE: Test files must mirror the source file structure."
           : `Testing detail line ${i}`,
   });
 }
@@ -56,10 +56,10 @@ for (let i = 101; i <= 150; i++) {
 for (let i = 151; i <= 200; i++) {
   monolithicInstructions.push({
     lineNumber: i,
-    section: “Deployment”,
+    section: "Deployment",
     content:
       i === 175
-        ? “RULE: Never deploy on Fridays. Deploy window is Tue-Thu 10am-3pm.”
+        ? "RULE: Never deploy on Fridays. Deploy window is Tue-Thu 10am-3pm."
         : `Deployment detail line ${i}`,
   });
 }
@@ -69,10 +69,10 @@ for (let i = 151; i <= 200; i++) {
 // ---------------------------------------------------------------------------
 
 const splitInstructions: Record<string, { lineNumber: number; section: string; content: string }[]> = {
-  “01-project-overview.md”: monolithicInstructions.filter((l) => l.section === “Project Overview”),
-  “02-code-style.md”: monolithicInstructions.filter((l) => l.section === “Code Style”),
-  “03-testing.md”: monolithicInstructions.filter((l) => l.section === “Testing”),
-  “04-deployment.md”: monolithicInstructions.filter((l) => l.section === “Deployment”),
+  "01-project-overview.md": monolithicInstructions.filter((l) => l.section === "Project Overview"),
+  "02-code-style.md": monolithicInstructions.filter((l) => l.section === "Code Style"),
+  "03-testing.md": monolithicInstructions.filter((l) => l.section === "Testing"),
+  "04-deployment.md": monolithicInstructions.filter((l) => l.section === "Deployment"),
 };
 
 // ---------------------------------------------------------------------------
@@ -87,24 +87,24 @@ interface Query {
 
 const queries: Query[] = [
   {
-    description: “Find the rule about return types”,
-    targetRule: “explicit return types”,
-    relevantSection: “Code Style”,
+    description: "Find the rule about return types",
+    targetRule: "explicit return types",
+    relevantSection: "Code Style",
   },
   {
-    description: “Find the deployment window rule”,
-    targetRule: “deploy on Fridays”,
-    relevantSection: “Deployment”,
+    description: "Find the deployment window rule",
+    targetRule: "deploy on Fridays",
+    relevantSection: "Deployment",
   },
   {
-    description: “Find the integration test rule”,
-    targetRule: “integration tests”,
-    relevantSection: “Testing”,
+    description: "Find the integration test rule",
+    targetRule: "integration tests",
+    relevantSection: "Testing",
   },
   {
-    description: “Find the test file structure rule”,
-    targetRule: “mirror the source file”,
-    relevantSection: “Testing”,
+    description: "Find the test file structure rule",
+    targetRule: "mirror the source file",
+    relevantSection: "Testing",
   },
 ];
 
@@ -133,10 +133,10 @@ function searchSplit(query: Query): { linesRead: number; found: boolean; fileAcc
   // Agent knows which file to look in based on the section.
   // It only reads lines from that one file.
   const fileMap: Record<string, string> = {
-    “Project Overview”: “01-project-overview.md”,
-    “Code Style”: “02-code-style.md”,
-    Testing: “03-testing.md”,
-    Deployment: “04-deployment.md”,
+    "Project Overview": "01-project-overview.md",
+    "Code Style": "02-code-style.md",
+    Testing: "03-testing.md",
+    Deployment: "04-deployment.md",
   };
 
   const targetFile = fileMap[query.relevantSection];
@@ -160,16 +160,16 @@ function searchSplit(query: Query): { linesRead: number; found: boolean; fileAcc
 // ---------------------------------------------------------------------------
 
 function pad(s: string, len: number): string {
-  return s.length >= len ? s : s + “ ”.repeat(len - s.length);
+  return s.length >= len ? s : s + " ".repeat(len - s.length);
 }
 
 function run(): void {
-  console.log(“\n” + “=”.repeat(90));
-  console.log(“  MONOLITHIC vs SPLIT INSTRUCTION FILES”);
-  console.log(“=”.repeat(90));
+  console.log("\n" + "=".repeat(90));
+  console.log("  MONOLITHIC vs SPLIT INSTRUCTION FILES");
+  console.log("=".repeat(90));
 
-  console.log(“\n  Monolithic file: 1 file, ” + monolithicInstructions.length + “ lines total”);
-  console.log(“  Split files:     4 files, ~” + Math.round(monolithicInstructions.length / 4) + “ lines each\n”);
+  console.log("\n  Monolithic file: 1 file, " + monolithicInstructions.length + " lines total");
+  console.log("  Split files:     4 files, ~" + Math.round(monolithicInstructions.length / 4) + " lines each\n");
 
   const header = `| ${pad("Query", 42)}| ${pad("Monolithic (lines)", 20)}| ${pad("Split (lines)", 15)}| ${pad("File Accessed", 22)}| Savings`;
   const sep = `|${"-".repeat(44)}|${"-".repeat(22)}|${"-".repeat(17)}|${"-".repeat(24)}|${"-".repeat(10)}`;
@@ -198,12 +198,12 @@ function run(): void {
     `| ${pad("AVERAGE", 42)}| ${pad(String(avgMono), 20)}| ${pad(String(avgSplit), 15)}| ${pad("(targeted file)", 22)}| ${Math.round(((avgMono - avgSplit) / avgMono) * 100)}%`
   );
 
-  console.log(“\n” + “=”.repeat(90));
-  console.log(“  KEY INSIGHT”);
-  console.log(“=”.repeat(90));
-  console.log(“  With a monolithic file, the agent must scan up to ” + monolithicInstructions.length + “ lines for every query.”);
-  console.log(“  With split files, it reads only the relevant ” + Math.round(monolithicInstructions.length / 4) + “-line file.”);
-  console.log(“  This means less context window usage, fewer hallucinations, and faster execution.\n”);
+  console.log("\n" + "=".repeat(90));
+  console.log("  KEY INSIGHT");
+  console.log("=".repeat(90));
+  console.log("  With a monolithic file, the agent must scan up to " + monolithicInstructions.length + " lines for every query.");
+  console.log("  With split files, it reads only the relevant " + Math.round(monolithicInstructions.length / 4) + "-line file.");
+  console.log("  This means less context window usage, fewer hallucinations, and faster execution.\n");
 }
 
 run();
