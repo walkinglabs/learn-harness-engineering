@@ -18,7 +18,7 @@ Comece por aqui quando quiser que o Codex, Claude Code ou outro agente de codifi
 Para uma configuração mínima, comece com:
 
 - Instruções de raiz: [`templates/AGENTS.md`](./templates/AGENTS.md) ou [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- Estado dos recursos: [`templates/feature_list.json`](./templates/feature_list.json)
+- Estado dos recursos: [`templates/feature_list.json`](./templates/index.md#feature-list-json)
 - Log de progresso: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - Referência do script de inicialização (bootstrap): `docs/en/resources/templates/init.sh`
 
