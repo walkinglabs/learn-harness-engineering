@@ -91,4 +91,4 @@ Pi 的取捨和 Claude Code / Codex 形成鮮明對比：Claude Code 把「記�
 - **Pi Coding Agent 原始碼 README**（badlogic/pi-mono）：AGENTS.md 三級載入順序（全域 → 父目錄 → 目前目錄）、`/compact` 與自動 compaction 的觸發條件及 2 萬個 token 切割點、Skills 隨選載入與 Agent Skills 標準、Hooks 生命週期與四種官方範例用途、Programmatic Usage（JSON / RPC / SDK）。<br/>https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md
 - **pi-agent-harness 社群儲存庫**：skill-router / session-summary / extract-patterns / telemetry 擴充，VISION.md / PROGRESS.md / LESSONS.md / STANDARDS.md 檔案體系。<br/>https://github.com/LabidySabidy/pi-agent-harness
 
-相關講義：[第二講 · Harness 到底是什麼](../lectures/lecture-02-what-a-harness-actually-is/) ｜ [第五講 · 讓跨 session 的任務保持上下文連續](../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [第十三講 · 從手動驅動到自動循環](../lectures/lecture-13-loop-engineering/)
+相關講義：[第二講 · Harness 到底是什麼](../../lectures/lecture-02-what-a-harness-actually-is/) ｜ [第五講 · 讓跨 session 的任務保持上下文連續](../../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [第十三講 · 從手動驅動到自動循環](../../lectures/lecture-13-loop-engineering/)

@@ -18,7 +18,7 @@ Besonders nützlich ist das, wenn:
 Für eine minimale Einrichtung beginne mit:
 
 - Root-Anweisungen: [`templates/AGENTS.md`](./templates/AGENTS.md) oder [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- Feature-Zustand: [`templates/feature_list.json`](./templates/feature_list.json)
+- Feature-Zustand: [`templates/feature_list.json`](./templates/#feature-list-json)
 - Fortschrittslog: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - Bootstrap-Skriptreferenz: `docs/de/resources/templates/init.sh`
 

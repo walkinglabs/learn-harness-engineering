@@ -19,7 +19,7 @@
 如果你想先搭一个最小可用版本，优先看这些文件：
 
 - 根指令文件：[`templates/AGENTS.md`](./templates/AGENTS.md) 或 [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- 功能状态文件：[`templates/feature_list.json`](./templates/feature_list.json)
+- 功能状态文件：[`templates/feature_list.json`](./templates/#feature-list-json)
 - 进度日志：[`templates/claude-progress.md`](./templates/claude-progress.md)
 
 这个文件名是课程早期留下的约定，实际是通用的、放在仓库里的会话进度日志，

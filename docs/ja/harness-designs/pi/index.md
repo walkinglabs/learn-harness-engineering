@@ -91,4 +91,4 @@ Pi のトレードオフは、Claude Code / Codex と鮮明な対照をなしま
 - **Pi Coding Agent ソース README**（badlogic/pi-mono）：AGENTS.md の3段階の読み込み順序（グローバル → 親ディレクトリ → 現在のディレクトリ）、`/compact` と自動 compaction の発動条件および2万 token の分割点、Skills のオンデマンド読み込みと Agent Skills 標準、Hooks のライフサイクルと公式の用途例、Programmatic Usage（JSON / RPC / SDK）。<br/>https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md
 - **pi-agent-harness コミュニティリポジトリ**：skill-router / session-summary / extract-patterns / telemetry Extensions、VISION.md / PROGRESS.md / LESSONS.md / STANDARDS.md のファイル体系。<br/>https://github.com/LabidySabidy/pi-agent-harness
 
-関連講義：[講義02 · Harness とは実際に何か](../lectures/lecture-02-what-a-harness-actually-is/) ｜ [講義05 · セッションをまたいでコンテキストを保つ](../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [講義13 · 手動駆動から自動ループへ](../lectures/lecture-13-loop-engineering/)
+関連講義：[講義02 · Harness とは実際に何か](../../lectures/lecture-02-what-a-harness-actually-is/) ｜ [講義05 · セッションをまたいでコンテキストを保つ](../../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [講義13 · 手動駆動から自動ループへ](../../lectures/lecture-13-loop-engineering/)

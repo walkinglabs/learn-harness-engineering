@@ -21,7 +21,7 @@ It is especially useful when:
 For a minimal setup, begin with:
 
 - root instructions: [`templates/AGENTS.md`](./templates/AGENTS.md) or [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- feature state: [`templates/feature_list.json`](./templates/feature_list.json)
+- feature state: [`templates/feature_list.json`](./templates/#feature-list-json)
 - progress log: [`templates/claude-progress.md`](./templates/claude-progress.md)
 
 The filename is a historical course convention. This is a generic,

@@ -93,4 +93,4 @@ Claude Code 的日誌是完整的附加式記錄（history.jsonl），加上 `/c
 - **VILA Lab《Dive into Claude Code》**（v2.1.88 原始碼層級拆解報告）：五層 compaction 管線、permissions 七種模式 + ML 分類器、sidechain subagent、附加式 session 儲存 history.jsonl。<br/>https://zhiqiangshen.com/projects/Claude_Code_Report/Claude_Code_Report.pdf
 - **Claude Code Full Stack 導讀**（社群，CLAUDE.md / Skills / MCP / Subagents / Hooks 分層）：作為擴充機制職責分離的補充閱讀。<br/>https://jsmanifest.com/claude-code-full-stack-guide
 
-相關講義：[第三講 · 讓程式碼儲存庫成為唯一的事實來源](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第九講 · 防止 agent 提前宣告完成](../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [第十講 · 跑通完整流程才算真正驗證](../lectures/lecture-10-why-end-to-end-testing-changes-results/)
+相關講義：[第三講 · 讓程式碼儲存庫成為唯一的事實來源](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第九講 · 防止 agent 提前宣告完成](../../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [第十講 · 跑通完整流程才算真正驗證](../../lectures/lecture-10-why-end-to-end-testing-changes-results/)

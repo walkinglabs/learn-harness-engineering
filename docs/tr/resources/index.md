@@ -21,7 +21,7 @@ boyunca çalışmasını istediğinizde buradan başlayın.
 Minimal bir kurulum için şunlarla başlayın:
 
 - kök talimatlar: [`templates/AGENTS.md`](./templates/AGENTS.md) veya [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- özellik durumu: [`templates/feature_list.json`](./templates/feature_list.json)
+- özellik durumu: [`templates/feature_list.json`](./templates/#feature-list-json)
 - ilerleme günlüğü: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - başlangıç betiği referansı: `docs/tr/resources/templates/init.sh`
 

@@ -75,4 +75,4 @@ Codex와 Claude Code의 대비는 흥미롭습니다. Claude Code는 메모리, 
 - **Context Engineering for Codex CLI**(커뮤니티): Write-Select-Compress-Isolate 프레임워크, `/compact`와 `compact_prompt`, `spawn_agent` / `wait_agent` subagent와 `.codex/agents/*.toml` 설정.<br/>https://codex.danielvaughan.com/2026/06/10/context-engineering-codex-cli-write-select-compress-isolate-june-2026/
 - **codex-harness-internals**(커뮤니티 소스 분석): `build_environment_update_item`의 증분 환경 컨텍스트 등 구현 세부 사항.<br/>https://github.com/AlexKenbo/codex-harness-internals
 
-관련 강의: [강의 3 · 코드 저장소를 유일한 사실의 원천으로 만들기](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [강의 4 · 명령을 여러 파일로 분리하기](../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [강의 7 · agent의 각 작업 경계를 명확히 정하기](../lectures/lecture-07-why-agents-overreach-and-under-finish/)
+관련 강의: [강의 3 · 코드 저장소를 유일한 사실의 원천으로 만들기](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [강의 4 · 명령을 여러 파일로 분리하기](../../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [강의 7 · agent의 각 작업 경계를 명확히 정하기](../../lectures/lecture-07-why-agents-overreach-and-under-finish/)

@@ -18,7 +18,7 @@ Nó đặc biệt hữu ích khi:
 Đối với thiết lập tối giản, hãy bắt đầu với:
 
 - hướng dẫn gốc: [`templates/AGENTS.md`](./templates/AGENTS.md) hoặc [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- trạng thái tính năng: [`templates/feature_list.json`](./templates/feature_list.json)
+- trạng thái tính năng: [`templates/feature_list.json`](./templates/)
 - nhật ký tiến độ: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - tham chiếu script khởi động: `docs/vi/resources/templates/init.sh`
 
