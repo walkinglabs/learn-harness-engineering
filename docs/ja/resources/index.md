@@ -18,7 +18,7 @@ Codex、Claude Code、その他のコーディングエージェントに、セ�
 最小構成では、次から始めます。
 
 - ルート指示: [`templates/AGENTS.md`](./templates/AGENTS.md) または [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- 機能状態: [`templates/feature_list.json`](./templates/feature_list.json)
+- 機能状態: [`templates/feature_list.json`](./templates/#feature-list-json)
 - 進捗ログ: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - ブートストラップスクリプト参照: `docs/ja/resources/templates/init.sh`
 

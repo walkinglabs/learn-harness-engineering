@@ -144,4 +144,4 @@ Codex 和 Claude Code 的对比很有意思：Claude Code 是"加法"——把�
 - **Context Engineering for Codex CLI**（社区）：Write-Select-Compress-Isolate 框架、`/compact` 与 `compact_prompt`、`spawn_agent` / `wait_agent` 子智能体与 `.codex/agents/*.toml` 配置。<br/>https://codex.danielvaughan.com/2026/06/10/context-engineering-codex-cli-write-select-compress-isolate-june-2026/
 - **codex-harness-internals**（社区源码分析）：`build_environment_update_item` 增量环境上下文等实现细节。<br/>https://github.com/AlexKenbo/codex-harness-internals
 
-相关讲义：[第三讲 · 让代码仓库成为唯一的事实来源](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第四讲 · 把指令拆分到不同文件里](../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [第七讲 · 给 agent 划清每次任务的边界](../lectures/lecture-07-why-agents-overreach-and-under-finish/)
+相关讲义：[第三讲 · 让代码仓库成为唯一的事实来源](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第四讲 · 把指令拆分到不同文件里](../../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [第七讲 · 给 agent 划清每次任务的边界](../../lectures/lecture-07-why-agents-overreach-and-under-finish/)

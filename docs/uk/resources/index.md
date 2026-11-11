@@ -21,7 +21,7 @@
 Для мінімального налаштування почніть із:
 
 - кореневих інструкцій: [`templates/AGENTS.md`](./templates/AGENTS.md) або [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- стану функцій: [`templates/feature_list.json`](./templates/feature_list.json)
+- стану функцій: [`templates/feature_list.json`](./templates/#feature-list-json)
 - журналу прогресу: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - довідника по сценарію завантаження: `docs/uk/resources/templates/init.sh`
 

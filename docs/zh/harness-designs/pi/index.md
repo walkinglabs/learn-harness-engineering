@@ -91,4 +91,4 @@ Pi 的取舍和 Claude Code / Codex 形成鲜明对照：Claude Code 把"记忆�
 - **Pi Coding Agent 源码 README**（badlogic/pi-mono）：AGENTS.md 三级加载顺序（全局 → 父目录 → 当前目录）、`/compact` 与自动压缩的触发条件与 2 万 token 切割点、Skills 按需加载与 Agent Skills 标准、Hooks 生命周期与四个官方示例用途、Programmatic Usage（JSON / RPC / SDK）。<br/>https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md
 - **pi-agent-harness 社区仓库**：skill-router / session-summary / extract-patterns / telemetry 扩展，VISION.md / PROGRESS.md / LESSONS.md / STANDARDS.md 文件体系。<br/>https://github.com/LabidySabidy/pi-agent-harness
 
-相关讲义：[第二讲 · Harness 到底是什么](../lectures/lecture-02-what-a-harness-actually-is/) ｜ [第五讲 · 让跨会话的任务保持上下文连续](../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [第十三讲 · 从手动驱动到自动循环](../lectures/lecture-13-loop-engineering/)
+相关讲义：[第二讲 · Harness 到底是什么](../../lectures/lecture-02-what-a-harness-actually-is/) ｜ [第五讲 · 让跨会话的任务保持上下文连续](../../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [第十三讲 · 从手动驱动到自动循环](../../lectures/lecture-13-loop-engineering/)

@@ -18,7 +18,7 @@
 لإعداد بسيط، ابدأ بـ:
 
 - تعليمات الجذر: [`templates/AGENTS.md`](./templates/AGENTS.md) أو [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- حالة الميزات: [`templates/feature_list.json`](./templates/feature_list.json)
+- حالة الميزات: [`templates/feature_list.json`](./templates/#feature-list-json)
 - سجل التقدم: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - مرجع سكربت bootstrap: `docs/ar/resources/templates/init.sh`
 

@@ -85,4 +85,4 @@ Claude Code のログは追記型の完全な記録（history.jsonl）です。�
 - **Anthropic『Effective harnesses for long-running agents』**：「信頼性はモデルではなく harness に由来する」、agent は自信満々に自らの成果を称賛する、hooks で検証を行うといった見解の出典。<br/>https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 - **Claude Code Full Stack ガイド**（コミュニティ、CLAUDE.md / Skills / MCP / Subagents / Hooks の階層）：拡張メカニズムの責務分離に関する補足資料。<br/>https://jsmanifest.com/claude-code-full-stack-guide
 
-関連講義：[講義03 · リポジトリをシステムの記録にする](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [講義09 · エージェントの早すぎる勝利宣言を防ぐ](../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [講義10 · エンドツーエンドテストが結果を変える理由](../lectures/lecture-10-why-end-to-end-testing-changes-results/)
+関連講義：[講義03 · リポジトリをシステムの記録にする](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [講義09 · エージェントの早すぎる勝利宣言を防ぐ](../../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [講義10 · エンドツーエンドテストが結果を変える理由](../../lectures/lecture-10-why-end-to-end-testing-changes-results/)

@@ -91,4 +91,4 @@ Pi의 선택은 Claude Code / Codex와 뚜렷하게 대비됩니다. Claude Code
 - **Pi Coding Agent 소스 README**(badlogic/pi-mono): AGENTS.md 3단계 로드 순서(전역 → 상위 디렉터리 → 현재 디렉터리), `/compact`와 자동 compaction의 트리거 조건 및 2만 token 분할 지점, 필요 시 Skills 로드와 Agent Skills 표준, Hooks 생명주기와 네 가지 공식 활용 사례, Programmatic Usage(JSON / RPC / SDK).<br/>https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md
 - **pi-agent-harness 커뮤니티 저장소**: skill-router / session-summary / extract-patterns / telemetry 확장, VISION.md / PROGRESS.md / LESSONS.md / STANDARDS.md 파일 체계.<br/>https://github.com/LabidySabidy/pi-agent-harness
 
-관련 강의: [강의 2 · Harness란 정확히 무엇인가](../lectures/lecture-02-what-a-harness-actually-is/) ｜ [강의 5 · session 간 작업의 컨텍스트 연속성 유지하기](../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [강의 13 · 수동 구동에서 자동 루프로](../lectures/lecture-13-loop-engineering/)
+관련 강의: [강의 2 · Harness란 정확히 무엇인가](../../lectures/lecture-02-what-a-harness-actually-is/) ｜ [강의 5 · session 간 작업의 컨텍스트 연속성 유지하기](../../lectures/lecture-05-why-long-running-tasks-lose-continuity/) ｜ [강의 13 · 수동 구동에서 자동 루프로](../../lectures/lecture-13-loop-engineering/)

@@ -18,7 +18,7 @@
 如果你要先建立最小配置，先看這些檔案：
 
 - 根目錄指令： [`templates/AGENTS.md`](./templates/AGENTS.md) 或 [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- 功能狀態： [`templates/feature_list.json`](./templates/feature_list.json)
+- 功能狀態： [`templates/feature_list.json`](./templates/#feature-list-json)
 - 進度日誌： [`templates/claude-progress.md`](./templates/claude-progress.md)
 - 啟動腳本參考： `docs/zh-TW/resources/templates/init.sh`
 
