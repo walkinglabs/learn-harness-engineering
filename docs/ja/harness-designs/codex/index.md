@@ -75,4 +75,4 @@ Codex と Claude Code の比較は興味深いものです。Claude Code は「�
 - **Context Engineering for Codex CLI**（コミュニティ）：Write-Select-Compress-Isolate フレームワーク、`/compact` と `compact_prompt`、`spawn_agent` / `wait_agent` subagent と `.codex/agents/*.toml` 設定。<br/>https://codex.danielvaughan.com/2026/06/10/context-engineering-codex-cli-write-select-compress-isolate-june-2026/
 - **codex-harness-internals**（コミュニティによるソース分析）：`build_environment_update_item` による環境コンテキストの差分など、実装の詳細。<br/>https://github.com/AlexKenbo/codex-harness-internals
 
-関連講義：[講義03 · リポジトリをシステムの記録にする](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [講義04 · 指示を複数のファイルに分割する](../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [講義07 · エージェントに各タスクの境界を明確にする](../lectures/lecture-07-why-agents-overreach-and-under-finish/)
+関連講義：[講義03 · リポジトリをシステムの記録にする](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [講義04 · 指示を複数のファイルに分割する](../../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [講義07 · エージェントに各タスクの境界を明確にする](../../lectures/lecture-07-why-agents-overreach-and-under-finish/)
