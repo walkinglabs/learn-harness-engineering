@@ -18,7 +18,7 @@
 Для минимального сетапа начните с:
 
 - корневые инструкции: [`templates/AGENTS.md`](./templates/AGENTS.md) или [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- состояние фич: [`templates/feature_list.json`](./templates/feature_list.json)
+- состояние фич: [`templates/feature_list.json`](./templates/index.md#feature-list-json)
 - лог прогресса: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - референс bootstrap-скрипта: `docs/en/resources/templates/init.sh`
 

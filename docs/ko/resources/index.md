@@ -18,7 +18,7 @@ Codex, Claude Code 또는 다른 코딩 에이전트가 여러 세션에 걸쳐 
 최소 설정을 위해 먼저 다음 파일부터 시작하십시오.
 
 - 루트 지침: [`templates/AGENTS.md`](./templates/AGENTS.md) 또는 [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- 기능 상태: [`templates/feature_list.json`](./templates/feature_list.json)
+- 기능 상태: [`templates/feature_list.json`](./templates/index.md#feature-list-json)
 - 진행 로그: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - 부트스트랩(bootstrap) 스크립트 참고: `docs/ko/resources/templates/init.sh`
 

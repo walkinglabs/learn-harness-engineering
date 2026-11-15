@@ -18,7 +18,7 @@ Es especialmente útil cuando:
 Para una configuración mínima, empieza con:
 
 - instrucciones raíz: [`templates/AGENTS.md`](./templates/AGENTS.md) o [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- estado de funciones: [`templates/feature_list.json`](./templates/feature_list.json)
+- estado de funciones: [`templates/feature_list.json`](./templates/index.md#feature-list-json)
 - registro de progreso: [`templates/claude-progress.md`](./templates/claude-progress.md)
 - referencia del script de arranque: `docs/es/resources/templates/init.sh`
 

@@ -18,7 +18,7 @@ Bu ayniqsa quyidagi holatlarda foydali:
 Minimal oʻrnatish uchun quyidagilardan boshlang:
 
 - asosiy yoʻriqnomalar (root instructions): [`templates/AGENTS.md`](./templates/AGENTS.md) yoki [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- funksiya holati (feature state): [`templates/feature_list.json`](./templates/feature_list.json)
+- funksiya holati (feature state): [`templates/feature_list.json`](./templates/index.md#feature-list-json)
 - jarayon jurnali (progress log): [`templates/claude-progress.md`](./templates/claude-progress.md)
 - boshlangʻich skript (bootstrap script) qoʻllanmasi: `docs/en/resources/templates/init.sh`
 

@@ -18,7 +18,7 @@ C'est particulièrement utile lorsque :
 Pour une configuration minimale, commencez avec :
 
 - instructions racine : [`templates/AGENTS.md`](./templates/AGENTS.md) ou [`templates/CLAUDE.md`](./templates/CLAUDE.md)
-- état des fonctionnalités : [`templates/feature_list.json`](./templates/feature_list.json)
+- état des fonctionnalités : [`templates/feature_list.json`](./templates/index.md#feature-list-json)
 - journal de progression : [`templates/claude-progress.md`](./templates/claude-progress.md)
 - référence du script de bootstrap : `docs/fr/resources/templates/init.sh`
 
