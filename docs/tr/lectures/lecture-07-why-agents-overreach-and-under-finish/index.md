@@ -108,7 +108,7 @@ Harness sürekli olarak VCR (Verified Completion Rate) = doğrulanmış görevle
 
 **Tek tabak modu (WIP=1)**: Ajan oturum 1'de yalnızca kullanıcı kaydı üzerinde çalışır. 4 dosyada ~200 satır üretir. Uçtan uca testler: %100 geçiyor. Temiz, doğrulanmış bir uygulamayı commit eder. Oturum 4'ün sonunda 8 özellikten 7'si tamamlandı (8.'si harici bir bağımlılık tarafından engellendi).
 
-Sonuç: daha az toplam kod (800 vs 1200 satır) ama daha etkili kod. Tamamlanma oranı: %87.5 vs %37.5. Bir seferde bir ısırık alın ve aslında daha çok yiyin.
+Sonuç: daha az toplam kod (WIP=1 modunda 4 oturumda ~800 satır, kısıtsız modda 3 oturumda ~1200 satır) ama daha etkili kod. Tamamlanma oranı: %87.5 (WIP=1) vs %37.5 (kısıtsız). Bir seferde bir ısırık alın ve aslında daha çok yiyin.
 
 ## Önemli çıkarımlar
 

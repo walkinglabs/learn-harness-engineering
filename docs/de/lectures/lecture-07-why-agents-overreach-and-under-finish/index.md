@@ -108,7 +108,7 @@ Ein REST-API-Projekt mit 8 Features, zwei Strategien im Vergleich:
 
 **Ein-Teller-Modus (WIP=1)**: Der Agent arbeitet in Session 1 nur an der Benutzerregistrierung. Produziert ~200 Zeilen über 4 Dateien. End-to-End-Tests: 100% bestanden. Committet eine saubere, verifizierte Implementierung. Ende Session 4 sind 7 von 8 Features abgeschlossen (das 8. blockiert durch eine externe Abhängigkeit).
 
-Ergebnis: weniger Gesamtcodes (800 vs. 1200 Zeilen), aber mehr wirksamer Code. Abschlussrate: 87,5% vs. 37,5%. Einen Bissen nach dem anderen, und man isst tatsächlich mehr.
+Ergebnis: weniger Gesamtcode (~800 Zeilen über 4 Sessions im WIP=1-Modus vs. ~1200 Zeilen über 3 Sessions im uneingeschränkten Modus), aber mehr wirksamer Code. Abschlussrate: 87,5% (WIP=1) vs. 37,5% (uneingeschränkt). Einen Bissen nach dem anderen, und man isst tatsächlich mehr.
 
 ## Wichtigste Erkenntnisse
 

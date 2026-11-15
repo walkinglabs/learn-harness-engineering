@@ -106,7 +106,7 @@ A REST API project with 8 features, two strategies compared:
 
 **WIP=1 mode**: Agent works on user registration only in session 1. Produces ~200 lines across 4 files. End-to-end tests: 100% passing. Commits a clean, verified implementation. By end of session 4, 7 of 8 features complete (the 8th blocked by an external dependency).
 
-Result: less total code (800 vs 1200 lines) but more effective code. Completion rate: 87.5% vs 37.5%.
+Result: less total code (~800 lines over 4 sessions in WIP=1 mode vs. ~1200 lines over 3 sessions in unconstrained mode) but more effective code. Completion rate: 87.5% (WIP=1) vs. 37.5% (unconstrained).
 
 ## Key Takeaways
 
