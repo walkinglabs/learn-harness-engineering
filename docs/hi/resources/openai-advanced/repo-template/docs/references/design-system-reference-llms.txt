@@ -1,0 +1,9 @@
+Purpose: store model-friendly reference material for the design system.
+
+Suggested contents:
+- component naming rules
+- spacing and typography tokens
+- state variants
+- accessibility expectations
+
+Keep this file concise and refresh it when the upstream design system changes.

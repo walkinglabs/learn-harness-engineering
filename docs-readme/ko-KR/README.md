@@ -23,6 +23,7 @@
   <a href="../tr-TR/README.md"><img alt="Türkçe" src="https://img.shields.io/badge/TR-Türkçe-E30A17?style=flat-square"></a>
   <a href="../pt-BR/README.md"><img alt="Português-BR" src="https://img.shields.io/badge/PT--BR-Português-1A8BBA?style=flat-square"></a>
   <a href="../uk-UA/README.md"><img alt="Українська" src="https://img.shields.io/badge/UK-Українська-0057B7?style=flat-square"></a>
+  <a href="../hi-IN/README.md"><img alt="हिन्दी" src="https://img.shields.io/badge/HI-हिन्दी-orange?style=flat-square"></a>
 </p>
 
 > **AI 코딩 에이전트가 안정적으로 작동하도록 만드는 환경, 상태 관리, 검증 및 제어 메커니즘을 구축하는 프로젝트 기반 강좌입니다.**

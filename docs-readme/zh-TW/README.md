@@ -23,6 +23,7 @@
   <a href="../tr-TR/README.md"><img alt="Türkçe" src="https://img.shields.io/badge/TR-Türkçe-E30A17?style=flat-square"></a>
   <a href="../pt-BR/README.md"><img alt="Português-BR" src="https://img.shields.io/badge/PT--BR-Português-1A8BBA?style=flat-square"></a>
   <a href="../uk-UA/README.md"><img alt="Українська" src="https://img.shields.io/badge/UK-Українська-0057B7?style=flat-square"></a>
+  <a href="../hi-IN/README.md"><img alt="हिन्दी" src="https://img.shields.io/badge/HI-हिन्दी-orange?style=flat-square"></a>
 </p>
 
 > **一門專案導向的課程，教你建構讓 AI 程式設計代理可靠運作的環境、狀態管理、驗證與控制機制。**

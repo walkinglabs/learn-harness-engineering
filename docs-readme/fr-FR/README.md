@@ -23,6 +23,7 @@
   <a href="../tr-TR/README.md"><img alt="Türkçe" src="https://img.shields.io/badge/TR-Türkçe-E30A17?style=flat-square"></a>
   <a href="../pt-BR/README.md"><img alt="Português-BR" src="https://img.shields.io/badge/PT--BR-Português-1A8BBA?style=flat-square"></a>
   <a href="../uk-UA/README.md"><img alt="Українська" src="https://img.shields.io/badge/UK-Українська-0057B7?style=flat-square"></a>
+  <a href="../hi-IN/README.md"><img alt="हिन्दी" src="https://img.shields.io/badge/HI-हिन्दी-orange?style=flat-square"></a>
 </p>
 
 > **Un cours basé sur des projets consacré à la construction de l'environnement, de la gestion d'état, de la vérification et des mécanismes de contrôle qui permettent aux agents de codage IA de fonctionner de manière fiable.**
