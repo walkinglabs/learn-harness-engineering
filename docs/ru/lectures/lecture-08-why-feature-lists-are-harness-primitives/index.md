@@ -125,7 +125,7 @@ flowchart LR
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — явно называет список фич «ключевой структурой данных» для контроля скоупа агента
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — подчёркивает принцип «выноса артефактов наружу»
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — принципы проектирования по контракту, теоретическая основа списков фич
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — принципы проектирования по контракту, теоретическая основа списков фич
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — пирамида тестирования и инженерные практики поведенческой спецификации
 
 ## Упражнения

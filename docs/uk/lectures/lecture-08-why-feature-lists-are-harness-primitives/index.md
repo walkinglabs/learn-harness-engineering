@@ -130,7 +130,7 @@ E-commerce платформа з 10 функціями. Порівняння д�
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — явно визначає список функціональності як «ключову структуру даних» для контролю обсягу агента
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — підкреслює принцип «екстерналізації артефактів»
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — принципи проєктування за контрактом, теоретична основа списків функціональності
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — принципи проєктування за контрактом, теоретична основа списків функціональності
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — піраміда тестування та інженерні практики поведінкової специфікації
 
 ## Вправи

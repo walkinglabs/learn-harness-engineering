@@ -125,7 +125,7 @@ flowchart LR
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — يحدد صراحةً قائمة الميزات باعتبارها "هيكل البيانات الأساسي" للتحكم في نطاق agent
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — يؤكد على مبدأ "إخراج القطع الأثرية إلى الخارج"
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — مبادئ تصميم العقود، الأساس النظري لقوائم الميزات
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — مبادئ تصميم العقود، الأساس النظري لقوائم الميزات
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — هرم الاختبار وممارسات هندسة المواصفات السلوكية
 
 ## تمارين

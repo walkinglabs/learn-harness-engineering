@@ -126,7 +126,7 @@ flowchart LR
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — エージェントのスコープ制御における「中核データ構造」として機能リストを明示
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — 「成果物を外部化する」原則を強調
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — 契約設計の原則、機能リストの理論的基盤
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — 契約設計の原則、機能リストの理論的基盤
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — テストピラミッドと振る舞い仕様の実践
 
 ## 演習
