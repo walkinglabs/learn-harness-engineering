@@ -1509,6 +1509,51 @@
       "zh-TW": 19
     }
   },
+  "lectures/lecture-15-parallel-agent-fleets/code/index.md": {
+    "ids": [
+      "lecture-15-code"
+    ],
+    "locales": {
+      "en": 1,
+      "zh": 1
+    }
+  },
+  "lectures/lecture-15-parallel-agent-fleets/code/verification-verdict.md": {
+    "ids": [
+      "structured-verification-verdict",
+      "checker-instructions-paste-into-the-verifier-prompt",
+      "schema",
+      "routing-table",
+      "example"
+    ],
+    "locales": {
+      "en": 5,
+      "zh": 5
+    }
+  },
+  "lectures/lecture-15-parallel-agent-fleets/index.md": {
+    "ids": [
+      "lecture-15-from-one-agent-to-a-fleet-containment-integration-and-fleet-signals",
+      "illustrative-example",
+      "a-worktree-isolates-files-not-the-repository",
+      "defense-in-depth-prevent-contain-detect",
+      "parallel-work-is-cheap-integration-is-the-bottleneck",
+      "shared-environment-drift",
+      "the-session-lifecycle-at-fleet-scale",
+      "a-verdict-the-next-node-can-route-on",
+      "fleet-signals-watching-behavior-not-just-the-runtime",
+      "model-routing-and-fallback",
+      "human-gates-that-respect-the-orchestration-tax",
+      "core-concepts",
+      "key-takeaways",
+      "further-reading",
+      "exercises"
+    ],
+    "locales": {
+      "en": 15,
+      "zh": 15
+    }
+  },
   "projects/index.md": {
     "ids": [
       "welcome-to-projects",

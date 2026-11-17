@@ -433,6 +433,12 @@ The course is designed to be done in order. Each phase builds on the last.
     P08  Draw your workflow as a graph
          (explicit graph, parallel fan-out/fan-in,
           rollback edges, human-in-the-loop)
+
+    Phase 9: RUN A FLEET
+    ====================
+
+    L15  From one agent to a fleet —
+         containment, integration, fleet signals
 ```
 
 </details>
@@ -443,7 +449,7 @@ Each phase takes about a week if you're going part-time. If you want to go faste
 
 ## Syllabus
 
-### Lectures — 14 conceptual units, each answering one core question
+### Lectures — 15 conceptual units, each answering one core question
 
 *Read the full text for each lecture on the [Documentation Website](https://walkinglabs.github.io/learn-harness-engineering/).*
 
@@ -463,6 +469,7 @@ Each phase takes about a week if you're going part-time. If you want to go faste
 | [L12](./docs/en/lectures/lecture-12-why-every-session-must-leave-a-clean-state/index.md) | Why must every session leave a clean state? | The next session's success depends on this session's cleanup |
 | [L13](./docs/en/lectures/lecture-13-loop-engineering/index.md) | Why do you need to stop prompting your agent? | From manual driving to automated loops — goal loops, timer loops, and maker-checker separation |
 | [L14](./docs/en/lectures/lecture-14-graph-engineering/index.md) | Why does a single loop grow into a graph? | From single loops to graph engineering — nodes, edges, shared state, routing, and when a graph is actually worth drawing |
+| [L15](./docs/en/lectures/lecture-15-parallel-agent-fleets/index.md) | Why does a fleet of reliable agents still fail? | From one agent to a fleet — containment beyond worktrees, merge queues that verify the combination, shared-environment drift, lifecycle state machines, structured verdicts, behavioral signals, and model routing |
 
 ### Projects — 8 hands-on projects applying lecture methods to the same Electron app
 
