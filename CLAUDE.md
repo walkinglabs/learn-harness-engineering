@@ -30,7 +30,7 @@ npm run test:watch       # Vitest watch mode
 ## Repository Structure
 
 - `docs/` — VitePress documentation site (lectures, projects, resources)
-- `docs/.vitepress/config.mts` — Nav/sidebar config for all 15 locales (en, zh, zh-TW, ja, ko, es, fr, ru, de, ar, vi, uz, tr, uk, pt-BR)
+- `docs/.vitepress/config.mts` — Nav/sidebar config for all 16 locales (en, zh, zh-TW, ja, ko, es, fr, ru, de, ar, vi, uz, tr, uk, pt-BR, hi)
 - `docs/<lang>/lectures/` — 14 lectures, each with `index.md` + `code/` examples
 - `docs/<lang>/projects/` — 8 project descriptions
 - `docs/<lang>/resources/` — localized templates, references, OpenAI advanced pack

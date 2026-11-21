@@ -21,6 +21,7 @@ if (typeof window !== 'undefined') {
   else if (lang.startsWith('ar')) locale = 'ar/'
   else if (lang.startsWith('uk')) locale = 'uk/'
   else if (lang.startsWith('tr')) locale = 'tr/'
+  else if (lang.startsWith('hi')) locale = 'hi/'
   
   const target = `${base}${locale}`
   if (!window.location.pathname.replace(/\/$/, '').endsWith(target.replace(/\/$/, ''))) {

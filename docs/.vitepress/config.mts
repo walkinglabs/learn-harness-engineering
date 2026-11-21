@@ -776,6 +776,55 @@ const ukHarnessDesignItems = [
   { text: "Розбір дизайну DeepSeek Harness", link: "/uk/harness-designs/deepseek/" }
 ];
 
+const hiLectureItems = [
+  { text: "स्वागतम्", link: "/hi/" },
+  { text: "काबिल मॉडल्स भी क्यों फेल होते हैं", link: "/hi/lectures/lecture-01-why-capable-agents-still-fail/" },
+  { text: "हार्नेस असल में क्या होता है", link: "/hi/lectures/lecture-02-what-a-harness-actually-is/" },
+  { text: "रिपॉजिटरी को एकमात्र सच क्यों बनना होगा", link: "/hi/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/" },
+  { text: "एक ही बड़ी इंस्ट्रक्शन फ़ाइल क्यों फेल होती है", link: "/hi/lectures/lecture-04-why-one-giant-instruction-file-fails/" },
+  { text: "लंबे टास्क्स में कॉन्टेक्स्ट क्यों खो जाता है", link: "/hi/lectures/lecture-05-why-long-running-tasks-lose-continuity/" },
+  { text: "इनिशियलाइज़ेशन का अलग फेज़ क्यों ज़रूरी है", link: "/hi/lectures/lecture-06-why-initialization-needs-its-own-phase/" },
+  { text: "एजेंट्स काम अधूरा क्यों छोड़ते हैं", link: "/hi/lectures/lecture-07-why-agents-overreach-and-under-finish/" },
+  { text: "फ़ीचर लिस्ट हार्नेस का मूल आधार क्यों है", link: "/hi/lectures/lecture-08-why-feature-lists-are-harness-primitives/" },
+  { text: "एजेंट्स समय से पहले जीत का ऐलान क्यों करते हैं", link: "/hi/lectures/lecture-09-why-agents-declare-victory-too-early/" },
+  { text: "एंड-टू-एंड टेस्टिंग से नतीजे कैसे बदलते हैं", link: "/hi/lectures/lecture-10-why-end-to-end-testing-changes-results/" },
+  { text: "ऑब्ज़र्वेबिलिटी हार्नेस का हिस्सा क्यों होनी चाहिए", link: "/hi/lectures/lecture-11-why-observability-belongs-inside-the-harness/" },
+  { text: "हर सेशन के बाद क्लीन स्टेट क्यों छोड़ना ज़रूरी है", link: "/hi/lectures/lecture-12-why-every-session-must-leave-a-clean-state/" },
+  { text: "मैन्युअल प्रॉम्प्टिंग से ऑटोनॉमस लूप्स तक", link: "/hi/lectures/lecture-13-loop-engineering/" },
+  { text: "सिंगल लूप से ग्राफ इंजीनियरिंग तक", link: "/hi/lectures/lecture-14-graph-engineering/" }
+];
+
+const hiProjectItems = [
+  { text: "प्रोजेक्ट्स ओवरव्यू", link: "/hi/projects/" },
+  { text: "केवल प्रॉम्प्ट बनाम नियम-पहले", link: "/hi/projects/project-01-baseline-vs-minimal-harness/" },
+  { text: "एजेंट-रीडेबल वर्कस्पेस", link: "/hi/projects/project-02-agent-readable-workspace/" },
+  { text: "मल्टी-सेशन निरंतरता", link: "/hi/projects/project-03-multi-session-continuity/" },
+  { text: "रनटाइम फीडबैक और स्कोप कंट्रोल", link: "/hi/projects/project-04-incremental-indexing/" },
+  { text: "सेल्फ-वेरिफिकेशन और रोल सेपरेशन", link: "/hi/projects/project-05-grounded-qa-verification/" },
+  { text: "कम्पलीट हार्नेस (कैपस्टोन)", link: "/hi/projects/project-06-runtime-observability-and-debugging/" },
+  { text: "पहला ऑटोमेटेड लूप", link: "/hi/projects/project-07-loop-engineering-first-loop/" },
+  { text: "वर्कफ़्लो को ग्राफ़ में बदलें", link: "/hi/projects/project-08-graph-engineering-first-graph/" }
+];
+
+const hiResourceItems = [
+  { text: "रिसोर्स ओवरव्यू", link: "/hi/resources/" },
+  { text: "टेम्पलेट्स (Templates)", link: "/hi/resources/templates/" },
+  { text: "रेफरेंस गाइड्स", link: "/hi/resources/reference/" },
+  { text: "एडवांस्ड पैक (OpenAI)", link: "/hi/resources/openai-advanced/" }
+];
+
+const hiSkillItems = [
+  { text: "स्किल्स ओवरव्यू", link: "/hi/skills/" }
+];
+
+const hiHarnessDesignItems = [
+  { text: "फ्रंटियर हार्नेस डिज़ाइन ब्रेकडाउन", link: "/hi/harness-designs/" },
+  { text: "Pi हार्नेस डिज़ाइन ब्रेकडाउन", link: "/hi/harness-designs/pi/" },
+  { text: "Claude Code हार्नेस डिज़ाइन ब्रेकडाउन", link: "/hi/harness-designs/claude-code/" },
+  { text: "Codex हार्नेस डिज़ाइन ब्रेकडाउन", link: "/hi/harness-designs/codex/" },
+  { text: "DeepSeek हार्नेस डिज़ाइन ब्रेकडाउन", link: "/hi/harness-designs/deepseek/" }
+];
+
 const jaSourceItems = { lectures: jaLectureItems, projects: jaProjectItems, resources: jaResourceItems, skills: jaSkillItems, harnessDesigns: jaHarnessDesignItems };
 const esSourceItems = { lectures: esLectureItems, projects: esProjectItems, resources: esResourceItems, skills: esSkillItems, harnessDesigns: esHarnessDesignItems };
 const frSourceItems = { lectures: frLectureItems, projects: frProjectItems, resources: frResourceItems, skills: frSkillItems, harnessDesigns: frHarnessDesignItems };
@@ -784,12 +833,13 @@ const arSourceItems = { lectures: arLectureItems, projects: arProjectItems, reso
 const zhTWSourceItems = { lectures: zhTWLectureItems, projects: zhTWProjectItems, resources: zhTWResourceItems, skills: zhTWSkillItems, harnessDesigns: zhTWHarnessDesignItems };
 const trSourceItems = { lectures: trLectureItems, projects: trProjectItems, resources: trResourceItems, skills: trSkillItems, harnessDesigns: trHarnessDesignItems };
 const ukSourceItems = { lectures: ukLectureItems, projects: ukProjectItems, resources: ukResourceItems, skills: ukSkillItems, harnessDesigns: ukHarnessDesignItems };
+const hiSourceItems = { lectures: hiLectureItems, projects: hiProjectItems, resources: hiResourceItems, skills: hiSkillItems, harnessDesigns: hiHarnessDesignItems };
 
 const relinkItems = (items: Array<{ text: string; link: string }>, locale: string) =>
   items.map((item) => ({
     ...item,
     link: item.link.replace(
-      /^\/(en|zh|vi|ko|uz|ru|ja|es|fr|de|ar|zh-TW|tr|pt-BR|uk)\//,
+      /^\/(en|zh|vi|ko|uz|ru|ja|es|fr|de|ar|zh-TW|tr|pt-BR|uk|hi)\//,
       `/${locale}/`,
     ),
   }));
@@ -1530,6 +1580,29 @@ export default withMermaid(
           darkModeSwitch: "Тема",
           lightModeSwitchTitle: "Перемкнути на світлу тему",
           darkModeSwitchTitle: "Перемкнути на темну тему",
+        }),
+      },
+      hi: {
+        label: "हिन्दी",
+        lang: "hi",
+        link: "/hi/",
+        themeConfig: createLocaleTheme("hi", hiSourceItems, {
+          lectures: "लेक्चर्स",
+          projects: "प्रोजेक्ट्स",
+          resources: "रिसोर्सेज",
+          skills: "स्किल्स",
+          resourceLibrary: "रिसोर्स लाइब्रेरी",
+          harnessDesign: "फ्रंटियर हार्नेस",
+          tryHarness: "Try Harness ↗",
+          outline: "इस पृष्ठ पर",
+          prev: "पिछला",
+          next: "अगला",
+          lastUpdated: "अंतिम अपडेट",
+          returnToTop: "ऊपर जाएं",
+          sidebarMenu: "मेनू",
+          darkModeSwitch: "थीम",
+          lightModeSwitchTitle: "लाइट मोड पर स्विच करें",
+          darkModeSwitchTitle: "डार्क मोड पर स्विच करें",
         }),
       },
     },

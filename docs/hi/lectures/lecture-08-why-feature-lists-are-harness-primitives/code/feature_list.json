@@ -1,0 +1,15 @@
+[
+  {
+    "id": "qna-001",
+    "category": "grounded_qa",
+    "description": "User can ask a question about an imported document and receive an answer with visible citations.",
+    "verification": [
+      "Import a markdown document",
+      "Open the Q&A panel",
+      "Ask a question about known content",
+      "Verify the answer is returned",
+      "Verify one or more citations are displayed"
+    ],
+    "passes": false
+  }
+]

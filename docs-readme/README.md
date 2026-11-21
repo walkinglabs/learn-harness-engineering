@@ -20,3 +20,4 @@ Translated README files live in this directory:
 - [Türkçe](tr-TR/README.md)
 - [Português (Brasil)](pt-BR/README.md)
 - [Українська](uk-UA/README.md)
+- [हिन्दी](hi-IN/README.md)
