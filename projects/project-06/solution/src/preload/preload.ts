@@ -5,6 +5,7 @@ const api = {
   documents: {
     list: () => ipcRenderer.invoke(IPC_CHANNELS.LIST_DOCUMENTS),
     import: (filePath: string) => ipcRenderer.invoke(IPC_CHANNELS.IMPORT_DOCUMENT, filePath),
+    pickAndImport: () => ipcRenderer.invoke(IPC_CHANNELS.PICK_AND_IMPORT_DOCUMENTS),
     get: (id: string) => ipcRenderer.invoke(IPC_CHANNELS.GET_DOCUMENT, id),
     delete: (id: string) => ipcRenderer.invoke(IPC_CHANNELS.DELETE_DOCUMENT, id),
   },
