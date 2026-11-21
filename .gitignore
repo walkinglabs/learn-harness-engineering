@@ -29,3 +29,4 @@ docs/.vitepress/dist/
 artifacts/
 dist/
 .workbuddy/
+.idea/
