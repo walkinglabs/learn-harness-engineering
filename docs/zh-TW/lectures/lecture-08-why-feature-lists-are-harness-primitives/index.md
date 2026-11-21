@@ -130,7 +130,7 @@ agent 不能直接把狀態改成 `passing`。它只能提交驗證請求，harn
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — 明確指出功能清單是控制 agent 執行範圍的「核心資料結構」
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — 強調「將工件外部化」的原則
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — 契約式設計原則，功能列表的理論基礎
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — 契約式設計原則，功能列表的理論基礎
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — 測試金字塔和行為規格的工程實踐
 
 ## 練習

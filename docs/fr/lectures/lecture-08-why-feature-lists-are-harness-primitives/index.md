@@ -126,7 +126,7 @@ Une liste structurée rassemble l'état de chaque fonctionnalité et sa commande
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — Identifie explicitement la liste de fonctionnalités comme la "core data structure" pour contrôler la portée de l'agent
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — Met l'accent sur le principe d'"externalisation des artefacts"
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — Principes de design par contrat, fondation théorique des listes de fonctionnalités
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — Principes de design par contrat, fondation théorique des listes de fonctionnalités
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — Pyramide de tests et pratiques d'ingénierie de spécification comportementale
 
 ## Exercices
