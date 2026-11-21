@@ -75,4 +75,4 @@ Codex 和 Claude Code 的對比很有意思：Claude Code 是「加法」，把�
 - **Context Engineering for Codex CLI**（社群）：Write-Select-Compress-Isolate 框架、`/compact` 與 `compact_prompt`、`spawn_agent` / `wait_agent` subagent 與 `.codex/agents/*.toml` 設定。<br/>https://codex.danielvaughan.com/2026/06/10/context-engineering-codex-cli-write-select-compress-isolate-june-2026/
 - **codex-harness-internals**（社群原始碼分析）：`build_environment_update_item` 增量環境上下文等實作細節。<br/>https://github.com/AlexKenbo/codex-harness-internals
 
-相關講義：[第三講 · 讓程式碼儲存庫成為唯一的事實來源](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第四講 · 把指令拆分到不同檔案裡](../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [第七講 · 為 agent 劃清每次任務的邊界](../lectures/lecture-07-why-agents-overreach-and-under-finish/)
+相關講義：[第三講 · 讓程式碼儲存庫成為唯一的事實來源](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第四講 · 把指令拆分到不同檔案裡](../../lectures/lecture-04-why-one-giant-instruction-file-fails/) ｜ [第七講 · 為 agent 劃清每次任務的邊界](../../lectures/lecture-07-why-agents-overreach-and-under-finish/)
