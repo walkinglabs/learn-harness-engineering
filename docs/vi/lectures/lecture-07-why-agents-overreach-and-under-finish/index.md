@@ -106,7 +106,7 @@ Một dự án REST API với 8 tính năng, hai chiến lược đặt cạnh n
 
 **Chế độ WIP=1**: Phiên 1 chỉ làm đăng ký người dùng. Tạo ra khoảng 200 dòng trên 4 tệp. Test end-to-end: 100% pass. Commit một triển khai sạch, đã xác minh. Đến cuối phiên 4, 7 trên 8 tính năng hoàn thành (tính năng thứ 8 bị chặn bởi phụ thuộc bên ngoài).
 
-Kết quả: tổng code ít hơn (800 so với 1200 dòng) nhưng code hiệu quả hơn. Tỷ lệ hoàn thành: 87.5% so với 37.5%.
+Kết quả: tổng code ít hơn (~800 dòng qua 4 phiên ở chế độ WIP=1 so với ~1200 dòng qua 3 phiên ở chế độ không ràng buộc) nhưng code hiệu quả hơn. Tỷ lệ hoàn thành: 87.5% (WIP=1) so với 37.5% (không ràng buộc).
 
 ## Những điểm chính cần nhớ
 

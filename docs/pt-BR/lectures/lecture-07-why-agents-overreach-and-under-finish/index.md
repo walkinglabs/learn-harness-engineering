@@ -111,7 +111,7 @@ Projeto de API REST com 8 funcionalidades, comparando duas estratégias:
 
 **Modo WIP=1**: O agente trabalha exclusivamente no registro de usuários durante a sessão 1. Produz cerca de 200 linhas distribuídas em 4 arquivos. Testes end-to-end: 100% aprovados. Registra em commit uma implementação limpa e verificada. Ao final da sessão 4, 7 das 8 funcionalidades estão concluídas (a oitava está bloqueada por uma dependência externa).
 
-Resultado: menos código total (800 versus 1200 linhas), porém mais código efetivo. Taxa de conclusão: 87,5% versus 37,5%.
+Resultado: menos código total (~800 linhas em 4 sessões no modo WIP=1 versus ~1200 linhas em 3 sessões no modo sem restrições), porém mais código efetivo. Taxa de conclusão: 87,5% (WIP=1) versus 37,5% (sem restrições).
 
 ## Principais Conclusões
 

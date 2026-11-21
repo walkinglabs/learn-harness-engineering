@@ -108,7 +108,7 @@ Un projet d'API REST avec 8 fonctionnalités, deux stratégies comparées :
 
 **Mode assiette unique (WIP=1)** : L'agent ne travaille que sur l'inscription utilisateur lors de la session 1. Produit ~200 lignes sur 4 fichiers. Tests de bout en bout : 100 % de réussite. Commite une implémentation propre et vérifiée. À la fin de la session 4, 7 fonctionnalités sur 8 sont complétées (la 8e bloquée par une dépendance externe).
 
-Résultat : moins de code total (800 vs 1200 lignes) mais du code plus efficace. Taux de complétion : 87,5 % vs 37,5 %. Prenez une bouchée à la fois, et vous mangez finalement plus.
+Résultat : moins de code total (~800 lignes sur 4 sessions en mode WIP=1 vs ~1200 lignes sur 3 sessions en mode sans contrainte) mais du code plus efficace. Taux de complétion : 87,5 % (WIP=1) vs 37,5 % (sans contrainte). Prenez une bouchée à la fois, et vous mangez finalement plus.
 
 ## Points clés
 

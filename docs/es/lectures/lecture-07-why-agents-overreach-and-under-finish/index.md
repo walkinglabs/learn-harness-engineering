@@ -108,7 +108,7 @@ Un proyecto de API REST con 8 funcionalidades, se compararon dos estrategias:
 
 **Modo plato único (WIP=1)**: El agente trabaja solo en el registro de usuarios en la sesión 1. Produce ~200 líneas en 4 archivos. Pruebas end-to-end: 100% pasando. Hace commit de una implementación limpia y verificada. Al final de la sesión 4, 7 de 8 funcionalidades completadas (la 8va bloqueada por una dependencia externa).
 
-Resultado: menos código total (800 vs 1200 líneas) pero más código efectivo. Tasa de completitud: 87.5% vs 37.5%. Toma un bocado a la vez, y realmente comes más.
+Resultado: menos código total (~800 líneas en 4 sesiones con WIP=1 vs ~1200 líneas en 3 sesiones sin restricciones) pero más código efectivo. Tasa de completitud: 87.5% (WIP=1) vs 37.5% (sin restricciones). Toma un bocado a la vez, y realmente comes más.
 
 ## Ideas clave
 
