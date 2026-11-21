@@ -1,0 +1,182 @@
+# Learn Harness Engineering — Expanded Context Bundle
+
+> This is the long-form companion to `/llms.txt`. It inlines the project README and concise per-lecture summaries so an LLM can answer questions about the course in a single pass without dereferencing every link. URLs preserved from the index let you fetch the full source on demand.
+
+---
+
+## About this bundle
+
+- Source repository: https://github.com/walkinglabs/learn-harness-engineering
+- Documentation site: https://walkinglabs.github.io/learn-harness-engineering/
+- License & contribution policy: see the repository root.
+- Status: course is actively evolving (v0.1.x). Lectures 09 and 10 are tracked in issue #2 — content may still be in flight at read time.
+
+---
+
+## Repository structure
+
+```
+learn-harness-engineering/
+├── docs/                       # VitePress documentation site
+│   ├── .vitepress/config.mts   # Nav/sidebar config for all 13 locales
+│   ├── public/                 # Static assets served at site root (incl. llms.txt)
+│   ├── en/                     # English (structural source of truth)
+│   │   ├── lectures/           # 12 lectures, each with index.md + code/
+│   │   ├── projects/           # 6 project descriptions
+│   │   └── resources/          # Templates, references, OpenAI advanced pack
+│   └── <lang>/                 # 12 mirrored locales: zh, zh-TW, ja, ko, es, fr,
+│                               # ru, de, ar, vi, uz, tr, pt-BR
+├── projects/
+│   ├── shared/                 # Shared Electron + TS + React foundation
+│   └── project-NN/             # Per-project starter/ and solution/
+├── skills/
+│   └── harness-creator/        # Scaffolds + validates harnesses
+├── scripts/                    # Dev tooling (PDF build, llms.txt generator, …)
+├── CLAUDE.md                   # Claude Code instructions for this repo
+└── README.md                   # Course overview (mirrored to llms.txt)
+```
+
+---
+
+## The harness pattern (one paragraph)
+
+The model decides what code to write; the harness governs when, where, and how it writes it. A harness has five subsystems: **instructions** (AGENTS.md / CLAUDE.md / feature_list.json — what to do, in what order), **state** (progress.md / git log / session-handoff.md — what's been done), **verification** (tests + lint + type-check + smoke runs — only a passing suite counts as evidence), **scope** (one feature at a time, with an explicit definition of done), and **session lifecycle** (init.sh at start, clean-state checklist at end). Without the harness the agent says "done" when nothing works; with it, the agent stops only when verification passes.
+
+---
+
+## Lecture summaries
+
+### L01 — Why capable agents still fail
+Source: https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-01-why-capable-agents-still-fail/index.md
+
+Strong models pass benchmarks but fail real engineering tasks because the failure mode is environmental, not capability-based. When something breaks, the cheapest first move is not to upgrade the model — it is to inspect the harness. If the same model succeeds on similar but well-structured tasks, the bottleneck is harness, not weights. A well-crafted `AGENTS.md` often beats a more expensive model. Anthropic's controlled experiment (Opus 4.5, same prompt, "build a 2D retro game editor") shows the same model produced an unusable artifact in 20 minutes without a harness and a playable game in 6 hours with a planner + generator + evaluator harness — qualitative, not marginal.
+
+### L02 — What a harness actually is
+Source: https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-02-what-a-harness-actually-is/index.md
+
+"Harness" is widely misused as a synonym for prompt file. A prompt file is not a harness. A harness is the set of files, tools, environment configuration, persisted state, and feedback loops that constrain how the agent operates. OpenAI's framing — *"the repo IS the spec"* — captures the implication: every piece of context the agent needs must live in the repository, delivered through structured instruction files, explicit verification commands, and clear directory organization. The five subsystems are: instructions, tools, environment, state, feedback.
+
+### L03 — The repo is the single source of truth
+If the agent can't see something in the repo, it doesn't exist for the agent. External knowledge, Slack threads, design docs, and tribal memory are invisible. Everything load-bearing has to be a file the agent reads at session start.
+
+### L04 — Split instructions across files
+One giant instruction file fails because the agent over-summarizes it and loses the parts that matter. Progressive disclosure works: a short entrypoint (`AGENTS.md`) that hands off to focused documents the agent fetches on demand. Give the agent a map, not an encyclopedia.
+
+### L05 — Keep context alive across sessions
+Long-running tasks span multiple sessions; in-memory context evaporates between them. Persist progress to disk (`claude-progress.md`, `session-handoff.md`) so the next run resumes exactly where the last one stopped instead of starting fresh and redoing or re-breaking work.
+
+### L06 — Initialize before every agent session
+Initialization deserves its own phase. `init.sh` runs install + verify + health-check before the agent touches code. A failed init blocks the session — that is the point. Verifying environment health up front is cheaper than debugging it inside the work.
+
+### L07 — Draw clear task boundaries
+Agents overreach and under-finish when the scope is fuzzy. Constrain each session to exactly one unfinished feature, with an explicit definition of done. No half-finishing three things. No silently rewriting the feature list to hide unfinished work.
+
+### L08 — Feature lists as harness primitives
+A `feature_list.json` is a machine-readable scope boundary the agent cannot quietly violate. It enumerates features and their status (`pending` / `in_progress` / `done` / `blocked`). The agent picks one, finishes it under verification, then updates the list — the list is not free-form prose for the agent to reinterpret.
+
+### L09 — Stop agents from declaring victory early
+Source (tracked by issue #2 — may be incomplete at read time): https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-09-stop-early-victory/index.md
+
+Agents declare "done" because confidence ≠ correctness. The fix is a verification gap audit: the harness must require runnable evidence (test output, type-check result, smoke run log) before the agent is allowed to mark a feature complete. Without that, "done" is a hallucination.
+
+### L10 — Full-pipeline runs are real verification
+Source (tracked by issue #2 — may be incomplete at read time): https://github.com/walkinglabs/learn-harness-engineering/blob/main/docs/en/lectures/lecture-10-full-pipeline-verification/index.md
+
+Unit tests alone don't catch integration failures. Only a full end-to-end run (install → build → tests → lint → type-check → smoke / e2e) counts as real verification. The harness defines this pipeline once; the agent executes it after every feature.
+
+### L11 — Observability belongs inside the harness
+If you can't see what the agent did during a session, you can't fix what it broke. Logs, diffs, command transcripts, and the progress file are the observability surface. They live inside the harness, not in some external dashboard the agent never writes to.
+
+### L12 — Every session leaves a clean state
+The next session's success depends on this session's cleanup. Wrap-up steps: update `progress.md`, update `feature_list.json`, record what's still broken or unverified, commit only when safe to resume, write the handoff note. A messy exit poisons the next start.
+
+---
+
+## Project arc (the capstone app)
+
+All six projects evolve the same product: an Electron-based personal knowledge-base desktop app with document import, library management, indexing, AI-powered Q&A, and citation-grounded answers. The architecture is fixed (main / preload / renderer / services / shared types); what changes across projects is the harness around it.
+
+- **P01** runs the same task twice (prompt-only vs. rules-first) so you see the gap with your own eyes; the minimal harness is `AGENTS.md` + `init.sh` + `feature_list.json`.
+- **P02** restructures the repo so the agent can read it — agent-readable workspace, persistent state files.
+- **P03** wires session continuity — progress log, handoff note, multi-session resumability.
+- **P04** adds runtime feedback and scope control — incremental indexing as the worked example.
+- **P05** makes the agent verify its own work — grounded Q&A with evidence-based completion.
+- **P06** assembles the full harness with observability and an ablation study (capstone).
+
+Each project's `solution/` is the next project's `starter/`. The app grows; the harness skills grow with it.
+
+---
+
+## harness-creator skill (one-paragraph reference)
+
+`skills/harness-creator/` is a reusable skill that scaffolds and validates harnesses for any project. `create-harness.mjs` detects common project types and package managers (Node / npm / pnpm / yarn / bun, Python, Go, Rust, Maven, Gradle, .NET) and emits `AGENTS.md` (or `CLAUDE.md`), `feature_list.json`, `progress.md`, `init.sh`, and `session-handoff.md`. `validate-harness.mjs` scores the five subsystems structurally and `run-benchmark.mjs` renders an HTML assessment report. The scripts use only Node.js built-ins, so the directory can be copied into another repository and run directly. The skill's boundary: it is for harness engineering, not model selection, prompt tuning alone, or app architecture — project-specific facts stay in the target repo.
+
+Install:
+```
+npx skills add walkinglabs/learn-harness-engineering --skill harness-creator
+```
+
+Run:
+```
+node skills/harness-creator/scripts/create-harness.mjs   --target /path/to/project
+node skills/harness-creator/scripts/validate-harness.mjs --target /path/to/project
+node skills/harness-creator/scripts/run-benchmark.mjs    --target /path/to/project --html /path/to/report.html
+```
+
+---
+
+## Agent session lifecycle (canonical sequence)
+
+```
+START
+ 1. Agent reads AGENTS.md / CLAUDE.md
+ 2. Agent runs init.sh (install, verify, health check)
+ 3. Agent reads claude-progress.md (what happened last time)
+ 4. Agent reads feature_list.json (what's done, what's next)
+ 5. Agent checks git log (recent changes)
+
+SELECT
+ 6. Agent picks exactly ONE unfinished feature
+ 7. Agent works only on that feature
+
+EXECUTE
+ 8. Agent implements the feature
+ 9. Agent runs verification (tests, lint, type-check)
+10. If verification fails: fix and re-run
+11. If verification passes: record evidence
+
+WRAP UP
+12. Agent updates claude-progress.md
+13. Agent updates feature_list.json
+14. Agent records what's still broken or unverified
+15. Agent commits (only when safe to resume)
+16. Agent leaves clean restart path for next session
+```
+
+---
+
+## Core external references
+
+- OpenAI — Harness engineering: leveraging Codex in an agent-first world.
+- Anthropic — Effective harnesses for long-running agents.
+- Anthropic — Harness design for long-running application development.
+- OpenAI — Unrolling the Codex agent loop.
+- Anthropic — Demystifying evals for AI agents.
+- LangChain — Improving Deep Agents with harness engineering.
+- Thoughtworks / Martin Fowler — Harness engineering for coding agent users.
+- Cursor — Continually improving our agent harness.
+- Companion repo — https://github.com/walkinglabs/awesome-harness-engineering
+
+For the full layered reading list see `docs/en/resources/reference/` in the repository.
+
+---
+
+## When NOT to use this course
+
+- Zero-code AI introductions.
+- Prompt-only workflows with no intention to build real implementations.
+- Environments where the agent cannot read/write files or run commands.
+
+---
+
+*This file is generated. Edit `llms.txt` and the lecture index files; regenerate with `npm run llms:build`.*
