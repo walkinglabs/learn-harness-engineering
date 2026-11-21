@@ -2,7 +2,7 @@
  * feature-list-validator.ts
  *
  * Reads a feature_list.json, validates its schema, and checks for features
- * marked “pass” without verification evidence. Outputs a structured report.
+ * marked "pass" without verification evidence. Outputs a structured report.
  * Can run against any project directory that has a feature_list.json.
  *
  * Usage:
@@ -12,8 +12,8 @@
  * Run: npx tsx docs/lectures/lecture-08-why-feature-lists-are-harness-primitives/code/feature-list-validator.ts
  */
 
-import * as fs from “node:fs”;
-import * as path from “node:path”;
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -47,19 +47,19 @@ function validateSchema(entry: FeatureEntry, index: number): string[] {
   const errors: string[] = [];
   const label = entry.id ?? `entry ${index + 1}`;
 
-  if (!entry.id || typeof entry.id !== “string”) {
+  if (!entry.id || typeof entry.id !== "string") {
     errors.push(`[${label}] Missing or invalid 'id' field`);
   }
-  if (!entry.category || typeof entry.category !== “string”) {
+  if (!entry.category || typeof entry.category !== "string") {
     errors.push(`[${label}] Missing or invalid 'category' field`);
   }
-  if (!entry.description || typeof entry.description !== “string”) {
+  if (!entry.description || typeof entry.description !== "string") {
     errors.push(`[${label}] Missing or invalid 'description' field`);
   }
   if (entry.verification !== undefined && !Array.isArray(entry.verification)) {
     errors.push(`[${label}] 'verification' must be an array if present`);
   }
-  if (entry.passes !== undefined && typeof entry.passes !== “boolean”) {
+  if (entry.passes !== undefined && typeof entry.passes !== "boolean") {
     errors.push(`[${label}] 'passes' must be a boolean if present`);
   }
 
@@ -106,7 +106,7 @@ function processFeatureList(entries: FeatureEntry[]): ValidationResult[] {
 // ---------------------------------------------------------------------------
 
 function pad(s: string, len: number): string {
-  return s.length >= len ? s : s + “ ”.repeat(len - s.length);
+  return s.length >= len ? s : s + " ".repeat(len - s.length);
 }
 
 function run(): void {
@@ -116,22 +116,22 @@ function run(): void {
     ? path.resolve(process.argv[2])
     : scriptDir;
 
-  const filePath = path.join(targetDir, “feature_list.json”);
+  const filePath = path.join(targetDir, "feature_list.json");
 
-  console.log(“\n” + “=”.repeat(90));
-  console.log(“  FEATURE LIST VALIDATOR”);
-  console.log(“=”.repeat(90));
+  console.log("\n" + "=".repeat(90));
+  console.log("  FEATURE LIST VALIDATOR");
+  console.log("=".repeat(90));
   console.log(`  Reading: ${filePath}\n`);
 
   if (!fs.existsSync(filePath)) {
     console.error(`  ERROR: feature_list.json not found at ${filePath}`);
-    console.error(“  Usage: npx tsx feature-list-validator.ts [path-to-directory-containing-feature_list.json]\n”);
+    console.error("  Usage: npx tsx feature-list-validator.ts [path-to-directory-containing-feature_list.json]\n");
     process.exit(1);
   }
 
   let entries: FeatureEntry[];
   try {
-    const raw = fs.readFileSync(filePath, “utf-8”);
+    const raw = fs.readFileSync(filePath, "utf-8");
     entries = JSON.parse(raw);
   } catch (err) {
     console.error(`  ERROR: Could not parse feature_list.json: ${err}`);
@@ -139,7 +139,7 @@ function run(): void {
   }
 
   if (!Array.isArray(entries)) {
-    console.error(“  ERROR: feature_list.json must contain a JSON array at the top level.”);
+    console.error("  ERROR: feature_list.json must contain a JSON array at the top level.");
     process.exit(1);
   }
 
@@ -147,21 +147,21 @@ function run(): void {
   const demoEntries: FeatureEntry[] = [
     ...entries,
     {
-      id: “qna-002”,
-      category: “import”,
-      description: “User can import a PDF document.”,
-      verification: [“Upload a PDF file”, “Verify it appears in the document list”],
+      id: "qna-002",
+      category: "import",
+      description: "User can import a PDF document.",
+      verification: ["Upload a PDF file", "Verify it appears in the document list"],
       passes: true,
     },
     {
-      id: “qna-003”,
-      category: “grounded_qa”,
-      description: “System hallucination rate is below 5%.”,
+      id: "qna-003",
+      category: "grounded_qa",
+      description: "System hallucination rate is below 5%.",
       verification: [], // Empty -- no evidence
       passes: true, // Marked as pass WITHOUT evidence
     },
     {
-      id: “missing-fields”,
+      id: "missing-fields",
       // Missing 'category' and 'description'
       passes: true,
     } as FeatureEntry,
@@ -176,16 +176,16 @@ function run(): void {
   console.log(sep);
 
   for (const r of results) {
-    const schemaLabel = r.schemaValid ? “OK” : “INVALID”;
-    const passesLabel = r.passes ? “PASS” : “FAIL”;
-    const evidenceLabel = r.hasVerification ? “Present” : “MISSING”;
+    const schemaLabel = r.schemaValid ? "OK" : "INVALID";
+    const passesLabel = r.passes ? "PASS" : "FAIL";
+    const evidenceLabel = r.hasVerification ? "Present" : "MISSING";
     const notes = r.markedPassWithoutEvidence
-      ? “FLAGGED: passes without evidence!”
+      ? "FLAGGED: passes without evidence!"
       : r.schemaErrors.length > 0
         ? r.schemaErrors[0]
-        : “”;
+        : "";
 
-    const marker = r.markedPassWithoutEvidence ? “>>” : r.schemaValid ? “  ” : “!!”;
+    const marker = r.markedPassWithoutEvidence ? ">>" : r.schemaValid ? "  " : "!!";
     console.log(
       `${marker}| ${pad(r.featureId, 14)}| ${pad(schemaLabel, 8)}| ${pad(passesLabel, 7)}| ${pad(String(r.verificationCount), 14)}| ${pad(evidenceLabel, 12)}| ${notes}`
     );
@@ -198,9 +198,9 @@ function run(): void {
   const flagged = results.filter((r) => r.markedPassWithoutEvidence).length;
   const withEvidence = results.filter((r) => r.hasVerification).length;
 
-  console.log(“\n” + “-”.repeat(90));
-  console.log(“  SUMMARY”);
-  console.log(“-”.repeat(90));
+  console.log("\n" + "-".repeat(90));
+  console.log("  SUMMARY");
+  console.log("-".repeat(90));
   console.log(`  Total features:                     ${total}`);
   console.log(`  Schema valid:                       ${schemaOk}/${total}`);
   console.log(`  Marked as passing:                  ${passing}/${total}`);
@@ -209,9 +209,9 @@ function run(): void {
 
   if (flagged > 0) {
     console.log(`\n  WARNING: ${flagged} feature(s) marked as "pass" without any verification evidence.`);
-    console.log(“  These features need verification before they can be trusted.\n”);
+    console.log("  These features need verification before they can be trusted.\n");
   } else {
-    console.log(“\n  All passing features have verification evidence. Feature list is healthy.\n”);
+    console.log("\n  All passing features have verification evidence. Feature list is healthy.\n");
   }
 }
 
