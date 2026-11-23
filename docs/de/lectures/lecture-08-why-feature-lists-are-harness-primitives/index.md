@@ -126,7 +126,7 @@ Eine strukturierte Liste bringt Zustand und Verifikationsbefehl jedes Features a
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — Identifiziert die Feature-Liste ausdrücklich als "core data structure" zur Kontrolle des Agenten-Scopes
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — Betont das Prinzip der "externalizing artifacts"
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — Contract-Design-Prinzipien, theoretische Grundlage von Feature-Listen
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — Contract-Design-Prinzipien, theoretische Grundlage von Feature-Listen
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — Testpyramide und Praktiken für verhaltensbasierte Spezifikation
 
 ## Übungen

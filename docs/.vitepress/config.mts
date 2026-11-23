@@ -1,5 +1,6 @@
 /// <reference types="node" />
 import { defineConfig } from "vitepress";
+import llmstxt from "vitepress-plugin-llms";
 import { withMermaid } from "vitepress-plugin-mermaid";
 import anchorMap from "./anchor-map.json";
 import { defaultSlugify } from "../../scripts/anchor-map-utils.ts";
@@ -944,6 +945,13 @@ export default withMermaid(
     srcExclude: ["temp/**"],
     ignoreDeadLinks: true,
     head: [['link', { rel: 'icon', type: 'image/svg+xml', href: brandLogo }]],
+    vite: {
+      plugins: [
+        llmstxt({
+          workDir: 'en',
+        }),
+      ],
+    },
     themeConfig: {
       logo: brandLogo,
       search: {

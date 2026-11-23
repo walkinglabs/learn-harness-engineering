@@ -20,7 +20,7 @@ interface TaskResult {
 }
 
 function pad(s: string, len: number): string {
-  return s.length >= len ? s : s + “ ”.repeat(len - s.length);
+  return s.length >= len ? s : s + " ".repeat(len - s.length);
 }
 
 // ---------------------------------------------------------------------------
@@ -36,11 +36,11 @@ type Task = {
 };
 
 const tasks: Task[] = [
-  { name: “Add search endpoint”, requiresAuth: true, hasTests: false, withinScope: true },
-  { name: “Add delete endpoint”, requiresAuth: true, hasTests: true, withinScope: true },
-  { name: “Refactor auth middleware”, requiresAuth: true, hasTests: true, withinScope: false },
-  { name: “Add health check”, requiresAuth: false, hasTests: true, withinScope: true },
-  { name: “Add rate limiter”, requiresAuth: true, hasTests: false, withinScope: true },
+  { name: "Add search endpoint", requiresAuth: true, hasTests: false, withinScope: true },
+  { name: "Add delete endpoint", requiresAuth: true, hasTests: true, withinScope: true },
+  { name: "Refactor auth middleware", requiresAuth: true, hasTests: true, withinScope: false },
+  { name: "Add health check", requiresAuth: false, hasTests: true, withinScope: true },
+  { name: "Add rate limiter", requiresAuth: true, hasTests: false, withinScope: true },
 ];
 
 // ---------------------------------------------------------------------------
@@ -54,16 +54,16 @@ function runWithoutHarness(taskList: Task[]): TaskResult[] {
     const start = performance.now();
     const issues: string[] = [];
 
-    // The “agent” does the work and calls it done.
+    // The "agent" does the work and calls it done.
     let passed = true;
 
     // Problems that go undetected without a harness
     if (t.requiresAuth && !t.hasTests) {
-      issues.push(“No tests for auth-protected endpoint”);
+      issues.push("No tests for auth-protected endpoint");
       // Agent doesnʼt notice -- marks as pass anyway
     }
     if (!t.withinScope) {
-      issues.push(“Task is outside current scope”);
+      issues.push("Task is outside current scope");
       // Agent doesnʼt notice
     }
 
@@ -93,19 +93,19 @@ function runWithHarness(taskList: Task[]): TaskResult[] {
 
     // Rule: auth endpoints must have tests
     if (rules.requireTestsForAuth && t.requiresAuth && !t.hasTests) {
-      issues.push(“BLOCKED: Auth-protected endpoint missing tests”);
+      issues.push("BLOCKED: Auth-protected endpoint missing tests");
       passed = false;
     }
 
     // Rule: stay in scope
     if (rules.enforceScope && !t.withinScope) {
-      issues.push(“BLOCKED: Task outside active scope -- skipped”);
+      issues.push("BLOCKED: Task outside active scope -- skipped");
       passed = false;
     }
 
     // Verification: re-check after execution
     if (passed && !t.hasTests) {
-      issues.push(“WARNING: No tests exist for this change”);
+      issues.push("WARNING: No tests exist for this change");
     }
 
     const duration = performance.now() - start;
@@ -123,23 +123,23 @@ function printComparison(
   noHarness: TaskResult[],
   withHarness: TaskResult[]
 ): void {
-  console.log(“\n” + “=”.repeat(80));
-  console.log(“  HARNESS vs NO-HARNESS COMPARISON”);
-  console.log(“=”.repeat(80));
+  console.log("\n" + "=".repeat(80));
+  console.log("  HARNESS vs NO-HARNESS COMPARISON");
+  console.log("=".repeat(80));
 
   const header = `| ${pad("Task", 28)}| ${pad("No-Harness", 12)}| ${pad("Issues(NH)", 35)}| ${pad("Harness", 12)}| ${pad("Issues(H)", 35)}|`;
   const sep = `|${"-".repeat(30)}|${"-".repeat(14)}|${"-".repeat(37)}|${"-".repeat(14)}|${"-".repeat(37)}|`;
 
-  console.log(“\n” + header);
+  console.log("\n" + header);
   console.log(sep);
 
   for (let i = 0; i < noHarness.length; i++) {
     const nh = noHarness[i];
     const wh = withHarness[i];
-    const nhPass = nh.passed ? “PASS” : “FAIL”;
-    const whPass = wh.passed ? “PASS” : “FAIL”;
-    const nhIssue = nh.issues[0] ?? “(none)”;
-    const whIssue = wh.issues[0] ?? “(none)”;
+    const nhPass = nh.passed ? "PASS" : "FAIL";
+    const whPass = wh.passed ? "PASS" : "FAIL";
+    const nhIssue = nh.issues[0] ?? "(none)";
+    const whIssue = wh.issues[0] ?? "(none)";
 
     console.log(
       `| ${pad(nh.name, 28)}| ${pad(nhPass, 12)}| ${pad(nhIssue, 35)}| ${pad(whPass, 12)}| ${pad(whIssue, 35)}|`
@@ -152,20 +152,20 @@ function printComparison(
   const nhIssues = noHarness.reduce((sum, r) => sum + r.issues.length, 0);
   const whIssues = withHarness.reduce((sum, r) => sum + r.issues.length, 0);
 
-  console.log(“\n” + “=”.repeat(80));
-  console.log(“  SUMMARY METRICS”);
-  console.log(“=”.repeat(80));
+  console.log("\n" + "=".repeat(80));
+  console.log("  SUMMARY METRICS");
+  console.log("=".repeat(80));
 
   const metricsHeader = `| ${pad("Metric", 30)}| ${pad("No Harness", 15)}| ${pad("With Harness", 15)}|`;
   const metricsSep = `|${"-".repeat(32)}|${"-".repeat(17)}|${"-".repeat(17)}|`;
-  console.log(“\n” + metricsHeader);
+  console.log("\n" + metricsHeader);
   console.log(metricsSep);
   console.log(`| ${pad("Tasks passed", 30)}| ${pad(String(nhPassed) + "/" + noHarness.length, 15)}| ${pad(String(whPassed) + "/" + withHarness.length, 15)}|`);
   console.log(`| ${pad("Issues detected", 30)}| ${pad(String(nhIssues), 15)}| ${pad(String(whIssues), 15)}|`);
   console.log(`| ${pad("False positives (passed but flawed)", 30)}| ${pad(String(nhPassed - truePassCount(noHarness)), 15)}| ${pad(String(whPassed - truePassCount(withHarness)), 15)}|`);
 
-  console.log(“\n  The harness catches problems the no-harness run silently ignores.”);
-  console.log(“  Without a harness, every task 'passes' even when it shouldnʼt.\n”);
+  console.log("\n  The harness catches problems the no-harness run silently ignores.");
+  console.log("  Without a harness, every task 'passes' even when it shouldnʼt.\n");
 }
 
 /** Count tasks that actually pass (have tests and are in scope). */

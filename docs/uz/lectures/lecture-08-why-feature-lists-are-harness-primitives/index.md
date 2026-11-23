@@ -125,7 +125,7 @@ Strukturalangan roʻyxat har bir funksiyaning holati va tekshiruv buyrugʻini bi
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — Funksiyalar roʻyxatini (feature list) agent skoupini (scope) boshqarish uchun “asosiy maʼlumotlar strukturasi” ekanligini aniq koʻrsatib beradi.
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — "artefaktlarni tashqariga chiqarish" (externalizing artifacts) tamoyilini alohida taʼkidlaydi.
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — Shartnoma dizayni tamoyillari (Contract design principles), funksiyalar roʻyxatining nazariy asosi.
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — Shartnoma dizayni tamoyillari (Contract design principles), funksiyalar roʻyxatining nazariy asosi.
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — Test piramidasi (Test pyramid) va xulq-atvor (behavioral) spetsifikatsiyasi muhandislik amaliyotlari.
 
 ## Mashqlar

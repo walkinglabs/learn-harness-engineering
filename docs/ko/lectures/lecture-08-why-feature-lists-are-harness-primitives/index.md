@@ -125,7 +125,7 @@ flowchart LR
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — 기능 목록을 에이전트 범위 제어를 위한 "핵심 데이터 구조"로 명시적으로 식별
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — "산출물 외부화" 원칙 강조
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — 계약 설계 원칙, 기능 목록의 이론적 기반
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — 계약 설계 원칙, 기능 목록의 이론적 기반
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — 테스트 피라미드와 동작 명세 엔지니어링 실천
 
 ## 연습 문제

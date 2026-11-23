@@ -85,4 +85,4 @@ Claude Code 的日志是追加式的完整记录（history.jsonl），加上 `/c
 - **Anthropic《Effective harnesses for long-running agents》**："可靠性来自 harness 而非模型"、agent 会自信地夸赞自己的工作、用钩子做验证等观点出处。<br/>https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 - **Claude Code Full Stack 导读**（社区，CLAUDE.md / Skills / MCP / Subagents / Hooks 分层）：作为扩展机制职责分离的补充阅读。<br/>https://jsmanifest.com/claude-code-full-stack-guide
 
-相关讲义：[第三讲 · 让代码仓库成为唯一的事实来源](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第九讲 · 防止 agent 提前宣告完成](../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [第十讲 · 跑通完整流程才算真正验证](../lectures/lecture-10-why-end-to-end-testing-changes-results/)
+相关讲义：[第三讲 · 让代码仓库成为唯一的事实来源](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [第九讲 · 防止 agent 提前宣告完成](../../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [第十讲 · 跑通完整流程才算真正验证](../../lectures/lecture-10-why-end-to-end-testing-changes-results/)

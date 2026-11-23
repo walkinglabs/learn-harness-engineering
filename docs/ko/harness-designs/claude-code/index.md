@@ -85,4 +85,4 @@ Claude Code의 로그는 추가 방식의 완전한 기록(history.jsonl)이며,
 - **Anthropic 《Effective harnesses for long-running agents》**: "신뢰성은 모델이 아니라 harness에서 나온다", agent가 자신의 작업을 자신 있게 칭찬한다는 관찰, hooks를 이용한 검증 등의 출처.<br/>https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 - **Claude Code Full Stack 가이드**(커뮤니티, CLAUDE.md / Skills / MCP / Subagents / Hooks 계층): 확장 메커니즘의 책임 분리에 관한 추가 읽을거리.<br/>https://jsmanifest.com/claude-code-full-stack-guide
 
-관련 강의: [강의 3 · 코드 저장소를 유일한 사실의 원천으로 만들기](../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [강의 9 · agent의 조기 완료 선언 방지하기](../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [강의 10 · 전체 흐름을 실행해야 진짜 검증이다](../lectures/lecture-10-why-end-to-end-testing-changes-results/)
+관련 강의: [강의 3 · 코드 저장소를 유일한 사실의 원천으로 만들기](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/) ｜ [강의 9 · agent의 조기 완료 선언 방지하기](../../lectures/lecture-09-why-agents-declare-victory-too-early/) ｜ [강의 10 · 전체 흐름을 실행해야 진짜 검증이다](../../lectures/lecture-10-why-end-to-end-testing-changes-results/)

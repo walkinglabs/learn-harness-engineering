@@ -126,7 +126,7 @@ Una lista estructurada pone el estado de cada funcionalidad y su comando de veri
 
 - [Building Effective Agents - Anthropic](https://www.anthropic.com/research/building-effective-agents) — Identifica explícitamente la lista de funciones como "core data structure" para controlar el alcance del agente
 - [Harness Engineering - OpenAI](https://openai.com/index/harness-engineering/) — Enfatiza el principio de "externalizar artefactos"
-- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/book/show/130439.Object_Oriented_Software_Construction) — Principios de diseño por contrato, base teórica de las listas de funciones
+- [Design by Contract - Bertrand Meyer](https://www.goodreads.com/en/book/show/946106.Object_Oriented_Software_Construction) — Principios de diseño por contrato, base teórica de las listas de funciones
 - [How Google Tests Software](https://books.google.dk/books/about/How_Google_Tests_Software.html?id=VrAx1ATf-RoC&redir_esc=y) — Pirámide de tests y prácticas de especificación conductual
 
 ## Ejercicios
