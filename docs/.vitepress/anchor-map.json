@@ -1573,12 +1573,17 @@
       "what-you-do",
       "tools",
       "harness-mechanism",
-      "use-the-checked-in-project"
+      "use-the-checked-in-project",
+      "run-protocol",
+      "first-run-weak-harness",
+      "second-run-strong-harness",
+      "how-to-measure-results",
+      "what-to-submit"
     ],
     "locales": {
       "ar": 5,
       "de": 5,
-      "en": 5,
+      "en": 10,
       "es": 5,
       "fr": 5,
       "ja": 5,
