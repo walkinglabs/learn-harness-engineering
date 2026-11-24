@@ -66,6 +66,7 @@ announcements, team case studies, and benchmarks are excluded.
 - [Vercel: How we made v0 an effective coding agent](https://vercel.com/blog/how-we-made-v0-an-effective-coding-agent) (2026-01-07): dynamic system prompts, a streaming rewrite layer, and deterministic/model-driven autofixers.
 - [Vercel: Introducing deepsec](https://vercel.com/blog/introducing-deepsec-find-and-fix-vulnerabilities-in-your-code-base) (2026-05-04): a security-focused coding-agent harness with scan, investigate, revalidate, enrich, export, plugin, and refusal-checker steps.
 - [Sourcegraph: CodeScaleBench](https://sourcegraph.com/blog/codescalebench-testing-coding-agents-on-large-codebases-and-multi-repo-software-engineering-tasks) (2026-03-03): an eval/tooling harness reference covering MCP tool adoption, tool-use transcripts, benchmark QA, verifier/reproducibility gates, and prompt/preamble iteration.
+- [Build an agent harness step by step](https://github.com/TejasQ/basically-ai-harness) (2026): an open-source example that shows how to add tools, guardrails, and deterministic checks to an agent loop that can otherwise report success without completing the task. See the [written walkthrough](https://tej.as/blog/what-is-an-agent-harness) and [conference talk](https://www.youtube.com/watch?v=C_GG5g38vLU).
 
 Strictly 2025-only general references are excluded from the primary list. The
 original 2025 Anthropic harness article remains because it is a foundation
