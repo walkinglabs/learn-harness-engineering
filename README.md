@@ -23,6 +23,7 @@
   <a href="docs-readme/tr-TR/README.md"><img alt="Türkçe" src="https://img.shields.io/badge/TR-Türkçe-E30A17?style=flat-square"></a>
   <a href="docs-readme/pt-BR/README.md"><img alt="Português-BR" src="https://img.shields.io/badge/PT--BR-Português-1A8BBA?style=flat-square"></a>
   <a href="docs-readme/uk-UA/README.md"><img alt="Українська" src="https://img.shields.io/badge/UK-Українська-0057B7?style=flat-square"></a>
+  <a href="docs-readme/hi-IN/README.md"><img alt="हिन्दी" src="https://img.shields.io/badge/HI-हिन्दी-orange?style=flat-square"></a>
 </p>
 
 <p align="center"><strong>A project-based course on building the environment, state management, verification, and control mechanisms that make AI coding agents work reliably.</strong></p>
@@ -30,12 +31,12 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Lectures-14-blue?style=flat-square" alt="14 Lectures">
   <img src="https://img.shields.io/badge/Projects-8-green?style=flat-square" alt="8 Projects">
-  <img src="https://img.shields.io/badge/Languages-15-yellow?style=flat-square" alt="15 Languages">
+  <img src="https://img.shields.io/badge/Languages-16-yellow?style=flat-square" alt="16 Languages">
   <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square" alt="MIT License">
   <a href="https://github.com/walkinglabs"><img src="https://img.shields.io/badge/Discord-Join_Community-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Join the Discord community"></a>
 </p>
 
-> 🌍 This course is available in **15 languages**: English, 简体中文, 繁體中文, 日本語, 한국어, Español, Français, Русский, Deutsch, العربية, Tiếng Việt, Oʻzbekcha, Türkçe, Portuguese (BR), Українська. Choose your language from the badges above.
+> 🌍 This course is available in **16 languages**: English, 简体中文, 繁體中文, 日本語, 한국어, Español, Français, Русский, Deutsch, العربية, Tiếng Việt, Oʻzbekcha, Türkçe, Portuguese (BR), Українська, हिन्दी. Choose your language from the badges above.
 
 ## 🆕 What's New — August 2026
 

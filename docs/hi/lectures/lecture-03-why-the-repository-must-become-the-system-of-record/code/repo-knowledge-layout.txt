@@ -1,0 +1,13 @@
+AGENTS.md
+docs/
+  ARCHITECTURE.md
+  PRODUCT.md
+  RELIABILITY.md
+  references/
+    electron.md
+    sqlite.md
+  plans/
+    active/
+    completed/
+src/
+scripts/

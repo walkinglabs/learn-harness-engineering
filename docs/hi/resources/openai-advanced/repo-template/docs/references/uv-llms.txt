@@ -1,0 +1,8 @@
+Purpose: store a compact reference for your Python package and environment
+workflow when `uv` or similar tooling matters to the repo.
+
+Suggested contents:
+- install and sync commands
+- lockfile policy
+- virtualenv expectations
+- verification commands
