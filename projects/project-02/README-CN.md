@@ -11,17 +11,15 @@
 
 ## 使用方法
 
-```sh
-# 需要至少 2 个 agent 会话来完成
-cd starter
-npm install
-# Session A: 实现文档导入和详情视图
-# Session B: 实现持久化（观察 agent 能否快速恢复上下文）
+将 `starter/` 复制到两个隔离的工作目录，不要用两个分支。每次只运行其中一份，归档时不要让下一轮 agent 访问上一轮的结果。在每份副本中执行 `npm install`，并使用相同的 agent 和任务提示词。
 
-cd ../solution
-npm install
-# 用完整 harness 重跑，对比会话恢复速度
-```
+1. **基线组：** 开始时保留 starter 自带的 harness，包括 `docs/` 和 `feature_list.json`；不写交接文件。
+2. **改进组：** 开始前只将 `AGENTS.md` 替换为 [`solution/AGENTS.md`](./solution/AGENTS.md)。会话 A 结束时，让 agent 自己写 `session-handoff.md`。不要复制已完成的参考代码、文档、功能清单或交接文件。
+3. **两组相同：** 文档能导入、详情能显示完整内容，但重启仍会丢失导入的文档时，结束会话 A。开启全新的会话 B，只说「继续开发」，完成持久化。
+
+比较会话 B 做出第一个有效修改所需的时间、重新探索或重复工作的多少，以及三个功能是否全部可用。这是在比较规则与交接文件的综合效果，不是单独测试交接文件。
+
+[完整实验流程和提交要求](../../docs/zh/projects/project-02-agent-readable-workspace/index.md)
 
 ## 具体任务对应关系
 
@@ -35,8 +33,6 @@ harness。本项目要补的是 Project 02 的产品切片，以及让第二个�
 | 基本持久化 | 导入文档不能完整跨重启恢复 | `persistence-service.ts`, `documents-meta.json` 处理 |
 | agent 可读状态 | starter 没有最终交接文件 | `session-handoff.md`, 扩展后的 `docs/ARCHITECTURE.md` 和 `docs/PRODUCT.md` |
 
-请按两次会话来跑：Session A 在三个功能全部完成前停止，Session B 只能依靠仓库状态继续。主要比较指标是有无交接文件时的恢复速度。
-
 ## 本项目涉及的功能
 
 - 文档导入流程（文件选择器 + IPC 传输）
@@ -45,5 +41,5 @@ harness。本项目要补的是 Project 02 的产品切片，以及让第二个�
 
 ## 对应课件
 
-- [Lecture 03: 让仓库成为唯一的真相来源](../../docs/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/index.md)
-- [Lecture 04: 拆分指令文件，而不是一个巨型文件](../../docs/en/lectures/lecture-04-why-one-giant-instruction-file-fails/index.md)
+- [Lecture 03: 让仓库成为唯一的真相来源](../../docs/zh/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/index.md)
+- [Lecture 04: 拆分指令文件，而不是一个巨型文件](../../docs/zh/lectures/lecture-04-why-one-giant-instruction-file-fails/index.md)

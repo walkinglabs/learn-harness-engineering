@@ -15,17 +15,15 @@
 
 ## 사용 방법
 
-```sh
-# 완료하려면 최소 2개의 에이전트 세션이 필요합니다
-cd starter
-npm install
-# 세션 A: 문서 가져오기 및 상세 보기 구현
-# 세션 B: 영속성 구현 (에이전트가 컨텍스트를 빠르게 복원하는지 관찰)
+`starter/`를 두 개의 격리된 작업 디렉터리에 복사하세요. 브랜치로 나누지 마세요. 한 번에 한 복사본만 사용하고, 이전 실행 결과는 다음 에이전트가 접근할 수 없는 곳에 보관합니다. 각 복사본에서 `npm install`을 실행하고 같은 에이전트와 작업 프롬프트를 사용합니다.
 
-cd ../solution
-npm install
-# 완전한 하네스로 재실행하여 세션 복원 속도를 비교
-```
+1. **기준 실행:** 처음에는 `docs/`와 `feature_list.json`을 포함해 starter의 하네스를 그대로 두고, 인계 문서는 작성하지 않습니다.
+2. **개선 실행:** 시작 전에 `AGENTS.md`만 [`solution/AGENTS.md`](./solution/AGENTS.md)로 교체합니다. 세션 A가 끝날 때 에이전트가 직접 `session-handoff.md`를 작성하도록 합니다. 완성된 풀이 코드, 문서, 기능 목록, 인계 문서는 복사하지 마세요.
+3. **두 실행 공통:** 문서 가져오기와 전체 내용 보기가 동작하지만 재시작하면 문서가 사라지는 상태에서 세션 A를 끝냅니다. 새 세션 B에는 «계속 작업하세요»라는 말만 전달하고 영속성 기능을 완성합니다.
+
+세션 B에서 첫 의미 있는 변경까지 걸린 시간, 다시 찾아낸 정보나 반복한 작업, 모든 기능의 완료 여부를 비교합니다. 이 실험은 인계 문서만이 아니라 하네스 규칙과 인계 문서를 함께 비교합니다.
+
+[전체 실험 절차 및 제출 요건](../../docs/ko/projects/project-02-agent-readable-workspace/index.md)
 
 ## 이 프로젝트에서 다루는 기능
 
@@ -35,5 +33,5 @@ npm install
 
 ## 관련 강의
 
-- [강의 03: 저장소가 왜 단일 진실 원천이어야 하는가](../../docs/en/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/index.md)
-- [강의 04: 왜 하나의 거대한 지시 파일이 실패하는가](../../docs/en/lectures/lecture-04-why-one-giant-instruction-file-fails/index.md)
+- [강의 03: 저장소가 왜 단일 진실 원천이어야 하는가](../../docs/ko/lectures/lecture-03-why-the-repository-must-become-the-system-of-record/index.md)
+- [강의 04: 왜 하나의 거대한 지시 파일이 실패하는가](../../docs/ko/lectures/lecture-04-why-one-giant-instruction-file-fails/index.md)

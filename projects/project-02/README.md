@@ -11,17 +11,15 @@ Demonstrate how repository readability and explicit continuity artifacts reduce 
 
 ## How to Use
 
-```sh
-# Requires at least 2 agent sessions to complete
-cd starter
-npm install
-# Session A: implement document import and the detail view
-# Session B: implement persistence (observe whether the agent quickly regains context)
+Copy `starter/` into two isolated working directories, not two branches. Run one copy at a time and archive its results outside the next agent's workspace. Run `npm install` in each copy and use the same agent and task prompt.
 
-cd ../solution
-npm install
-# Rerun with the complete harness and compare session recovery speed
-```
+1. **Baseline:** Keep the starter harness, including `docs/` and `feature_list.json`, unchanged at the start. Do not create a handoff note.
+2. **Improved:** Replace only `AGENTS.md` with [`solution/AGENTS.md`](./solution/AGENTS.md) before starting. At the end of Session A, have the agent write its own `session-handoff.md`. Do not copy the finished solution code, docs, feature list, or handoff.
+3. **Both runs:** End Session A when import and full detail view work but imported documents are still lost on restart. Start a fresh Session B with only “Continue the work.” and complete persistence.
+
+Compare how quickly Session B makes its first meaningful change, how much it rediscovers or repeats, and whether all features work. This compares the harness rules and handoff together, not the handoff note alone.
+
+[Full protocol and submission requirements](../../docs/en/projects/project-02-agent-readable-workspace/index.md)
 
 ## Exact Task Contract
 
@@ -35,11 +33,6 @@ workspace documentation that makes a second session recover quickly.
 | Document detail | Detail panel does not load and render full file content through IPC | `src/renderer/components/DocumentDetail.tsx`, `IPC_CHANNELS.GET_DOCUMENT_CONTENT` |
 | Basic persistence | Imported documents are not fully restored after restart | `src/services/persistence-service.ts`, `documents-meta.json` handling |
 | Agent-readable state | No final handoff file in starter | `session-handoff.md`, expanded `docs/ARCHITECTURE.md`, expanded `docs/PRODUCT.md` |
-
-Run this as a two-session exercise. Stop Session A before all three product
-features are complete, then start Session B from only the repository state. The
-main comparison is how much faster Session B can resume when `session-handoff.md`
-and the docs exist.
 
 ## Features Covered
 

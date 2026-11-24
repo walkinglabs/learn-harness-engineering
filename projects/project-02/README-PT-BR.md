@@ -11,17 +11,15 @@ Demonstre como a legibilidade do repositório e artefatos explícitos de continu
 
 ## Como Usar
 
-```sh
-# Requer pelo menos 2 sessões de agente para concluir
-cd starter
-npm install
-# Sessão A: implemente a importação de documentos e a visualização de detalhes
-# Sessão B: implemente a persistência (observe se o agente recupera rapidamente o contexto)
+Copie `starter/` para dois diretórios de trabalho isolados, não para duas branches. Use uma cópia por vez e arquive seus resultados fora do alcance do próximo agente. Execute `npm install` em cada cópia e use o mesmo agente e o mesmo prompt de tarefa.
 
-cd ../solution
-npm install
-# Execute novamente com o harness completo e compare a velocidade de recuperação da sessão
-```
+1. **Execução de referência:** Mantenha o harness original do starter, incluindo `docs/` e `feature_list.json`, sem criar uma nota de handoff.
+2. **Execução aprimorada:** Antes de começar, substitua apenas `AGENTS.md` pelo [`solution/AGENTS.md`](./solution/AGENTS.md). Ao final da Sessão A, peça que o agente escreva seu próprio `session-handoff.md`. Não copie o código, a documentação, a lista de funcionalidades ou a nota de handoff da solução pronta.
+3. **Nas duas execuções:** Encerre a Sessão A quando a importação e a exibição do conteúdo completo funcionarem, mas os documentos importados ainda desaparecerem após reiniciar. Inicie uma nova Sessão B dizendo apenas «Continue o trabalho» e implemente a persistência.
+
+Compare o tempo até a primeira alteração significativa na Sessão B, a redescoberta de informações, o retrabalho e a conclusão das funcionalidades. O teste compara as regras do harness e a nota de handoff em conjunto, não a nota isoladamente.
+
+[Protocolo completo e requisitos de entrega](../../docs/pt-BR/projects/project-02-agent-readable-workspace/index.md)
 
 ## Contrato Exato da Tarefa
 
@@ -35,11 +33,6 @@ documentação do workspace que permite que uma segunda sessão recupere o conte
 | Detalhes do documento | O painel de detalhes não carrega nem renderiza o conteúdo completo do arquivo via IPC | `src/renderer/components/DocumentDetail.tsx`, `IPC_CHANNELS.GET_DOCUMENT_CONTENT` |
 | Persistência básica | Documentos importados não são totalmente restaurados após reinicialização | `src/services/persistence-service.ts`, tratamento de `documents-meta.json` |
 | Estado legível pelo agente | Não existe arquivo final de handoff no starter | `session-handoff.md`, `docs/ARCHITECTURE.md` expandido, `docs/PRODUCT.md` expandido |
-
-Execute isso como um exercício de duas sessões. Encerre a Sessão A antes que as três
-funcionalidades do produto estejam completas e, em seguida, inicie a Sessão B usando
-apenas o estado atual do repositório. A principal comparação é o quanto mais rápido
-a Sessão B consegue retomar quando `session-handoff.md` e a documentação existem.
 
 ## Funcionalidades Cobertas
 

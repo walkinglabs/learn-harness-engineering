@@ -9,18 +9,7 @@ P01 证明了准备规则有用。但 P01 的任务一次会话就干完了。�
 
 这个项目要求你给仓库加上"可读性"：让一个全新的 agent 打开仓库后，能快速理解项目结构、知道当前进度、接手上次的工作。具体任务是给知识库应用加上三个功能：文档导入、文档详情页、导入后的本地持久化。这些功能必须跨至少两个 agent 会话完成。
 
-你需要跑两次，两次都从 `starter/` 的同一份代码出发：第一次用 starter 自带的精简 harness，不写交接文件；第二次换成 `solution/AGENTS.md` 里带交接规则的版本，并在会话 A 结束时写出 `session-handoff.md`。每次运行包含两个会话，第二个会话要接住第一个会话没做完的工作。下面的"具体步骤"让代码、提示词、agent 和停止点保持一致，所以比较的是整套 harness：`AGENTS.md` 里的规则加上交接文件。
-
-## 使用仓库里的项目
-
-仓库路径：[`projects/project-02/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02)
-
-| 目录 | 里面有什么 | 比较什么 |
-|------|------|------|
-| [`starter/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02/starter) | Project 01 代码，加上未完成的文档导入、详情视图、持久化。文档存在但较薄，没有 `session-handoff.md`。 | 第二个 agent 会话要重新发现多少上下文。 |
-| [`solution/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02/solution) | 完成同一产品切片，并在 [`projects/project-02/solution/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02/solution) 下补齐核心文档（以及 [`feature_list.json`](https://github.com/walkinglabs/learn-harness-engineering/blob/main/projects/project-02/solution/feature_list.json)、[`session-handoff.md`](https://github.com/walkinglabs/learn-harness-engineering/blob/main/projects/project-02/solution/session-handoff.md)）。 | 新会话能否只靠仓库状态继续工作。 |
-
-产品功能是文档导入、完整详情/内容加载、跨重启持久化；harness 功能是可交接的 agent-readable workspace。
+你需要跑两次，两次都从 `starter/` 的同一份代码出发：第一次用 starter 自带的精简 harness，不写交接文件；第二次换成 `solution/AGENTS.md` 里带交接规则的版本，并在会话 A 结束时写出 `session-handoff.md`。每次运行包含两个会话，第二个会话要接住第一个会话没做完的工作。下面的具体步骤让代码、提示词、agent 和停止点保持一致，所以比较的是整套 harness：`AGENTS.md` 里的规则加上交接文件。
 
 ## 用什么工具
 
@@ -29,11 +18,26 @@ P01 证明了准备规则有用。但 P01 的任务一次会话就干完了。�
 - Node.js + Electron
 - 文本编辑器（写文档用）
 
+## Harness 机制
+
+让 agent 能读懂的工作区 + 可跨会话保留的状态文件。
+
+## 使用仓库里的项目
+
+仓库路径：[`projects/project-02/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02)
+
+| 目录 | 里面有什么 | 怎么用 |
+|------|------|------|
+| [`starter/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02/starter) | Project 01 代码，加上未完成的文档导入、详情视图、持久化。文档存在但较薄，没有 `session-handoff.md`。 | 两组都从这里开始。 |
+| [`solution/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02/solution) | 完成同一产品切片，并在 [`projects/project-02/solution/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02/solution) 下补齐核心文档（以及 [`feature_list.json`](https://github.com/walkinglabs/learn-harness-engineering/blob/main/projects/project-02/solution/feature_list.json)、[`session-handoff.md`](https://github.com/walkinglabs/learn-harness-engineering/blob/main/projects/project-02/solution/session-handoff.md)）。 | 仅供参考。强组只取这里的 `AGENTS.md`，仍从同一份 starter 代码开始。 |
+
+产品功能是文档导入、完整详情/内容加载、跨重启持久化；harness 功能是可交接的 agent-readable workspace。
+
 ## 具体步骤
 
 两次运行里只有 harness 可以不同。代码、任务提示词、agent、会话 A 的停止点都保持一致。会话 A 完成文档导入和详情视图，会话 B 完成持久化，与[项目 README](https://github.com/walkinglabs/learn-harness-engineering/blob/main/projects/project-02/README.md) 一致。
 
-### 准备工作
+**准备工作**
 
 1. 准备两个相互隔离的工作目录，例如 `p02-baseline/` 和 `p02-improved/`。一次只跑一个：跑完两个会话、归档结果、删除该目录，再开始另一个。不要用 git 分支区分两次运行：coding agent 能读到其他分支和同级目录，弱 harness 那次一旦看得到强 harness 的文件，对比就被污染了（和 Project 01 是同一条规则）。
 2. 把 [`projects/project-02/starter/`](https://github.com/walkinglabs/learn-harness-engineering/tree/main/projects/project-02/starter) 复制到两个目录。这就是"同一个起点"：它基于 Project 01 的 solution，Project 01 的功能已经通过，Project 02 的三个功能在它的 `feature_list.json` 里是 `not-started`。如果你想接着自己做的 Project 01 成果往下做，就把那份快照同样复制进两个目录。关键是两次运行的起始代码完全一致。
@@ -87,7 +91,7 @@ P01 证明了准备规则有用。但 P01 的任务一次会话就干完了。�
 - 第二次运行用的 `AGENTS.md`，以及 agent 写出的 `session-handoff.md`
 - 一份对比笔记：重点比较接手速度和上下文恢复质量
 
-## 对应讲义
+**对应讲义**
 
 - [Lecture 03 — 为什么仓库必须成为唯一事实来源](../../lectures/lecture-03-why-the-repository-must-become-the-system-of-record/index.md)
 - [Lecture 04 — 为什么一个大而全的指令文件不行](../../lectures/lecture-04-why-one-giant-instruction-file-fails/index.md)

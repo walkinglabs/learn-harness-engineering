@@ -1581,21 +1581,21 @@
       "what-to-submit"
     ],
     "locales": {
-      "ar": 5,
-      "de": 5,
+      "ar": 10,
+      "de": 10,
       "en": 10,
-      "es": 5,
-      "fr": 5,
-      "ja": 5,
-      "ko": 5,
-      "pt-BR": 5,
-      "ru": 5,
-      "tr": 5,
-      "uk": 5,
-      "uz": 5,
-      "vi": 5,
-      "zh": 11,
-      "zh-TW": 12
+      "es": 10,
+      "fr": 10,
+      "ja": 10,
+      "ko": 10,
+      "pt-BR": 10,
+      "ru": 10,
+      "tr": 10,
+      "uk": 10,
+      "uz": 10,
+      "vi": 10,
+      "zh": 10,
+      "zh-TW": 10
     }
   },
   "projects/project-03-multi-session-continuity/index.md": {
