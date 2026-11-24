@@ -3,7 +3,7 @@ import { DocumentService } from '../services/document-service';
 import { IndexingService } from '../services/indexing-service';
 import { QaService } from '../services/qa-service';
 import { PersistenceService } from '../services/persistence-service';
-import { IPC_CHANNELS } from '../shared/types';
+import { AppStatus, ImportResult, IPC_CHANNELS } from '../shared/types';
 import { logger } from '../services/logger';
 
 const SERVICE = 'ipc-handlers';
@@ -15,7 +15,26 @@ export interface Services {
   persistence: PersistenceService;
 }
 
-export function registerIpcHandlers(ipcMain: IpcMain, services: Services) {
+/**
+ * Opens the native file picker and resolves with the chosen paths, or an
+ * empty array if the user cancels. Injected so main.ts can use Electron's
+ * dialog while tests pass a stub.
+ */
+export type FilePicker = () => Promise<string[]>;
+
+type IndexStatus = ReturnType<IndexingService['getStatus']>;
+
+/** Map the indexing service's status to the AppStatus shape the renderer reads. */
+export function toAppStatus(status: IndexStatus): AppStatus {
+  return {
+    documentsLoaded: status.totalDocuments,
+    currentIndexed: status.currentIndexed,
+    indexStatus: status.status,
+    lastActivity: status.lastIndexed ?? '',
+  };
+}
+
+export function registerIpcHandlers(ipcMain: IpcMain, services: Services, pickFiles: FilePicker) {
   const { documentService, indexingService, qaService, persistence } = services;
 
   // ---- Document operations ----
@@ -28,6 +47,29 @@ export function registerIpcHandlers(ipcMain: IpcMain, services: Services) {
   ipcMain.handle(IPC_CHANNELS.IMPORT_DOCUMENT, async (_event, filePath: string) => {
     logger.info(SERVICE, 'IPC: IMPORT_DOCUMENT', { filePath });
     return documentService.importDocument(filePath);
+  });
+
+  ipcMain.handle(IPC_CHANNELS.PICK_AND_IMPORT_DOCUMENTS, async (): Promise<ImportResult> => {
+    logger.info(SERVICE, 'IPC: PICK_AND_IMPORT_DOCUMENTS');
+    const filePaths = await pickFiles();
+    const result: ImportResult = { imported: [], failed: [], canceled: filePaths.length === 0 };
+
+    for (const filePath of filePaths) {
+      try {
+        result.imported.push(documentService.importDocument(filePath));
+      } catch (err) {
+        const error = err instanceof Error ? err.message : String(err);
+        logger.warn(SERVICE, 'Import failed for picked file', { filePath, error });
+        result.failed.push({ filePath, error });
+      }
+    }
+
+    logger.info(SERVICE, 'Picked files imported', {
+      picked: filePaths.length,
+      imported: result.imported.length,
+      failed: result.failed.length,
+    });
+    return result;
   });
 
   ipcMain.handle(IPC_CHANNELS.GET_DOCUMENT, async (_event, id: string) => {
@@ -44,12 +86,12 @@ export function registerIpcHandlers(ipcMain: IpcMain, services: Services) {
 
   ipcMain.handle(IPC_CHANNELS.START_INDEXING, async (_event, documentId?: string) => {
     logger.info(SERVICE, 'IPC: START_INDEXING', { documentId: documentId ?? 'all' });
-    return indexingService.startIndexing(documentId);
+    return toAppStatus(await indexingService.startIndexing(documentId));
   });
 
   ipcMain.handle(IPC_CHANNELS.GET_INDEXING_STATUS, async () => {
     logger.debug(SERVICE, 'IPC: GET_INDEXING_STATUS');
-    return indexingService.getStatus();
+    return toAppStatus(indexingService.getStatus());
   });
 
   ipcMain.handle(IPC_CHANNELS.GET_CHUNKS, async (_event, documentId: string) => {
@@ -98,7 +140,7 @@ export function registerIpcHandlers(ipcMain: IpcMain, services: Services) {
 
   ipcMain.handle(IPC_CHANNELS.GET_STATUS, async () => {
     logger.debug(SERVICE, 'IPC: GET_STATUS');
-    return indexingService.getStatus();
+    return toAppStatus(indexingService.getStatus());
   });
 
   logger.info(SERVICE, 'All IPC handlers registered', {

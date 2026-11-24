@@ -63,11 +63,19 @@ export interface AppStatus {
   lastActivity: string;
 }
 
+/** Result of picking files in the native dialog and importing each one. */
+export interface ImportResult {
+  imported: Document[];
+  failed: Array<{ filePath: string; error: string }>;
+  canceled: boolean;
+}
+
 /** IPC channel names -- single source of truth. */
 export const IPC_CHANNELS = {
   // Document operations
   LIST_DOCUMENTS: 'documents:list',
   IMPORT_DOCUMENT: 'documents:import',
+  PICK_AND_IMPORT_DOCUMENTS: 'documents:pick-and-import',
   GET_DOCUMENT: 'documents:get',
   DELETE_DOCUMENT: 'documents:delete',
 

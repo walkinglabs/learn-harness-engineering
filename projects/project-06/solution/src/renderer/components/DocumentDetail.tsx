@@ -13,7 +13,7 @@ export function DocumentDetail({ document: doc, onRefresh }: Props) {
 
   useEffect(() => {
     window.knowledgeBase.indexing.chunks(doc.id).then(setChunks);
-  }, [doc.id]);
+  }, [doc.id, doc.status, doc.chunks]);
 
   const handleIndex = async () => {
     setIsIndexing(true);

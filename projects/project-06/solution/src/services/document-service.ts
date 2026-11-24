@@ -3,6 +3,7 @@ import * as path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { Document } from '../shared/types';
 import { PersistenceService } from './persistence-service';
+import { CHUNKS_DIR, INDEX_META } from './indexing-service';
 import { logger } from './logger';
 
 const SERVICE = 'document-service';
@@ -120,10 +121,14 @@ export class DocumentService {
     }
 
     this.persistence.deleteFromDocuments(doc.filename);
-    // Also remove content file
-    const contentPath = `content/${id}.txt`;
-    if (this.persistence.exists(contentPath)) {
-      this.persistence.writeText(contentPath, ''); // Clear content
+    this.persistence.deleteFile(`content/${id}.txt`);
+
+    // Remove the document from the index so it is no longer counted or cited.
+    this.persistence.deleteFile(`${CHUNKS_DIR}/${id}.json`);
+    const chunksMeta = this.persistence.readJson<Record<string, string[]>>(INDEX_META);
+    if (chunksMeta && id in chunksMeta) {
+      delete chunksMeta[id];
+      this.persistence.writeJson(INDEX_META, chunksMeta);
     }
 
     const updated = docs.filter(d => d.id !== id);

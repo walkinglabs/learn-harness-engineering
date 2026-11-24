@@ -7,6 +7,7 @@ declare global {
       documents: {
         list: () => Promise<import('../shared/types').Document[]>;
         import: (filePath: string) => Promise<import('../shared/types').Document>;
+        pickAndImport: () => Promise<import('../shared/types').ImportResult>;
         get: (id: string) => Promise<import('../shared/types').Document | null>;
         delete: (id: string) => Promise<boolean>;
       };
