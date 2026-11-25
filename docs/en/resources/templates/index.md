@@ -224,3 +224,26 @@ The quality document also supports harness simplification. Every harness compone
 3. Run the benchmark task suite.
 4. Take another snapshot.
 5. Compare — if grades didn't drop, the component was overhead. If they did, restore it.
+
+## claude-code-hooks
+
+Instruction files ask the agent to follow the session lifecycle; hooks make the harness run parts of it itself. These three [Claude Code hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) turn rules from the lectures into checks the agent cannot skip. The files live in `docs/en/resources/templates/claude-code-hooks/`.
+
+| Hook | Event | What it enforces | Lectures |
+|---|---|---|---|
+| `hooks/session-start.sh` | `SessionStart` | Clock-in: puts the progress log tail, the features not yet passing and recent git history into the agent's context before its first turn | 05, 06 |
+| `hooks/block-dangerous-git.sh` | `PreToolUse` (Bash) | Refuses commands that discard work (hard reset, forced clean, force branch delete, checking out `.`), skipping git hooks, pushes to the default branch and force-pushes without a refspec | 07, 12 |
+| `hooks/stop-verify.sh` | `Stop` | The agent cannot end its turn while `VERIFY_CMD` fails on uncommitted changes; the failure output is fed back to it | 09 |
+
+**How to use it:**
+
+- Copy `hooks/` to `.claude/hooks/` in your project and make the scripts executable: `chmod +x .claude/hooks/*.sh`
+- Merge `settings.json` into `.claude/settings.json`, keeping any hooks you already have
+- Set `VERIFY_CMD` (environment variable, or the default at the top of `stop-verify.sh`) to a fast check such as type-check + unit tests; it runs as a shell command, so set it only from trusted configuration. Set `DEFAULT_BRANCH` the same way in `block-dangerous-git.sh` if yours is not `main`
+- Requires `bash`, `git` and `jq`
+
+**Design notes:**
+
+- `stop-verify.sh` lets the agent stop on its second attempt in the same turn (`stop_hook_active`), so a failure it cannot fix ends as a recorded blocker instead of an endless loop. It skips the check when the working tree is clean.
+- `block-dangerous-git.sh` only matches a git command where a shell command starts, so searching docs or echoing a command is not blocked, while the same command wrapped in `bash -c` or run with `git -C ../repo` is.
+- `session-start.sh` is read-only. It reports state; running `init.sh` stays an explicit first step for the agent.
