@@ -34,6 +34,7 @@ Then add:
 - session handoff: [`templates/session-handoff.md`](./templates/session-handoff.md)
 - clean-exit checklist: [`templates/clean-state-checklist.md`](./templates/clean-state-checklist.md)
 - evaluator rubric: [`templates/evaluator-rubric.md`](./templates/evaluator-rubric.md)
+- Claude Code hooks that run clock-in, git safety and the verification gate for the agent: [`templates/claude-code-hooks`](./templates/index.md#claude-code-hooks)
 
 If you want the fuller OpenAI-style repository structure from the
 "Harness engineering" post, use the advanced pack:
