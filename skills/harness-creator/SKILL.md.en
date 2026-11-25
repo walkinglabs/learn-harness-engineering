@@ -84,6 +84,8 @@ Load only the reference needed for the user's problem:
 - Permissions, tools, concurrency: [Tool Registry & Safety](references/tool-registry-pattern.md)
 - Context budget and progressive disclosure: [Context Engineering](references/context-engineering-pattern.md)
 - Delegation and parallel agents: [Multi-Agent Coordination](references/multi-agent-pattern.md)
+- Several agent sessions running at once in one workspace: [Concurrent Session Coordination](references/concurrent-session-coordination-pattern.md)
+- A product split across many repos: [Multi-Repo Harness](references/multi-repo-harness-pattern.md)
 - Hooks, startup, long-running work: [Lifecycle & Bootstrap](references/lifecycle-bootstrap-pattern.md)
 - Non-obvious failure modes: [Gotchas](references/gotchas.md)
 
