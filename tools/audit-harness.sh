@@ -24,6 +24,7 @@ RESET='\033[0m'
 pass()  { echo -e "  ${GREEN}[PASS]${RESET} $1"; }
 fail()  { echo -e "  ${RED}[FAIL]${RESET} $1"; }
 warn()  { echo -e "  ${YELLOW}[WARN]${RESET} $1"; }
+skip()  { echo -e "  ${CYAN}[SKIP]${RESET} $1"; }
 header(){ echo -e "\n${CYAN}${BOLD}$1${RESET}"; }
 
 CRITICAL_PASS=0
@@ -93,6 +94,23 @@ instructions_file() {
 
 instructions_path() {
   [[ -f "$REPO/AGENTS.md" ]] && echo "AGENTS.md" || echo "CLAUDE.md"
+}
+
+# The course templates and project solutions name the progress log
+# claude-progress.md, so accept it alongside PROGRESS.md / progress.md.
+progress_path() {
+  local f
+  for f in PROGRESS.md progress.md claude-progress.md; do
+    [[ -f "$REPO/$f" ]] && { echo "$f"; return; }
+  done
+  echo "PROGRESS.md"
+}
+
+# A lockfile only makes sense when the repo declares dependencies.
+has_dependency_manifest() {
+  any_file_match "package.json" "pyproject.toml" "setup.py" "Pipfile" "requirements.in" \
+    "Cargo.toml" "go.mod" "Gemfile" "mix.exs" "composer.json" "pom.xml" \
+    "build.gradle" "build.gradle.kts" "*.csproj" "*.fsproj" "*.sln"
 }
 
 makefile_has_target() {
@@ -174,9 +192,13 @@ check_recommended "MCP or tool integrations documented in instructions file" \
 # ── Subsystem 3: Environment ───────────────────────────────────────────────────
 header "Subsystem 3: Environment"
 
-check_critical "Dependency lockfile present" \
-  "$(any_file_match "package-lock.json" "yarn.lock" "pnpm-lock.yaml" "mix.lock" "Pipfile.lock" "poetry.lock" "requirements.txt" "Cargo.lock" "go.sum" "Gemfile.lock")" \
-  "Commit a dependency lockfile (package-lock.json, yarn.lock, requirements.txt, go.sum, etc.) so installs are reproducible."
+if [[ "$(has_dependency_manifest)" == "pass" ]]; then
+  check_critical "Dependency lockfile present" \
+    "$(any_file_match "package-lock.json" "yarn.lock" "pnpm-lock.yaml" "bun.lock" "bun.lockb" "mix.lock" "Pipfile.lock" "poetry.lock" "uv.lock" "requirements.txt" "Cargo.lock" "go.sum" "Gemfile.lock" "composer.lock" "packages.lock.json" "gradle.lockfile")" \
+    "Commit a dependency lockfile (package-lock.json, yarn.lock, requirements.txt, go.sum, etc.) so installs are reproducible."
+else
+  skip "Dependency lockfile — no dependency manifest at repo root (docs/tooling-only repo)"
+fi
 
 check_recommended "Runtime version pinned (.tool-versions, .nvmrc, .python-version, etc.)" \
   "$(any_file_match ".tool-versions" ".nvmrc" ".node-version" ".python-version" ".ruby-version" ".java-version")" \
@@ -197,12 +219,14 @@ check_recommended "Single-command dev server target exists (make dev)" \
 # ── Subsystem 4: State ─────────────────────────────────────────────────────────
 header "Subsystem 4: State"
 
-check_critical "PROGRESS.md exists at repo root" "$(file_exists "PROGRESS.md")" \
+prog="$(progress_path)"
+
+check_critical "Progress log exists at repo root (PROGRESS.md or claude-progress.md)" "$(file_exists "$prog")" \
   "Create PROGRESS.md at the repo root with sections: Current State (commit hash + test status), In Progress, Next Steps, and Blockers."
 
-if [[ "$(file_exists "PROGRESS.md")" == "pass" ]]; then
-  check_recommended "PROGRESS.md references current task / in-progress work" \
-    "$(contains_pattern "PROGRESS.md" "(in.progress|current|task|next step|blocker|completed)")" \
+if [[ "$(file_exists "$prog")" == "pass" ]]; then
+  check_recommended "$prog references current task / in-progress work" \
+    "$(contains_pattern "$prog" "(in.progress|current|task|next step|blocker|completed)")" \
     "Add an '## In Progress' section to PROGRESS.md describing the current task."
 fi
 
@@ -245,8 +269,8 @@ header "L05: Cross-Session Continuity"
 
 ipath_l05="$(instructions_path 2>/dev/null || echo "AGENTS.md")"
 
-check_critical "PROGRESS.md has a Current State block (commit hash + test status)" \
-  "$(contains_pattern "PROGRESS.md" "(last commit|current state|commit.*hash|test.*pass|passing.*fail)")" \
+check_critical "Progress log has a Current State block (commit hash + test status)" \
+  "$(contains_pattern "$prog" "(last commit|current state|commit.*hash|test.*pass|passing.*fail)")" \
   "Add a '## Current State' section to PROGRESS.md, e.g.: 'Last commit: abc1234 | make check: passing'. Update this on every clock-out."
 
 check_recommended "Clock-in routine documented in instructions (read PROGRESS.md then run check)" \
@@ -265,8 +289,8 @@ check_recommended "Commit message guidance (explain why, not just what) present"
   "$(contains_pattern "$ipath_l05" "(commit.*why|why.*commit|explain why|not just what)")" \
   "Add commit guidance to $ipath_l05: 'Write commit messages that explain WHY the change was made, not just what changed.'"
 
-check_recommended "PROGRESS.md Next Steps section exists with specific actions" \
-  "$(contains_pattern "PROGRESS.md" "(next step|next action)")" \
+check_recommended "Progress log Next Steps section exists with specific actions" \
+  "$(contains_pattern "$prog" "(next step|next action)")" \
   "Add a '## Next Steps' section to PROGRESS.md listing specific, actionable items so the next session can start immediately."
 
 # ── L03: Repository as System of Record ───────────────────────────────────────
@@ -275,7 +299,7 @@ header "L03: Repository as System of Record"
 ipath_l03="$(instructions_path 2>/dev/null || echo "AGENTS.md")"
 
 _durability="fail"
-if [[ -f "$REPO/PROGRESS.md" ]] && { [[ -f "$REPO/DECISIONS.md" ]] || [[ -d "$REPO/docs/decisions" ]]; }; then
+if [[ -f "$REPO/$prog" ]] && { [[ -f "$REPO/DECISIONS.md" ]] || [[ -d "$REPO/docs/decisions" ]]; }; then
   _durability="pass"
 fi
 check_recommended "ACID – Durability: cross-session knowledge written to tracked files (PROGRESS + DECISIONS present)" "$_durability" \
