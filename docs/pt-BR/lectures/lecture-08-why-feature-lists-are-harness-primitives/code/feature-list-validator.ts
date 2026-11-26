@@ -160,8 +160,8 @@ function run(): void {
     process.exit(1);
   }
 
-  // Para fins de demonstração, também valida um conjunto estendido de testes
-  const demoEntries: FeatureEntry[] = [
+  // Para fins de demonstração, acrescenta um conjunto estendido de testes apenas ao usar o exemplo incluído
+  const demoEntries: FeatureEntry[] = process.argv[2] ? entries : [
     ...entries,
     {
       id: "qna-002",
