@@ -143,8 +143,8 @@ function run(): void {
     process.exit(1);
   }
 
-  // For demo purposes, also validate an extended test set
-  const demoEntries: FeatureEntry[] = [
+  // For demo purposes, append an extended test set only when using the bundled sample
+  const demoEntries: FeatureEntry[] = process.argv[2] ? entries : [
     ...entries,
     {
       id: "qna-002",
